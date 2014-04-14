@@ -25,23 +25,25 @@ namespace Tax.Portal.Controllers
             {
                 log.Info("begin");
 
-                //foreach (var item in xxx) { Debug.WriteLine(item); }
-                ApplicationDbContext db = new ApplicationDbContext();
+                //ApplicationDbContext db = new ApplicationDbContext();
 
-                string usrId = User.Identity.GetUserId();
-                var sinoszrole = db.ApplicationUserRole.FirstOrDefault(x => x.UserId == usrId
-                                    && (x.Role.Name == "SinoszUser" || x.Role.Name == "SinoszAdmin"));
+                //string usrId = User.Identity.GetUserId();
+                //var sinoszrole = db.ApplicationUserRole.FirstOrDefault(x => x.UserId == usrId
+                //                    && (x.Role.Name == "SinoszUser" || x.Role.Name == "SinoszAdmin"));
 
-                if (sinoszrole != null)
-                {
-                    log.Info("end");
-                    return RedirectToAction(MVC.Sinosz.New());
-                }
-                else
-                {
-                    log.Info("end");
-                    return View();//Home/Index
-                }
+                //if (sinoszrole != null)
+                //{
+                //    log.Info("end");
+                //    return RedirectToAction(MVC.Sinosz.New());
+                //}
+                //else
+                //{
+                //    log.Info("end");
+                //    return View();//Home/Index
+                //}
+
+                log.Info("end");
+                return View();//Home/Index
 
             }
         }
@@ -137,47 +139,5 @@ namespace Tax.Portal.Controllers
                 return View();
             }
         }
-
-        //[AllowAnonymous]
-        //public virtual ActionResult PrintCommContract()
-        //{
-        //    log.Info("begin");
-        //    log.Info("end");
-        //    PrintContractViewModel pm = new PrintContractViewModel()
-        //    {
-        //        BirthDatas = "BirthDatas",
-        //        BirthName = "BirthName",
-        //        DateNow = "DateNow",
-        //        DeviceId = "DeviceId",
-        //        Email = "Email",
-        //        HomeAddress = "HomeAddress",
-        //        MothersName = "MothersName",
-        //        SinoszId = "SinoszId",
-        //        SinoszUserName = "SinoszUserName",
-        //        Telephone = "Telephone"
-        //    };
-        //    return View(pm);
-        //}
-
-        //[AllowAnonymous]
-        //public virtual ActionResult PrintDevContract()
-        //{
-        //    log.Info("begin");
-        //    log.Info("end");
-        //    PrintContractViewModel pm = new PrintContractViewModel()
-        //    {
-        //        BirthDatas = "BirthDatas",
-        //        BirthName = "BirthName",
-        //        DateNow = "DateNow",
-        //        DeviceId = "DeviceId",
-        //        Email = "Email",
-        //        HomeAddress = "HomeAddress",
-        //        MothersName = "MothersName",
-        //        SinoszId = "SinoszId",
-        //        SinoszUserName = "SinoszUserName",
-        //        Telephone = "Telephone"
-        //    };
-        //    return View(pm);
-        //}
     }
 }

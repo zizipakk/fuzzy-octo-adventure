@@ -46,22 +46,7 @@
                         <input type="submit" value="Bejelentkezés" class="btn btn-warning" />
                     </div>
                 </div>
-                using (var db = new Tax.Data.Models.ApplicationDbContext())
-                {
-                    var IsPreregistration = db.SystemParameter.FirstOrDefault(x => x.Name == "Előregisztáció folyamatban (1/0)?");
-                    if (null == IsPreregistration)
-                    {
-                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Register())">itt tud regisztrálni <i class="fa fa-user"></i></a>.</p>
-                    }
-                    else if (IsPreregistration.Value == "1")
-                    { 
-                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Preregister())">itt tud előregisztrálni <i class="fa fa-user"></i></a>.</p>
-                    }
-                    else
-                    { 
-                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Register())">itt tud regisztrálni <i class="fa fa-user"></i></a>.</p>
-                    }
-                }
+                <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Register())">itt tud regisztrálni <i class="fa fa-user"></i></a>.</p>
                 <p>Ha elfelejtette a jelszavát, <a href="@Url.Action(MVC.Account.ResetPasswordStart())">itt tud új jelszót igényelni <i class="fa fa-envelope"></i></a>.</p>
             }
 </section>

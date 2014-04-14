@@ -139,25 +139,25 @@ namespace Tax.Portal.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual Tax.Portal.Models.JsonpResult viRegister()
         {
-            return new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viRegister);
+            return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viRegister);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual Tax.Portal.Models.JsonpResult viPreregister()
         {
-            return new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
+            return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual Tax.Portal.Models.JsonpResult viResetPasswordStart()
         {
-            return new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordStart);
+            return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordStart);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual Tax.Portal.Models.JsonpResult viResetPasswordFinalize()
         {
-            return new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordFinalize);
+            return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordFinalize);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -845,44 +845,44 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void viRegisterOverride(T4MVC_Kontakt_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.RegisterViewModel model, string field);
+        partial void viRegisterOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.RegisterViewModel model, string field);
 
         public override Tax.Portal.Models.JsonpResult viRegister(Tax.Portal.Models.RegisterViewModel model, string field)
         {
-            var callInfo = new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viRegister);
+            var callInfo = new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viRegister);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
             viRegisterOverride(callInfo, model, field);
             return callInfo;
         }
 
-        partial void viPreregisterOverride(T4MVC_Kontakt_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.PreRegisterViewModel model, string field);
+        partial void viPreregisterOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.PreRegisterViewModel model, string field);
 
         public override Tax.Portal.Models.JsonpResult viPreregister(Tax.Portal.Models.PreRegisterViewModel model, string field)
         {
-            var callInfo = new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
+            var callInfo = new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
             viPreregisterOverride(callInfo, model, field);
             return callInfo;
         }
 
-        partial void viResetPasswordStartOverride(T4MVC_Kontakt_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.ResetPasswordStartViewModel model, string field);
+        partial void viResetPasswordStartOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.ResetPasswordStartViewModel model, string field);
 
         public override Tax.Portal.Models.JsonpResult viResetPasswordStart(Tax.Portal.Models.ResetPasswordStartViewModel model, string field)
         {
-            var callInfo = new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordStart);
+            var callInfo = new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordStart);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
             viResetPasswordStartOverride(callInfo, model, field);
             return callInfo;
         }
 
-        partial void viResetPasswordFinalizeOverride(T4MVC_Kontakt_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.ResetPasswordFinalizeViewModel model, string field);
+        partial void viResetPasswordFinalizeOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.ResetPasswordFinalizeViewModel model, string field);
 
         public override Tax.Portal.Models.JsonpResult viResetPasswordFinalize(Tax.Portal.Models.ResetPasswordFinalizeViewModel model, string field)
         {
-            var callInfo = new T4MVC_Kontakt_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordFinalize);
+            var callInfo = new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordFinalize);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
             viResetPasswordFinalizeOverride(callInfo, model, field);
