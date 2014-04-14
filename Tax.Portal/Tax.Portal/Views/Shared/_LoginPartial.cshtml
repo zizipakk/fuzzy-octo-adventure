@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@using Tax.Data.Models
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav navbar-right">       
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span><i class="fa fa-info fw"></i> Üdv kedves <strong>@User.Identity.GetUserName()</strong> !</span>
+            </a>
+            <ul class="dropdown-menu">               
+                <li><a title="Ügyfél profil" href="@Url.Action("AccountProfileEdit", "Account", new { Id = @User.Identity.GetUserId() })"><i class="fa fa-barcode fw"></i> Ügyfélprofil </a></li>
+                <li><a title="Jelszómódosítás" href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i> Jelszómódosítás </a></li>               
+            </ul>
+        </li>
+
+        @*<li><a title="Ügyfél profil" href="@Url.Action("AccountProfileEdit", "Account", new { Id = @User.Identity.GetUserId() })"><i class="fa fa-info fw"></i> Üdv kedves <strong>@User.Identity.GetUserName()</strong> !</a></li>*@
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw" ></i> Kijelentkezés</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @using (var db = new Tax.Data.Models.ApplicationDbContext())
+        {
+            var IsPreregistration = db.SystemParameter.FirstOrDefault(x => x.Name == "Előregisztáció folyamatban (1/0)?");
+            if (null == IsPreregistration)
+            {
+                <li><a id="registerLink" href="@Url.Action(MVC.Account.Register())"><i class="fa fa-user fa-fw"></i> Regisztráció</a></li>
+            }
+            else if (IsPreregistration.Value == "1")
+            {
+                //<li><a id="preregisterLink" href="@Url.Action(MVC.Account.Preregister())"><i class="fa fa-user fa-fw"></i> Előregisztráció</a></li>
+                //<li><span style="color: gray"><i class="fa fa-sign-in fa-fw"></i> Bejelentkezés</span></li>
+            }
+            else
+            {
+                <li><a id="registerLink" href="@Url.Action(MVC.Account.Register())"><i class="fa fa-user fa-fw"></i> Regisztráció</a></li>
+            }
+        }
+        <li><a id="loginLink" href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i> Bejelentkezés</a></li>        
+    </ul>
+}

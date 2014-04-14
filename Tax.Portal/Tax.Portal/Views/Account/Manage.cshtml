@@ -1,0 +1,29 @@
+﻿@using Tax.Data.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Jelszómódosítás";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+        @if (ViewBag.HasLocalPassword)
+        {
+            @Html.Partial("_ChangePasswordPartial")
+        }
+        else
+        {
+            @Html.Partial("_SetPasswordPartial")
+        }
+
+        @*<section id="externalLogins">
+            @Html.Action("RemoveAccountList")
+            @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqueryval")
+}

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="UpdateWebConfigBeforeRun" BeforeTargets="Build"  Condition="'$(BuildingInsideVisualStudio)' == 'true'">
+    <Message Text="in VS transform configuration: $(Configuration): Web.$(Configuration).config ($(ProjectDir)\Web.$(Configuration).config -&gt; $(ProjectDir)\Web.config)" Importance="high"/>
+    <TransformXml Source="$(ProjectDir)\Web.config" Transform="$(ProjectDir)\Web.$(Configuration).config" Destination="$(ProjectDir)\Web.config" StackTrace="true" />
+  </Target>
+</Project>

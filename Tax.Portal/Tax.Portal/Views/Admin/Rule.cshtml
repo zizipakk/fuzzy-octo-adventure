@@ -1,0 +1,564 @@
+﻿@{
+    ViewBag.Title = "Jogosultság-kezelés";
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="container grid">
+        <div class="col-sm-7 col-xs-12" style="min-width: 660px">
+            <table id="users" class="display"><tr><td /></tr></table>
+            <div id="userspager"></div>
+        </div>
+        <div class="col-sm-5 col-xs-12" style="min-width: 470px">
+            <table id="roles" class="display"><tr><td /></tr></table>
+            <div id="rolespager"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+<script type="text/javascript">
+    var SelectedUserID = null;
+
+    var getColumnIndexByName = function (gridname, columnName) {
+        var grid = $("#" + gridname);
+        var cm = grid.jqGrid('getGridParam', 'colModel');
+        var retval = -1;
+        $.each(cm, function () {
+            if (this.name === columnName) {
+                retval = cm.indexOf(this);
+            }
+        });
+        return retval;
+    };
+
+    function usercbxFormatter(cellvalue, options, rowObject) {
+        if (
+            rowObject[getColumnIndexByName('users', 'isEmailValidated') - 1] != "True"
+            || rowObject[getColumnIndexByName('users', 'SinoszId') - 1] == ""
+            || rowObject[getColumnIndexByName('users', 'isCommunicationRequested') - 1] != "True"
+            ) {
+            if (cellvalue == "True") {
+                return '<input type="checkbox" checked="checked" value="True" offval="no" disabled="disabled">'
+            } else {
+                return '<input type="checkbox" value="False" offval="no" disabled="disabled">'
+            }
+        } else {
+            if (cellvalue == "True") {
+                return '<input type="checkbox" checked="checked" value="True" offval="no">'
+            } else {
+                return '<input type="checkbox" value="False" offval="no">'
+            }
+        }
+        return null
+    }
+
+    function userFormatter(cellvalue, options, rowObject) {
+        if (cellvalue != "")
+        {
+            return '<a href = "@Url.Action("Index", "Sinosz")?SinoszId=' + cellvalue + '">' + cellvalue + '</a>';
+        }
+        else
+        {
+            return cellvalue;
+        }
+    }
+
+    var setTooltipsOnColumnHeader = function (grid, iColumn, text) {
+        var thd = jQuery("thead:first", grid[0].grid.hDiv)[0];
+        jQuery("tr.ui-jqgrid-labels th:eq(" + iColumn + ")", thd).attr("title", text);
+    };
+    
+    jQuery("#users").jqGrid({
+        url: '@Url.Action("ListUsers", "Admin")?KontaktUserId=@ViewBag.KontaktUserId',
+        editurl: '@Url.Action("UpdateUsers", "Admin")',
+        datatype: "json",        
+        loadError: function (jqXHR, textStatus, errorThrown) { //keresési server response is egyben
+            //alert(textStatus); alert(errorThrown);
+            $('#errortext').text(jqXHR.responseText);
+            $('#errormodal').modal({ show: true });
+        },
+        colNames: [
+            'Műveletek'
+            , 'id'
+            , 'Új telko?'
+            , 'Belépési név'
+            , 'Vezeték név'
+            , 'Keresztnév'
+            , 'Email'
+            , 'Évényes?'
+            , 'Kizárva?'
+            , 'SINOSZ?'
+            , 'Tagi azon.'
+            , 'Telko?'
+            , 'Eszköz?'
+            , 'Kiválasztott?'
+            , 'Tolmácskp. megye'
+            , 'Belső mellék'
+            , 'Szerepek'
+        ],
+        colModel: [
+            {
+                name: "act"
+                , index: "act"
+                , formatter: "actions"
+                , formatoptions: {
+                    keys: false,
+                    editbutton: true,
+                    delbutton: false,
+                    afterSave: function () {
+                        $("#users").showCol("isElected");
+                        $("#users").trigger("reloadGrid", [{ current: true }]);
+                        setTimeout(function () {
+                            $("#users").setSelection(SelectedUserID, true);
+                        }, 100);                        
+                    },
+                    afterRestore: function () { $("#users").showCol("isElected"); },
+                    onEdit: function () { $("#users").hideCol("isElected"); }
+                }
+                , width: 50
+                , sortable: false
+                , search: false
+                , hidden: false                
+            },
+            {
+                name: 'Id', index: 'Id', width: 80, align: "left", hidden: true, sortable: false, editable: false,
+                editoptions: {
+                    dataInit: function (element) {
+                        $(this).jqGrid('getColProp', 'isEmailValidated').formatoptions.disabled = false;
+                        $(this).jqGrid('getColProp', 'isLocked').formatoptions.disabled = false;
+                        $(this).jqGrid('getColProp', 'isCommunicationRequested').formatoptions.disabled = false;
+                        $(this).jqGrid('getColProp', 'isDeviceReqested').formatoptions.disabled = false;                        
+                    }
+                }
+            },
+            {
+                name: 'isFreshForPBX', index: 'isFreshForPBX', width: 45, align: "center", editable: false,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            { name: 'UserName', index: 'UserName', width: 90, align: "left", editable: false, sortable: true },
+            { name: 'FirstName', index: 'FirstName', width: 75, align: "left", editable: true, sortable: true },
+            { name: 'LastName', index: 'LastName', width: 75, align: "left", editable: true, sortable: true },
+            { name: 'Email', index: 'Email', width: 120, align: "left", editable: false, sortable: true },
+            {
+                name: 'isEmailValidated', index: 'isEmailValidated', width: 45, align: "center", editable: true,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            {
+                name: 'isLocked', index: 'isLocked', width: 45, align: "center", editable: true, hidden: true, //nincs használatban
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            {
+                name: 'isSinoszMember', index: 'isSinoszMember', hidden: true,//width: 45, align: "center",
+                editable: false,
+                searchoptions: { searchhidden: true, sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            { name: 'SinoszId', index: 'SinoszId', width: 90, align: "left", editable: false, sortable: true, formatter: userFormatter },
+            {
+                name: 'isCommunicationRequested', index: 'isCommunicationRequested', width: 45, align: "center", editable: true,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            {
+                name: 'isDeviceReqested', index: 'isDeviceReqested', width: 45, align: "center", editable: true,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            {
+                name: 'isElected', index: 'isElected', width: 45, align: "center", editable: true,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: usercbxFormatter, sortable: true
+            },
+            {
+                name: 'AreaName', index: 'AreaName', hidden: true,
+                editable: false,
+                search: true, searchoptions: { searchhidden: true }
+            },
+            {
+                name: 'InnerPhoneNumber', index: 'InnerPhoneNumber', hidden: true,
+                editable: false,
+                search: true, searchoptions: { searchhidden: true }
+            },
+            {
+                name: 'RoleNames', index: 'RoleNames', hidden: true,
+                editable: false,
+                search: true, searchoptions: { searchhidden: true }
+            }
+        ],
+        rowNum: 20,
+        rowList: [20, 40, 60],
+        toppager: true,
+        pager: '#userspager',
+        sortname: 'UserName',
+        viewrecords: true,
+        sortorder: "asc",
+        caption: 'Felhasználók',
+        rownumbers: true,
+        gridview: true,
+        hoverrows: true,
+        scrollrows: false,
+        shrinkToFit: false,
+        height: '100%',
+        width: '660',
+        onSelectRow: function (rowid, e) {
+            SelectedUserID = rowid;
+            jQuery("#roles").setCaption($(this).getCell(rowid, 'Name') + ' jogusultságai:');
+            jQuery("#roles").jqGrid('setGridParam', {
+                search: "False",
+                page: 1,
+                url: '@Url.Action("ListUserRoles", "Admin")?uid=' + rowid,
+                editurl: '@Url.Action("UpdateUserRoles", "Admin")?UserId=' + rowid
+            }).trigger("reloadGrid");
+        },
+        loadComplete: function () {
+            SelectedUserID = null;
+            jQuery("#roles").setCaption('Jogosultságok');
+            jQuery("#roles").jqGrid('setGridParam', {
+                search: "False",
+                page: 1,
+                url: '@Url.Action("ListUserRoles", "Admin")',
+                editurl: null
+            }).trigger("reloadGrid", [{ current: true }]);
+            @*var i = getColumnIndexByName('users', 'isEmailValidated');
+            $("table#users > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                var data = new Array(2);
+                data[0] = "{UserId: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                var value = ($(this).is(':checked')) ? "True" : "False";
+                data[1] = "isEmailValidated: '" + value + "'}";
+                $.ajax({
+                    url: '@Url.Action("UpdateUsersIsEmailValidated", "Admin")',
+                    type: 'POST',
+                    data: eval('(' + data[0] + data[1] + ')'),  //eval is string to json
+                    beforeSend: function (jqXHR, textStatus) { jQuery('#grid_id').block({ message: '<h3>Betöltés…</h3>' }); },
+                    complete: function (jqXHR, textStatus) {
+                        jQuery('#grid_id').unblock();
+                        $("#users").trigger("reloadGrid", [{ current: true }]);
+                    },
+                    loadError: function (xhr, status, error) { alert(status + " " + error); }                   
+                });
+            });
+            i = getColumnIndexByName('users', 'isLocked');
+            $("table#users > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                var data = new Array(2);
+                data[0] = "{UserId: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                var value = ($(this).is(':checked')) ? "True" : "False";
+                data[1] = "isLocked: '" + value + "'}";
+                $.ajax({
+                    url: '@Url.Action("UpdateUsersIsLokced", "Admin")',
+                    type: 'POST',
+                    data: eval('(' + data[0] + data[1] + ')'),  //eval is string to json
+                    beforeSend: function (jqXHR, textStatus) { $("#users").block({ message: '<h3>Betöltés…</h3>' }); },
+                    complete: function (jqXHR, textStatus) {
+                        $("#users").unblock();
+                        $("#users").trigger("reloadGrid", [{ current: true }]);
+                    },
+                    loadError: function (xhr, status, error) { alert(status + " " + error); }
+                });
+            });*@
+            i = getColumnIndexByName('users', 'isElected');
+            $("table#users > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                var data = new Array(2);
+                data[0] = "{UserId: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                var value = ($(this).is(':checked')) ? "True" : "False";
+                data[1] = "isElected: '" + value + "'}";
+                $.ajax({
+                    url: '@Url.Action("UpdateUsersisElected", "Admin")',
+                    type: 'POST',
+                    data: eval('(' + data[0] + data[1] + ')'),  //eval is string to json
+                    beforeSend: function (jqXHR, textStatus) { $("#users").block({ message: '<h3>Betöltés…</h3>' }); },
+                    complete: function (jqXHR, textStatus) {
+                        var str = JSON.parse(jqXHR.responseText);                        
+                        if (!str.success) {
+                            if (str.error) {
+                                $('#errortext').text(str.response);
+                                $('#errormodal').modal({ show: true });
+                            }
+                            else {
+                                $('#warningtext').text(str.response);
+                                $('#warningmodal').modal({ show: true });
+                            }
+                        }
+                        $("#users").unblock();
+                        $("#users").trigger("reloadGrid", [{ current: true }]);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //alert(textStatus); alert(errorThrown);
+                        $('#errortext').text(jqXHR.responseText);
+                        $('#errormodal').modal({ show: true });
+                    }
+                });
+            });
+            setTooltipsOnColumnHeader($("#users"), 1, "Az ügyfél egyedi azonosítója.");
+            setTooltipsOnColumnHeader($("#users"), 1, "A ceruza-gombra kattintva néhány adat szerkeszthetővé válik, lemez-gombbal mentünk, tilos-gombbal visszavonjuk a változást.");
+            setTooltipsOnColumnHeader($("#users"), 3, "Telekommunikációs igénnyel regisztrált az ügyfél, és még nem kapott számot?");
+            setTooltipsOnColumnHeader($("#users"), 4, "Ezzel a névvel lép be az ügyfél.");
+            setTooltipsOnColumnHeader($("#users"), 5, "A vezetéknév a telefonkönyvben.");
+            setTooltipsOnColumnHeader($("#users"), 6, "A keresztnév a telefonkönyvben");
+            setTooltipsOnColumnHeader($("#users"), 7, "Az ügyfél email-címe.");
+            setTooltipsOnColumnHeader($("#users"), 8, "Az email érvényesítés megtörtént? Az ügyfél csak ezután tud belépni a rendszerbe. Törléskor megszűnik a kapcsolat a tagnyilvántartóval!");
+            setTooltipsOnColumnHeader($("#users"), 9, "Az ügyfél kizárásra kerül.");
+            setTooltipsOnColumnHeader($("#users"), 10, "Az ügyfél SINOSZ-tagként regisztrált.");
+            setTooltipsOnColumnHeader($("#users"), 11, "Az ügyfél ezzel a tagi azonosítóval regisztrált.");
+            setTooltipsOnColumnHeader($("#users"), 12, "Telekommunikációs igénnyel regisztrált az ügyfél?");
+            setTooltipsOnColumnHeader($("#users"), 13, "Eszközt igényelt az ügyfél a regisztráció során?");
+            setTooltipsOnColumnHeader($("#users"), 14, "A SINOSZ elfogadta a telekommunikációs igényt, eszközigényt? Akkor állítható, ha az email-érvényesítve, tagi azonosítóval regisztrált, és a telekommunikációs igény beállítva. Erről emailben tájékoztatásra kerül.");
+        }
+    });
+    
+    jQuery("#users").jqGrid('editRow', 
+        {
+            successfunc: function (jqXHR, textStatus) {
+                var str = JSON.parse(jqXHR.responseText);
+                if (!str.success)
+                {
+                    if (str.error) {
+                        $('#errortext').text(str.response);
+                        $('#errormodal').modal({ show: true });
+                    }
+                    else
+                    {
+                        $('#warningtext').text(str.response);
+                        $('#warningmodal').modal({ show: true });
+                    }
+                }
+            },
+            errorfunc:  function (jqXHR, textStatus, errorThrown) {
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            }
+        });
+
+    jQuery("#users").jqGrid('navGrid', '#userspager'
+        , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+        , {} //prmEdit
+        , {} //prmAdd
+        , {} //prmDel
+        , {
+            width: 550,
+            multipleSearch: true,
+            //multipleGroup: true,
+            recreateFilter: true,
+            //closeOnEscape: true,
+            //closeAfterSearch: true,
+            overlay: 0,
+            afterRedraw: function () {
+                $('input.add-rule', this)//.button().val('Add new rule')
+                    .attr('title', 'Új szabály hozzáadása');
+                //$('input.add-group', this)//.button().val('Add new group or rules')
+                //    .attr('title', 'Új szabálycsoport hozzáadása');
+                $('input.delete-rule', this)//.button().val('Delete rule')
+                    .attr('title', 'Szabály törlése');
+                //$('input.delete-group', this)//.button().val('Delete group')
+                //    .attr('title', 'Szabálycsoport törlése');
+                //$(this).find("table.group:not(:first)").css({
+                //    borderWidth: "1px",
+                //    borderStyle: "dashed"
+                //});
+            },
+            errorcheck: true
+        } //prmSearch
+        , {} //prmView
+    ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+    function checkBoxFormatter(cellvalue, options, rowObject) {            
+        if (rowObject[getColumnIndexByName('roles', 'getPBXNumber') - 1] == "True" //ha van száma az ügyfélnek
+            && cellvalue == "False" //de nem ez a pbx szerep lett kiválasztva
+            &&  (
+                rowObject[getColumnIndexByName('roles', 'RoleName') - 1] == 'PBXUser' ||
+                rowObject[getColumnIndexByName('roles', 'RoleName') - 1] == 'Jeltolmácsok' ||
+                rowObject[getColumnIndexByName('roles', 'RoleName') - 1] == 'Diszpécser' ||
+                rowObject[getColumnIndexByName('roles', 'RoleName') - 1] == 'Üzemeltető' ||
+                rowObject[getColumnIndexByName('roles', 'RoleName') - 1] == 'Szakmai vezető'
+                )
+            )
+        {
+            return '<input type="checkbox" value="False" offval="no" disabled="disabled">'
+        } else {
+            if (cellvalue == "True") {
+                return '<input type="checkbox" checked="checked" value="True" offval="no">'
+            } else {                    
+                return '<input type="checkbox" value="False" offval="no">'
+            }
+        }
+        return null//new_format_value
+    }
+
+    jQuery("#roles").jqGrid({
+        url: '@Url.Action("ListUserRoles", "Admin")',
+        editurl: '@Url.Action("UpdateUserRoles", "Admin")?UserId=' + SelectedUserID,
+        datatype: "json",
+        loadError: function (jqXHR, textStatus, errorThrown) { //keresési server response is egyben
+            //alert(textStatus); alert(errorThrown);
+            $('#errortext').text(jqXHR.responseText);
+            $('#errormodal').modal({ show: true });
+        },
+        colNames: [
+                'RoleId'
+            , 'Tag?'
+            , 'Szerep'
+            , 'Mód'
+            , 'Tolmácsközpont'
+            , 'Tagszervezet'
+            //, 'ExtId'
+            , 'Belső szám'
+            , 'Külső szám'
+            , 'getPBXNumber'
+        ],
+        colModel: [
+            {
+                name: 'RoleId', index: 'RoleId', hidden: true, sortable: false,
+                    editable: true, editoptions: { //a manipulált oszlopra nem tehetem, mert nem sült ki a porp átírása
+                        dataInit: function (element) { //mindenképpen kisül a beforeSelectRow előtt az inline edit, ez viszont szerencsére megelőzi,                            
+                            var rowId = $(element).closest('tr.jqgrow').attr('id'); //így kell a griden keresni sorazonosítót nyitott editben
+                            var colProp1 = $(this).jqGrid('getColProp', 'InterpreterCenter'); //röptében manipulálnjuk vele az adatelérést
+                            colProp1.editoptions.dataUrl = '@Url.Action("ListInterpreterCenter", "Admin")?UserId=' + SelectedUserID + '&RoleId=' + rowId;
+                            var colProp2 = $(this).jqGrid('getColProp', 'OrganizationName'); //röptében manipulálnjuk vele az adatelérést
+                            colProp2.editoptions.dataUrl = '@Url.Action("ListOrganizations", "Sinosz")?UserId=' + SelectedUserID + '&RoleId=' + rowId;
+                        }
+                    }
+            },
+            {
+                name: 'isInclude', index: 'isInclude', width: 50, align: "center", editable: false,
+                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                formatter: checkBoxFormatter, sortable: true
+            },
+            { name: 'RoleName', index: 'RoleName', width: 100, align: "left", editable: false, sortable: true },
+            {
+                name: "act", "formatoptions": { "keys": false, "editbutton": true, "delbutton": false }
+                , "width": 50, "formatter": "actions", "searchoptions": {}, "index": "act", sortable: false, search: false, hidden: false
+            },
+            {
+                name: 'InterpreterCenter', index: 'InterpreterCenter', width: 120, align: "left", editable: true, sortable: true, edittype: 'select',
+                editoptions: {
+                    buildSelect: function (result) { return result; },
+                    NullIfEmpty: true //ne járkáljanak üres stringek
+                }
+            },
+            {
+                name: 'OrganizationName', index: 'OrganizationName', width: 120, align: "left", editable: true, sortable: true, edittype: 'select',
+                editoptions: {
+                    buildSelect: function (result) { return result; },
+                    NullIfEmpty: true //ne járkáljanak üres stringek
+                }
+            },
+            //{ name: 'ExtensionID', index: 'ExtensionID', width: 60, align: "left", editable: false, sortable: true },
+            { name: 'InnerPhoneNumber', index: 'InnerPhoneNumber', width: 60, align: "left", editable: false, sortable: true },
+            { name: 'ExternalPhoneNumber', index: 'ExternalPhoneNumber', width: 60, align: "left", editable: false, sortable: true },
+            { name: 'getPBXNumber', index: 'getPBXNumber', hidden: true, editable: false, sortable: false }
+        ],
+        rowNum: 30,
+        rowList: [30, 40, 50],
+        toppager: true,
+        pager: '#rolespager',
+        sortname: 'RoleName',
+        viewrecords: true,
+        sortorder: "asc",
+        caption: 'Jogosultságok',
+        rownumbers: true,
+        gridview: true,
+        hoverrows: true,
+        scrollrows: false,
+        shrinkToFit: false,
+        height: '100%',
+        width: '470',
+        loadComplete: function () {
+            var i = getColumnIndexByName('roles', 'isInclude');
+            $("table#roles > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                var data = new Array(3);
+                data[0] = "{UserId: '" + SelectedUserID + "',";
+                data[1] = "RoleId: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                var value = ($(this).is(':checked')) ? "True" : "False";
+                data[2] = "isInclude: '" + value + "'}";
+                $.ajax({
+                    url: '@Url.Action("UpdateRolesIsInclude", "Admin")',
+                    type: 'POST',
+                    data: eval('(' + data[0] + data[1] + data[2] + ')'),  //eval is string to json
+                    beforeSend: function (jqXHR, textStatus) { $("#roles").block({ message: '<h3>Betöltés…</h3>' }); },
+                    complete: function (jqXHR, textStatus) {
+                        var str = JSON.parse(jqXHR.responseText);
+                        if (!str.success)
+                        {
+                            if (str.error) {
+                                $('#errortext').text(str.response);
+                                $('#errormodal').modal({ show: true });
+                            }
+                            else
+                            {
+                                $('#warningtext').text(str.response);
+                                $('#warningmodal').modal({ show: true });
+                            }
+                        }
+                        $("#roles").unblock();
+                        $("#roles").trigger("reloadGrid", [{ current: true }]);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#errortext').text(jqXHR.responseText);
+                        $('#errormodal').modal({ show: true });
+                    }
+                });
+            });
+            var ids = jQuery("#roles").getDataIDs();
+            for (var i = 0; i < ids.length; i++) {
+                //alert(jQuery("#roles").getCell(ids[i], 'isInclude'));
+                if (jQuery("#roles").getCell(ids[i], 'isInclude').search('value="True"') != -1
+                    //Chrome syntax: '<input type="checkbox" checked="checked" value="True" offval="no">'
+                    //FireFox syntax: '<input checked="checked" value="True" offval="no" type="checkbox">''
+                    && (jQuery("#roles").getCell(ids[i], 'RoleName') == 'Jeltolmácsok'
+                        || jQuery("#roles").getCell(ids[i], 'RoleName') == 'SinoszUser')
+                    )
+                {
+                    $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-edit").show();
+                }
+                else {
+                    $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-edit").hide();
+                };
+            }
+        }
+    });
+
+    jQuery("#roles").jqGrid('navGrid', '#rolespager'
+    , { edit: false, add: false, del: false, refresh: true, cloneToTop: true, search: false }
+        , {} //prmEdit
+        , {} //prmAdd
+        , {} //prmDel
+        , { width: 550 } //prmSearch
+        , {} //prmView
+    ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+</script>
+
+}
+

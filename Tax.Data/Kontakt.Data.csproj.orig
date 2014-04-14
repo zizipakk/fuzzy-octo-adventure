@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kontakt.Data</RootNamespace>
+    <AssemblyName>Kontakt.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.10.3\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SC_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TDeployDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\TDeployDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201312191023186_initial.cs" />
+    <Compile Include="Migrations\201312191023186_initial.Designer.cs">
+      <DependentUpon>201312191023186_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312191403174_merge.cs" />
+    <Compile Include="Migrations\201312191403174_merge.Designer.cs">
+      <DependentUpon>201312191403174_merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312191417118_pump teszt data into sinoszuser.cs" />
+    <Compile Include="Migrations\201312191417118_pump teszt data into sinoszuser.Designer.cs">
+      <DependentUpon>201312191417118_pump teszt data into sinoszuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312191939564_changes applicationuser sinoszuser rel.cs" />
+    <Compile Include="Migrations\201312191939564_changes applicationuser sinoszuser rel.Designer.cs">
+      <DependentUpon>201312191939564_changes applicationuser sinoszuser rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312201036277_ParcelNumber to InterpreterCenter.cs" />
+    <Compile Include="Migrations\201312201036277_ParcelNumber to InterpreterCenter.Designer.cs">
+      <DependentUpon>201312201036277_ParcelNumber to InterpreterCenter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312221019293_Chat.cs" />
+    <Compile Include="Migrations\201312221019293_Chat.Designer.cs">
+      <DependentUpon>201312221019293_Chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312281540395_Sinosz tables.cs" />
+    <Compile Include="Migrations\201312281540395_Sinosz tables.Designer.cs">
+      <DependentUpon>201312281540395_Sinosz tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312281602126_Insert Sinosz base data.cs" />
+    <Compile Include="Migrations\201312281602126_Insert Sinosz base data.Designer.cs">
+      <DependentUpon>201312281602126_Insert Sinosz base data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312310003091_SinoszUser model attrs.cs" />
+    <Compile Include="Migrations\201312310003091_SinoszUser model attrs.Designer.cs">
+      <DependentUpon>201312310003091_SinoszUser model attrs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401021347270_SinoszUser discriminator.cs" />
+    <Compile Include="Migrations\201401021347270_SinoszUser discriminator.Designer.cs">
+      <DependentUpon>201401021347270_SinoszUser discriminator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401021511028_must fill the discriminator.cs" />
+    <Compile Include="Migrations\201401021511028_must fill the discriminator.Designer.cs">
+      <DependentUpon>201401021511028_must fill the discriminator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401030912370_moving SinoszUserViewModel to Kontakt.Portal.cs" />
+    <Compile Include="Migrations\201401030912370_moving SinoszUserViewModel to Kontakt.Portal.Designer.cs">
+      <DependentUpon>201401030912370_moving SinoszUserViewModel to Kontakt.Portal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401071243577_Date prop to Cards.cs" />
+    <Compile Include="Migrations\201401071243577_Date prop to Cards.Designer.cs">
+      <DependentUpon>201401071243577_Date prop to Cards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401080953049_AccountDocumentType improved, Card constrainted to SinoszUser instead AccountDocument.cs" />
+    <Compile Include="Migrations\201401080953049_AccountDocumentType improved, Card constrainted to SinoszUser instead AccountDocument.Designer.cs">
+      <DependentUpon>201401080953049_AccountDocumentType improved, Card constrainted to SinoszUser instead AccountDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401081542232_Missing parameter from relationship.cs" />
+    <Compile Include="Migrations\201401081542232_Missing parameter from relationship.Designer.cs">
+      <DependentUpon>201401081542232_Missing parameter from relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401081602565_Loading AccountingTypes parameters.cs" />
+    <Compile Include="Migrations\201401081602565_Loading AccountingTypes parameters.Designer.cs">
+      <DependentUpon>201401081602565_Loading AccountingTypes parameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401090940427_Organization missing properties.cs" />
+    <Compile Include="Migrations\201401090940427_Organization missing properties.Designer.cs">
+      <DependentUpon>201401090940427_Organization missing properties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401091013170_Organization change himselfs constraints type while code first make oneway nav prop on icollection prop.cs" />
+    <Compile Include="Migrations\201401091013170_Organization change himselfs constraints type while code first make oneway nav prop on icollection prop.Designer.cs">
+      <DependentUpon>201401091013170_Organization change himselfs constraints type while code first make oneway nav prop on icollection prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401091540485_PublishingDate to News.cs" />
+    <Compile Include="Migrations\201401091540485_PublishingDate to News.Designer.cs">
+      <DependentUpon>201401091540485_PublishingDate to News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401101022092_fi merge.cs" />
+    <Compile Include="Migrations\201401101022092_fi merge.Designer.cs">
+      <DependentUpon>201401101022092_fi merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401100900107_Dataload for Newstype, NewsTitle field for News.cs" />
+    <Compile Include="Migrations\201401100900107_Dataload for Newstype, NewsTitle field for News.Designer.cs">
+      <DependentUpon>201401100900107_Dataload for Newstype, NewsTitle field for News.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401192135524_SystemParameters.cs" />
+    <Compile Include="Migrations\201401192135524_SystemParameters.Designer.cs">
+      <DependentUpon>201401192135524_SystemParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401131536377_try to map filetable.cs" />
+    <Compile Include="Migrations\201401131536377_try to map filetable.Designer.cs">
+      <DependentUpon>201401131536377_try to map filetable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401131719583_add fileid to attachedfile.cs" />
+    <Compile Include="Migrations\201401131719583_add fileid to attachedfile.Designer.cs">
+      <DependentUpon>201401131719583_add fileid to attachedfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401131755265_stream to byte array.cs" />
+    <Compile Include="Migrations\201401131755265_stream to byte array.Designer.cs">
+      <DependentUpon>201401131755265_stream to byte array.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401171055402_KontaktUser BirtDate typechange to nullable dateTime.cs" />
+    <Compile Include="Migrations\201401171055402_KontaktUser BirtDate typechange to nullable dateTime.Designer.cs">
+      <DependentUpon>201401171055402_KontaktUser BirtDate typechange to nullable dateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401191322586_Submenus FK.cs" />
+    <Compile Include="Migrations\201401191322586_Submenus FK.Designer.cs">
+      <DependentUpon>201401191322586_Submenus FK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401191348321_pump submenu.cs" />
+    <Compile Include="Migrations\201401191348321_pump submenu.Designer.cs">
+      <DependentUpon>201401191348321_pump submenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401192017543_Submenus for Sinosz.cs" />
+    <Compile Include="Migrations\201401192017543_Submenus for Sinosz.Designer.cs">
+      <DependentUpon>201401192017543_Submenus for Sinosz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401192339424_Postcode pump.cs" />
+    <Compile Include="Migrations\201401192339424_Postcode pump.Designer.cs">
+      <DependentUpon>201401192339424_Postcode pump.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401201459048_Postcodes pump is missing. do it again.cs" />
+    <Compile Include="Migrations\201401201459048_Postcodes pump is missing. do it again.Designer.cs">
+      <DependentUpon>201401201459048_Postcodes pump is missing. do it again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401201624106_Files need the file_type.cs" />
+    <Compile Include="Migrations\201401201624106_Files need the file_type.Designer.cs">
+      <DependentUpon>201401201624106_Files need the file_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401201648083_Another try to file_type.cs" />
+    <Compile Include="Migrations\201401201648083_Another try to file_type.Designer.cs">
+      <DependentUpon>201401201648083_Another try to file_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401211153305_file_type again.cs" />
+    <Compile Include="Migrations\201401211153305_file_type again.Designer.cs">
+      <DependentUpon>201401211153305_file_type again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401211155473_file_type finaly.cs" />
+    <Compile Include="Migrations\201401211155473_file_type finaly.Designer.cs">
+      <DependentUpon>201401211155473_file_type finaly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401211219218_file_type finaly2.cs" />
+    <Compile Include="Migrations\201401211219218_file_type finaly2.Designer.cs">
+      <DependentUpon>201401211219218_file_type finaly2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401210949247_ri-merge tt-master.cs" />
+    <Compile Include="Migrations\201401210949247_ri-merge tt-master.Designer.cs">
+      <DependentUpon>201401210949247_ri-merge tt-master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401220916231_ri-merge.cs" />
+    <Compile Include="Migrations\201401220916231_ri-merge.Designer.cs">
+      <DependentUpon>201401220916231_ri-merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401221337536_PhoneNumbers changing.cs" />
+    <Compile Include="Migrations\201401221337536_PhoneNumbers changing.Designer.cs">
+      <DependentUpon>201401221337536_PhoneNumbers changing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401221428165_New Numbers for PhoneNumbers.cs" />
+    <Compile Include="Migrations\201401221428165_New Numbers for PhoneNumbers.Designer.cs">
+      <DependentUpon>201401221428165_New Numbers for PhoneNumbers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401232148405_OzekiSQLAPI.cs" />
+    <Compile Include="Migrations\201401232148405_OzekiSQLAPI.Designer.cs">
+      <DependentUpon>201401232148405_OzekiSQLAPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401241159018_PBXSync_ExtensionValidityRange.cs" />
+    <Compile Include="Migrations\201401241159018_PBXSync_ExtensionValidityRange.Designer.cs">
+      <DependentUpon>201401241159018_PBXSync_ExtensionValidityRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401241409532_fill isSynced.cs" />
+    <Compile Include="Migrations\201401241409532_fill isSynced.Designer.cs">
+      <DependentUpon>201401241409532_fill isSynced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401272234487_Store PBX Session and transfers.cs" />
+    <Compile Include="Migrations\201401272234487_Store PBX Session and transfers.Designer.cs">
+      <DependentUpon>201401272234487_Store PBX Session and transfers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401281410000_PBX transfer fix.cs" />
+    <Compile Include="Migrations\201401281410000_PBX transfer fix.Designer.cs">
+      <DependentUpon>201401281410000_PBX transfer fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401291157029_Engage the SinoszUsers search.cs" />
+    <Compile Include="Migrations\201401291157029_Engage the SinoszUsers search.Designer.cs">
+      <DependentUpon>201401291157029_Engage the SinoszUsers search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401291559430_Engage the SinoszUsers search2.cs" />
+    <Compile Include="Migrations\201401291559430_Engage the SinoszUsers search2.Designer.cs">
+      <DependentUpon>201401291559430_Engage the SinoszUsers search2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401292217061_merge etwas.cs" />
+    <Compile Include="Migrations\201401292217061_merge etwas.Designer.cs">
+      <DependentUpon>201401292217061_merge etwas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401311521318_DeviceUsage.cs" />
+    <Compile Include="Migrations\201401311521318_DeviceUsage.Designer.cs">
+      <DependentUpon>201401311521318_DeviceUsage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402030832588_merge because cf mistake.cs" />
+    <Compile Include="Migrations\201402030832588_merge because cf mistake.Designer.cs">
+      <DependentUpon>201402030832588_merge because cf mistake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031351027_CorrectPBXAssignmentDateNullable.cs" />
+    <Compile Include="Migrations\201402031351027_CorrectPBXAssignmentDateNullable.Designer.cs">
+      <DependentUpon>201402031351027_CorrectPBXAssignmentDateNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031531207_StockModels.cs" />
+    <Compile Include="Migrations\201402031531207_StockModels.Designer.cs">
+      <DependentUpon>201402031531207_StockModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031635203_Parameters for Stock.cs" />
+    <Compile Include="Migrations\201402031635203_Parameters for Stock.Designer.cs">
+      <DependentUpon>201402031635203_Parameters for Stock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031744473_Add menus.cs" />
+    <Compile Include="Migrations\201402031744473_Add menus.Designer.cs">
+      <DependentUpon>201402031744473_Add menus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031751001_organize menus.cs" />
+    <Compile Include="Migrations\201402031751001_organize menus.Designer.cs">
+      <DependentUpon>201402031751001_organize menus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402031755018_organize menus2.cs" />
+    <Compile Include="Migrations\201402031755018_organize menus2.Designer.cs">
+      <DependentUpon>201402031755018_organize menus2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402061301069_merge1.cs" />
+    <Compile Include="Migrations\201402061301069_merge1.Designer.cs">
+      <DependentUpon>201402061301069_merge1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402071844404_More Areas.cs" />
+    <Compile Include="Migrations\201402071844404_More Areas.Designer.cs">
+      <DependentUpon>201402071844404_More Areas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402071853523_More Areas2.cs" />
+    <Compile Include="Migrations\201402071853523_More Areas2.Designer.cs">
+      <DependentUpon>201402071853523_More Areas2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402071904568_Pump Stocks.cs" />
+    <Compile Include="Migrations\201402071904568_Pump Stocks.Designer.cs">
+      <DependentUpon>201402071904568_Pump Stocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402132159424_Comment_and_Survey.cs" />
+    <Compile Include="Migrations\201402132159424_Comment_and_Survey.Designer.cs">
+      <DependentUpon>201402132159424_Comment_and_Survey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402131621421_barcode in sinoszusers.cs" />
+    <Compile Include="Migrations\201402131621421_barcode in sinoszusers.Designer.cs">
+      <DependentUpon>201402131621421_barcode in sinoszusers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402131743327_prregistrationdata.cs" />
+    <Compile Include="Migrations\201402131743327_prregistrationdata.Designer.cs">
+      <DependentUpon>201402131743327_prregistrationdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402131749007_pump SocialPositions.cs" />
+    <Compile Include="Migrations\201402131749007_pump SocialPositions.Designer.cs">
+      <DependentUpon>201402131749007_pump SocialPositions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402131819171_pump systemparameters.cs" />
+    <Compile Include="Migrations\201402131819171_pump systemparameters.Designer.cs">
+      <DependentUpon>201402131819171_pump systemparameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402151534220_ri merge 20140214.cs" />
+    <Compile Include="Migrations\201402151534220_ri merge 20140214.Designer.cs">
+      <DependentUpon>201402151534220_ri merge 20140214.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402171322423_status order changing.cs" />
+    <Compile Include="Migrations\201402171322423_status order changing.Designer.cs">
+      <DependentUpon>201402171322423_status order changing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402171554411_SinoszId changing.cs" />
+    <Compile Include="Migrations\201402171554411_SinoszId changing.Designer.cs">
+      <DependentUpon>201402171554411_SinoszId changing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402191514081_Organizations to KontaktUserRoles.cs" />
+    <Compile Include="Migrations\201402191514081_Organizations to KontaktUserRoles.Designer.cs">
+      <DependentUpon>201402191514081_Organizations to KontaktUserRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402211319396_SurveyAnswerTypes.cs" />
+    <Compile Include="Migrations\201402211319396_SurveyAnswerTypes.Designer.cs">
+      <DependentUpon>201402211319396_SurveyAnswerTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402211305512_change parameters.cs" />
+    <Compile Include="Migrations\201402211305512_change parameters.Designer.cs">
+      <DependentUpon>201402211305512_change parameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402251554272_datalog.cs" />
+    <Compile Include="Migrations\201402251554272_datalog.Designer.cs">
+      <DependentUpon>201402251554272_datalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402261515067_Datalog ApplicationUser fk fix.cs" />
+    <Compile Include="Migrations\201402261515067_Datalog ApplicationUser fk fix.Designer.cs">
+      <DependentUpon>201402261515067_Datalog ApplicationUser fk fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402281741593_bugpost.cs" />
+    <Compile Include="Migrations\201402281741593_bugpost.Designer.cs">
+      <DependentUpon>201402281741593_bugpost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402261503166_isElected in KontaktUsers.cs" />
+    <Compile Include="Migrations\201402261503166_isElected in KontaktUsers.Designer.cs">
+      <DependentUpon>201402261503166_isElected in KontaktUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402261701362_Reservations and ReservationTimes.cs" />
+    <Compile Include="Migrations\201402261701362_Reservations and ReservationTimes.Designer.cs">
+      <DependentUpon>201402261701362_Reservations and ReservationTimes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402270931547_change datetime to timespan in reservationtimes-reservationbegin.cs" />
+    <Compile Include="Migrations\201402270931547_change datetime to timespan in reservationtimes-reservationbegin.Designer.cs">
+      <DependentUpon>201402270931547_change datetime to timespan in reservationtimes-reservationbegin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402271029214_add menu adminisztráció submenu időpontfoglalás.cs" />
+    <Compile Include="Migrations\201402271029214_add menu adminisztráció submenu időpontfoglalás.Designer.cs">
+      <DependentUpon>201402271029214_add menu adminisztráció submenu időpontfoglalás.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402272158528_merge mix.cs" />
+    <Compile Include="Migrations\201402272158528_merge mix.Designer.cs">
+      <DependentUpon>201402272158528_merge mix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403021458572_devicelogs init.cs" />
+    <Compile Include="Migrations\201403021458572_devicelogs init.Designer.cs">
+      <DependentUpon>201403021458572_devicelogs init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403020809490_Schedule.cs" />
+    <Compile Include="Migrations\201403020809490_Schedule.Designer.cs">
+      <DependentUpon>201403020809490_Schedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403030650065_merge2.cs" />
+    <Compile Include="Migrations\201403030650065_merge2.Designer.cs">
+      <DependentUpon>201403030650065_merge2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403060950175_fi-merge-20140306-01.cs" />
+    <Compile Include="Migrations\201403060950175_fi-merge-20140306-01.Designer.cs">
+      <DependentUpon>201403060950175_fi-merge-20140306-01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403062113085_OnDutyScheduleTypeUpdate.cs" />
+    <Compile Include="Migrations\201403062113085_OnDutyScheduleTypeUpdate.Designer.cs">
+      <DependentUpon>201403062113085_OnDutyScheduleTypeUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403071410540_CallQueue_Register.cs" />
+    <Compile Include="Migrations\201403071410540_CallQueue_Register.Designer.cs">
+      <DependentUpon>201403071410540_CallQueue_Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403071633165_CallQueue_Register_Renames.cs" />
+    <Compile Include="Migrations\201403071633165_CallQueue_Register_Renames.Designer.cs">
+      <DependentUpon>201403071633165_CallQueue_Register_Renames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403061259414_limits to organizations.cs" />
+    <Compile Include="Migrations\201403061259414_limits to organizations.Designer.cs">
+      <DependentUpon>201403061259414_limits to organizations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403101539502_merge3.cs" />
+    <Compile Include="Migrations\201403101539502_merge3.Designer.cs">
+      <DependentUpon>201403101539502_merge3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403061336149_limits to areas.cs" />
+    <Compile Include="Migrations\201403061336149_limits to areas.Designer.cs">
+      <DependentUpon>201403061336149_limits to areas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403061337530_pump county to postcode.cs" />
+    <Compile Include="Migrations\201403061337530_pump county to postcode.Designer.cs">
+      <DependentUpon>201403061337530_pump county to postcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403061356150_pump limits in areas.cs" />
+    <Compile Include="Migrations\201403061356150_pump limits in areas.Designer.cs">
+      <DependentUpon>201403061356150_pump limits in areas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403071635430_firi-merge.cs" />
+    <Compile Include="Migrations\201403071635430_firi-merge.Designer.cs">
+      <DependentUpon>201403071635430_firi-merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403101606519_merge conflict20140310.cs" />
+    <Compile Include="Migrations\201403101606519_merge conflict20140310.Designer.cs">
+      <DependentUpon>201403101606519_merge conflict20140310.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403121813393_InternreterStatus and Termination.cs" />
+    <Compile Include="Migrations\201403121813393_InternreterStatus and Termination.Designer.cs">
+      <DependentUpon>201403121813393_InternreterStatus and Termination.cs</DependentUpon>
+    </Compile>
+<<<<<<< HEAD
+    <Compile Include="Migrations\201403131639466_Add LimitTypes.cs" />
+    <Compile Include="Migrations\201403131639466_Add LimitTypes.Designer.cs">
+      <DependentUpon>201403131639466_Add LimitTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403131642304_pump limits.cs" />
+    <Compile Include="Migrations\201403131642304_pump limits.Designer.cs">
+      <DependentUpon>201403131642304_pump limits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403141459176_AccountPeriods.cs" />
+    <Compile Include="Migrations\201403141459176_AccountPeriods.Designer.cs">
+      <DependentUpon>201403141459176_AccountPeriods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403141500349_Pump AccountPeriods.cs" />
+    <Compile Include="Migrations\201403141500349_Pump AccountPeriods.Designer.cs">
+      <DependentUpon>201403141500349_Pump AccountPeriods.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201403131707572_ScheduleItemDescription.cs" />
+    <Compile Include="Migrations\201403131707572_ScheduleItemDescription.Designer.cs">
+      <DependentUpon>201403131707572_ScheduleItemDescription.cs</DependentUpon>
+>>>>>>> 210af13e91cb0dadec9165542b9b39d04d014464
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\BugPostModels.cs" />
+    <Compile Include="Models\CallStatistics.cs" />
+    <Compile Include="Models\ChatModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Log4netModels.cs" />
+    <Compile Include="Models\FileModels.cs" />
+    <Compile Include="Models\LogModels.cs" />
+    <Compile Include="Models\OzekiModels.cs" />
+    <Compile Include="Models\ScheduleModels.cs" />
+    <Compile Include="Models\StockModels.cs" />
+    <Compile Include="Models\SinoszModels.cs" />
+    <Compile Include="Models\MenuModels.cs" />
+    <Compile Include="Models\SystemParameterModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Debug.config">
+      <DependentUpon>App.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App.TDeployDebug.config">
+      <DependentUpon>App.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="nuget.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
+    <None Include="scaffolding.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Create Filetable.sql" />
+    <Content Include="Kontakt.Data.sln" />
+    <Content Include="pgScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201312191023186_initial.resx">
+      <DependentUpon>201312191023186_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312191403174_merge.resx">
+      <DependentUpon>201312191403174_merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312191417118_pump teszt data into sinoszuser.resx">
+      <DependentUpon>201312191417118_pump teszt data into sinoszuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312191939564_changes applicationuser sinoszuser rel.resx">
+      <DependentUpon>201312191939564_changes applicationuser sinoszuser rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312201036277_ParcelNumber to InterpreterCenter.resx">
+      <DependentUpon>201312201036277_ParcelNumber to InterpreterCenter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312221019293_Chat.resx">
+      <DependentUpon>201312221019293_Chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312281540395_Sinosz tables.resx">
+      <DependentUpon>201312281540395_Sinosz tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312281602126_Insert Sinosz base data.resx">
+      <DependentUpon>201312281602126_Insert Sinosz base data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312310003091_SinoszUser model attrs.resx">
+      <DependentUpon>201312310003091_SinoszUser model attrs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401021347270_SinoszUser discriminator.resx">
+      <DependentUpon>201401021347270_SinoszUser discriminator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401021511028_must fill the discriminator.resx">
+      <DependentUpon>201401021511028_must fill the discriminator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401030912370_moving SinoszUserViewModel to Kontakt.Portal.resx">
+      <DependentUpon>201401030912370_moving SinoszUserViewModel to Kontakt.Portal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401071243577_Date prop to Cards.resx">
+      <DependentUpon>201401071243577_Date prop to Cards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401080953049_AccountDocumentType improved, Card constrainted to SinoszUser instead AccountDocument.resx">
+      <DependentUpon>201401080953049_AccountDocumentType improved, Card constrainted to SinoszUser instead AccountDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401081542232_Missing parameter from relationship.resx">
+      <DependentUpon>201401081542232_Missing parameter from relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401081602565_Loading AccountingTypes parameters.resx">
+      <DependentUpon>201401081602565_Loading AccountingTypes parameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401090940427_Organization missing properties.resx">
+      <DependentUpon>201401090940427_Organization missing properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401091013170_Organization change himselfs constraints type while code first make oneway nav prop on icollection prop.resx">
+      <DependentUpon>201401091013170_Organization change himselfs constraints type while code first make oneway nav prop on icollection prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401091540485_PublishingDate to News.resx">
+      <DependentUpon>201401091540485_PublishingDate to News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401101022092_fi merge.resx">
+      <DependentUpon>201401101022092_fi merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401100900107_Dataload for Newstype, NewsTitle field for News.resx">
+      <DependentUpon>201401100900107_Dataload for Newstype, NewsTitle field for News.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401192135524_SystemParameters.resx">
+      <DependentUpon>201401192135524_SystemParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401131536377_try to map filetable.resx">
+      <DependentUpon>201401131536377_try to map filetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401131719583_add fileid to attachedfile.resx">
+      <DependentUpon>201401131719583_add fileid to attachedfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401131755265_stream to byte array.resx">
+      <DependentUpon>201401131755265_stream to byte array.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401171055402_KontaktUser BirtDate typechange to nullable dateTime.resx">
+      <DependentUpon>201401171055402_KontaktUser BirtDate typechange to nullable dateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401191322586_Submenus FK.resx">
+      <DependentUpon>201401191322586_Submenus FK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401191348321_pump submenu.resx">
+      <DependentUpon>201401191348321_pump submenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401192017543_Submenus for Sinosz.resx">
+      <DependentUpon>201401192017543_Submenus for Sinosz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401192339424_Postcode pump.resx">
+      <DependentUpon>201401192339424_Postcode pump.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401201459048_Postcodes pump is missing. do it again.resx">
+      <DependentUpon>201401201459048_Postcodes pump is missing. do it again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401201624106_Files need the file_type.resx">
+      <DependentUpon>201401201624106_Files need the file_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401201648083_Another try to file_type.resx">
+      <DependentUpon>201401201648083_Another try to file_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401211153305_file_type again.resx">
+      <DependentUpon>201401211153305_file_type again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401211155473_file_type finaly.resx">
+      <DependentUpon>201401211155473_file_type finaly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401211219218_file_type finaly2.resx">
+      <DependentUpon>201401211219218_file_type finaly2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401210949247_ri-merge tt-master.resx">
+      <DependentUpon>201401210949247_ri-merge tt-master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401220916231_ri-merge.resx">
+      <DependentUpon>201401220916231_ri-merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401221337536_PhoneNumbers changing.resx">
+      <DependentUpon>201401221337536_PhoneNumbers changing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401221428165_New Numbers for PhoneNumbers.resx">
+      <DependentUpon>201401221428165_New Numbers for PhoneNumbers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401232148405_OzekiSQLAPI.resx">
+      <DependentUpon>201401232148405_OzekiSQLAPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401241159018_PBXSync_ExtensionValidityRange.resx">
+      <DependentUpon>201401241159018_PBXSync_ExtensionValidityRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401241409532_fill isSynced.resx">
+      <DependentUpon>201401241409532_fill isSynced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401272234487_Store PBX Session and transfers.resx">
+      <DependentUpon>201401272234487_Store PBX Session and transfers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401281410000_PBX transfer fix.resx">
+      <DependentUpon>201401281410000_PBX transfer fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401291157029_Engage the SinoszUsers search.resx">
+      <DependentUpon>201401291157029_Engage the SinoszUsers search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401291559430_Engage the SinoszUsers search2.resx">
+      <DependentUpon>201401291559430_Engage the SinoszUsers search2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401292217061_merge etwas.resx">
+      <DependentUpon>201401292217061_merge etwas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401311521318_DeviceUsage.resx">
+      <DependentUpon>201401311521318_DeviceUsage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402030832588_merge because cf mistake.resx">
+      <DependentUpon>201402030832588_merge because cf mistake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031351027_CorrectPBXAssignmentDateNullable.resx">
+      <DependentUpon>201402031351027_CorrectPBXAssignmentDateNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031531207_StockModels.resx">
+      <DependentUpon>201402031531207_StockModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031635203_Parameters for Stock.resx">
+      <DependentUpon>201402031635203_Parameters for Stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031744473_Add menus.resx">
+      <DependentUpon>201402031744473_Add menus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031751001_organize menus.resx">
+      <DependentUpon>201402031751001_organize menus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402031755018_organize menus2.resx">
+      <DependentUpon>201402031755018_organize menus2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402061301069_merge1.resx">
+      <DependentUpon>201402061301069_merge1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402071844404_More Areas.resx">
+      <DependentUpon>201402071844404_More Areas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402071853523_More Areas2.resx">
+      <DependentUpon>201402071853523_More Areas2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402071904568_Pump Stocks.resx">
+      <DependentUpon>201402071904568_Pump Stocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402132159424_Comment_and_Survey.resx">
+      <DependentUpon>201402132159424_Comment_and_Survey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402131621421_barcode in sinoszusers.resx">
+      <DependentUpon>201402131621421_barcode in sinoszusers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402131743327_prregistrationdata.resx">
+      <DependentUpon>201402131743327_prregistrationdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402131749007_pump SocialPositions.resx">
+      <DependentUpon>201402131749007_pump SocialPositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402131819171_pump systemparameters.resx">
+      <DependentUpon>201402131819171_pump systemparameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402151534220_ri merge 20140214.resx">
+      <DependentUpon>201402151534220_ri merge 20140214.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402171322423_status order changing.resx">
+      <DependentUpon>201402171322423_status order changing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402171554411_SinoszId changing.resx">
+      <DependentUpon>201402171554411_SinoszId changing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402191514081_Organizations to KontaktUserRoles.resx">
+      <DependentUpon>201402191514081_Organizations to KontaktUserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402211319396_SurveyAnswerTypes.resx">
+      <DependentUpon>201402211319396_SurveyAnswerTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402211305512_change parameters.resx">
+      <DependentUpon>201402211305512_change parameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402251554272_datalog.resx">
+      <DependentUpon>201402251554272_datalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402261515067_Datalog ApplicationUser fk fix.resx">
+      <DependentUpon>201402261515067_Datalog ApplicationUser fk fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402281741593_bugpost.resx">
+      <DependentUpon>201402281741593_bugpost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402261503166_isElected in KontaktUsers.resx">
+      <DependentUpon>201402261503166_isElected in KontaktUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402261701362_Reservations and ReservationTimes.resx">
+      <DependentUpon>201402261701362_Reservations and ReservationTimes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402270931547_change datetime to timespan in reservationtimes-reservationbegin.resx">
+      <DependentUpon>201402270931547_change datetime to timespan in reservationtimes-reservationbegin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402271029214_add menu adminisztráció submenu időpontfoglalás.resx">
+      <DependentUpon>201402271029214_add menu adminisztráció submenu időpontfoglalás.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402272158528_merge mix.resx">
+      <DependentUpon>201402272158528_merge mix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403021458572_devicelogs init.resx">
+      <DependentUpon>201403021458572_devicelogs init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403020809490_Schedule.resx">
+      <DependentUpon>201403020809490_Schedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403030650065_merge2.resx">
+      <DependentUpon>201403030650065_merge2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403060950175_fi-merge-20140306-01.resx">
+      <DependentUpon>201403060950175_fi-merge-20140306-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403062113085_OnDutyScheduleTypeUpdate.resx">
+      <DependentUpon>201403062113085_OnDutyScheduleTypeUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403071410540_CallQueue_Register.resx">
+      <DependentUpon>201403071410540_CallQueue_Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403071633165_CallQueue_Register_Renames.resx">
+      <DependentUpon>201403071633165_CallQueue_Register_Renames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403061259414_limits to organizations.resx">
+      <DependentUpon>201403061259414_limits to organizations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403061336149_limits to areas.resx">
+      <DependentUpon>201403061336149_limits to areas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403061337530_pump county to postcode.resx">
+      <DependentUpon>201403061337530_pump county to postcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403061356150_pump limits in areas.resx">
+      <DependentUpon>201403061356150_pump limits in areas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403071635430_firi-merge.resx">
+      <DependentUpon>201403071635430_firi-merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403101606519_merge conflict20140310.resx">
+      <DependentUpon>201403101606519_merge conflict20140310.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403101539502_merge3.resx">
+      <DependentUpon>201403101539502_merge3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403121813393_InternreterStatus and Termination.resx">
+      <DependentUpon>201403121813393_InternreterStatus and Termination.cs</DependentUpon>
+    </EmbeddedResource>
+<<<<<<< HEAD
+    <EmbeddedResource Include="Migrations\201403131639466_Add LimitTypes.resx">
+      <DependentUpon>201403131639466_Add LimitTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403131642304_pump limits.resx">
+      <DependentUpon>201403131642304_pump limits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403141459176_AccountPeriods.resx">
+      <DependentUpon>201403141459176_AccountPeriods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403141500349_Pump AccountPeriods.resx">
+      <DependentUpon>201403141500349_Pump AccountPeriods.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201403131707572_ScheduleItemDescription.resx">
+      <DependentUpon>201403131707572_ScheduleItemDescription.cs</DependentUpon>
+>>>>>>> 210af13e91cb0dadec9165542b9b39d04d014464
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

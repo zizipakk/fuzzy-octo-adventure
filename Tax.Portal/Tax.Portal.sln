@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Portal", "Tax.Portal\Tax.Portal.csproj", "{33B97110-992A-4F12-B25C-D5B457D0E14E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5091B18-9C11-43D4-A083-1CB501DC287E} = {A5091B18-9C11-43D4-A083-1CB501DC287E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Portal.Tests", "Tax.Portal.Tests\Tax.Portal.Tests.csproj", "{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Data", "..\Tax.Data\Tax.Data.csproj", "{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Log4Net", "..\Tax.Log4Net\Tax.Log4Net.csproj", "{A5091B18-9C11-43D4-A083-1CB501DC287E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		TDeployDebug|Any CPU = TDeployDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.TDeployDebug|Any CPU.ActiveCfg = TDeployDebug|Any CPU
+		{33B97110-992A-4F12-B25C-D5B457D0E14E}.TDeployDebug|Any CPU.Build.0 = TDeployDebug|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.TDeployDebug|Any CPU.ActiveCfg = TDeployDebug|Any CPU
+		{05DBEB43-A12D-49B3-B819-22E5CB6EE8F4}.TDeployDebug|Any CPU.Build.0 = TDeployDebug|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.TDeployDebug|Any CPU.ActiveCfg = TDeployDebug|Any CPU
+		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.TDeployDebug|Any CPU.Build.0 = TDeployDebug|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.TDeployDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5091B18-9C11-43D4-A083-1CB501DC287E}.TDeployDebug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

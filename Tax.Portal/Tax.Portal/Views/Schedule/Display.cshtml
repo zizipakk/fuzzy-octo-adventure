@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Beosztás";
+}
+
+<link href="~/Content/calendar/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/calendar/kontaktschedule.css" rel="stylesheet" />
+
+<div ng-app="kontaktScheduleApp" ng-controller="InterpreterCalendarController">
+
+    <div class="row" ng-cloak>
+        <div class="col-md-5">
+            <h2 ng-show=" week.editable">Nem véglegesített időszak</h2>
+            <h2 ng-show="!week.editable && !week.past">Véglegesített időszak</h2>
+            <h2 ng-show="!week.editable && week.past">Múltbeli időszak</h2>
+        </div>
+        <div class="col-md-7" style="margin-top:30px;">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources" calendar="rawCalendar"></div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="addPrivateEventModal.html">
+        <div class="modal-header">
+            <h3>Elfoglaltság rögzítése</h3>
+        </div>
+        <div class="modal-body" ng-cloak>
+            <h4>Időszak: {{$parent.period.start | date:'M.dd. HH:mm'}} - {{$parent.period.end | date:'HH:mm'}}</h4>
+            <input ng-model="$parent.result.description" class="form-control" placeholder="Esemény rövid leírása" />
+        </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="cancel()">Mégsem</button>
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="editPrivateEventModal.html">
+        <div class="modal-header">
+            <h3>Elfoglaltság módosítása</h3>
+        </div>
+        <div class="modal-body" ng-cloak>
+            <h4>Időszak: {{$parent.period.start | date:'M.dd. HH:mm'}} - {{$parent.period.end | date:'HH:mm'}}</h4>
+            <input ng-model="$parent.result.description" class="form-control" placeholder="Esemény rövid leírása" />
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" ng-click="delete()">Törlés</button>
+            <button class="btn" ng-click="cancel()">Mégsem</button>
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>
+    </script>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render(Links.bundles.scripts.jquery)
+
+    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    <script src="~/Scripts/angular/angular.js"></script>
+    <script src="~/Scripts/angular/angular-cookies.js"></script>
+    <script src="~/Scripts/calendar/calendar.js"></script>
+    <script src="~/Scripts/calendar/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="~/Scripts/calendar/fullcalendar.js"></script>
+
+    <script src="~/Scripts/schedule/app.js"></script>
+    <script src="~/Scripts/schedule/KontakScheduleService.js"></script>
+    <script src="~/Scripts/schedule/CalendarConfigService.js"></script>
+    <script src="~/Scripts/schedule/InterpreterCalendarController.js"></script>
+    <script src="~/Scripts/schedule/PrivateEventModalController.js"></script>
+
+}

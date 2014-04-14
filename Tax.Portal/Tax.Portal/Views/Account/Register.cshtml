@@ -1,0 +1,515 @@
+﻿@model Tax.Portal.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Regisztráció";
+}
+
+<style type="text/css" >
+    .checker.loading {
+        background: transparent url('../content/images/ajaxloading.gif') no-repeat scroll right center content-box !important;
+    }
+
+    .fade {
+        opacity: 0;
+        -webkit-transition: opacity 0.15s linear;
+        -moz-transition: opacity 0.15s linear;
+        -o-transition: opacity 0.15s linear;
+        transition: opacity 0.15s linear;
+    }
+
+    .fade.in {
+        opacity: 1;
+    }
+
+    .tooltip {
+        position: absolute;
+        z-index: 1030;
+    }
+
+    .tooltip.in {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+    }
+    /*ha a gyári nagyon átlátszó*/
+    .tooltip-inner {
+        color: black;
+        background-color: white;
+    }
+
+    .tooltip-arrow {
+        position: absolute;
+    }
+
+    .tooltip.top .tooltip-arrow {
+        border-top-color: white;
+    }
+
+    .tooltip.right .tooltip-arrow {
+        border-right-color: white;
+    }
+
+    .tooltip.left .tooltip-arrow {
+        border-left-color: white;
+    }
+
+    .tooltip.bottom .tooltip-arrow {
+        border-bottom-color: white;
+    }
+
+    .modal-dialog {
+        width: 700px; /* your width */
+        height: auto;
+    }
+
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div id="sinoszwarning"><h3 style="color: orange">A regisztrációd csak akkor lesz sikeres, ha már rendezted a 2014. évi tagdíjat.</h3></div>
+
+@using (Html.BeginForm(MVC.Account.Register(), FormMethod.Post, new { @class = "form-horizontal", role = "form", autocomplete = "off" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Új bejelentkezés létrehozása</h4>
+    <hr />
+
+    @Html.ValidationSummary()
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12" data-toggle="tooltip" data-placement="top" title="Adjon meg egy bejelentkezési nevet. A bejelentkezéskor ezzel a névvel és a jelszóval tud belépni az oldalra.">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "Bejelentkezési név" })
+                        <span class="input-group-addon" id="usernameokicon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="usernameerrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="usernameerrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "Családi név" })
+                        <span class="input-group-addon" id="firstnameokicon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="firstnameerrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="firstnameerrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "Keresztnév" })
+                        <span class="input-group-addon" id="lastnameokicon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="lastnameerrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="lastnameerrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "E-mail cím" })
+                        <span id="emailokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="emailerrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="emailerrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.PasswordFor(m => m.Password, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "Jelszó" })
+                        <span id="passwordokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="passworderrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="passworderrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-5 col-xs-12 control-label" })
+                <div class="col-sm-7 col-xs-12">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "col-sm-5 col-xs-12 form-control checker", placeholder = "Jelszó ismét" })
+                        <span id="confirmpasswordokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="confirmpassworderrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="confirmpassworderrortext"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.IsSinosz, new { @class = "col-sm-6 col-xs-12 control-label" })
+                <div class="col-sm-2 col-xs-12 pull-left">
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.CheckBoxFor(m => m.IsSinosz, new { @class = "form-control checker", @style = "height: 25px; width: 25px;  margin-top: 5px;", id = "issinosz" })
+                        <span id="issinoszokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                    </div>
+                    <span class="help-block" id="issinoszerrorgroup" style="visibility: hidden;">
+                        <span class="label label-danger" id="issinoszerrortext"></span>
+                    </span>
+                </div>
+            </div>
+            <div id="sinoszdata">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SinoszId, new { @class = "col-sm-6 col-xs-12 control-label" })
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.SinoszId, new { @class = "form-control checker", placeholder = "SINOSZ tagsági azonosító" })
+                            <span class="input-group-addon" id="sinoszidokicon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                        </div>
+                        <span class="help-block" id="sinosziderrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="sinosziderrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BirthDate, new { @class = "col-sm-6 col-xs-12 control-label" })
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.BirthDate, "{0:yyyy.MM.dd}", new { @class = "form-control checker", placeholder = "ÉÉÉÉ.HH.NN" })
+                            <span class="input-group-addon" id="birthdateokicon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                        </div>
+                        <span class="help-block" id="birthdateerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="birthdateerrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IsRequestCommunication, new { @class = "col-sm-6 col-xs-12 control-label" })
+                    <div class="col-sm-6 col-xs-12 pull-left">
+                        <div class="input-group col-sm-12 col-xs-12" data-toggle="tooltip" data-placement="top" title="Szeretné igénybe venni a KONTAKT Tolmácsszolgáltatást?">
+                            @Html.CheckBoxFor(m => m.IsRequestCommunication, new { @class = "form-control checker", @style = "height: 25px; width: 25px;  margin-top: 5px;" })
+                            <span id="isrequestcommunicationokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                            <a data-toggle="modal" data-target="#comm"><small>(A szolgáltatások leírását itt elolvashatod!)</small></a>
+                        </div>
+                        <span class="help-block" id="isrequestcommunicationerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="isrequestcommunicationerrortext"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IsRequestDevice, new { @class = "col-sm-6 col-xs-12 control-label" })
+                    <div class="col-sm-6 col-xs-12 pull-left">
+                        <div class="input-group col-sm-12 col-xs-12" data-toggle="tooltip" data-placement="top" title="Szeretne készüléket kölcsönözni?">
+                            @Html.CheckBoxFor(m => m.IsRequestDevice, new { @class = "form-control checker", @style = "height: 25px; width: 25px;  margin-top: 5px;" })
+                            <span id="isrequestdevicecommunicationokicon" class="input-group-addon" style="visibility: hidden; color: green;"><i class="fa fa-check"></i></span>
+                            <small>(A készülék kölcsönzése feltételekhez kötött! <a data-toggle="modal" data-target="#device">Ezekről itt olvashatsz!</a>)</small>
+                        </div>
+                        <span class="help-block" id="isrequestdeviceerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="isrequestdeviceerrortext"></span>
+                        </span>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 col-xs-12 pull-right">
+            <input type="submit" class="btn btn-warning" value="Regisztráció" />
+        </div>
+    </div>
+    
+<div class="modal fade bs-modal-lg" id ="comm" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">SINOSZ KONTAKT szolgáltatások bemutatása</h3>
+            </div>
+            <div class="modal-body">
+                <p>KONTAKT Tolmácsszolgáltatás valójában egy szolgáltatás rendszer, amely többféle kommunikációs formát is biztosít a felhasználói számára.</p>
+                <strong>A szolgáltatások jellege</strong>
+                <p>A szolgáltatás jellege azt hivatott megmutatni, hogy adott szolgáltatás mely irányokból vehető igénybe. Egy szolgáltatás akár több irányból is igénybe vehető lehet. A lehetséges irányok a következők:</p>
+                <strong>Bejövő:</strong><p> a szolgáltatás igénybevételét halló személy is kezdeményezheti, amennyiben azt a hívott felhasználó engedélyezte a személyes beállításai között.</p>
+                <strong>Kimenő:</strong><p> a szolgáltatás igénybevételét a felhasználó kezdeményezi.</p>
+                <strong>Rendszeren belül:</strong><p> a szolgáltatás a rendszeren belül.</p>
+                <strong>A szolgáltatás célcsoportjai felhasználói oldalról</strong>
+                <p>Megmutatja, hogy adott szolgáltatás mely célcsoport számára javasolt, illetve annak megtervezésekor melyik célcsoport speciális igényei kerültek figyelembe vételre. A célcsoportok a következők:</p>
+                <p>  •	siketek</p>
+                <p>  •	nagyothallók</p>
+                <p>  •	siketvakok</p>
+                <img src="@Url.Content("~/Content/images/tabelle.png")" class="img-responsive" alt="" style="border: none;" />
+                <strong>A kommunikációs szolgáltatások áttekintése</strong>
+                <strong>VRS:</strong><p> olyan szolgáltatás, melynek során az ügyfelek egymástól távol vannak, és telekommunikációs eszközzel teremtenek kapcsolatot egymással. A közreműködő jelnyelvi tolmács a siket ügyfél számára videotelefonon keresztül végez jelnyelvi tolmácsolást, a vele kapcsolatba lépő személy számára pedig hangos beszéddel fordít.</p>
+                <img src="@Url.Content("~/Content/images/vrs2.png")" class="img-responsive" alt="" style="border: none;" />
+                <strong>VRS szöveges kommunikációval a felhasználó és a tolmács között:</strong><p> olyan szolgáltatás, melynek során az ügyfelek egymástól távol vannak, és telekommunikációs eszközzel teremtenek kapcsolatot egymással. A közreműködő jelnyelvi tolmács a nagyothalló ügyfél számára leírja az elhangzottakat, a vele kapcsolatba lépő személy számára pedig hangos beszéddel fordít.</p>
+                <strong>VRS hang üzenet elhelyezése halló személy telefonkészülékén:</strong><p> olyan szolgáltatás, amelynek során a siket vagy nagyothalló felhasználó jelnyelven vagy írott kommunikációval közli üzenetét a bármely okból nem kapcsolható halló személy számára. A közreműködő jelnyelvi tolmács az üzenetet, hangüzenet formájában elhelyezi a hívott halló személy telefonos hangpostafiókjában.</p>
+                <strong>VRS videó üzenet felhasználó számára:</strong><p> olyan szolgáltatás, amelynek során a halló személy telefonhívását a közreműködő jelnyelvi tolmács fogadja és a bármely okból nem kapcsolható siket felhasználó számára videó üzenetben rögzíti azt. A felhasználó a videó üzenet érkezéséről többféle módon értesülhet egyéni beállítástól függően:</p>
+                <p>  •	az arra alkalmas készülék jelzéssel figyelmeztet,</p>
+                <p>  •	a szolgáltatás elektronikus levelet küld.</p>
+                <strong>VRS szöveges üzenet felhasználó számára:</strong><p> olyan szolgáltatás, amelynek során a halló személy telefonhívását a közreműködő jelnyelvi tolmács fogadja és a bármely okból nem kapcsolható nagyothalló felhasználó számára szöveges üzenetben rögzíti azt. A felhasználó a szöveges üzenet érkezéséről többféle módon értesülhet egyéni beállítástól függően:</p>
+                <p>  •	az arra alkalmas készülék jelzéssel figyelmeztet,</p>
+                <p>  •	a szolgáltatás elektronikus levelet küld.</p>
+                <strong>VRI:</strong><p> olyan szolgáltatás, melynek során az ügyfelek egy helyen tartózkodnak, a jelnyelvi tolmács viszont telekommunikációs eszközzel működik közre a beszélgetés során, például orvosnál, ahol a páciens siket, az orvos által elmondottakat videotelefonon, jelnyelven, vagy nagyothalló számára leírva fordítja.</p>
+                <img src="@Url.Content("~/Content/images/vri2.jpg")" class="img-responsive" alt="" style="border: none;" />
+                <strong>Közvetlen kapcsolat két hallássérült ügyfél között:</strong>
+                <strong>Videó telefonálás regisztrált felhasználók között közvetlenül:</strong><p> olyan szolgáltatás, amelynek során a felhasználók közreműködő jelnyelvi tolmács nélkül kommunikálnak egymással videó telefonként használva a rendszert.</p>
+                <strong>Szöveges üzenetváltás (chat) felhasználók között:</strong><p> olyan szolgáltatás, amelynek során a felhasználók közreműködő jelnyelvi tolmács nélkül élő folyamatos kapcsolatban kommunikálnak egymással, közlendőjüket rövid szöveges üzenetekként elküldve a másik felhasználó számára, aki azt az elküldés pillanatában azonnal megkapja, így hasonló módon reagálhat arra.</p>
+                <strong>Felhasználói videó üzenet küldése másik felhasználónak:</strong><p> olyan szolgáltatás, amelynek keretében az egyik felhasználó, a bármely okból nem elérhető másik felhasználó számára videó üzenetet hagy a jelnyelvi tolmács segítsége nélkül. Az üzenet címzettje a videó üzenet érkezéséről többféle módon értesülhet egyéni beállítástól függően:</p>
+                <p>  •	az arra alkalmas készülék fényjelzéssel figyelmeztet,</p>
+                <p>  •	a szolgáltatás elektronikus levelet küld.</p>
+                <strong>Felhasználói szöveges üzenet küldése másik felhasználónak:</strong><p> olyan szolgáltatás, amelynek keretében az egyik felhasználó, a bármely okból nem elérhető másik felhasználó számára szöveges üzenetet hagy a jelnyelvi tolmács segítsége nélkül. A felhasználó a szöveges üzenet érkezéséről többféle módon értesülhet egyéni beállítástól függően:</p>
+                <p>  •	az arra alkalmas készülék fényjelzéssel figyelmeztet,</p>
+                <p>  •	a szolgáltatás elektronikus levelet küld.</p>
+                <strong>A KONTAKT szolgáltatások elérhetősége a próbaidőszak alatt, (teszt)ügyfelek számára</strong>
+                <p>Jelnyelvi tolmács közreműködését igénylő szolgáltatásokat a regisztrált felhasználók számára - a nyilvános tesztelési időszakban - elérhetővé teszi a projekt, munkanapokon reggel 8 óra és este 16 óra között.</p>
+                <p>Munkanapokon 0-8 és 16-24 között, munkaszüneti és ünnepnapokon 0-24 óra között a Kontakt ügyeleti szolgáltatást biztosít, amikor a tesztfelhasználók kizárólag csak sürgősségi hívásokat kezdeményezhetnek.</p>
+                <p>Ezen időszakokban a projekt saját költségvetésének terhére folyamatos jelnyelvi tolmácsszolgáltatást biztosít, a költségvetésében erre célra elkülönített keret erejéig.</p>
+                <p>Jelnyelvi tolmács közreműködését nem igénylő szolgáltatások a próbaidőszakban napi 24 órában állnak a regisztrált felhasználók rendelkezésére.</p>
+                <strong>A KONTAKT kommunikációs szolgáltatásokat milyen eszközökről érhetik el a tesztelők?</strong>
+                <p>Minden SINOSZ KONTAKT kommunikációs szolgáltatás egyaránt elérhető</p>
+                <p>  •	Windos XP, 7, 8 operációs rendszert futtató személyi számítógépről, laptopról, notebookról, netbookról:</p>
+                <p>     o	amely csatlakozik internetre (képfelbontástól függően minimum 300, maximum 1000 kbps le és feltöltési sávszélességgel);</p>
+                <p>     o	amely rendelkezik illesztett webkamerával (lehetőleg HD felbontású, jó képminőségű);</p>
+                <p>     o	amely rendelkezik illesztett hangkártyával és hangszóróval;</p>
+                <p>     o	a következő telepített böngészők egyikéből:</p>
+                <p>         	Internet Explorer 7 és attól újabb verziók;</p>
+                <p>         	Firefox 18 attól és újabb verziók;</p>
+                <p>         	Chrome 25 attól és újabb verziók;</p>
+                <p>         	Safari 5 attól és újabb verziók;</p>
+                <p>  •	Android 2.3 és attól újabb operációs rendszert futtató okostelefonról, tabletről:</p>
+                <p>     o	amely csatlakozik internetre (képfelbontástól függően minimum 300, maximum 1000 kbps le és feltöltési sávszélességgel);</p>
+                <p>     o	amely rendelkezik előlapi kamerával;</p>
+                <p>  •	Apple iOS 4.3 és attól újabb operációs rendszert futtató okostelefonról, tabletről:</p>
+                <p>     o	amely csatlakozik internetre (képfelbontástól függően minimum 300, maximum 1000 kbps le és feltöltési sávszélességgel);</p>
+                <p>     o	amely rendelkezik előlapi kamerával;</p>
+                <p>A video kommunikáció sávszélesség igénye miatt, ahol arra lehetőség nyílik, célszerű a nagyobb stabil sávszélességet biztosító vezetékes internet szolgáltatásokat előnyben részesíteni.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+    
+<div class="modal fade bs-modal-lg" id ="device" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Tesztkészülék kölcsönzés</h3>
+            </div>
+            <div class="modal-body">                
+                <p>Ha szeretnél részt venni a próbaidőszak ideje alatt a tesztelésben, de nincs mivel, akkor is jelentkezhetsz tesztelőnek. A projekt beszerzett 1250 darab készüléket tesztelési célra. Minden tesztkészülék mellé egy rendkívül stabil állítható döntésszögű tartóállványt adunk, megkönnyítendő a készülék használatát a jelnyelvet használó társainknak.</p>
+                @*<p>Az előregisztráció alkalmával az jelentkezési űrlapon lehetőséged van megjelölni, hogy szükséged van e tesztkészülékre?</p>*@
+                <p>A regisztráció alkalmával az jelentkezési űrlapon lehetőséged van megjelölni, hogy szükséged van e tesztkészülékre?</p>
+                <strong>Kérünk mindenkit, hogy csak azok igényeljenek tesztkészüléket, akiknek valóban nincs saját eszköze.</strong>
+                <p>Akik ezt a lehetőséget kiválasztják, azoknak meg kell jelölniük, hogy a tesztkészüléket milyen jellemző célra kívánják használni. A megjelölhető területek a következők:</p>
+                <p>  •	<a data-toggle="modal" data-target="#device_health">egészségügyi ellátás;</a></p>
+                <p>  •	<a data-toggle="modal" data-target="#device_job">munkavégzés;</a></p>
+                <p>  •	<a data-toggle="modal" data-target="#device_life">önálló életvitel.</a></p>
+                <p>Ezekből egyszerre csak egyet lehet megjelölni, de természetesen ettől a készülék bármely más célra is használható.</p>
+                <p>Egy független bizottság elbírálja az eszközigényléseket 2014 február 28-át követően, és a feltételeknek eleget tevő jelentkezők közül 1250 főnek a próbaidő végéig kölcsön adunk egy teljesen új, modern tablet készüléket. Felhívjuk a figyelmeteket, hogy teszteszközt csak olyan jelentkező kaphat, akinek a tesztelői szerződése mindkét fél által aláírásra került. A tesztkészülék kölcsönbeadásáról szerződés, és átadás-átvételi jegyzőkönyv is készül.</p>
+                <p>A tesztkészülékeket személyesen Budapesten a SINOSZ Székházban, a szerződések aláírását követően lehet átvenni, a portálon működő időpontfoglaló rendszerben az általad lefoglalt időpontban. Az ezzel kapcsolatos tudnivalókról részletes tájékoztatást fogsz kapni elektronikus levélben, amennyiben a regisztrációd elfogadásra kerül.</p>
+                <p>A tesztkészülék csak kölcsönben van a tesztelőnél, az mindvégig a SINOSZ tulajdona marad, ezért a tesztelő mindvégig anyagi felelősséggel tartozik a rábízott eszközért, és azt legkésőbb a próbaidőszak végén köteles visszaszolgáltatni a tulajdonosnak.</p>
+                <p>A TABLET-ről részletesebben <a href="http://www.asus.com/hu/Tablets_Mobile/ASUS_Fonepad_7_ME372CG/">itt</a>, az állványról <a href="http://www.yenkee.hu/tablet-tartozekok/tablet-allvany/yst-002">itt</a> olvashatsz.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>              
+
+<div class="modal fade bs-modal-sm" id ="device_health" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Egészségügy</h3>
+            </div>
+            <div class="modal-body">                
+                <strong>Néhány példa:</strong>
+                <p>Egészségügyi ellátás igénybevételekor végzett távtolmácsolás.</p>
+                <p>  •	Orvossal/háziorvossal időpont-egyeztetés</p>
+                <p>  •	Orvosi eset bejelentése, kivizsgálás kérése</p>
+                <p>  •	Orvossal való konzultáció</p>
+                <p>  •	Sürgősségi eset bejelentése</p>
+                <p>  •	Egyéb</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>              
+
+<div class="modal fade bs-modal-sm" id ="device_job" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Foglalkoztatás</h3>
+            </div>
+            <div class="modal-body">                
+                <strong>Néhány példa:</strong>
+                <p>Foglalkoztatási célú távtolmácsolás.</p>
+                <p>  •	Állásinterjú</p>
+                <p>  •	Munkába helyezés menete</p>
+                <p>  •	Munkahelyi munkavégzéssel kapcsolatos kommunikáció biztosítása</p>
+                <p>  •	Munkahelyi értekezlet</p>
+                <p>  •	Szerződéskötés</p>
+                <p>  •	Felmondás</p>
+                <p>  •	Közös megegyezés</p>
+                <p>  •	Egyéb</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>                
+
+<div class="modal fade bs-modal-sm" id ="device_life" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Önálló életvitel</h3>
+            </div>
+            <div class="modal-body">                
+                <strong>Néhány példa:</strong>
+                <p>  •	Magánügyek intézése – pl.: családi ügyek, lakással kapcsolatos ügyek, banki ügyek stb.</p>
+                <p>  •	Telefonos ügyintézés – pl.: közüzemi számlák, óraállások bejelentése, különböző szolgáltatások (TV, internet, műszaki cikkek, szépségipar stb.) igénybevétele, szerviz; rendelés, házhozszállítás stb.</p>
+                <p>  •	Kormányablakokban végzendő ügyintézés</p>
+                <p>  •	Hivatalos ügyek</p>
+                <p>  •	Ügyvéd, közjegyző</p>
+                <p>  •	Lakógyűlés</p>
+                <p>  •	Szülői értekezlet</p>
+                <p>  •	Szabadidős tevékenység</p>
+                <p>  •	Egyéb</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezárás</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>                
+       
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqueryval")
+}
+
+<script src="@Url.Content("~/Scripts/rx.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.binding.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.time.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.dom.js")"></script>
+@*átmeneti megoldás, mert a bundle mindig alulra rakja*@
+<script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>
+
+
+<script type="text/javascript">
+    (function (global, undefined) {
+        //TODO: a kliens oldali böngésző dátumvalidálása halott a magyar lokalizációval firefox-ban és iexplorerben
+        $("input[data-val-date]").removeAttr("data-val-date");
+
+        @*Ha van ilyen mező, akkor gyártunk belőle kifejezést*@
+        function ftoexp(field, prefix) { return (null === field) ? null : prefix + field + "=" + $("#" + field).val(); };
+
+        @*Legfeljebb két mezőt küldünk az érvényesítéshez*@
+        function search2(term, field1, field2) {
+            $("#" + field1).addClass("loading");
+            var cleanTerm = global.encodeURIComponent(term);
+            var url = "@Url.Action(MVC.Account.viRegister())" + ftoexp(field1, "?") + ftoexp(field2, "&") + "&field=" + field1 + "&callback=JSONPCallback";
+            return Rx.DOM.Request.jsonpRequestCold(url);
+        };
+
+        function checkthis(field, field2) {
+            var input = document.querySelector("#" + field);
+
+            var keyup = Rx.DOM.fromEvent(input, "keyup")
+                .map(function (e) {
+                    return e.target.value;
+                })
+                .filter(function (text) {
+                    return text.length > 0 || text.length == 0;
+                })
+                .throttle(500)
+                .distinctUntilChanged();
+
+            var searcher = keyup
+                .map(function (text) {
+                    return result = search2(text, field, field2);
+                })
+                .switchLatest();
+
+            var subscript = searcher.subscribe(
+                function (data) {
+                    field0 = field.toLowerCase();
+                    if (data[0].valid == "True") {
+                        $("#" + field0 + "errortext").html("");
+                        $("#" + field0 + "errorgroup").show().css({ visibility: "hidden" });
+                        $("#" + field0 + "okicon").show().css({ visibility: "visible" });
+                    } else {
+                        $("#" + field0 + "errortext").html(data[0].message);
+                        $("#" + field0 + "errorgroup").show().css({ visibility: "visible" });
+                        $("#" + field0 + "okicon").show().css({ visibility: "hidden" });
+                    }
+                    $("#" + field).removeClass("loading");
+                },
+                function (error) {
+                    $("#" + field).removeClass("loading");
+                }
+            );
+        };
+
+
+        @*isSinosz check*@
+        function showhide() {
+            if ($("#issinosz").prop("checked")) {// lehet, hogy a this miatt nem megy a régi szintax: $('#').is(':checked')
+                $("#sinoszdata").show().css({ visibility: "visible" });
+                $("#sinoszwarning").show().css({ visibility: "visible" });
+            }
+            else {
+                $("#sinoszdata").hide().css({ visibility: "hidden" });
+                $("#sinoszwarning").hide().css({ visibility: "hidden" });
+            }
+            $("#issinosz").click(function (e) {
+                if ($(this).prop("checked")) {
+                    $("#sinoszdata").show().css({ visibility: "visible" });
+                    $("#sinoszwarning").show().css({ visibility: "visible" });
+                }
+                else {
+                    $("#sinoszdata").hide().css({ visibility: "hidden" });
+                    $("#sinoszwarning").hide().css({ visibility: "hidden" });
+                }
+            });
+        };
+
+
+        function main() {
+            checkthis("UserName");
+            checkthis("FirstName");
+            checkthis("LastName");
+            checkthis("Email");
+            checkthis("Password");
+            checkthis("ConfirmPassword", "Password");
+            checkthis("BirthDate");
+        };
+
+        main();
+        showhide();
+
+    }(window));
+</script>
+

@@ -1,0 +1,77 @@
+﻿@model Tax.Portal.Models.LoginViewModel
+@using Tax.Data.Models
+
+@{
+    ViewBag.Title = "Bejelentkezés";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-sm-7 col-xs-12">
+        <section id="loginForm">
+            @using (Html.BeginForm(MVC.Account.ActionNames.Login, MVC.Account.Name, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Bejelentkezés a SINOSZ Kontakt rendszerbe.</h4>
+                <hr />
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Felhasználónév" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-sm-5 col-xs-12 control-label" })
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Jelszó" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-5 col-sm-7 col-xs-12">
+                        <div class="checkbox col-sm-12 col-xs-12 pull-right">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 col-xs-12 pull-right">
+                        <input type="submit" value="Bejelentkezés" class="btn btn-warning" />
+                    </div>
+                </div>
+                using (var db = new Tax.Data.Models.ApplicationDbContext())
+                {
+                    var IsPreregistration = db.SystemParameter.FirstOrDefault(x => x.Name == "Előregisztáció folyamatban (1/0)?");
+                    if (null == IsPreregistration)
+                    {
+                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Register())">itt tud regisztrálni <i class="fa fa-user"></i></a>.</p>
+                    }
+                    else if (IsPreregistration.Value == "1")
+                    { 
+                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Preregister())">itt tud előregisztrálni <i class="fa fa-user"></i></a>.</p>
+                    }
+                    else
+                    { 
+                        <p>Ha még nincs regisztrációja az oldalon, <a href="@Url.Action(MVC.Account.Register())">itt tud regisztrálni <i class="fa fa-user"></i></a>.</p>
+                    }
+                }
+                <p>Ha elfelejtette a jelszavát, <a href="@Url.Action(MVC.Account.ResetPasswordStart())">itt tud új jelszót igényelni <i class="fa fa-envelope"></i></a>.</p>
+            }
+</section>
+    </div>
+    <div class="col-sm-4 col-xs-12">
+        @*<section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqueryval")
+}

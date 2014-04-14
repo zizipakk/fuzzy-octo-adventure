@@ -1,0 +1,99 @@
+﻿@model Tax.Portal.Models.ReservationViewModel
+@{
+    ViewBag.Title = "Időpontfoglalás";
+}
+
+<style type="text/css">
+    .modal-dialog.modal-lg {
+        width: 700px; /* your width */
+        height: auto;
+    }
+
+    .modal-dialog.modal-sm {
+        width: 400px; /* your width */
+        height: auto;
+    }
+
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(MVC.Stock.Reservation(), FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken() 
+    @Html.HiddenFor(m => m.KontaktUserId)
+    @Html.HiddenFor(m => m.SelectedReservationTimeId)
+    @Html.HiddenFor(m => m.isAdd)
+        
+    <hr />
+
+    @Html.ValidationSummary()
+    if (!@Model.isAdd)
+    { 
+        <h4>Új időpont rögzítése jövőbeli, a fel nem használt időpont törlése után lehetséges!</h4>
+        <hr />
+        <div class="form-group" id="reserved">
+            @Html.LabelFor(m => m.Reservations, new { @class = "col-sm-5 col-xs-12 control-label" })        
+            <table class="col-sm-3 col-xs-12 text-center" style="margin-top: 5px">
+                @foreach (var row in @Model.Reservations)
+                {
+                    <tr>
+                        @foreach (var item in row.ToList())
+                        {
+                            <td>
+                                @MvcHtmlString.Create(item)
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="form-group">       
+            <div class="col-sm-3 col-xs-12 pull-right">
+                <input type="submit" class="btn btn-danger" value="Időpontfoglalás törlése" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4>Válassz időpontot!</h4>
+        <hr />
+        <div class="form-group" id="free">
+            @Html.LabelFor(m => m.FreeTimes, new { @class = "col-sm-5 col-xs-12 control-label" })
+            <table class="col-sm-4 col-xs-12 text-center" style="margin-top: 5px">
+            @foreach (var row in @Model.FreeTimes)
+            {
+                <tr>
+                    <td>
+                        @MvcHtmlString.Create(row.ReservationDate.ToString("yyyy.MM.dd"))
+                    </td>
+                    <td>
+                        @MvcHtmlString.Create(row.ReservationBegin.ToString().Substring(0,5))
+                    </td>
+                    <td>
+                        <div class="input-group">@Html.RadioButton("rdbChoose", row.Id )</div>
+                    </td>
+                </tr>
+            }
+            </table>
+        </div>
+        <div class="form-group">       
+            <div class="col-sm-3 col-xs-12 pull-right">
+                <input type="submit" class="btn btn-warning" value="Időpont rögzítése" />
+            </div>
+        </div>
+    }
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>
+
+<script type="text/javascript">
+    (function (global, undefined) {
+        $('input[name = "rdbChoose"]').click(function (e) {
+            $('#SelectedReservationTimeId').val($(this).val());
+        });
+
+    }(window));
+</script>
+

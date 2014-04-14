@@ -1,0 +1,561 @@
+﻿@model Tax.Portal.Models.AccountProfileViewModel
+@{
+    ViewBag.Title = "Ügyfélprofil";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+
+    .modal-dialog {
+        width: 700px; /* your width */
+        height: auto;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        margin-top: 7px;
+        display: block;
+        clear: left;
+        float: left;
+    }
+
+</style>
+
+@using (Html.BeginForm(MVC.Account.AccountProfileEdit(), FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.LoginName)
+    @Html.HiddenFor(m => m.LoginEmail)
+    @Html.HiddenFor(m => m.FirstName)
+    @Html.HiddenFor(m => m.LastName)
+    @Html.HiddenFor(m => m.ExternalNumber)
+    @Html.HiddenFor(m => m.InnerNumber)
+    @Html.HiddenFor(m => m.IsSinosz)
+    @Html.HiddenFor(m => m.SinoszId)
+    @Html.HiddenFor(m => m.BirthDate)
+    //most le vannak tiltva ezért rakhatom ide
+    @Html.HiddenFor(m => m.IsRequestCommunication)
+    @Html.HiddenFor(m => m.IsRequestDevice)
+    
+    <hr />
+    @Html.ValidationSummary("A következő hibák történtek:")
+    <div class="bs-example bs-example-tabs">
+        <ul id="SinoszTab" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a data-toggle="tab" href="#Személyes_adatok">Személyes adatok</a></li>
+            <li><a data-toggle="tab" href="#Forgalmi_jelentés">Forgalmi jelentés</a></li>
+        </ul>
+
+        <br />
+        <div id="SinoszTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="Személyes_adatok">
+                <div class="row">
+                    <div class="col-sm-7 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LoginName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.LoginName, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LoginEmail, new { @class = "col-sm-5 col-xs-12 control-label" })
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.LoginEmail, new { @class = "form-control", @disabled = "disabled" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control checker", @disabled = "disabled" })
+                                </div>
+                                <span class="help-block" id="firstnameerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="firstnameerrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-sm-5 col-xs-12 control-label" })
+                            <div class="col-sm-7 col-xs-12">
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control checker", @disabled = "disabled" })
+                                </div>
+                                <span class="help-block" id="lastnameerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="lastnameerrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                        @if (Model.ExternalNumber != "")
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ExternalNumber, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    <div class="input-group col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.ExternalNumber, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (Model.InnerNumber != "")
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.InnerNumber, new { @class = "col-sm-5 col-xs-12 control-label" })
+                                <div class="col-sm-7 col-xs-12">
+                                    <div class="input-group col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.InnerNumber, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-sm-5 col-xs-12">
+                        <div id="sinoszdata">
+                            @*<div class="form-group">
+                                @Html.LabelFor(m => m.IsSinosz, new { @class = "col-sm-6 col-xs-12 control-label" })
+                                <div class="col-sm-2 col-xs-12 pull-left">
+                                    <div class="input-group col-sm-12 col-xs-12">
+                                        @Html.CheckBoxFor(m => m.IsSinosz, new { @class = "form-control", @style = "height: 25px; width: 25px;  margin-top: 5px;", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SinoszId, new { @class = "col-sm-6 col-xs-12 control-label" })
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="input-group col-sm-12 col-xs-12 input">
+                                        @Html.TextBoxFor(m => m.SinoszId, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.BirthDate, new { @class = "col-sm-6 col-xs-12 control-label" })
+                                <div class="col-sm-6 col-xs-12">
+                                    <div class="input-group col-sm-12 col-xs-12">
+                                        @Html.TextBoxFor(m => m.BirthDate, "{0:yyyy.MM.dd}", new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.IsRequestCommunication, new { @class = "col-sm-6 col-xs-12 control-label" })
+                                <div class="col-sm-2 col-xs-12 pull-left">
+                                    <div class="input-group">
+                                        @Html.CheckBoxFor(m => m.IsRequestCommunication, new { @class = "form-control checker", @style = "height: 25px; width: 25px;  margin-top: 5px;", id = "iscomm", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.IsRequestDevice, new { @class = "col-sm-6 col-xs-12 col-xs-12 control-label" })
+                                <div class="col-sm-2 col-xs-12 pull-left">
+                                    <div class="input-group">
+                                        @Html.CheckBoxFor(m => m.IsRequestDevice, new { @class = "form-control checker", @style = "height: 25px; width: 25px;  margin-top: 5px;", id = "isdevice", @disabled = "disabled" }) 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (null != @Model.Devices && @Model.Devices.Count() > 0)
+                {
+                <div class="form-group">
+                    @Html.Label("Eszközök", new { @class = "col-sm-2 col-xs-12 pull-left control-label" })
+
+                    <table class="col-sm-6 col-xs-12 text-center" style="margin-top: 6px;">
+                        @foreach (var row in @Model.Devices)
+                        {
+                            <tr>
+                                @foreach (var item in row.ToList())
+                                {
+                                    <td>
+                                        @MvcHtmlString.Create(item)
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+                }
+            </div>
+            @*<div class="tab-pane fade" id="Forgalmi_jelentés">
+                <div class="row">
+                    <div class="container grid">
+                        <div class="col-sm-6 col-xs-12" style="min-width: 570px">
+                            <table id="usertraffics" class="display"><tr><td /></tr></table>
+                            <div id="usertrafficspager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+    </div>
+
+    @*Végülis nincs is mit menteni
+        <div class="form-group">
+        <div class="col-sm-2 col-xs-12 pull-right">
+            <input type="submit" class="btn btn-warning" value="Mentés" />
+        </div>
+    </div>*@
+}
+
+@section Scripts {
+        @Scripts.Render("~/Scripts/jqueryval")
+        @Scripts.Render("~/Scripts/jqgrid")
+
+<script src="@Url.Content("~/Scripts/rx.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.binding.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.time.js")"></script>
+<script src="@Url.Content("~/Scripts/rx.dom.js")"></script>
+@*átmeneti megoldás, mert a bundle mindig alulra rakja*@
+@*<script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>*@
+
+<script type="text/javascript">
+    //(function (global, undefined) {
+
+        @*Ha van ilyen mező, akkor gyártunk belőle kifejezést*@
+        //function ftoexp(field, prefix) { return (null === field) ? null : prefix + field + "=" + $("#" + field).val(); };
+
+        @*Legfeljebb két mezőt küldünk az érvényesítéshez*@
+        //function search2(term, field1, field2) {
+        //    $("#" + field1).addClass("loading");
+        //    var cleanTerm = global.encodeURIComponent(term);
+        //    var url = "@Url.Action(MVC.Account.viRegister())" + ftoexp(field1, "?") + ftoexp(field2, "&") + "&field=" + field1 + "&callback=JSONPCallback";
+        //    return Rx.DOM.Request.jsonpRequestCold(url);
+        //};
+
+        //function checkthis(field, field2) {
+        //    var input = document.querySelector("#" + field);
+
+        //    var keyup = Rx.DOM.fromEvent(input, "keyup")
+        //        .map(function (e) {
+        //            return e.target.value;
+        //        })
+        //        .filter(function (text) {
+        //            return text.length > 0 || text.length == 0;
+        //        })
+        //        .throttle(500)
+        //        .distinctUntilChanged();
+
+        //    var searcher = keyup
+        //        .map(function (text) {
+        //            return result = search2(text, field, field2);
+        //        })
+        //        .switchLatest();
+
+        //    var subscript = searcher.subscribe(
+        //        function (data) {
+        //            field0 = field.toLowerCase();
+        //            if (data[0].valid == "True") {
+        //                $("#" + field0 + "errortext").html("");
+        //                $("#" + field0 + "errorgroup").show().css({ visibility: "hidden" });
+        //                $("#" + field0 + "okicon").show().css({ visibility: "visible" });
+        //            } else {
+        //                $("#" + field0 + "errortext").html(data[0].message);
+        //                $("#" + field0 + "errorgroup").show().css({ visibility: "visible" });
+        //                $("#" + field0 + "okicon").show().css({ visibility: "hidden" });
+        //            }
+        //            $("#" + field).removeClass("loading");
+        //        },
+        //        function (error) {
+        //            $("#" + field).removeClass("loading");
+        //        }
+        //    );
+        //};
+
+        @*isSinosz check*@
+        if ("True" == $("#IsSinosz").val() 
+            || "" != $("#SinoszId").val())//előregisztrációsok is tudják módosítani az eszközigényüket
+        {
+            $("#sinoszdata").show().css({ visibility: "visible" });
+        }
+        else {
+            $("#sinoszdata").hide().css({ visibility: "hidden" });
+        }
+
+        //if ($("#iscomm").prop("checked")) {
+        //    $("#isdevice").show().css({ visibility: "visible" });
+        //}
+        //else {
+        //    $("#isdevice").hide().css({ visibility: "hidden" });
+        //}
+
+        //$("#iscomm").click(function (e) {
+        //    if ($(this).prop("checked")) {
+        //        $("#isdevice").show().css({ visibility: "visible" });
+        //    }
+        //    else {
+        //        $("#isdevice").hide().css({ visibility: "hidden" });
+        //    }
+        //});
+
+        //function main() {
+        //    checkthis("FirstName");
+        //    checkthis("LastName");
+        //};
+
+        //main();
+
+        initDateSearch = function (elem) {
+            setTimeout(function () {
+                $(elem).datepicker({
+                    autoSize: true,
+                    //showOn: 'button', // it dosn't work in searching dialog
+                    changeYear: true,
+                    changeMonth: true,
+                    showButtonPanel: true,
+                    showWeek: true,
+                    onSelect: function () {
+                        if (this.id.substr(0, 3) === "gs_") {
+                            setTimeout(function () {
+                                $("#usertraffics")[0].triggerToolbar();
+                            }, 50);
+                        } else {
+                            // to refresh the filter
+                            $(this).trigger('change');
+                        }
+                    }
+                });
+            }, 100);
+        };
+
+        var getColumnIndexByName = function (gridname, columnName) {
+            var grid = $("#" + gridname);
+            var cm = grid.jqGrid('getGridParam', 'colModel');
+            var retval = -1;
+            $.each(cm, function () {
+                if (this.name === columnName) {
+                    retval = cm.indexOf(this);
+                }
+            });
+            return retval;
+        };
+
+        numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
+
+        currencyTemplate = {
+            //nem megy törtszámra
+            //formatter:'currency', formatoptions:{decimalSeparator:",", thousandsSeparator: " ", decimalPlaces: 2, suffix: "-Ft"}, 
+            align: 'right', 
+            sorttype: 'number',
+            searchoptions: { sopt: numberSearchOptions }
+        };
+
+        myDefaultSearch = 'cn';
+
+        var ids = [];
+
+        function datetimecheck(value, colname) {
+            if (value.length != 10)
+                return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
+            var dateParts = value.split(".");
+            var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
+                return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
+            var min = new Date("1753.01.01");
+            var max = new Date("9999.12.31");
+            if (dat < min || dat > max)
+                return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
+            return [true, ""];
+        }
+
+        jQuery("#usertraffics").jqGrid({
+            url: '@Url.Action("ListTrafficMonths", "Account")',
+            datatype: "json",
+            colNames: [
+                'id',
+                'Időszak kezdete',
+                'Időszak vége'
+            ],
+            colModel: [
+                {
+                    name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false
+                },
+                {
+                    name: 'PeriodBegin', index: 'PeriodBegin', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' }
+                },
+                {
+                    name: 'PeriodEnd', index: 'PeriodEnd', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' }
+                }
+            ],
+            //rowNum: 30,
+            //rowList: [30, 60, 90],
+            toppager: true,
+            pager: '#usertrafficspager',
+            sortname: 'PeriodBegin,PeriodEnd',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: 'Időszakok',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: false,
+            shrinkToFit: false,
+            height: '100%',
+            width: '870',
+            subGrid: true,
+            onSelectRow: function (rowid) {//minden sorklikkre kinyitja a subgridet
+                $(this).jqGrid('expandSubGridRow', rowid);
+            },
+            //minden server művelet előtt begyújtöm, kik vannak nyitva
+            //ehhez jönnek még a frissen beszúrtak
+            beforeRequest: function () {
+                var num;
+                $("#usertraffics tr:has(.sgexpanded)").each(function () {
+                    num = $(this).attr('id');
+                    ids.push(num);
+                });
+            },
+            loadComplete: function () {
+                //refreshSerchingToolbar($(this), myDefaultSearch); // $(this) === myGrid
+                for (var j = 0; j < ids.length; j = j + 1) {
+                    $(this).jqGrid('expandSubGridRow', ids[j]);
+                };
+                ids = new Array(); //mindig újra kell építeni
+            },
+            subGridOptions: {
+                "plusicon": "ui-icon-triangle-1-e",
+                "minusicon": "ui-icon-triangle-1-s",
+                "openicon": "ui-icon-arrowreturn-1-e"
+            },
+            subGridRowExpanded: function (subgrid_id, row_id) {
+                var subgrid_table_id, pager_id;
+                subgrid_table_id = subgrid_id + "_t";
+                pager_id = "p_" + subgrid_table_id;
+                $("#" + subgrid_id).html("<table id='" + subgrid_table_id + "' class='scroll'><tr><td /></tr></table><div id='" + pager_id + "' class='scroll'></div>");
+                jQuery("#" + subgrid_table_id).jqGrid({
+                    url: '@Url.Action("ListTrafficCalls", "Account")?userId=' + $('#UserId').val() + '&monthId=' + row_id,
+                    datatype: "json",
+                    colNames: [
+                        'id',
+                        'Hívás időpontja',
+                        'Percdíj',
+                        'Hívószám',
+                        'Hívott szám',
+                        'Hívott neve',
+                        'Hívás hossza',
+                        'Nettó díj',
+                        'ÁFA',
+                        'Bruttó díj'
+                    ],
+                    colModel: [
+                        { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                        {
+                            name: 'StartTime', index: 'StartTime', width: 140, align: "center",
+                            hidden: false, sortable: true, sorttype: 'time',
+                            editable: false,
+                            formatter: 'time', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                            search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                        },
+                        { name: 'Sum', index: 'Sum', width: 80, search: true, sortable: true, editable: false, template: currencyTemplate },
+                        { name: 'CallerId', index: 'CallerId', width: 70, align: "center", search: true, sortable: true, editable: false },
+                        { name: 'Destination', index: 'Destination', width: 70, align: "center", search: true, sortable: true, editable: false },
+                        { name: 'FullName', index: 'FullName', width: 150, search: true, sortable: true, editable: false },
+                        {
+                            name: 'TalkDuration', index: 'TalkDuration', width: 80, align: "left", sortable: true, sorttype: 'number',
+                            search: true, searchoptions: { sopt: numberSearchOptions }, editable: false
+                        },
+                        { name: 'Netto', index: 'Netto', width: 70, search: true, sortable: true, editable: false, template: currencyTemplate },
+                        {
+                            name: 'VAT', index: 'VAT', width: 50, align: "right", sortable: true, sorttype: 'number',
+                            search: true, searchoptions: { sopt: numberSearchOptions }, editable: false
+                        },
+                        { name: 'Brutto', index: 'Brutto', width: 70, search: true, sortable: true, editable: false, template: currencyTemplate },
+                    ],
+                    rowNum: 20,
+                    rowList: [20, 40, 60],
+                    toppager: true,
+                    pager: '#' + pager_id,
+                    sortname: "StartTime",
+                    sortorder: "asc",
+                    height: '100%',
+                    width: 810,
+                    viewrecords: true,
+                    rownumbers: true,
+                    gridview: true,
+                    hoverrows: true,
+                    scrollrows: false,
+                    shrinkToFit: false,
+                    //loadComplete: function () {
+                    //    setTooltipsOnColumnHeader($("#" + subgrid_table_id), 7, "Telekommunikáció engedélyezése...");
+                    //    setTooltipsOnColumnHeader($("#" + subgrid_table_id), 8, "Eszköz kiválasztása...");
+                    //    setTooltipsOnColumnHeader($("#" + subgrid_table_id), 9, "Szerződések nyomtatása...");
+                    //    setTooltipsOnColumnHeader($("#" + subgrid_table_id), 10, "Az Ügyfél megjelent.");
+                    //}
+                });
+
+                jQuery("#" + subgrid_table_id).jqGrid(
+                    'navGrid'
+                    , '#' + pager_id
+                    , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+                    , {} //prmEdit
+                    , {} //prmAdd
+                    , {} //prmDel
+                    , {
+                        width: 600,
+                        multipleSearch: true,
+                        //multipleGroup: true,
+                        recreateFilter: true,
+                        //closeOnEscape: true,
+                        //closeAfterSearch: true,
+                        overlay: 0,
+                        afterRedraw: function () {
+                            $('input.add-rule', this)//.button().val('Add new rule')
+                                .attr('title', 'Új szabály hozzáadása');
+                            //$('input.add-group', this)//.button().val('Add new group or rules')
+                            //    .attr('title', 'Új szabálycsoport hozzáadása');
+                            $('input.delete-rule', this)//.button().val('Delete rule')
+                                .attr('title', 'Szabály törlése');
+                            //$('input.delete-group', this)//.button().val('Delete group')
+                            //    .attr('title', 'Szabálycsoport törlése');
+                            //$(this).find("table.group:not(:first)").css({
+                            //    borderWidth: "1px",
+                            //    borderStyle: "dashed"
+                            //});
+                        }
+                    } //prmSearch
+                    , {} //prmView
+                ).jqGrid('filterToolbar', {
+                    stringResult: true, searchOnEnter: true,
+                    defaultSearch: myDefaultSearch
+                });
+            }
+        });
+
+    jQuery("#usertraffics").jqGrid('navGrid', '#usertrafficspager'
+    , { edit: false, add: false, del: false, refresh: true, cloneToTop: true, search: false }
+    , {} //prmEdit
+    , {} //prmAdd
+    , {} //prmDel
+    , {} //prmSearch
+    , {} //prmView
+    );
+
+    //}(window));
+</script>
+}
+
+
+

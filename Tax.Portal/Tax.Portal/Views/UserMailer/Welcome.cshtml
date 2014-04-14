@@ -1,0 +1,31 @@
+﻿@model Tax.Portal.Mailers.WelcomeData
+@using Mvc.Mailer;
+@{
+    var absUrl = new Uri(Request.Url, Url.Content("~"));
+}
+<h2>Kedves @Model.FullName!</h2>
+
+<br />
+<strong><p>A regisztráció sikeres volt.</p></strong>
+<br />
+<strong><p>A KONTAKT Tolmácsszolgálat üdvözöl a felhasználók között!</p></strong>
+<br />
+<br />
+<br />
+<p><strong>	SINOSZ tag vagy?</strong> Akkor hamarosan újabb e-mailt kapsz. Ebben tájékoztatunk a további teendőkről, a szolgáltatás igénybevételének lehetőségeiről.</p>
+<br />
+<p><strong>	Igényeltél kölcsön-készüléket?</strong> Ha igen, akkor a türelmedet kérjük. Az elbírálás folyamatban van. A döntésről e-mailben kapsz tájékoztatást.</p>
+<br />
+<br />
+<p>További információk érdekében látogass el erre az oldalra:</p>
+<p><a href="@string.Format("{0}{1}", absUrl, "Home/Index")">@string.Format("{0}{1}", absUrl, "Home/Index")</a></p>
+<br />
+<p>A regisztrációs adataid megtekintéséhez kattints erre az oldalra:</p>
+<p><a href="@string.Format("{0}{1}{2}", absUrl, "Account/AccountProfileEdit?Id=", @Model.UserId)">@string.Format("{0}{1}{2}", absUrl, "Account/AccountProfileEdit?Id=", @Model.UserId)</a></p>
+<br />
+<p>Kérdéseiddel bizalommal fordulj hozzánk!</p>
+<br />
+<br />
+<p>Üdvözlettel,</p>
+<p>a KONTAKT Tolmácsszolgálat munkatársai</p>
+

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "System parameter";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form action="/api/SystemParameter" method="get">
+    <input type="text" name="name" placeholder="Parameter name">
+    <input type="submit" value="Get parameter"/>
+</form>
+
+<br /><br />
+
+<form action="/api/SystemParameter" method="get">
+    <input type="submit" value="Get all parameters" />
+</form>

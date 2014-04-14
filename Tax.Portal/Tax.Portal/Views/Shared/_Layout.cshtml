@@ -1,0 +1,132 @@
+﻿@using Tax.Data.Models
+@using System.Configuration
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SINOSZ Kontakt</title>
+    @*@Styles.Render("~/styles/css")    
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/Scripts/modernizr")
+    <style type="text/css">
+        body { padding-top: 118px}
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">        
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        @using (var db = new Tax.Data.Models.ApplicationDbContext())
+        {
+            var IsPreregistration = db.SystemParameter.FirstOrDefault(x => x.Name == "Előregisztáció folyamatban (1/0)?");
+            if (null == IsPreregistration)
+            {
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />
+                </a>
+            }
+            else if (IsPreregistration.Value == "1")
+            {
+                <a class="navbar-brand" href="https://www.skontakt.hu/portal">
+                    <img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />
+                </a>
+            }
+            else
+            {
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />
+                </a>
+            }
+        }
+            </div>
+            <div class="navbar-collapse collapse" style="margin-top: 35px">
+                <ul class="nav navbar-nav">
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (var db = new Tax.Data.Models.ApplicationDbContext())
+                        {
+                            foreach (var menu in db.Menu.Where(
+                                                    x => x.SubMenu.Any
+                                                        (
+                                                            y => db.SubMenu.Where
+                                                                (
+                                                                    z => z.KontaktRole.Any
+                                                                        (
+                                                                            v => db.ApplicationUserRole
+                                                                                .Where(w => w.User.UserName == User.Identity.Name)
+                                                                                .Select(aa => aa.Role)
+                                                                                .Contains(v)
+                                                                        )
+                                                                ).Contains(y)
+                                                        )
+                                                    ).OrderBy(x => x.Position)
+                                                    .ToList())
+                            {
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle @(!menu.isActive?"disabled":"")" data-toggle="dropdown" href="#">
+                                        @menu.Name
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position))
+                                        {
+                                            <li>
+                                                <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                    @menuitem.Name
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    }
+                    @*<li>@Html.ActionLink("Információ", "About", "Home")</li>
+            <li>@Html.ActionLink("Kapcsolat", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <div class="input-group-addon row" style="background-color: none;">
+                <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
+                    <p>&copy; @DateTime.Now.Year - SINOSZ Kontakt - @ViewContext.Controller.GetType().Assembly.GetName().Name: @ViewContext.Controller.GetType().Assembly.GetName().Version.ToString(), @ApplicationDbContext.version - @ConfigurationManager.AppSettings["Environment"]</p>
+                </div>
+                <container>
+                    <div class="col-sm-1 col-xs-1 pull-right">
+                        <img src="@Url.Content("~/Content/images/footer_logo_egroup.png")" class="img-responsive img-thumbnail" alt="" style="border: none; padding: 0px 0px 0px 0px;" />
+                    </div>
+                    <div class="col-sm-1 col-xs-1 pull-right">
+                        <img src="@Url.Content("~/Content/images/footer_logo_invitel.png")" class="img-responsive img-thumbnail" alt="" style="border: none; padding: 0px 0px 0px 0px;" />
+                    </div>
+                </container>
+            </div>
+        </footer>
+    </div>
+
+    @* Áttértünk a 2.0-s jquery-re, viszont ezzel *@
+    @* megmarad az ie 6-7-8 kompatibilitás *@
+    @* http://stackoverflow.com/a/18782433/208922 *@
+    @Scripts.Render("~/Scripts/jquery")
+                    <!--[if lte IE 8]>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <![endif]-->
+                    @Scripts.Render("~/Scripts/bootstrap")
+                    @RenderSection("scripts", required: false)
+
+</body>
+</html>

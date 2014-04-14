@@ -1,0 +1,543 @@
+﻿@{
+    ViewBag.Title = "Kimutatások";
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FIGYELEM!</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" RENDBEN " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="bs-example bs-example-tabs">
+    <ul id="SinoszTab" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a data-toggle="tab" href="#Alaplista">Alaplista</a></li>
+        <li><a data-toggle="tab" href="#Fizetések">Fizetések</a></li>
+    </ul>
+    <div id="SinoszTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="Alaplista">
+            <div class="row">
+                <div class="container grid">
+                    <div class="col-md-12">
+                        <div>
+                            <table id="sinoszusers" class="display"><tr><td /></tr></table>
+                            <div id="sinoszuserspager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="Fizetések">
+            <div class="row">
+                <div class="container grid">
+                    <div class="col-md-12">
+                        <div>
+                            <table id="accountings" class="display"><tr><td /></tr></table>
+                            <div id="accountingspager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    @*<script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    <script src="~/Scripts/jquery.ui.datepicker-hu.js"></script>*@
+
+    @Scripts.Render("~/Scripts/jqgrid")
+
+<script type="text/javascript">
+    (function (global, undefined) {
+
+        initDateSearch = function (elem, grid) {
+            setTimeout(function () {
+                $(elem).datepicker({
+                    autoSize: true,
+                    //showOn: 'button', // it dosn't work in searching dialog
+                    changeYear: true,
+                    changeMonth: true,
+                    showButtonPanel: true,
+                    showWeek: true,
+                    onSelect: function () {
+                        if (this.id.substr(0, 3) === "gs_") {
+                            setTimeout(function () {
+                                $("#sinoszusers")[0].triggerToolbar();
+                            }, 50);
+                        } else {
+                            // to refresh the filter
+                            $(this).trigger('change');
+                        }
+                    }
+                });
+            }, 100);
+        };
+
+        initDateSearch = function (elem, grid) {
+            setTimeout(function () {
+                $(elem).datepicker({
+                    autoSize: true,
+                    //showOn: 'button', // it dosn't work in searching dialog
+                    changeYear: true,
+                    changeMonth: true,
+                    showButtonPanel: true,
+                    showWeek: true,
+                    onSelect: function () {
+                        if (this.id.substr(0, 3) === "gs_") {
+                            setTimeout(function () {
+                                $("#accountings")[0].triggerToolbar();
+                            }, 50);
+                        } else {
+                            // to refresh the filter
+                            $(this).trigger('change');
+                        }
+                    }
+                });
+            }, 100);
+        };
+
+        var getColumnIndexByName = function (gridname, columnName) {
+            var grid = $("#" + gridname);
+            var cm = grid.jqGrid('getGridParam', 'colModel');
+            var retval = -1;
+            $.each(cm, function () {
+                if (this.name === columnName) {
+                    retval = cm.indexOf(this);
+                }
+            });
+            return retval;
+        };
+
+        numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
+
+        numberTemplate = {
+            formatter: 'integer', align: 'right', sorttype: 'number',
+            searchoptions: { searchhidden: true, sopt: numberSearchOptions }
+        };
+
+        myDefaultSearch = 'cn';
+
+        var ids = [];
+
+        function datetimecheck(value, colname) {
+            if (value.length != 10)
+                return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
+            var dateParts = value.split(".");
+            var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
+                return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
+            var min = new Date("1753.01.01");
+            var max = new Date("9999.12.31");
+            if (dat < min || dat > max)
+                return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
+            return [true, ""];
+        }
+
+        jQuery("#sinoszusers").jqGrid({
+            url: '@Url.Action("ListSinoszUsersForList", "Sinosz")',
+            datatype: "json",
+            colNames: [
+                'id'
+                , 'Tagsági azonosító'
+                , 'Név'
+                , 'Születési dátum'
+                , 'Nyilvántartó szervezet'
+                , 'Lakhely, Város'
+                , 'Szakképzettség'
+                , 'Születési hely'
+                , 'Anyja neve'
+                , 'Születési név'
+                , 'Telefon'
+                , 'Nem'
+                , 'Lakhely, IRSZ'
+                , 'Lakhely, Utca, Házszám'
+                , 'Iskolai végzettség'
+                , 'Tagviszony'
+                , 'Családi állapot'
+                , 'Belépési dátum'
+                , 'Megjegyzés'
+                , 'Hallássérülés foka'
+                , 'Sérülés ideje'
+                , 'Nyugdíj forma'
+                , 'Határozat száma'
+                , 'Állampolgárság'
+                , 'Utolsó fiz.'
+                , 'Utolsó bef. összeg'
+                , 'E-mail'
+                , 'Igazolvány Státusz'
+                , 'Státusz'
+            ],
+            colModel: [
+                { name: 'Id', index: 'Id', hidden: true },
+                { name: 'SinoszId', index: 'SinoszId', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'SinoszUserName', index: 'SinoszUserName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                {
+                    name: 'BirthDate', index: 'BirthDate', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                {
+                    name: 'OrganizationName', index: 'OrganizationName', width: 80, align: "left",
+                    hidden: false, sortable: true,
+                    editable: false,
+                    search: true
+                    @*, stype: 'select', searchoptions: {
+                        sopt: ['eq', 'ne'],
+                        //dataUrl: '@Url.Action("ListOrganizations", "Sinosz")',
+                        //buildSelect: function (result) { return result; }
+                        value: 'FE:FedEx;TN:TNT;IN:Intim', defaultValue: 'Intime'
+                    }*@
+                },
+                { name: 'City', index: 'City', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'Qualification', index: 'Qualification', width: 120, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'BirthPlace', index: 'BirthPlace', width: 120, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'MothersName', index: 'MothersName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'BirthName', index: 'BirthName', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'Telephone', index: 'Telephone', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'GenusName', index: 'GenusName', width: 50, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'Code', index: 'Code', width: 50, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'HomeAddress', index: 'HomeAddress', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'EducationName', index: 'EducationName', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'RelationshipName', index: 'RelationshipName', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'MaritalStatusName', index: 'MaritalStatusName', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                {
+                    name: 'EnterDate', index: 'EnterDate', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                { name: 'Remark', index: 'Remark', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'HearingStatusName', index: 'HearingStatusName', width: 90, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'InjuryTimeText', index: 'InjuryTimeText', width: 120, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'PensionTypeName', index: 'PensionTypeName', width: 120, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'DecreeNumber', index: 'DecreeNumber', width: 100, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'NationText', index: 'NationText', width: 100, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                {
+                    name: 'DocumentDate', index: 'DocumentDate', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: true,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                {
+                    name: 'Sum', index: 'Sum', width: 60, align: "right",
+                    hidden: false, search: true, template: numberTemplate,
+                    editable: false,
+                    searchrules: { integer: true }
+                },
+                { name: 'Email', index: 'Email', width: 120, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'CardStatusName', index: 'CardStatusName', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'StatusName', index: 'StatusName', width: 60, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            ],
+            rowNum: 20,
+            rowList: [20, 40, 60],
+            toppager: true,
+            pager: '#sinoszuserspager',
+            sortname: 'StatusName,EnterDate,SinoszUserName',
+            viewrecords: true,
+            sortorder: "desc",
+            caption: 'Alaplista',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: true,
+            shrinkToFit: false,
+            height: '100%',
+            width: '800'
+        });
+
+        jQuery("#sinoszusers").jqGrid('navGrid', '#sinoszuserspager'
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+            , {} //prmEdit
+            , {} //prmAdd
+            , {} //prmDel
+            , {
+                width: 600,
+                multipleSearch: true,
+                //multipleGroup: true,
+                recreateFilter: true,
+                //closeOnEscape: true,
+                //closeAfterSearch: true,
+                overlay: 0,
+                afterRedraw: function () {
+                    $('input.add-rule', this)//.button().val('Add new rule')
+                        .attr('title', 'Új szabály hozzáadása');
+                    //$('input.add-group', this)//.button().val('Add new group or rules')
+                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                    $('input.delete-rule', this)//.button().val('Delete rule')
+                        .attr('title', 'Szabály törlése');
+                    //$('input.delete-group', this)//.button().val('Delete group')
+                    //    .attr('title', 'Szabálycsoport törlése');
+                    //$(this).find("table.group:not(:first)").css({
+                    //    borderWidth: "1px",
+                    //    borderStyle: "dashed"
+                    //});
+                }
+            } //prmSearch
+            , {} //prmView
+        ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: myDefaultSearch })
+         .jqGrid('navButtonAdd', '#sinoszuserspager'
+            , {
+                caption: 'Excel', buttonicon: "ui-icon-print",
+                onClickButton: function () {
+                    var allrecords = $("#sinoszusers").getGridParam("records");
+                    if (allrecords <= 10000) {
+                        var postdata = $("#sinoszusers").getGridParam("postData");
+                        document.location.href = '@Url.Action("ListSinoszUsersForList", "Sinosz")?Output=' + 'XLS'
+                            + '&_search=' + $("#sinoszusers").getGridParam("search")
+                            + '&page=' + postdata.page
+                            + '&rows=' + $("#sinoszusers").getGridParam("reccount")
+                            + '&sidx=' + $("#sinoszusers").getGridParam("sortname")
+                            + '&sord=' + $("#sinoszusers").getGridParam("sortorder")
+                            + '&filters=' + postdata.filters;
+                        $('#warningtext').text("Az exportálás elkezdődött! A lista mérete: " + allrecords + " db sor. Az eredmény a böngésző letölti.");
+                    } else {
+                        $('#warningtext').text("A lista túl nagy: " + allrecords + " db sor! Szűréssel csökkenthető a lista mérete 10000 db sor alá.");
+                    }
+                    $('#warningmodal').modal({ show: true });
+                },
+                position: 'last'
+            })
+
+
+        jQuery("#accountings").jqGrid({
+            url: '@Url.Action("ListAccountingDocumentsForList", "Sinosz")',
+            datatype: "json",
+            colNames: [
+                'id'
+                , 'Tagstátusz'
+                , 'Név'
+                , 'Tagsági azonosító'
+                , 'Nyilvántartó szervezet'
+                , 'Utolsó fiz.'
+                , 'Utolsó biz.'
+                , 'Születési név'
+                , 'IRSZ'
+                , 'Város'
+                , 'Lakcím'
+                , 'Tagviszony'
+                , 'Születési dátum'
+                , 'Szakképzettség'
+                , 'Születési hely'
+                , 'Anyja neve'
+                , 'Telefon'
+                , 'Nem'
+                , 'Iskolai végzettség'
+                , 'Családi állapot'
+                , 'Belépési dátum'
+                , 'Megjegyzés'
+                , 'Hallássérülés foka'
+                , 'Sérülés ideje'
+                , 'Nyugdíj forma'
+                , 'Határozat száma'
+                , 'Állampolgárság'
+                , 'Utolsó bef. összeg'
+                , 'Email'
+                , 'Dátum'
+                , 'Jogcím'
+                , 'Bizonylatszám'
+                , 'Összeg'
+                , 'Befizetés státusz'
+            ],
+            colModel: [
+                { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
+                //keresőmezők
+//TODO: komplex mezőre nem megy a keresés
+                { name: 'a.SinoszUser.SinoszUserStatus.StatusName', index: 'a.SinoszUser.SinoszUserStatus.StatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.SinoszUserName', index: 'a.SinoszUser.SinoszUserName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false }, //ez látható is lesz
+                { name: 'a.SinoszUser.SinoszId', index: 'a.SinoszUser.SinoszId', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Organization.OrganizationName', index: 'a.SinoszUser.Organization.OrganizationName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                {
+                    name: 'b.DocumentDate', index: 'b.DocumentDate',
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                { name: 'b.AccountingType.AccountingTypeName', index: 'b.AccountingType.AccountingTypeName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.BirthName', index: 'a.SinoszUser.BirthName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Postcode.Code', index: 'a.SinoszUser.Postcode.Code', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Postcode.City', index: 'a.SinoszUser.Postcode.City', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.HomeAddress', index: 'a.SinoszUser.HomeAddress', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Relationship.RelationshipName', index: 'a.SinoszUser.Relationship.RelationshipName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                {
+                    name: 'a.SinoszUser.BirthDate', index: 'a.SinoszUser.BirthDate',
+                    hidden: true,
+                    hidden: true,
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { searchhidden: true, sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+
+                },
+                { name: 'a.SinoszUser.Qualification', index: 'a.SinoszUser.Qualification', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.BirthPlace', index: 'a.SinoszUser.BirthPlace', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.MothersName', index: 'a.SinoszUser.MothersName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'Telephone', index: 'Telephone', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.GenusName', index: 'a.SinoszUser.GenusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Education.EducationName', index: 'a.SinoszUser.Education.EducationName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.MaritalStatus.MaritalStatusName', index: 'a.SinoszUser.MaritalStatus.MaritalStatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.EnterDate', index: 'a.SinoszUser.EnterDate', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false, formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' } },
+                { name: 'a.SinoszUser.Remark', index: 'a.SinoszUser.Remark', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.HearingStatus.HearingStatusName', index: 'a.SinoszUser.HearingStatus.HearingStatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.InjuryTime.InjuryTimeText', index: 'a.SinoszUser.InjuryTime.InjuryTimeText', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
+                { name: 'a.SinoszUser.PensionType.PensionTypeName', index: 'a.SinoszUser.PensionType.PensionTypeName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.DecreeNumber', index: 'a.SinoszUser.DecreeNumber', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                { name: 'a.SinoszUser.Nation.NationText', index: 'a.SinoszUser.Nation.NationText', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                {
+                    name: 'b.Sum', index: 'b.Sum',
+                    hidden: true, search: true, template: numberTemplate,
+                    editable: false,
+                    searchrules: { integer: true }
+                },
+                { name: 'Email', index: 'Email', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },
+                //bizonylatadatok
+                {
+                    name: 'a.DocumentDate', index: 'a.DocumentDate', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: false,
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                { name: 'a.AccountingType.AccountingTypeName', index: 'a.AccountingType.AccountingTypeName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'a.DocumnetNumber', index: 'a.DocumnetNumber', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                {
+                    name: 'a.Sum', index: 'a.Sum', width: 100, align: "right",
+                    hidden: false, sortable: true, search: true, template: numberTemplate,
+                    editable: false,
+                    searchrules: { integer: true }
+                },
+                { name: 'a.AccountingStatus.AccountingStatusName', index: 'a.AccountingStatus.AccountingStatusName', width: 100, align: "left", hidden: false, sortable: true, search: true, editable: false }
+            ],
+            rowNum: 20,
+            rowList: [20, 40, 60],
+            toppager: true,
+            pager: '#accountingspager',
+            sortname: 'a.DocumentDate',
+            viewrecords: true,
+            sortorder: "desc",
+            caption: 'Fizetések',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: true,
+            shrinkToFit: false,
+            height: '100%',
+            width: '800',
+        });
+
+        jQuery("#accountings").jqGrid('navGrid', '#accountingspager'
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+            , {} //prmEdit
+            , {} //prmAdd
+            , {} //prmDel
+            , {
+                width: 600,
+                multipleSearch: true,
+                //multipleGroup: true,
+                recreateFilter: true,
+                //closeOnEscape: true,
+                //closeAfterSearch: true,
+                overlay: 0,
+                afterRedraw: function () {
+                    $('input.add-rule', this)//.button().val('Add new rule')
+                        .attr('title', 'Új szabály hozzáadása');
+                    //$('input.add-group', this)//.button().val('Add new group or rules')
+                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                    $('input.delete-rule', this)//.button().val('Delete rule')
+                        .attr('title', 'Szabály törlése');
+                    //$('input.delete-group', this)//.button().val('Delete group')
+                    //    .attr('title', 'Szabálycsoport törlése');
+                    //$(this).find("table.group:not(:first)").css({
+                    //    borderWidth: "1px",
+                    //    borderStyle: "dashed"
+                    //});
+                }
+            } //prmSearch            , {} //prmView
+        ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" })
+        .jqGrid('navButtonAdd', '#accountingspager'
+                , {
+                    caption: 'XLS', buttonicon: "ui-icon-print",
+                    onClickButton: function () {
+                        var allrecords = $("#accountings").getGridParam("records");
+                        if (allrecords <= 10000) {
+                            var postdata = $("#accountings").getGridParam("postData");
+                            document.location.href = '@Url.Action("ListAccountingDocumentsForList", "Sinosz")?Output=' + 'XLS'
+                                + '&_search=' + $("#accountings").getGridParam("search")
+                                + '&page=' + postdata.page
+                                + '&rows=' + $("#accountings").getGridParam("reccount")
+                                + '&sidx=' + $("#accountings").getGridParam("sortname")
+                                + '&sord=' + $("#accountings").getGridParam("sortorder")
+                                + '&filters=' + postdata.filters;
+                            $('#warningtext').text("Az exportálás elkezdődött! A lista mérete: " + allrecords + " db sor. Az eredmény a böngésző letölti.");
+                        } else {
+                            $('#warningtext').text("A lista túl nagy: " + allrecords + " db sor! Szűréssel csökkenthető a lista mérete 10000 db sor alá.");
+                        }
+                        $('#warningmodal').modal({ show: true });
+                    },
+                    position: 'last'
+                }
+        )
+        .jqGrid('navButtonAdd', '#accountingspager'
+                , {
+                    caption: 'PDF', buttonicon: "ui-icon-print",
+                    onClickButton: function () {
+                        var allrecords = $("#accountings").getGridParam("records");
+                        if (allrecords <= 10000) {
+                            var postdata = $("#accountings").getGridParam("postData");
+                            document.location.href = '@Url.Action("PrintPDF", "Sinosz")?'
+                                + '_search=' + $("#accountings").getGridParam("search")
+                                + '&page=' + postdata.page
+                                + '&rows=' + $("#accountings").getGridParam("reccount")
+                                + '&sidx=' + $("#accountings").getGridParam("sortname")
+                                + '&sord=' + $("#accountings").getGridParam("sortorder")
+                                + '&filters=' + postdata.filters;
+                            $('#warningtext').text("Az exportálás elkezdődött! A lista mérete: " + allrecords + " db sor. Az eredmény a böngésző letölti.");
+                        } else {
+                            $('#warningtext').text("A lista túl nagy: " + allrecords + " db sor! Szűréssel csökkenthető a lista mérete 10000 db sor alá.");
+                        }
+                        $('#warningmodal').modal({ show: true });
+                    },
+                    position: 'last'
+                }
+        )
+
+    }(window));
+    </script>
+}

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Login test";
+}
+
+<h2>Login test</h2>
+
+<form action="/token" method="post">
+    @Html.TextBox("username")<br />
+    @Html.Password("password")<br />
+    @Html.Hidden("grant_type", "password")
+
+    <input type="submit" />
+</form>
+

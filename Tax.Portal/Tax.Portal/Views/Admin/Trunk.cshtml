@@ -1,0 +1,271 @@
+﻿@{
+    ViewBag.Title = "Egyéb törzsadatok kezelése";
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<hr />
+@Html.ValidationSummary()
+<div class="bs-example bs-example-tabs">
+    <ul id="AdminTab" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a data-toggle="tab" href="#Tolmácsközpontok">Tolmácsközpontok</a></li>
+        <li><a data-toggle="tab" href="#Postai_Irányítószámok">Postai Irányítószámok</a></li>
+    </ul>
+
+    <div id="AdminTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="Tolmácsközpontok">
+            <div class="row">
+                <div class="container grid">
+                    <div class="col-md-12">
+                        <div>
+                            <table id="interpretercenters" class="display"><tr><td /></tr></table>
+                            <div id="interpretercenterspager"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="Postai_Irányítószámok">
+            <div class="row">
+                <div class="container grid">
+                    <div class="col-md-12">
+                        <div>
+                            <table id="postcodes" class="display"><tr><td /></tr></table>
+                            <div id="postcodespager"></div>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+    <script type="text/javascript">
+    (function (global, undefined) {
+
+        var getColumnIndexByName = function (gridname, columnName) {
+            var grid = $("#" + gridname);
+            var cm = grid.jqGrid('getGridParam', 'colModel');
+            var retval = -1;
+            $.each(cm, function () {
+                if (this.name === columnName) {
+                    retval = cm.indexOf(this);
+                }
+            });
+            return retval;
+        };
+
+        jQuery("#interpretercenters").jqGrid({
+            url: '@Url.Action("ListInterpreterCenters", "Admin")',
+            editurl: '@Url.Action("UpdateInterpretercenters", "Admin")',
+            datatype: "json",
+            colNames: [
+                'Műveletek'
+                , 'id'
+                , 'Megye, IRSZ - Város'
+                , 'Cím'
+                , 'Hrsz'
+                , 'Count'
+            ],
+            colModel: [
+                {
+                    "name": "act"
+                    , "formatoptions": { "keys": false, "editbutton": true, "delbutton": true }
+                    , "width": 60
+                    , "formatter": "actions"
+                    , "searchoptions": {}
+                    , "index": "act"
+                    , sortable: false
+                    , search: false
+                },
+                { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                {
+                    name: 'Code', index: 'Code', width: 200, align: "left", editable: true, sortable: true, edittype: 'select',
+                    editoptions: {
+                        dataUrl: '@Url.Action("ListPostCode", "Admin")',
+                        buildSelect: function (result) { return result; },
+                        NullIfEmpty: true
+                    }
+                },
+                { name: 'InterpreterCenterAddress', index: 'InterpreterCenterAddress', width: 250, align: "left", editable: true, sortable: true },
+                { name: 'ParcelNumber', index: 'ParcelNumber', width: 100, align: "left", editable: true, sortable: true },
+                { name: 'Count', index: 'Count', width: 20, align: "left", hidden: true, sortable: false }
+            ],
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            toppager: true,
+            pager: '#interpretercenterspager',
+            sortname: 'Code',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: 'Tolmácsközpontok',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: false,
+            shrinkToFit: false,
+            height: '100%',
+            width: '640',
+            loadComplete: function () {
+                var ids = jQuery("#interpretercenters").getDataIDs();
+                for (var i = 0; i < ids.length; i++) {
+                    if (jQuery("#interpretercenters").getCell(ids[i], 'Count') == '0') {
+                        $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-del").show();
+                    }
+                    else {
+                        $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-del").hide();
+                    };
+                }
+            }
+        });
+
+        jQuery("#interpretercenters").jqGrid('navGrid', '#interpretercenterspager'
+            , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+            , {} //prmEdit
+            , { width: 500, recreateForm: true, closeAfterAdd: true } //prmAdd
+            , {} //prmDel
+            , {
+                width: 600,
+                multipleSearch: true,
+                //multipleGroup: true,
+                recreateFilter: true,
+                //closeOnEscape: true,
+                //closeAfterSearch: true,
+                overlay: 0,
+                afterRedraw: function () {
+                    $('input.add-rule', this)//.button().val('Add new rule')
+                        .attr('title', 'Új szabály hozzáadása');
+                    //$('input.add-group', this)//.button().val('Add new group or rules')
+                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                    $('input.delete-rule', this)//.button().val('Delete rule')
+                        .attr('title', 'Szabály törlése');
+                    //$('input.delete-group', this)//.button().val('Delete group')
+                    //    .attr('title', 'Szabálycsoport törlése');
+                    //$(this).find("table.group:not(:first)").css({
+                    //    borderWidth: "1px",
+                    //    borderStyle: "dashed"
+                    //});
+                }
+            } //prmSearch
+            , {} //prmView
+        ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+
+        jQuery("#postcodes").jqGrid({
+            url: '@Url.Action("ListPostcodes", "Admin")',
+            editurl: '@Url.Action("UpdatePostcodes", "Admin")',
+            datatype: "json",
+            colNames: [
+                'Műveletek'
+                , 'id'
+                , 'IRSZ'
+                , 'Város'
+                , 'Megye'
+                , 'Count'
+            ],
+            colModel: [
+                {
+                    "name": "act"
+                    , "formatoptions": { "keys": false, "editbutton": true, "delbutton": true }
+                    , "width": 60
+                    , "formatter": "actions"
+                    , "searchoptions": {}
+                    , "index": "act"
+                    , sortable: false
+                    , search: false
+                },
+                { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                { name: 'Code', index: 'Code', width: 100, align: "left", editable: true, sortable: true },
+                { name: 'City', index: 'City', width: 210, align: "left", editable: true, sortable: true },
+                { name: 'Country', index: 'Country', width: 200, align: "left", editable: true, sortable: true },
+                { name: 'Count', index: 'Count', width: 20, align: "left", hidden: true, sortable: false }
+            ],
+            rowNum: 30,
+            rowList: [30, 60, 90],
+            toppager: true,
+            pager: '#postcodespager',
+            //sortname: 'Code',
+            viewrecords: true,
+            //sortorder: "asc",
+            caption: 'Postai irányítószámok',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: false,
+            shrinkToFit: false,
+            height: '100%',
+            width: '600',
+            loadComplete: function () {
+                var ids = jQuery("#postcodes").getDataIDs();
+                for (var i = 0; i < ids.length; i++) {
+                    if (jQuery("#postcodes").getCell(ids[i], 'Count') == '0') {
+                        $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-del").show();
+                    }
+                    else {
+                        $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-del").hide();
+                    };
+                }
+            }
+        });
+
+        jQuery("#postcodes").jqGrid('navGrid', '#postcodespager'
+            , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+            , {} //prmEdit
+            , { width: 500, recreateForm: true, closeAfterAdd: true } //prmAdd
+            , {} //prmDel
+            , {
+                width: 600,
+                multipleSearch: true,
+                //multipleGroup: true,
+                recreateFilter: true,
+                //closeOnEscape: true,
+                //closeAfterSearch: true,
+                overlay: 0,
+                afterRedraw: function () {
+                    $('input.add-rule', this)//.button().val('Add new rule')
+                        .attr('title', 'Új szabály hozzáadása');
+                    //$('input.add-group', this)//.button().val('Add new group or rules')
+                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                    $('input.delete-rule', this)//.button().val('Delete rule')
+                        .attr('title', 'Szabály törlése');
+                    //$('input.delete-group', this)//.button().val('Delete group')
+                    //    .attr('title', 'Szabálycsoport törlése');
+                    //$(this).find("table.group:not(:first)").css({
+                    //    borderWidth: "1px",
+                    //    borderStyle: "dashed"
+                    //});
+                }
+            } //prmSearch
+            , {} //prmView
+        ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+    }(window));
+    </script>
+
+}

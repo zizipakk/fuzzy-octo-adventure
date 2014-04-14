@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Send message test";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form action="/api/Chat" method="post">
+    
+    <input type="text" name="SenderUserName" placeholder="SenderUserName">
+    <input type="text" name="SenderExtension" placeholder="SenderExtension">
+
+    <input type="text" name="ReceiverExtension" placeholder="ReceiverExtension">
+    <input type="text" name="ReceiverUserName" placeholder="ReceiverUserName">
+
+    <input type="text" name="MessageText" placeholder="MessageText">
+    
+    <input type="submit" />
+
+</form>

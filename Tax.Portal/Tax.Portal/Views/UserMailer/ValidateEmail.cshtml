@@ -1,0 +1,32 @@
+﻿@model Tax.Portal.Mailers.ValidateEmailData
+@using Mvc.Mailer;
+@using Tax.Portal.Helpers;
+@{
+    var absUrl = HtmlHelpers.AppBaseUrl(Url);
+}
+<h2>Kedves @Model.fullname!</h2>
+
+<br />
+<p>Köszönjük, hogy a regisztrációt elindítottad a KONTAKT Tolmácsszolgálat oldalán!</p>
+<strong><p>Kérjük, kattints a levélben található linkre.</p></strong>
+<p>Ezáltal a rendszer ellenőrzi, hogy az e-mail cím jól lett-e megadva, vagy működik-e. Ez azért fontos, mert a felhasználókkal, ügyfelekkel e-mailen keresztül tudjuk majd a kapcsolatot tartani. Ezen a címen keresztül fogunk tehát fontos információkat küldeni a szolgáltatásokkal kapcsolatban.</p>
+<br />
+<br />
+<strong><p>Kattintás ide, és a regisztráció folytatódik:</p></strong>
+<br />
+<strong><p><a href="@string.Format("{0}{1}{2}", absUrl, "Account/Validate?id=", Model.token)">@string.Format("{0}{1}{2}", absUrl, "Account/Validate?id=", Model.token)</a></p></strong>
+<br />
+<p>Amennyiben nem tudsz róla, hogy regisztráltál volna a <a href="www.skontakt.hu">www.skontakt.hu</a> oldalra, vagy szeretnéd visszavonni a regisztrációt, levelünket hagyd figyelmen kívül. Köszönjük.</p>
+<br />
+<strong><p>A regisztrációhoz megadott adatok:</p></strong>
+<br />
+<table>
+    <tr><td><p>Bejelentkezési név:</p></td><td><strong><p>@Model.username</p></strong></td></tr>
+    <tr><td><p>E-mail cím:</p></td><td><strong><p><a href="mailto:@Model.email">@Model.email</a></p></strong></td></tr>
+</table>
+<br />
+<p>Kérdéseiddel bizalommal fordulj hozzánk!</p>
+<br />
+<br />
+<p>Üdvözlettel,</p>
+<p>a KONTAKT Tolmácsszolgálat munkatársai</p>

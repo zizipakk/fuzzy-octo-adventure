@@ -1,0 +1,182 @@
+namespace Kontakt.Data.Migrations
+{
+    using Kontakt.Data.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+
+        protected override void Seed(ApplicationDbContext context)
+        {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            ApplicationUser user;
+            IdentityResult result;
+            KontaktUser kontaktuser;
+
+            var role = context.Roles.Single(x => x.Name == "PBXUser");
+
+            /*if (null == UserManager.FindByName("teszt1"))
+            {
+                kontaktuser = context.KontaktUser.Create();
+
+                user = new ApplicationUser()
+                {
+                    UserName = "teszt1",
+                    Email = "kontaktteszt1@egroup.hu",
+                    Password = "123456",
+                    isSynced = false,
+                    KontaktUser = kontaktuser
+                };
+                result = UserManager.Create(user, user.Password);
+
+                if (!result.Succeeded)
+                {
+                    throw new ApplicationException("Nem sikerült a teszt1 felhasználó rögzítése");
+                }
+
+                var aur = new ApplicationUserRole()
+                {
+                    User = user,
+                    Role = role
+                };
+
+                context.Entry(aur).State = EntityState.Added;
+
+                var phone = (from pn in context.PhoneNumber
+                             from px in context.PBXExtensionData.Where(x => x.PhoneNumber.Id == pn.Id && x.isDroped == false).DefaultIfEmpty()
+                             where (null == px.Id //nincs ilyen aktív szám
+                                   && aur.Role.Name != "PBXUser" //nem pbxuser
+                                   && "" == pn.ExternalPhoneNumber) //nem kell külsõ szám, ha "belsõ" szereplõk vagyunk
+                                   ||
+                                   (null == px.Id //nincs ilyen aktív szám
+                                   && aur.Role.Name == "PBXUser" //pbxuser
+                                   && "" != pn.ExternalPhoneNumber) //nincs ilyen külsõ szám
+                             select pn)
+                            .OrderBy(x => x.InnerPhoneNumber).First();
+
+                aur.KontaktUserRole = new KontaktUserRole()
+                {
+                    PBXExtensionData = new PBXExtensionData()
+                    {
+                        ApplicationUser = user,
+                        PhoneNumber = phone,
+                        //ExtensionID = phone.InnerPhoneNumber + "@" + user.UserName,
+                        //Password = user.Password,
+                        isDroped = false,
+                        isSynced = false,
+                        StartTime = DateTime.Now,
+                        EndTime = DateTime.MaxValue
+                    }
+                };
+
+            }
+
+            if (null == UserManager.FindByName("teszt2"))
+            {
+                kontaktuser = context.KontaktUser.Create();
+
+                user = new ApplicationUser()
+                {
+                    UserName = "teszt2",
+                    Email = "kontaktteszt1@egroup.hu",
+                    Password = "123456",
+                    isSynced = false,
+                    KontaktUser = kontaktuser
+                };
+                result = UserManager.Create(user, user.Password);
+
+                if (!result.Succeeded)
+                {
+                    throw new ApplicationException("Nem sikerült a teszt2 felhasználó rögzítése");
+                }
+
+                var aur = new ApplicationUserRole()
+                {
+                    User = user,
+                    Role = role
+                };
+
+                context.Entry(aur).State = EntityState.Added;
+
+                var phone = (from pn in context.PhoneNumber
+                             from px in context.PBXExtensionData.Where(x => x.PhoneNumber.Id == pn.Id && x.isDroped == false).DefaultIfEmpty()
+                             where (null == px.Id //nincs ilyen aktív szám
+                                   && aur.Role.Name != "PBXUser" //nem pbxuser
+                                   && "" == pn.ExternalPhoneNumber) //nem kell külsõ szám, ha "belsõ" szereplõk vagyunk
+                                   ||
+                                   (null == px.Id //nincs ilyen aktív szám
+                                   && aur.Role.Name == "PBXUser" //pbxuser
+                                   && "" != pn.ExternalPhoneNumber) //nincs ilyen külsõ szám
+                             select pn)
+                            .OrderBy(x => x.InnerPhoneNumber).First();
+
+                aur.KontaktUserRole = new KontaktUserRole()
+                {
+                    PBXExtensionData = new PBXExtensionData()
+                    {
+                        ApplicationUser = user,
+                        PhoneNumber = phone,
+                        //ExtensionID = phone.InnerPhoneNumber + "@" + user.UserName,
+                        //Password = user.Password,
+                        isDroped = false,
+                        isSynced = false,
+                        StartTime = DateTime.Now,
+                        EndTime = DateTime.MaxValue
+                    }
+                };
+            }*/
+
+            if (null == UserManager.FindByName("admin"))
+            {
+                kontaktuser = context.KontaktUser.Create();
+
+                role = context.Roles.Single(x => x.Name == "SysAdmin");
+
+                user = new ApplicationUser()
+                {
+                    UserName = "admin",
+<<<<<<< HEAD
+                    Email = "tesztadmin@egroup.hu",
+                    Password = "admin123",
+                    isSynced = false,
+                    KontaktUser = kontaktuser
+=======
+                    Email = "sinosz.kontakt@egroup.hu",
+                    Password = "Admin123",
+                    isSynced = true
+>>>>>>> e013e9b8702722ab78aac0be076649b13912a295
+                };
+                result = UserManager.Create(user, user.Password);
+
+                if (!result.Succeeded)
+                {
+                    throw new ApplicationException("Nem sikerült az admin felhasználó rögzítése");
+                }
+
+                var aur = new ApplicationUserRole()
+                {
+                    User = user,
+                    Role = role
+                };
+
+                context.Entry(aur).State = EntityState.Added;
+            }
+
+            context.SaveChanges();
+<<<<<<< HEAD
+      
+=======
+
+>>>>>>> e013e9b8702722ab78aac0be076649b13912a295
+        }
+    }
+}

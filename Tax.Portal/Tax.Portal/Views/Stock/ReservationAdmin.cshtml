@@ -1,0 +1,466 @@
+﻿@{
+    ViewBag.Title = "Időpontkezelés";
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+    .modal-dialog {
+        width: 700px; /* your width */
+        height: auto;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+@*<div class="modal fade bs-modal-lg" id="alert" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="alerttext"></h4>
+            </div>
+            <div class="modal-body">
+                <table id="users" class="display"><tr><td /></tr></table>
+                <div id="userspager"></div>
+            </div>
+            <div class="modal-footer">
+                <input id="chooser" type="button" class="btn btn-warning" data-dismiss="modal" value=" Rendben " />
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">FIGYELEM!</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" RENDBEN " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">HIBA TÖRTÉNT!</h4>
+            </div>
+            <div class="modal-body" style="color:red">
+                <p id="errortext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value=" RENDBEN " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="container grid">
+        <div class="col-sm-6 col-xs-12" style="min-width: 570px">
+            <table id="reservationtimes" class="display"><tr><td /></tr></table>
+            <div id="reservationtimespager"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+    <script src="~/Scripts/maskedinput.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        initDateSearch = function (elem) {
+            setTimeout(function () {
+                $(elem).datepicker({
+                    autoSize: true,
+                    //showOn: 'button', // it dosn't work in searching dialog
+                    changeYear: true,
+                    changeMonth: true,
+                    showButtonPanel: true,
+                    showWeek: true,
+                    onSelect: function () {
+                        if (this.id.substr(0, 3) === "gs_") {
+                            setTimeout(function () {
+                                $("#reservationtimes")[0].triggerToolbar();
+                            }, 50);
+                        } else {
+                            // to refresh the filter
+                            $(this).trigger('change');
+                        }
+                    }
+                });
+            }, 100);
+        };
+
+        var getColumnIndexByName = function (gridname, columnName) {
+            var grid = $("#" + gridname);
+            var cm = grid.jqGrid('getGridParam', 'colModel');
+            var retval = -1;
+            $.each(cm, function () {
+                if (this.name === columnName) {
+                    retval = cm.indexOf(this);
+                }
+            });
+            return retval;
+        };
+
+        numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
+
+        numberTemplate = {
+            formatter: 'integer', align: 'right', sorttype: 'number',
+            searchoptions: { sopt: numberSearchOptions }
+        };
+
+        myDefaultSearch = 'cn';
+
+        var ids = [];
+
+        function ruleFormatter(cellvalue, options, rowObject) {
+            return '<a href = "@Url.Action("Rule", "Admin")?KontaktUserId=' + cellvalue + '">Link...</a>';
+        }
+
+        function deviceFormatter(cellvalue, options, rowObject) {
+            return '<a href = "@Url.Action("Devices", "Stock")?KontaktUserId=' + cellvalue + '">Link...</a>';
+        }
+
+        function userFormatter(cellvalue, options, rowObject) {
+
+            return '<a href = "@Url.Action("Edit", "Sinosz")?KontaktUserId=' + cellvalue + '">Link...</a>';
+        }
+
+        function datetimecheck(value, colname) {
+            if (value.length != 10)
+                return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
+            var dateParts = value.split(".");
+            var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+            if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
+                return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
+            var min = new Date("1753.01.01");
+            var max = new Date("9999.12.31");
+            if (dat < min || dat > max)
+                return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
+            return [true, ""];
+        }       
+        
+        $.mask.definitions['2'] = '[0-2]';
+        $.mask.definitions['5'] = '[0-5]';
+
+        var setTooltipsOnColumnHeader = function (grid, iColumn, text) {
+            var thd = jQuery("thead:first", grid[0].grid.hDiv)[0];
+            jQuery("tr.ui-jqgrid-labels th:eq(" + iColumn + ")", thd).attr("title", text);
+        };
+      
+        jQuery("#reservationtimes").jqGrid({
+            url: '@Url.Action("ListReservationTimes", "Stock")',
+            editurl: '@Url.Action("UpdateReservationTimes", "Stock")',
+            datatype: "json",
+            loadError: function (jqXHR, textStatus, errorThrown) { //keresési server response is egyben
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            },
+            colNames: [
+                'Műveletek'
+                , 'id'
+                , 'Dátum'
+                , 'Időpont'
+                , 'Max. fogl.'
+                , 'Foglalt'
+                , 'Enged?'
+            ],
+            colModel: [
+                {
+                    "name": "act"
+                    , "formatoptions": { "keys": false, "editbutton": true, "delbutton": true }
+                    , "width": 50
+                    , "formatter": "actions"
+                    , "searchoptions": {}
+                    , "index": "act"
+                    , sortable: false
+                    , search: false
+                    , hidden: false                
+                },
+                {
+                    name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false,
+                    editoptions: {
+                        dataInit: function (element) { //mindenképpen kisül a beforeSelectRow előtt az inline edit, ez viszont szerencsére megelőzi,
+                            $(this).jqGrid('getColProp', 'isEnabled').formatoptions.disabled = false;
+                        }
+                    }
+                },
+                {
+                    name: 'ReservationDate', index: 'ReservationDate', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'date',
+                    editable: true, editoptions: { dataInit: initDateSearch }, editrules: { custom: true, custom_func: datetimecheck },
+                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                },
+                {
+                    name: 'ReservationBegin', index: 'ReservationBegin', width: 90, align: "center",
+                    hidden: false, sortable: true, sorttype: 'time',
+                    editable: true, editoptions: { dataInit: function (elem) { $(elem).mask("29:59"); } }, editrules: { time: true },
+                    formatter: 'time',
+                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: function (elem) { $(elem).mask("29:59"); } }, searchrules: { time: true }
+                },
+                {
+                    name: 'ReservationMax', index: 'ReservationMax', width: 90,
+                    hidden: false, search: true, template: numberTemplate,
+                    editable: true, editrules: { integer: true }, searchrules: { integer: true }                
+                },
+                {
+                    name: 'ReservationCurrent', index: 'ReservationCurrent', width: 90,
+                    hidden: false, search: true, template: numberTemplate, editable: false, searchrules: { integer: true }
+                },
+                {
+                    name: 'isEnabled', index: 'isEnabled', width: 50, align: "center", editable: true,
+                    edittype: 'checkbox', editoptions: { value: "True:False" },
+                    searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                    formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+                }            
+            ],
+            rowNum: 30,
+            rowList: [30, 60, 90],
+            toppager: true,
+            pager: '#reservationtimespager',
+            sortname: 'ReservationDate,ReservationBegin',
+            viewrecords: true,
+            sortorder: "desc",
+            caption: 'Időpontok',
+            rownumbers: true,
+            gridview: true,
+            hoverrows: true,
+            scrollrows: false,
+            shrinkToFit: false,
+            height: '100%',
+            width: '665',
+            subGrid: true,
+            onSelectRow: function (rowid) {//minden sorklikkre kinyitja a subgridet
+                $(this).jqGrid('expandSubGridRow', rowid);
+            },
+            //minden server művelet előtt begyújtöm, kik vannak nyitva
+            //ehhez jönnek még a frissen beszúrtak
+            beforeRequest: function () {
+                var num;
+                $("#reservationtimes tr:has(.sgexpanded)").each(function () {
+                    num = $(this).attr('id');
+                    ids.push(num);
+                });
+            },
+            loadComplete: function () {
+                //refreshSerchingToolbar($(this), myDefaultSearch); // $(this) === myGrid
+                for (var j = 0; j < ids.length; j = j + 1) {
+                    $(this).jqGrid('expandSubGridRow', ids[j]);
+                };
+                ids = new Array(); //mindig újra kell építeni
+                var rowids = jQuery("#reservationtimes").getDataIDs();
+                for (var i = 0; i < rowids.length; i++) {
+                    if (jQuery("#reservationtimes").getCell(rowids[i], 'ReservationCurrent') == "0") {
+                        $("tr#" + $.jgrid.jqID(rowids[i]) + " div.ui-inline-del").show();
+                    }
+                    else {
+                        $("tr#" + $.jgrid.jqID(rowids[i]) + " div.ui-inline-del").hide();
+                    };
+                }
+            },
+            subGridOptions: {
+                "plusicon"  : "ui-icon-triangle-1-e",
+                "minusicon" : "ui-icon-triangle-1-s",
+                "openicon"  : "ui-icon-arrowreturn-1-e"
+            },
+            subGridRowExpanded: function (subgrid_id, row_id) {
+                var subgrid_table_id, pager_id;
+                subgrid_table_id = subgrid_id + "_t";
+                pager_id = "p_" + subgrid_table_id;
+                $("#" + subgrid_id).html("<table id='" + subgrid_table_id + "' class='scroll'><tr><td /></tr></table><div id='" + pager_id + "' class='scroll'></div>");
+                jQuery("#" + subgrid_table_id).jqGrid({
+                    url: '@Url.Action("ListReservatorUsers", "Stock")?Id=' + row_id,
+                    datatype: "json",
+                    colNames: [
+                        '',
+                        'Vezetéknév',
+                        'Keresztnév',
+                        'Választ?',
+                        'Telko?',
+                        'Eszköz?',
+                        'Szám...',
+                        'Eszk...',
+                        'Szerz...',
+                        'Jelen?'
+                    ],
+                    colModel: [
+                        { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                        { name: 'KontaktUser.FirstName', index: 'KontaktUser.FirstName', width: 100, search: false, sortable: true, editable: false },
+                        { name: 'KontaktUser.LastName', index: 'KontaktUser.LastName', width: 100, search: false, sortable: true, editable: false },
+                        {
+                            name: 'KontaktUser.isElected', index: 'KontaktUser.isElected', width: 50, align: "center", editable: false,                        
+                            searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                            formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+                        },            
+                        {
+                            name: 'KontaktUser.isCommunicationRequested', index: 'KontaktUser.isCommunicationRequested', width: 50, align: "center", editable: false,                        
+                            searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                            formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+                        },
+                        {
+                            name: 'KontaktUser.isDeviceReqested', index: 'KontaktUser.isDeviceReqested', width: 50, align: "center", editable: false,                        
+                            searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                            formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+                        },
+                        { name: 'Numbers', index: 'Numbers', width: 60, align: "center", search: false, sortable: false, editable: false, formatter: ruleFormatter },
+                        { name: 'Devices', index: 'Devices', width: 60, align: "center", search: false, sortable: false, editable: false, formatter: deviceFormatter },
+                        { name: 'Kontracts', index: 'Kontracts', width: 60, align: "center", search: false, sortable: false, editable: false, formatter: userFormatter },
+                        {
+                            name: 'isPresent', index: 'isPresent', width: 50, align: "center", 
+                            editable: true, edittype: 'checkbox', editoptions: { value: "True:False" },
+                            searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                            formatter: "checkbox", formatoptions: { disabled: false }, sortable: true
+                        }
+                    ],
+                    //rowNum: 20,
+                    //rowList: [5, 10, 20, 30],
+                    //toppager: false,
+                    //pager: '#' + pager_id,
+                    sortname: "KontaktUser.FirstName",
+                    sortorder: "asc",
+                    height: '100%',
+                    width: 605,
+                    viewrecords: true,
+                    rownumbers: true,
+                    gridview: true,
+                    hoverrows: true,
+                    scrollrows: false,
+                    shrinkToFit: false,
+                    loadComplete: function () {
+                        setTooltipsOnColumnHeader($("#" + subgrid_table_id), 7, "Telekommunikáció engedélyezése...");
+                        setTooltipsOnColumnHeader($("#" + subgrid_table_id), 8, "Eszköz kiválasztása...");
+                        setTooltipsOnColumnHeader($("#" + subgrid_table_id), 9, "Szerződések nyomtatása...");
+                        setTooltipsOnColumnHeader($("#" + subgrid_table_id), 10, "Az Ügyfél megjelent.");
+                        var i = getColumnIndexByName(subgrid_table_id, 'isPresent');
+                        $("table#" + subgrid_table_id + " > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                            var data = new Array(2);
+                            data[0] = "{reservid: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                            var value = ($(this).is(':checked')) ? "True" : "False";
+                            data[1] = "value: '" + value + "'}";
+                            $.ajax({
+                                url: '@Url.Action("UpdateisPresent", "Stock")',
+                                type: 'POST',
+                                data: eval('(' + data[0] + data[1] + ')'),  //eval is string to json
+                                beforeSend: function (jqXHR, textStatus) { jQuery('#reservationtimes').block({ message: '<h3>Betöltés…</h3>' }); },
+                                complete: function (jqXHR, textStatus) {
+                                    var str = JSON.parse(jqXHR.responseText);                        
+                                    if (!str.success) {
+                                        if (str.error) {
+                                            $('#errortext').text(str.response);
+                                            $('#errormodal').modal({ show: true });
+                                        }
+                                        else {
+                                            $('#warningtext').text(str.response);
+                                            $('#warningmodal').modal({ show: true });
+                                        }
+                                    }
+                                    $("#reservationtimes").unblock();
+                                    $("#reservationtimes").trigger("reloadGrid", [{ current: true }]);
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    $('#errortext').text(jqXHR.responseText);
+                                    $('#errormodal').modal({ show: true });
+                                }
+                            });
+                        });
+                    }
+                });
+            }
+
+        });
+
+            jQuery("#reservationtimes").jqGrid('navGrid', '#reservationtimespager'
+            , { edit: false, add: true, del: false, refresh: true, cloneToTop: true, search: true }
+            , {} //prmEdit
+            , {
+                recreateForm: true,
+                beforeShowForm: function (form) {
+                    //eldugom a címkét
+                    $('.CaptionTD', form).each(function (e) {
+                        if (
+                            $(this).text() == "Időpont"
+                            || $(this).text() == "Max. fogl."
+                            || $(this).text() == "Enged?"
+                            )
+                        {
+                            $(this).hide().css({ visibility: "hidden" });
+                        }
+                    });
+                    //eldugom a bevietli mezőt
+                    $('#ReservationBegin', form).hide().css({ visibility: "hidden" });
+                    $('#ReservationMax', form).hide().css({ visibility: "hidden" });
+                    $('#isEnabled', form).hide().css({ visibility: "hidden" });
+                },
+                afterShowForm: function (form) {
+                    //be kell lépni a dátummezőbe, hogy feljöjjön a datepicke, ezért elveszem a focust
+                    $('#ReservationDate', form).blur();
+                }
+            } //prmAdd
+            , {} //prmDel
+            , {
+                width: 600,
+                multipleSearch: true,
+                //multipleGroup: true,
+                recreateFilter: true,
+                //closeOnEscape: true,
+                //closeAfterSearch: true,
+                overlay: 0,
+                afterRedraw: function () {
+                    $('input.add-rule', this)//.button().val('Add new rule')
+                        .attr('title', 'Új szabály hozzáadása');
+                    //$('input.add-group', this)//.button().val('Add new group or rules')
+                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                    $('input.delete-rule', this)//.button().val('Delete rule')
+                        .attr('title', 'Szabály törlése');
+                    //$('input.delete-group', this)//.button().val('Delete group')
+                    //    .attr('title', 'Szabálycsoport törlése');
+                    //$(this).find("table.group:not(:first)").css({
+                    //    borderWidth: "1px",
+                    //    borderStyle: "dashed"
+                    //});
+                },
+                errorcheck: true
+            } //prmSearch
+            , {} //prmView
+        ).jqGrid('filterToolbar', {
+            stringResult: true, searchOnEnter: true,
+            defaultSearch: myDefaultSearch
+        })
+       
+</script>
+
+}
+

@@ -1,0 +1,105 @@
+﻿@model Tax.Portal.Mailers.RulesEmailData
+@using Mvc.Mailer;
+@using Tax.Portal.Helpers;
+@{
+    var absUrl = HtmlHelpers.AppBaseUrl(Url);
+}
+<h2>Kedves @Model.fullname!</h2>
+
+<br />
+@if (true == @Model.isDelete)
+{
+    <p>A regisztrált szerepköröd visszavonásra került.</p>
+}
+else
+{  
+    if (@Model.rolename == "PBXUser")
+    {
+        <p>Az ügyfélszerződés aláírásával hivatalosan is Tesztelővé léptél elő! Gratulálunk! Reméljük, hogy sok örömet okoz majd neked a szolgáltatás!</p>
+        <strong><p>Hogyan éred el a szolgáltatást?</p></strong>
+        <p>   •   A <a href="www.skontakt.hu">www.skontakt.hu</a> főoldalán a jobb oldali menüben a Web Alkalmazás gombra kattintva.</p>
+        <p>   •   Töltsed le a Google Play vagy Apple Store áruházakból ingyen. További információt a <a href="www.skontakt.hu">www.skontakt.hu</a> oldalon találsz.</p>
+    }
+    else
+    {
+        <p>A regisztrált szerepköröd módosult.</p>    
+    }
+}
+<br />
+<strong><p>Adataim:</p></strong>
+<br />
+<table>
+    <tr><td><strong>Bejelentkezési név:</strong></td><td>@Model.username</td></tr>
+    <tr><td><strong>E-mail cím:</strong></td><td>@Model.email</td></tr>
+    @if (@Model.rolename == "PBXUser")
+    {
+        <tr><td><strong>Regisztrált szerepkör:</strong></td><td><strong>KONTAKT Felhasználó</strong></td></tr>
+    }
+    else
+    {
+        <tr><td><strong>Regisztrált szerepkör:</strong></td><td>@Model.rolename</td></tr> 
+    }    
+</table>
+@if (null != Model.innNumber)
+{
+    <hr />
+    if (@Model.rolename == "PBXUser" && false == @Model.isDelete)
+    {
+        <strong>Tesztelői telefonszámok:</strong>
+        <table>
+            <tr><td><strong>Belső hívószám*:</strong></td><td style="text-align: right">@Model.innNumber</td></tr>
+            @if (null != Model.extNumber)
+            {
+                <tr><td><strong>Külső hívószám**:</strong></td><td style="text-align: right">+36 @Model.extNumber.Substring(0, 2) @Model.extNumber.Substring(2, 7)</td></tr>
+            }
+        </table>
+        <br />
+        <p>*Belső hívószám: Ezen a számon keresztül érnek el azok, akik szintén a SINOSZ KONTAKT Tolmácsszolgálat ügyfelei, tesztelői!</p>
+        <p>**Külső hívószám: Ez a szám ugyanaz, mint a belső hívószám, csak elé kell írni a körzetszámot (21). Ezen a számon érnek el más szolgáltatásokból!</p>
+    }
+    else
+    {
+        <strong>Telekommunikációs adatok:</strong> 
+        <table>
+            <tr><td><strong>Belső hívószám:</strong></td><td style="text-align: right">@Model.innNumber</td></tr>
+            @if (null != Model.extNumber)
+            {
+                <tr><td><strong>Külső hívószám:</strong></td><td style="text-align: right">+36 @Model.extNumber.Substring(0, 2) @Model.extNumber.Substring(2, 7)</td></tr>
+            }
+        </table>
+    }        
+}
+
+<br />
+<p>Kérdéseiddel bizalommal fordulj hozzánk: <a href="mailto:info@skontakt.hu">info@skontakt.hu</a></p>
+
+
+
+@*<h2>Jogosultságadatok módosultak</h2>
+
+<table>
+    <tr><td><strong>Bejelentkezési név:</strong></td><td>@Model.username</td></tr>
+    <tr><td><strong>E-mail cím:</strong></td><td>@Model.email</td></tr>
+    <tr><td><strong>Regisztrált szerepkör:</strong></td><td>@Model.rolename</td></tr>
+</table>
+
+@if(null != Model.innNumber)
+{
+<hr />
+<h3>Telekommunikációs adatok</h3>
+<table>    
+    <tr><td><strong>Belső hívószám:</strong></td><td>@Model.innNumber</td></tr>
+    @if(null != Model.extNumber)
+    {
+    <tr><td><strong>Külső hívószám:</strong></td><td>@Model.extNumber</td></tr>
+    }
+</table>
+}
+
+<hr />
+<p>Üdvözlettel: Kontakt</p>
+<hr />
+<address>
+    <strong>Támogatás</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+</address>*@
+

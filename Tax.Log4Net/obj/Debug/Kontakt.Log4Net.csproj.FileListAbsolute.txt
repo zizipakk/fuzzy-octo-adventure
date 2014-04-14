@@ -1,0 +1,11 @@
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\Kontakt.Log4Net.dll
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\Kontakt.Log4Net.pdb
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\log4net.dll
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\Newtonsoft.Json.dll
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\RestSharp.dll
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\log4net.xml
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\Newtonsoft.Json.xml
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\bin\Debug\RestSharp.xml
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\obj\Debug\Kontakt.Log4Net.csprojResolveAssemblyReference.cache
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\obj\Debug\Kontakt.Log4Net.dll
+C:\OCTO\fuzzy-octo-adventure\Kontakt.Log4Net\obj\Debug\Kontakt.Log4Net.pdb
