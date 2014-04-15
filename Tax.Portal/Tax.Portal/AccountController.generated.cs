@@ -100,18 +100,6 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult ListTrafficMonths()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListTrafficMonths);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult ListTrafficCalls()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListTrafficCalls);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult AccountProfileEdit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccountProfileEdit);
@@ -217,8 +205,6 @@ namespace Tax.Portal.Controllers
             public readonly string ResetPasswordStart = "ResetPasswordStart";
             public readonly string ResetPasswordFinalize = "ResetPasswordFinalize";
             public readonly string ResetPasswordCompleted = "ResetPasswordCompleted";
-            public readonly string ListTrafficMonths = "ListTrafficMonths";
-            public readonly string ListTrafficCalls = "ListTrafficCalls";
             public readonly string AccountProfileEdit = "AccountProfileEdit";
             public readonly string ChangeEmailAddressStart = "ChangeEmailAddressStart";
             public readonly string ChangeEmailAddressFinalize = "ChangeEmailAddressFinalize";
@@ -252,8 +238,6 @@ namespace Tax.Portal.Controllers
             public const string ResetPasswordStart = "ResetPasswordStart";
             public const string ResetPasswordFinalize = "ResetPasswordFinalize";
             public const string ResetPasswordCompleted = "ResetPasswordCompleted";
-            public const string ListTrafficMonths = "ListTrafficMonths";
-            public const string ListTrafficCalls = "ListTrafficCalls";
             public const string AccountProfileEdit = "AccountProfileEdit";
             public const string ChangeEmailAddressStart = "ChangeEmailAddressStart";
             public const string ChangeEmailAddressFinalize = "ChangeEmailAddressFinalize";
@@ -276,14 +260,6 @@ namespace Tax.Portal.Controllers
         public class ActionParamsClass_Login
         {
             public readonly string returnUrl = "returnUrl";
-            public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_Preregister s_params_Preregister = new ActionParamsClass_Preregister();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Preregister PreregisterParams { get { return s_params_Preregister; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Preregister
-        {
             public readonly string model = "model";
         }
         static readonly ActionParamsClass_Register s_params_Register = new ActionParamsClass_Register();
@@ -371,24 +347,6 @@ namespace Tax.Portal.Controllers
         public class ActionParamsClass_ResetPasswordCompleted
         {
             public readonly string message = "message";
-        }
-        static readonly ActionParamsClass_ListTrafficMonths s_params_ListTrafficMonths = new ActionParamsClass_ListTrafficMonths();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ListTrafficMonths ListTrafficMonthsParams { get { return s_params_ListTrafficMonths; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ListTrafficMonths
-        {
-            public readonly string grid = "grid";
-        }
-        static readonly ActionParamsClass_ListTrafficCalls s_params_ListTrafficCalls = new ActionParamsClass_ListTrafficCalls();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ListTrafficCalls ListTrafficCallsParams { get { return s_params_ListTrafficCalls; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ListTrafficCalls
-        {
-            public readonly string grid = "grid";
-            public readonly string userId = "userId";
-            public readonly string monthId = "monthId";
         }
         static readonly ActionParamsClass_AccountProfileEdit s_params_AccountProfileEdit = new ActionParamsClass_AccountProfileEdit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -573,16 +531,6 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void PreregisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.PreRegisterViewModel model);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Preregister(Tax.Portal.Models.PreRegisterViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Preregister);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            PreregisterOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
         partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         public override System.Web.Mvc.ActionResult Register()
@@ -761,28 +709,6 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void ListTrafficMonthsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, JQGrid.Helpers.GridSettings grid);
-
-        public override System.Web.Mvc.JsonResult ListTrafficMonths(JQGrid.Helpers.GridSettings grid)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListTrafficMonths);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
-            ListTrafficMonthsOverride(callInfo, grid);
-            return callInfo;
-        }
-
-        partial void ListTrafficCallsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, JQGrid.Helpers.GridSettings grid, string userId, System.Guid monthId);
-
-        public override System.Web.Mvc.JsonResult ListTrafficCalls(JQGrid.Helpers.GridSettings grid, string userId, System.Guid monthId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListTrafficCalls);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "monthId", monthId);
-            ListTrafficCallsOverride(callInfo, grid, userId, monthId);
-            return callInfo;
-        }
-
         partial void AccountProfileEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Id, string message);
 
         public override System.Web.Mvc.ActionResult AccountProfileEdit(string Id, string message)
@@ -819,7 +745,6 @@ namespace Tax.Portal.Controllers
         public override System.Web.Mvc.ActionResult ChangeEmailAddressFinalize(string token, string message)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeEmailAddressFinalize);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
             ChangeEmailAddressFinalizeOverride(callInfo, token, message);
             return callInfo;
@@ -827,13 +752,7 @@ namespace Tax.Portal.Controllers
 
         partial void ChangeEmailAddressFinalizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ChangeEmailAddressFinalizeViewModel model);
 
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangeEmailAddressFinalize(Tax.Portal.Models.ChangeEmailAddressFinalizeViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeEmailAddressFinalize);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ChangeEmailAddressFinalizeOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
+
 
         partial void ChangeEmailAddressCompletedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string message);
 

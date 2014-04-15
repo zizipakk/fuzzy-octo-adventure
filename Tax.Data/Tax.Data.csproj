@@ -494,18 +494,17 @@
     <Compile Include="Migrations\201403171307148_modify accountperiods.Designer.cs">
       <DependentUpon>201403171307148_modify accountperiods.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404152211335_new world.cs" />
+    <Compile Include="Migrations\201404152211335_new world.Designer.cs">
+      <DependentUpon>201404152211335_new world.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\BugPostModels.cs" />
-    <Compile Include="Models\CallStatistics.cs" />
-    <Compile Include="Models\ChatModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Log4netModels.cs" />
     <Compile Include="Models\FileModels.cs" />
     <Compile Include="Models\LogModels.cs" />
-    <Compile Include="Models\OzekiModels.cs" />
-    <Compile Include="Models\ScheduleModels.cs" />
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\StockModels.cs" />
     <Compile Include="Models\SinoszModels.cs" />
     <Compile Include="Models\MenuModels.cs" />
@@ -856,6 +855,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403171307148_modify accountperiods.resx">
       <DependentUpon>201403171307148_modify accountperiods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404152211335_new world.resx">
+      <DependentUpon>201404152211335_new world.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

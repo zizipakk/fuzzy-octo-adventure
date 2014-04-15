@@ -7180,17 +7180,17 @@ td.visible-print {
 /* end of tab */
 
 .navbar-fixed-top {
-    height: 138px;
+    height: 70px;
 }
 
 .navbar-inverse {
     border-color: none;
 }
 
-.navbar-inverse, .navbar-fixed-top {
+/*.navbar-inverse, .navbar-fixed-top {
     background-image: url('images/bkg_header_pattern.png');
     background-repeat: repeat-x;
-}
+}*/
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -7226,5 +7226,5 @@ input[type="checkbox"].input-validation-error {
 
  .navbar-collapse.in {
     margin-top: auto !important; 
-    background-color: black !important;
+    background-color: white !important;
 }

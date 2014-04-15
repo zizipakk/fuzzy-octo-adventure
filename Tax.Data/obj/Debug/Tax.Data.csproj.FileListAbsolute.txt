@@ -120,3 +120,4 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.modifyaccoun
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource.Cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.newworld.resources

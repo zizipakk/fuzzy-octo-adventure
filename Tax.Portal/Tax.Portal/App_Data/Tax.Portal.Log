@@ -578,3 +578,476 @@ Login failed for user 'FATNB\Tamás'.
 2014-04-15 00:10:55,911 [13] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
 2014-04-15 00:10:55,912 [13] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
 2014-04-15 00:10:55,913 [13] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-15 22:46:38,326 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-04-15 22:46:38,596 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-04-15 22:46:38,808 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-15 22:46:38,816 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-15 22:46:38,818 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-15 22:46:38,825 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-15 22:46:38,828 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-15 22:46:38,830 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-15 22:46:39,411 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-04-15 22:46:39,418 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-04-15 22:46:39,921 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-04-15 22:46:39,925 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-04-15 22:46:46,239 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-15 22:46:46,240 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-15 22:46:46,257 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-15 22:47:01,516 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-15 22:47:01,518 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-15 22:47:01,519 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-15 22:47:01,521 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-15 22:47:01,527 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-15 22:47:01,528 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-15 22:47:01,627 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-04-15 22:47:01,630 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"Admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-04-15 22:47:06,119 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-15 22:47:06,120 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-15 22:47:06,125 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-15 22:47:06,127 [5] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 22:47:06,128 [5] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Cannot open database "taxdb" requested by the login. The login failed.
+Login failed for user 'FATNB\Tamás'.
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Glimpse.Ado.AlternateType.GlimpseDbConnection.Open()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at Microsoft.AspNet.Identity.EntityFramework.UserStore`1.FindByNameAsync(String userName)
+   at Microsoft.AspNet.Identity.UserManager`1.<FindByNameAsync>d__d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNet.Identity.UserManager`1.<FindAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Tax.Portal.Controllers.AccountController.<Login>d__3.MoveNext() in c:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\Controllers\AccountController.cs:line 118
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at lambda_method(Closure , Task )
+   at System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(Task task)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__33(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 22:47:06,180 [5] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-15 22:52:27,678 [9] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 22:52:27,686 [9] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 22:52:27,770 [9] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-15 22:57:27,313 [12] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 22:57:27,315 [12] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 22:57:27,318 [12] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-15 23:02:27,524 [17] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 23:02:27,526 [17] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 23:02:27,529 [17] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-15 23:07:27,328 [18] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 23:07:27,329 [18] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 23:07:27,331 [18] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-15 23:08:19,690 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-15 23:08:19,699 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-15 23:08:19,702 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-15 23:08:19,705 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-15 23:08:19,706 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-15 23:08:19,708 [18] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-15 23:08:19,861 [18] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-04-15 23:08:19,869 [18] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-04-15 23:08:21,384 [18] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-15 23:08:21,385 [18] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-15 23:08:21,387 [18] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-15 23:08:21,390 [18] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-15 23:08:21,392 [18] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Cannot open database "taxdb" requested by the login. The login failed.
+Login failed for user 'FATNB\Tamás'.
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Glimpse.Ado.AlternateType.GlimpseDbConnection.Open()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- End of inner exception stack trace ---
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at Microsoft.AspNet.Identity.EntityFramework.UserStore`1.FindByNameAsync(String userName)
+   at Microsoft.AspNet.Identity.UserManager`1.<FindByNameAsync>d__d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNet.Identity.UserManager`1.<FindAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Tax.Portal.Controllers.AccountController.<Login>d__3.MoveNext() in c:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\Controllers\AccountController.cs:line 118
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at lambda_method(Closure , Task )
+   at System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(Task task)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__33(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-15 23:08:21,438 [18] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-16 00:12:34,353 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-04-16 00:12:34,625 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-04-16 00:12:34,774 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:12:34,775 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:12:49,821 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-16 00:12:49,823 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-16 00:12:49,824 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-16 00:12:49,824 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-16 00:12:49,825 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-16 00:12:49,831 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-16 00:12:50,216 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-04-16 00:12:50,218 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-04-16 00:12:50,625 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-04-16 00:12:50,626 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-04-16 00:12:53,667 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-16 00:12:53,668 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-16 00:12:53,696 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-16 00:13:00,839 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-16 00:13:00,841 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-16 00:13:00,864 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-16 00:13:00,865 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-16 00:13:00,917 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-16 00:13:00,918 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-16 00:13:01,036 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-04-16 00:13:01,053 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-04-16 00:13:07,301 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-04-16 00:13:07,333 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-04-16 00:13:10,098 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-04-16 00:13:10,099 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-04-16 00:13:10,160 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-16 00:13:10,161 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-16 00:13:10,169 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-16 00:13:10,234 [7] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:13:10,235 [7] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:14:24,641 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-16 00:14:24,643 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-16 00:14:24,644 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-16 00:14:24,647 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-16 00:14:24,648 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-16 00:14:24,649 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-16 00:14:24,664 [10] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post)] begin
+2014-04-16 00:14:24,669 [10] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post) AuthenticationManager.get] begin
+2014-04-16 00:14:24,678 [10] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post) AuthenticationManager.get] end
+2014-04-16 00:14:24,680 [10] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post)] end
+2014-04-16 00:14:24,706 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-16 00:14:24,707 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-16 00:14:24,708 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-16 00:14:24,776 [10] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:14:24,777 [10] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:19:26,703 [15] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-16 00:19:26,713 [15] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-16 00:19:26,908 [15] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-16 00:24:00,523 [12] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:24:00,526 [12] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:26:57,323 [12] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:26:57,329 [12] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:30:31,771 [8] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-04-16 00:30:31,949 [8] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-04-16 00:30:32,053 [8] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:30:32,054 [8] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:32:04,337 [7] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-04-16 00:32:04,340 [7] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/cd85273471944cf3950117de1ba241d4/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-04-16 00:32:04,417 [7] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-04-16 00:33:17,461 [11] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:33:17,463 [11] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:35:35,673 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-16 00:35:35,676 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-16 00:35:35,677 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-16 00:35:35,677 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-16 00:35:35,678 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-16 00:35:35,679 [7] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-16 00:35:35,958 [7] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-04-16 00:35:35,959 [7] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-04-16 00:35:36,257 [7] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-04-16 00:35:36,258 [7] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-04-16 00:35:39,917 [7] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-16 00:35:39,919 [7] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-16 00:35:39,943 [7] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-16 00:35:48,110 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-04-16 00:35:48,111 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-04-16 00:35:48,112 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-04-16 00:35:48,118 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-04-16 00:35:48,121 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-04-16 00:35:48,148 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-04-16 00:35:48,235 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-04-16 00:35:48,243 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-04-16 00:35:54,483 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-04-16 00:35:54,487 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-04-16 00:35:57,076 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-04-16 00:35:57,077 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-04-16 00:35:57,150 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-04-16 00:35:57,151 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-04-16 00:35:57,154 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-04-16 00:35:57,331 [11] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:35:57,333 [11] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-04-16 00:38:17,386 [16] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-04-16 00:38:17,388 [16] INFO  Tax.Portal.Controllers.HomeController [Index] end

@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using Tax.Portal.Mailers;
 using System.Collections.Generic;
 using Tax.Portal.Helpers;
 using System.Data.Entity;
@@ -155,152 +154,6 @@ namespace Tax.Portal.Controllers
             }
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Preregister(PreRegisterViewModel model)
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("Preregister(Post)"))
-            {
-                log.Info("begin");
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
-
-                //ellenőrzés születési dátum és tagi azonosító szerint
-                var sinoszuser = db.SinoszUser.FirstOrDefault(x => x.SinoszId == model.PreSinoszId && x.BirthDate == model.PreBirthDate);
-                if (null == sinoszuser)
-                {
-                    ModelState.AddModelError("SinoszId", "Az általad megadott tagsági szám a beírt születési dátummal együtt nem szerepel a tagnyilvántartásban!");
-                }
-                else
-                {
-                    var usr = db.Users.Any(x => x.SinoszUser.Id == sinoszuser.Id && x.isLocked == false);
-                    if (usr)//regisztráció tartozik hozzá és még él
-                        ModelState.AddModelError("SinoszId", "Ezzel a SINOSZ tagsági számmal már létrejött a regisztráció.");
-                    if (sinoszuser.SinoszUserStatus.StatusName != "Aktív")
-                        ModelState.AddModelError("SinoszId", "Ha SINOSZ tag vagy, győződj meg róla, hogy befizetted-e a 2014. évi tagsági díjat. Ha igen, és ennek ellenére probléma merül fel, vagy szeretnél SINOSZ tag lenni, keresd fel szervezetünket: www.sinosz.hu");
-                }
-
-                log.Info("step 1 sinosz user ellenőrizve");
-                if (ModelState.IsValid)
-                {
-                    //előregisztrációs adatok
-                    PreregistrationData preregistrationdata = db.PreregistrationData.Create();
-                    SocialPosition socialposition = db.SocialPosition.Find(model.SocialPositionId);
-                    preregistrationdata.SocialPosition = socialposition;
-                    preregistrationdata.IsNeedForHealth = model.IsNeedForHealth;
-                    preregistrationdata.IsNeedForJob = model.IsNeedForJob;
-                    preregistrationdata.IsNeedForLife = model.IsNeedForLife;
-                    preregistrationdata.Job = model.Job;
-                    db.Entry(preregistrationdata).State = EntityState.Added;
-
-                    //profil
-                    KontaktUser kontaktuser = db.KontaktUser.Create();
-                    kontaktuser.FirstName = model.FirstName;
-                    kontaktuser.LastName = model.LastName;
-                    kontaktuser.isSinoszMember = model.IsSinosz;
-                    kontaktuser.SinoszId = model.PreSinoszId;
-                    kontaktuser.isCommunicationRequested = model.IsRequestCommunication;
-                    kontaktuser.isDeviceReqested = model.IsRequestDevice;
-                    kontaktuser.BirthDate = model.PreBirthDate;
-                    kontaktuser.PreregistrationData = preregistrationdata;
-
-                    var user = new ApplicationUser()
-                    {
-                        UserName = model.UserName,
-                        Email = model.Email,
-//TODO. átmenetileg simán mentem a jelszót is a pbx miatt
-                        Password = model.Password,
-                        KontaktUser = kontaktuser,
-//TODO nem köthetem össze, amíg nem validál
-                        //SinoszUser = sinoszuser,
-                        isSynced = false,
-                    };
-
-                    IdentityRole role = db.Roles.SingleOrDefault(x => x.Name == "Ügyfél"); 
-                    if (null != role)
-                    {
-                        user.Roles.Add(new ApplicationUserRole() { Role = role }); //indirekció: IdentityRole => ApplicationUserRole => ApplicationUserRole
-                    }
-
-                    var result = await UserManager.CreateAsync(user, model.Password);//ez menti a userre bekötött modelleket
-                    log.Info("step 2 user létrehozva");
-                    if (result.Succeeded)
-                    {
-
-                        //A előregisztrációról email-t küldünk, amivel 
-                        //az email címet validáljuk
-
-                        //címzés
-                        var addresses = new List<Addressee>();
-                        addresses.Add(new Addressee
-                        {
-                            Email = model.Email,
-                            FullName = model.UserName
-                        });
-
-                        //token létrehozása
-                        var token = new Token(db, TokenTargets.EmailValidation, user.Id);//menti is a db-!
-                        log.Info("step 3 token létrehozva");
-
-                        //adatok a levélre
-                        var ved = new ValidateEmailData
-                        {
-                            email = model.Email,
-                            username = model.UserName,
-                            token = token.Code,
-                            ValidUntil = token.ValidUntil,
-                            fullname = string.Format("{0} {1}", model.FirstName ?? "", model.LastName ?? "")
-                        };
-
-                        //maga a levél
-                        var message = new Message<ValidateEmailData>
-                        {
-                            //Subject = "Előregisztráció: e-mail cím érvényesítése",
-                            Subject = "Regisztráció: e-mail cím érvényesítése",
-                            Data = ved
-                        };
-
-                        //Küldjük a levelet
-                        log.Info("step 4 levélküldés kezdete");
-                        MessageHelper<ValidateEmailData>.SendMessageToQueue(message, addresses, Url);
-                        log.Info("step 5 levélküldés vége");
-
-                        //Megyünk a tájékoztató oldalra
-                        log.Info("end with ok");
-                        return RedirectToAction(MVC.Home.WaitForEmailValidationAfterPreRegistration());
-                    }
-                    else
-                    {
-                        AddErrors(result);
-                    }
-                }
-//TODO béna megoldás átmenetileg, mert nem tudom különben átírni a hibaüzenetet, ami angol
-                else
-                {
-                    if (ModelState["PreBirthDate"].Errors.Count() > 0
-                        && !ModelState["PreBirthDate"].Errors.Select(x => x.ErrorMessage).Contains("A(z) [Születési idő] mezőt kötelező kitölteni"))
-                    {
-                        ModelState["PreBirthDate"].Errors.Clear();
-                        ModelState["PreBirthDate"].Errors.Add(new ModelError("Érvénytelen dátum a [Születési dátum] mezőben!"));
-                    }
-                }
-//
-
-                // If we got this far, something failed, redisplay form
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
-                log.Info("end with validation error");
-                model.Refresh(ModelState);
-
-                model.SocialPositionList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
-                            .Union(db.SocialPosition.Select(x => new MyListItem { Value = x.Id, Text = x.SocialPositionName }))
-                            .OrderBy(x => x.Text)
-                            .ToList();
-
-                return View(model);
-            }
-        }
-
-
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -389,42 +242,6 @@ namespace Tax.Portal.Controllers
                         //Todo csak a megerősítő levél után kell beléptetni
                         //await SignInAsync(user, isPersistent: false);
 
-                        //A regisztrációról email-t küldünk, amivel 
-                        //az email címet validáljuk
-
-                        //címzés
-                        var addresses = new List<Addressee>();
-                        addresses.Add(new Addressee
-                        {
-                            Email = model.Email,
-                            FullName = model.UserName
-                        });
-
-                        //token létrehozása
-                        var token = new Token(db, TokenTargets.EmailValidation, user.Id);//menti is a db-!
-                        log.Info("step 3 token létrehozva");
-
-                        //adatok a levélre
-                        var ved = new ValidateEmailData
-                        {
-                            email = model.Email,
-                            username = model.UserName,
-                            token = token.Code,
-                            ValidUntil = token.ValidUntil,
-                            fullname = string.Format("{0} {1}", model.FirstName ?? "", model.LastName ?? "")
-                        };
-
-                        //maga a levél
-                        var message = new Message<ValidateEmailData>
-                        {
-                            Subject = "Új regisztráció: e-mail cím érvényesítése",
-                            Data = ved
-                        };
-
-                        //Küldjük a levelet
-                        log.Info("step 4 levélküldés kezdete");
-                        MessageHelper<ValidateEmailData>.SendMessageToQueue(message, addresses, Url);
-                        log.Info("step 5 levélküldés vége");
 
                         log.Info("end with ok");
                         return RedirectToAction(MVC.Home.WaitForEmailValidation());
@@ -537,30 +354,6 @@ namespace Tax.Portal.Controllers
                         IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                         if (result.Succeeded)
                         {
-                            //email küldése
-                            var subject = string.Empty;
-                            var addresses = new List<Addressee>();
-
-                            addresses.Add(new Addressee
-                            {
-                                Email = user.Email,
-                                FullName = user.UserName
-                            });
-
-                            subject = string.Format("{0}: {1}", "Jelszóváltoztatás sikeres", user.Email);
-                            var ied = new ResetPasswordCompletedData
-                            {
-                                now = DateTime.Now,
-                                username = user.UserName,
-                                email = user.Email,
-                                FullName = string.Format("{0} {1}", user.KontaktUser.FirstName ?? "", user.KontaktUser.LastName ?? "")
-                            };
-                            var mail = new Message<ResetPasswordCompletedData>
-                            {
-                                Subject = subject,
-                                Data = ied
-                            };
-                            MessageHelper<ResetPasswordCompletedData>.SendMessageToQueue(mail, addresses, Url);
 
                             return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
                         }
@@ -584,30 +377,6 @@ namespace Tax.Portal.Controllers
                         IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                         if (result.Succeeded)
                         {
-                            //email küldése
-                            var subject = string.Empty;
-                            var addresses = new List<Addressee>();
-
-                            addresses.Add(new Addressee
-                            {
-                                Email = user.Email,
-                                FullName = user.UserName
-                            });
-
-                            subject = string.Format("{0}: {1}", "Jelszóváltoztatás sikeres", user.Email);
-                            var ied = new ResetPasswordCompletedData
-                            {
-                                now = DateTime.Now,
-                                username = user.UserName,
-                                email = user.Email
-                            };
-                            var mail = new Message<ResetPasswordCompletedData>
-                            {
-                                Subject = subject,
-                                Data = ied
-                            };
-                            MessageHelper<ResetPasswordCompletedData>.SendMessageToQueue(mail, addresses, Url);
-
                             return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                         }
                         else
@@ -925,49 +694,8 @@ namespace Tax.Portal.Controllers
                 log.Info("begin");
                 if (ModelState.IsValid)
                 {
-                    //A jelszóvisszaállításról email-t küldünk, amivel 
-                    //az email címet validáljuk
-
-                    //legfeljebb egy ilyen e-mail cím van
-                    var user = await db.Users.SingleOrDefaultAsync(x => x.Email == model.Email);
-
-                    if (null != user)
-                    {
-                        //címzés
-                        var addresses = new List<Addressee>();
-                        addresses.Add(new Addressee
-                        {
-                            Email = user.Email,
-                            FullName = user.UserName
-                        });
-
-                        //token létrehozása
-                        var token = new Token(db, TokenTargets.PasswordReset, user.Id);
-
-                        //adatok a levélre
-                        var ved = new ResetPasswordData
-                        {
-                            email = user.Email,
-                            username = user.UserName,
-                            token = token.Code,
-                            ValidUntil = token.ValidUntil,
-                            FullName = string.Format("{0} {1}", user.KontaktUser.FirstName ?? "", user.KontaktUser.LastName ?? "")
-                        };
-
-                        //maga a levél
-                        var email = new Message<ResetPasswordData>
-                        {
-                            Subject = "Jelszó visszaállítása",
-                            Data = ved
-                        };
-
-                        //Küldjük a levelet
-                        MessageHelper<ResetPasswordData>.SendMessageToQueue(email, addresses, Url);
-                    }
                 }
-                var message = "Köszönjük az információt! Ha az e-mail cím szerepel az adatbázisunkban, elindítjuk az új jelszó megadásához szükséges folyamatot. Ebben az esetben a további lépésekről e-mail-t küldünk, amiben minden információ szerepel.";
-                log.Info("end");
-                return RedirectToAction(MVC.Account.ResetPasswordFinalize(token: string.Empty, message: message));
+                return RedirectToAction(MVC.Account.ResetPasswordFinalize(token: string.Empty, message: "Nincs"));
             }
         }
 
@@ -1040,32 +768,6 @@ namespace Tax.Portal.Controllers
                         await SignInAsync(user, isPersistent: false);
                     message = string.Format("{0} {1}", message, "Egyben be is léptél az oldalra.");
 
-                    //email küldése
-                    var subject = string.Empty;
-                    var addresses = new List<Addressee>();
-
-                    addresses.Add(new Addressee
-                    {
-                        Email = user.Email,
-                        FullName = user.UserName
-                    });
-
-                    subject = string.Format("{0}: {1}", "Jelszóváltoztatás sikeres", user.Email);
-                    var ied = new ResetPasswordCompletedData
-                    {
-                        now = DateTime.Now,
-                        username = user.UserName,
-                        email = user.Email,
-                        FullName = string.Format("{0} {1}", user.KontaktUser.FirstName ?? "", user.KontaktUser.LastName ?? "")
-
-                    };
-                    var mail = new Message<ResetPasswordCompletedData>
-                    {
-                        Subject = subject,
-                        Data = ied
-                    };
-                    MessageHelper<ResetPasswordCompletedData>.SendMessageToQueue(mail, addresses, Url);
-
                     return RedirectToAction(MVC.Account.ValidateSuccess(message: message));
 
                 }
@@ -1085,104 +787,6 @@ namespace Tax.Portal.Controllers
                 log.Info(string.Format("message: {0}", message));
                 log.Info("end");
                 return View(model: message);
-            }
-        }
-
-        [Authorize]
-        public virtual System.Web.Mvc.JsonResult ListTrafficMonths(GridSettings grid)
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("ListTrafficMonths"))
-            {
-                log.Info("begin");
-                JQGrid.Helpers.JsonResult result;
-
-                DateTime bgn = DateTime.Now.AddMonths(-2); //cél a jelenlegi és a megelőző 2 hónap forgalma
-
-                var rs0 = db.AccountPeriod
-                            .Where(x => x.PeriodEnd >= bgn)
-                            .AsEnumerable();
-
-                var rs = rs0.AsQueryable().GridPage(grid, out result);
-
-                result.rows = (from r in rs
-                                select new JsonRow
-                                {
-                                    id = r.Id.ToString(),
-                                    cell = new string[] 
-                                    {                             
-                                    r.Id.ToString()
-                                    ,r.PeriodBegin.ToString()
-                                    ,r.PeriodEnd.ToString()
-                                    }
-                                }).ToArray();
-            
-                log.Info("end");
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [Authorize]
-        public virtual System.Web.Mvc.JsonResult ListTrafficCalls(GridSettings grid, string userId, Guid monthId)
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("ListTrafficCalls"))
-            {
-                log.Info("begin");
-                log.Info(string.Format("monthId: {0}, userId: {1}", monthId, userId));
-
-                JQGrid.Helpers.JsonResult result;
-
-                var pbx = db.PBXExtensionData.Where(x => x.ApplicationUser.Id == userId);//lehet, hogy több van
-                var ap = db.AccountPeriod.Find(monthId);
-
-//ez lehet, hogy változni fog teljesen
-                var rs0 = db.PBXSession
-                            .Where(x => 
-                                        x.StartTime >= ap.PeriodBegin && x.StartTime <= ap.PeriodEnd //adott időszak
-                                        && x.State != 0 //ez a sessioncreated esemény, ami nem kell
-                                   )
-                            .Join(pbx, x => x.CallerId, y => y.PhoneNumber.InnerPhoneNumber, (x, y) => x)
-                            .SelectMany(x => db.PBXExtensionData.Where(y => y.PhoneNumber.InnerPhoneNumber == x.Destination || y.PhoneNumber.ExternalPhoneNumber == x.Destination),
-                                                (x, y) => new { x, y })
-                            .SelectMany(x => db.Price.Where(y => y.ValidityBegin <= x.x.StartTime && y.ValidityEnd >= x.x.StartTime),
-                                                (x, y) => new { x, 
-                                                    Id = x.x.Id,
-                                                    StartTime = x.x.StartTime,
-                                                    Sum = y.Sum,
-                                                    CallerId = x.x.CallerId,
-                                                    Destination = x.x.Destination,
-                                                    FullName = x.y.ApplicationUser.KontaktUser.FirstName + " " + x.y.ApplicationUser.KontaktUser.LastName,
-                                                    TalkDuration = x.x.TalkDuration,
-                                                    Netto = Math.Round(y.Sum / 60 * (x.x.TalkDuration.Hours * 3600 + x.x.TalkDuration.Minutes * 60 + x.x.TalkDuration.Seconds + x.x.TalkDuration.Milliseconds / 1000.0), 2),
-                                                    VAT = Math.Round(y.VAT * 100, 0),
-                                                    Brutto = Math.Round(Math.Round(y.Sum / 60 * (x.x.TalkDuration.Hours * 3600 + x.x.TalkDuration.Minutes * 60 + x.x.TalkDuration.Seconds + x.x.TalkDuration.Milliseconds / 1000.0), 2) * (1 + y.VAT), 2)
-                                                })
-                            .AsEnumerable();
-
-                foreach (var item in rs0.ToList()) { Debug.WriteLine(item); }
-
-                var rs = rs0.AsQueryable().GridPage(grid, out result);
-
-                result.rows = (from r in rs
-                               select new JsonRow
-                               {
-                                   id = r.Id.ToString(),
-                                   cell = new string[] 
-                                    {                             
-                                    r.Id.ToString()
-                                    ,r.StartTime.ToString()
-                                    ,r.Sum.ToString()
-                                    ,r.CallerId
-                                    ,r.Destination
-                                    ,r.FullName                                  
-                                    ,r.TalkDuration.ToString()
-                                    ,r.Netto.ToString()
-                                    ,r.VAT.ToString() + " %"
-                                    ,r.Brutto.ToString()
-                                    }
-                               }).ToArray();
-
-                log.Info("end");
-                return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -1509,42 +1113,6 @@ namespace Tax.Portal.Controllers
 
                 if (null != user)
                 {
-                    //A előregisztrációról email-t küldünk, amivel 
-                    //az email címet validáljuk
-
-                    //címzés
-                    var addresses = new List<Addressee>();
-                    addresses.Add(new Addressee
-                    {
-                        Email = user.Email,
-                        FullName = user.UserName
-                    });
-
-                    //token létrehozása
-                    var token = new Token(db, TokenTargets.EmailValidation, user.Id);//menti is a db-!
-                    log.Info("token létrehozva");
-
-                    //adatok a levélre
-                    var ved = new ValidateEmailData
-                    {
-                        email = user.Email,
-                        username = user.UserName,
-                        token = token.Code,
-                        ValidUntil = token.ValidUntil,
-                        fullname = string.Format("{0} {1}", user.KontaktUser.FirstName ?? "", user.KontaktUser.LastName ?? "")
-                    };
-
-                    //maga a levél
-                    var message = new Message<ValidateEmailData>
-                    {
-                        //Subject = "Előregisztráció: e-mail cím érvényesítése",
-                        Subject = "Regisztráció: e-mail cím érvényesítése",
-                        Data = ved
-                    };
-
-                    //Küldjük a levelet
-                    log.Info("levélküldés kezdete");
-                    MessageHelper<ValidateEmailData>.SendMessageToQueue(message, addresses, Url);
                     log.Info("levélküldés vége");
 
                     //Megyünk a tájékoztató oldalra
@@ -1600,40 +1168,10 @@ namespace Tax.Portal.Controllers
 
                     //beléptetem
                     await SignInAsync(user, isPersistent: false);
-
-                    //címzés
-                    var addresses = new List<Addressee>();
-                    addresses.Add(new Addressee
-                    {
-                        Email = user.Email,
-                        FullName = user.UserName
-                    });
-
-                    //adatok a levélre
-                    var wd = new WelcomeData
-                    {
-                        Email = user.Email,
-                        UserId = user.Id,
-                        UserName = user.UserName,
-                        FullName = string.Format("{0} {1}", user.KontaktUser.FirstName ?? "", user.KontaktUser.LastName ?? "")
-                    };
-
-                    //maga a levél
-                    var email = new Message<WelcomeData>
-                    {
-                        Subject = "Üdvözöljük a regisztrált felhasználók között!",
-                        Data = wd
-                    };
-
-                    //Küldjük a levelet
-                    MessageHelper<WelcomeData>.SendMessageToQueue(email, addresses, Url);
-
-                    message = string.Format("Az e-mail cím érvényesítése sikeres: {0}!", user.Email);
-                    log.Info(string.Format("end with success: {0}", message));
                     
                     //ApplicationUser auser = user;
                     //return RedirectToAction(MVC.Account.ValidateSuccess(message, user));
-                    return RedirectToAction(MVC.Account.ValidateSuccess(message));
+                    return RedirectToAction(MVC.Account.ValidateSuccess("SUCK"));
                     //    case TokenTargets.PasswordReset:
                     //        //todo: ezt még meg kell majd írni
                     //        message = "Jelszóérvényesítés sikertelen!";

@@ -14,7 +14,7 @@ namespace Tax.Portal.Helpers
 
             if (string.IsNullOrEmpty(scheme) 
                 || String.Empty.Equals(scheme.Trim(), StringComparison.OrdinalIgnoreCase))
-            {//ha nincs beállítva a web configban, akkor jön a kérésből
+            {
                 scheme = request.Url.Scheme;
             }
             return string.Format("{0}://{1}{2}", scheme, request.Url.Authority, Url.Content("~"));

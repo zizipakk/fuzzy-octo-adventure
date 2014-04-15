@@ -6,10 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - SINOSZ Kontakt</title>
-    @*@Styles.Render("~/styles/css")    
-    @Styles.Render("~/Content/themes/base/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+    <title>@ViewBag.Title - Tax & Leagal 4Me</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/Scripts/modernizr")
@@ -19,7 +16,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">        
+    <div class="navbar navbar navbar-fixed-top">        
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,7 +25,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    <img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />
+                    @*<img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />*@
                 </a>
             </div>
             <div class="navbar-collapse collapse" style="margin-top: 35px">
@@ -73,8 +70,6 @@
                             }
                         }
                     }
-                    @*<li>@Html.ActionLink("Információ", "About", "Home")</li>
-            <li>@Html.ActionLink("Kapcsolat", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -85,16 +80,8 @@
         <footer>
             <div class="input-group-addon row" style="background-color: none;">
                 <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
-                    <p>&copy; @DateTime.Now.Year - SINOSZ Kontakt - @ViewContext.Controller.GetType().Assembly.GetName().Name: @ViewContext.Controller.GetType().Assembly.GetName().Version.ToString(), @ApplicationDbContext.version - @ConfigurationManager.AppSettings["Environment"]</p>
-                </div>
-                <container>
-                    <div class="col-sm-1 col-xs-1 pull-right">
-                        <img src="@Url.Content("~/Content/images/footer_logo_egroup.png")" class="img-responsive img-thumbnail" alt="" style="border: none; padding: 0px 0px 0px 0px;" />
-                    </div>
-                    <div class="col-sm-1 col-xs-1 pull-right">
-                        <img src="@Url.Content("~/Content/images/footer_logo_invitel.png")" class="img-responsive img-thumbnail" alt="" style="border: none; padding: 0px 0px 0px 0px;" />
-                    </div>
-                </container>
+                    <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
+                </div>                
             </div>
         </footer>
     </div>

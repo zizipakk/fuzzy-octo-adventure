@@ -20,73 +20,11 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Tax.Portal.Controllers
+namespace T4MVC
 {
-    public partial class MailerController
+    public class MailerController
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public MailerController() { }
 
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected MailerController(Dummy d) { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
-        }
-
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult EmailPost()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EmailPost);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public MailerController Actions { get { return MVC.Mailer; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Mailer";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Mailer";
-
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass
-        {
-            public readonly string Index = "Index";
-            public readonly string EmailPost = "EmailPost";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Index = "Index";
-            public const string EmailPost = "EmailPost";
-        }
-
-
-        static readonly ActionParamsClass_EmailPost s_params_EmailPost = new ActionParamsClass_EmailPost();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_EmailPost EmailPostParams { get { return s_params_EmailPost; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_EmailPost
-        {
-            public readonly string m = "m";
-            public readonly string a = "a";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -101,32 +39,6 @@ namespace Tax.Portal.Controllers
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_MailerController : Tax.Portal.Controllers.MailerController
-    {
-        public T4MVC_MailerController() : base(Dummy.Instance) { }
-
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult Index()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void EmailPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string m, string a);
-
-        public override System.Web.Mvc.ActionResult EmailPost(string m, string a)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EmailPost);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "m", m);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "a", a);
-            EmailPostOverride(callInfo, m, a);
-            return callInfo;
-        }
-
-    }
 }
 
 #endregion T4MVC

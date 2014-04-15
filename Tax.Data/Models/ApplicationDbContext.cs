@@ -64,8 +64,7 @@ namespace Tax.Data.Models
         public DbSet<Menu> Menu { get; set; }
         public DbSet<SubMenu> SubMenu { get; set; }
         public DbSet<KontaktRole> KontaktRole { get; set; }
-        public DbSet<ApplicationUserRole> ApplicationUserRole { get; set; }
-        public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<ApplicationUserRole> ApplicationUserRole { get; set; }        
         public DbSet<KontaktUserRole> KontaktUserRole { get; set; }
         public DbSet<PBXExtensionData> PBXExtensionData { get; set; }
         public DbSet<PhoneNumber> PhoneNumber { get; set; }
@@ -97,10 +96,6 @@ namespace Tax.Data.Models
         public DbSet<FileType> FileType { get; set; }
         public DbSet<File> File { get; set; }
         public DbSet<KontaktUser> KontaktUser { get; set; }
-        public DbSet<PBXLog> PBXLog { get; set; }
-        public DbSet<PBXCall> PBXCall { get; set; }
-        public DbSet<PBXSession> PBXSession { get; set; }
-        public DbSet<PBXTransfer> PBXTransfer { get; set; }
         public DbSet<DeviceUsage> DeviceUsage { get; set; }
         public DbSet<Devices> Devices { get; set; }
         public DbSet<DeviceTypes> DeviceTypes { get; set; }
@@ -110,22 +105,11 @@ namespace Tax.Data.Models
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<PreregistrationData> PreregistrationData { get; set; }
         public DbSet<SocialPosition> SocialPosition { get; set; }
-        public DbSet<SurveyAnswerCode> SurveyAnswerCodes { get; set; }
-        public DbSet<SurveyQuestionCode> SurveyQuestionCodes { get; set; }
         public DbSet<DbTable> DbTables { get; set; }
         public DbSet<LogRecordChange> LogRecordChanges { get; set; }
         public DbSet<BugPost> BugPosts { get; set; }
         public DbSet<ReservationTime> ReservationTime { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
-        public DbSet<ScheduleItem> ScheduleItem { get; set; }
-        public DbSet<ClosedSchedules> ClosedSchedules { get; set; }
-        public DbSet<PBXRegistration> PBXRegistration { get; set; }
-        public DbSet<PBXCallQueue> PBXCallQueue { get; set; }
-        public DbSet<PBXInterpreterTerminateCallQueue> PBXInterpreterTerminateCallQueue { get; set; }
-        public DbSet<PBXInterpreterStatus> PBXInterpreterStatus { get; set; }
-        public DbSet<AccountPeriod> AccountPeriod { get; set; }
-        public DbSet<AccountPeriodStatus> AccountPeriodStatus { get; set; }
-        public DbSet<Price> Price { get; set; }
 
         public override int SaveChanges()
         {

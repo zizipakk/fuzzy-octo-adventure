@@ -29,10 +29,9 @@ public static class MVC
     public static Tax.Portal.Controllers.ErrorsController Errors = new Tax.Portal.Controllers.T4MVC_ErrorsController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();
     public static Tax.Portal.Controllers.LogController Log = new Tax.Portal.Controllers.T4MVC_LogController();
-    public static Tax.Portal.Controllers.MailerController Mailer = new Tax.Portal.Controllers.T4MVC_MailerController();
-    public static Tax.Portal.Controllers.ScheduleController Schedule = new Tax.Portal.Controllers.T4MVC_ScheduleController();
     public static Tax.Portal.Controllers.SinoszController Sinosz = new Tax.Portal.Controllers.T4MVC_SinoszController();
     public static Tax.Portal.Controllers.StockController Stock = new Tax.Portal.Controllers.T4MVC_StockController();
+    public static T4MVC.MailerController Mailer = new T4MVC.MailerController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVC.UserMailerController UserMailer = new T4MVC.UserMailerController();
 }
@@ -67,19 +66,6 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
-{
-    public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
-    {
-        this.InitMVCT4Result(area, controller, action, protocol);
-    }
-    
-    public string Controller { get; set; }
-    public string Action { get; set; }
-    public string Protocol { get; set; }
-    public RouteValueDictionary RouteValueDictionary { get; set; }
-}
-[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 internal partial class T4MVC_Tax_Portal_Models_JsonpResult : Tax.Portal.Models.JsonpResult, IT4MVCActionResult
 {
     public T4MVC_Tax_Portal_Models_JsonpResult(string area, string controller, string action, string protocol = null): base()
@@ -96,6 +82,19 @@ internal partial class T4MVC_Tax_Portal_Models_JsonpResult : Tax.Portal.Models.J
 internal partial class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
 {
     public T4MVC_System_Web_Mvc_ViewResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
     {
         this.InitMVCT4Result(area, controller, action, protocol);
     }

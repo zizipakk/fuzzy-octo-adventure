@@ -2,13 +2,13 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.dll.config
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Antlr3.Runtime.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\DocumentFormat.OpenXml.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Elmah.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\EntityFramework.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\EntityFramework.SqlServer.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Essential.Diagnostics.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.Ado.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.AspNet.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.Core.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.EF6.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.Mvc5.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\log4net.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.AspNet.Identity.Core.dll
@@ -24,11 +24,9 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Owin.Security.M
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Owin.Security.OAuth.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Owin.Security.Twitter.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Web.Infrastructure.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Mvc.Mailer.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Newtonsoft.Json.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Owin.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\RestSharp.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Rotativa.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.Helpers.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.Mvc.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.Optimization.dll
@@ -71,5 +69,3 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Owin.Security.O
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.pdb
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.Ado.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Glimpse.EF6.dll

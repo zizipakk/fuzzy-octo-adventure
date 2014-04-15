@@ -88,12 +88,6 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpdateUsersIsElected()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateUsersIsElected);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult ListUserRoles()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListUserRoles);
@@ -153,7 +147,6 @@ namespace Tax.Portal.Controllers
             public readonly string Rule = "Rule";
             public readonly string ListUsers = "ListUsers";
             public readonly string UpdateUsers = "UpdateUsers";
-            public readonly string UpdateUsersIsElected = "UpdateUsersIsElected";
             public readonly string ListUserRoles = "ListUserRoles";
             public readonly string UpdateRolesIsInclude = "UpdateRolesIsInclude";
             public readonly string UpdateUserRoles = "UpdateUserRoles";
@@ -175,7 +168,6 @@ namespace Tax.Portal.Controllers
             public const string Rule = "Rule";
             public const string ListUsers = "ListUsers";
             public const string UpdateUsers = "UpdateUsers";
-            public const string UpdateUsersIsElected = "UpdateUsersIsElected";
             public const string ListUserRoles = "ListUserRoles";
             public const string UpdateRolesIsInclude = "UpdateRolesIsInclude";
             public const string UpdateUserRoles = "UpdateUserRoles";
@@ -250,15 +242,6 @@ namespace Tax.Portal.Controllers
             public readonly string oper = "oper";
             public readonly string u = "u";
             public readonly string k = "k";
-        }
-        static readonly ActionParamsClass_UpdateUsersIsElected s_params_UpdateUsersIsElected = new ActionParamsClass_UpdateUsersIsElected();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateUsersIsElected UpdateUsersIsElectedParams { get { return s_params_UpdateUsersIsElected; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateUsersIsElected
-        {
-            public readonly string UserId = "UserId";
-            public readonly string isElected = "isElected";
         }
         static readonly ActionParamsClass_ListUserRoles s_params_ListUserRoles = new ActionParamsClass_ListUserRoles();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -441,17 +424,6 @@ namespace Tax.Portal.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "u", u);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "k", k);
             UpdateUsersOverride(callInfo, id, oper, u, k);
-            return callInfo;
-        }
-
-        partial void UpdateUsersIsElectedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UserId, bool isElected);
-
-        public override System.Web.Mvc.ActionResult UpdateUsersIsElected(string UserId, bool isElected)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateUsersIsElected);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UserId", UserId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isElected", isElected);
-            UpdateUsersIsElectedOverride(callInfo, UserId, isElected);
             return callInfo;
         }
 

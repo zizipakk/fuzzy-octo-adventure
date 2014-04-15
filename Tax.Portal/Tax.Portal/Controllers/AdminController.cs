@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using Tax.Portal.Mailers;
 using Tax.Portal.Helpers;
 
 
@@ -447,54 +446,6 @@ namespace Tax.Portal.Controllers
         //    return null;
         //}
 
-        public virtual ActionResult UpdateUsersIsElected(string UserId, bool isElected)
-        {
-            if (null != UserId)
-            {
-                var u = db.Users.Single(x => x.Id == UserId);
-                var k = db.KontaktUser.Single(x => x.Id == u.KontaktUser.Id);
-                if (k.isElected != isElected)
-                {
-                    k.isElected = isElected;
-                    db.SaveChanges();
-
-                    if (u.isEmailValidated && isElected && null != k.SinoszId && k.isCommunicationRequested)
-                    {//remélem ez csak az előregisztrációban van így: a flag systemparameters-ben nem jó, mert lehet, hogy fut tovább az előregisztráció
-                        //levélküldés folyamata
-                        //címzés
-                        var addresses = new List<Addressee>();
-                        addresses.Add(new Addressee
-                        {
-                            Email = u.Email,
-                            FullName = u.UserName
-                        });
-
-                        if (k.isDeviceReqested)
-                        {//kér eszközt
-                            var message = new Message<WithDeviceElectedEmailData>();
-                            message.Subject = "Értesítés regisztráció eredményéről - KONTAKT Tolmácsszolgálat";
-                            message.Data = new WithDeviceElectedEmailData();
-                            message.Data.fullname = string.Format("{0} {1}", k.FirstName ?? "", k.LastName ?? "");
-                            message.Data.organizationname = "SINOSZ Fővárosi szervezete";
-                            message.Data.organizationaddress = "1068-Budapest, Benczúr u. 21.";
-                            MessageHelper<WithDeviceElectedEmailData>.SendMessageToQueue(message, addresses, Url);
-                        }
-                        else
-                        {
-                            var message = new Message<WithoutDeviceElectedEmailData>();
-                            message.Subject = "Értesítés regisztráció eredményéről - KONTAKT Tolmácsszolgálat";
-                            message.Data = new WithoutDeviceElectedEmailData();
-                            message.Data.fullname = string.Format("{0} {1}", k.FirstName ?? "", k.LastName ?? "");
-                            message.Data.organizationname = u.SinoszUser.Organization.OrganizationName;
-                            message.Data.organizationaddress = string.Format("{0}{1}", null == u.SinoszUser.Organization.Postcode ? "" : u.SinoszUser.Organization.Postcode.Code + "-", u.SinoszUser.Organization.Address ?? "");
-                            MessageHelper<WithoutDeviceElectedEmailData>.SendMessageToQueue(message, addresses, Url);
-                        }
-                    }
-                }
-            }
-            return Json(new { success = true });
-        }
-
 
         /// <summary>
         /// A karbantartó grid adatforrása
@@ -561,11 +512,8 @@ namespace Tax.Portal.Controllers
             if ("null" != UserId)//RoleId mindig van és az isInclude click-en vagyok
             {                
                 var res0 = db.Users.Find(UserId);
-                var message = new Message<RulesEmailData>();
-                var ved = new RulesEmailData();
                 if (isInclude)
                 {
-                    ved.isDelete = false;
                     var res = db.ApplicationUserRole.Create();
                     res.UserId = UserId;
                     res.RoleId = RoleId;
@@ -576,29 +524,9 @@ namespace Tax.Portal.Controllers
                     //csak telkós esetben
                     if (res.Role.Name == "PBXUser" || res.Role.Name == "Jeltolmácsok" || res.Role.Name == "Szakmai vezető" || res.Role.Name == "Diszpécser" || res.Role.Name == "Üzemeltető")
                     {
-//TODO már a SinoszUsernek is kell, ezért kiteszem
-                        //var res1 = db.KontaktUserRole.Create();
-                        //res.KontaktUserRole = res1;
-                        //db.Entry(res1).State = EntityState.Added;
                         var res2 = db.PBXExtensionData.Create();
                         res1.PBXExtensionData = res2;
                         res2.ApplicationUser = db.Users.Single(x => x.Id == UserId);
-                        //kötelező mezők lettek reg1-ben
-                        //if (res2.ApplicationUser.KontaktUser.FirstName + res2.ApplicationUser.KontaktUser.LastName == string.Empty) //nincs megadva név
-                        //{
-                        //    return Json(new { success = false }); //return Json(e.Message) 
-                        //}
-                        //var res3 = (from pn in db.PhoneNumber
-                        //            from px in db.PBXExtensionData.Where(x => x.PhoneNumber.Id == pn.Id && x.isDroped == false).DefaultIfEmpty()
-                        //            where (null == px.Id //nincs ilyen aktív szám
-                        //                  && res.Role.Name != "PBXUser" //nem pbxuser
-                        //                  && "" == pn.ExternalPhoneNumber) //nem kell külső szám, ha "belső" szereplők vagyunk
-                        //                  ||
-                        //                  (null == px.Id //nincs ilyen aktív szám
-                        //                  && res.Role.Name == "PBXUser" //nem pbxuser
-                        //                  && "" != pn.ExternalPhoneNumber) //kell külső szám, ha "belső" szereplők vagyunk
-                        //            select pn)
-                        //            .OrderBy(x => x.InnerPhoneNumber).First();
                         var res3 = (from pn in db.PhoneNumber
                                     from px in db.PBXExtensionData.Where(x => x.PhoneNumber.Id == pn.Id && x.isDroped == false).DefaultIfEmpty()
                                     where (null == px.Id //nincs ilyen aktív szám
@@ -626,11 +554,6 @@ namespace Tax.Portal.Controllers
                         res2.StartTime = DateTime.Now;
                         res2.EndTime = DateTime.MaxValue;
                         db.Entry(res2).State = EntityState.Added;
-                        //A email-t küldünk
-                        //ved.password = res2.ApplicationUser.Password;//res2.Password;
-                        //ved.extId = res3.InnerPhoneNumber + "@" + res2.ApplicationUser.UserName;
-                        ved.innNumber = res3.InnerPhoneNumber;
-                        ved.extNumber = res3.ExternalPhoneNumber;
                         //ha a területileg elfogyott a limit, danger
                         if (null != res0.SinoszUser) //regisztrált sinoszuser, lesz tagszervezet, és megyéje
                         {
@@ -652,15 +575,9 @@ namespace Tax.Portal.Controllers
                             }
                         }
                     }
-                    //adatok a levélre
-                    ved.rolename = res.Role.Name;
-                    //maga a levél
-                    message.Subject = "KONTAKT Tolmácsszolgálat – Szolgáltatási adatok";
-                    message.Data = ved;
                 }
                 else
                 {
-                    ved.isDelete = true;
                     var red = db.ApplicationUserRole.Single(x => x.UserId == UserId && x.RoleId == RoleId);
                     if (null != red.KontaktUserRole)
                     {
@@ -672,37 +589,14 @@ namespace Tax.Portal.Controllers
                             if (red3.isSynced) { red3.isSynced = false; } //isDroped true  miatt nem is fog látszani ez az inaktív rekord, de azért beállítom
                             red3.EndTime = DateTime.Now;
                             //ved.extId = red3.PhoneNumber.InnerPhoneNumber + "@" + red.User.UserName;
-                            ved.innNumber = red3.PhoneNumber.InnerPhoneNumber;
-                            ved.extNumber = red3.PhoneNumber.ExternalPhoneNumber;
                         }
                         db.Entry(red1).State = EntityState.Deleted;
                     }
-                    //adatok a levélre
-                    ved.rolename = red.Role.Name;
-                    //maga a levél
-                    message.Subject = "KONTAKT Tolmácsszolgálat – Szolgáltatási adatok";
-                    message.Data = ved;
 
                     db.Entry(red).State = EntityState.Deleted;
                 }
 
                 db.SaveChanges();
-
-                //A email-t küldünk                                    
-                //címzés
-                var addresses = new List<Addressee>();
-                addresses.Add(new Addressee
-                {
-                    Email = res0.Email,
-                    FullName = res0.UserName
-                });
-                //bővítem a bodyt
-                message.Data.email = res0.Email;
-                message.Data.username = res0.UserName;
-                message.Data.fullname = string.Format("{0} {1}", null == res0.KontaktUser ? "" : res0.KontaktUser.FirstName, null == res0.KontaktUser ? "" : res0.KontaktUser.LastName);
-                //Küldjük a levelet
-                MessageHelper<RulesEmailData>.SendMessageToQueue(message, addresses, Url);
-
             }
 
             if ("" != limitwarning)

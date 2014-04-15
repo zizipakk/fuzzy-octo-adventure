@@ -20,17 +20,12 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Tax.Data.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Tax.Portal.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\TechTalk.SpecFlow.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\log4net.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Mvc.Mailer.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\T4MVCExtensions.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\System.Web.Optimization.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\DocumentFormat.OpenXml.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Rotativa.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Elmah.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\RestSharp.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Tax.Data.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Tax.Portal.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\EntityFramework.xml
@@ -52,7 +47,6 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.Owi
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\bin\Debug\RestSharp.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\obj\Debug\Tax.Portal.Tests.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\obj\Debug\Tax.Portal.Tests.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal.Tests\obj\Debug\Tax.Portal.Tests.pdb

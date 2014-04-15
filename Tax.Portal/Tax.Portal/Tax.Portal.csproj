@@ -44,13 +44,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
-    </Reference>
     <Reference Include="Essential.Diagnostics">
       <HintPath>..\..\packages\Essential.Diagnostics.1.2.501.0\lib\Essential.Diagnostics.dll</HintPath>
     </Reference>
@@ -97,17 +90,11 @@
       <HintPath>..\..\packages\Microsoft.Owin.Security.Twitter.2.0.2\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Mvc.Mailer">
-      <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Rotativa">
-      <HintPath>..\..\packages\Rotativa.1.6.1\lib\net40\Rotativa.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -219,9 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\StockController.cs" />
-    <Compile Include="Controllers\MailerController.cs" />
     <Compile Include="Controllers\SinoszController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
@@ -234,9 +219,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AttributeHelpers.cs" />
-    <Compile Include="Helpers\ElmahHelpers.cs" />
-    <Compile Include="Helpers\DataForExcel.cs" />
-    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\JQGrid\Filter.cs" />
     <Compile Include="Helpers\JQGrid\GridModelBinder.cs" />
@@ -255,19 +237,13 @@
     <Compile Include="MailerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\JsonpResult.cs" />
     <Compile Include="Models\Log4netModels.cs" />
     <Compile Include="Models\NewViewModels.cs" />
-    <Compile Include="Models\PrintContractViewModels.cs" />
     <Compile Include="Models\ReservationViewModels.cs" />
-    <Compile Include="Models\ScheduleViewModels.cs" />
     <Compile Include="Models\SinoszViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScheduleController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -288,7 +264,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -393,18 +368,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="nuget.config" />
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\BUILD.pubxml" />
     <None Include="Properties\PublishProfiles\DEPLOY.pubxml" />
     <None Include="Properties\PublishProfiles\DEPLOYTOSERVER.pubxml" />
     <None Include="Properties\PublishProfiles\tkontakt.pubxml" />
-    <Content Include="NuGet.exe" />
-    <Content Include="Rotativa\libeay32.dll" />
-    <Content Include="Rotativa\libgcc_s_dw2-1.dll" />
-    <Content Include="Rotativa\mingwm10.dll" />
-    <Content Include="Rotativa\README.txt" />
-    <Content Include="Rotativa\ssleay32.dll" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\angular\angular-cookies.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\calendar\calendar.js" />
@@ -932,8 +899,6 @@
     <Content Include="Views\Sinosz\PrintDevContract.cshtml" />
     <Content Include="Views\Home\PrintCommContract.cshtml" />
     <Content Include="Views\Home\PrintDevContract.cshtml" />
-    <Content Include="Views\Schedule\Edit.cshtml" />
-    <Content Include="Views\Schedule\Display.cshtml" />
     <Content Include="Views\UserMailer\ScheduleClosed.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -946,7 +911,6 @@
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />
     <Folder Include="App_Data\Mails\" />
-    <Folder Include="Views\Mailer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

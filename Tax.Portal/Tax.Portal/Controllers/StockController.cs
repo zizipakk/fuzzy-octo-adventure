@@ -13,8 +13,6 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
 using Tax.Portal.Helpers;
-using Rotativa;
-using Tax.Portal.Mailers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

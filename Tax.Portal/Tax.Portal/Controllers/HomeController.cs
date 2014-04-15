@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Tax.Portal.Mailers;
 using Tax.Portal.Models;
 
 

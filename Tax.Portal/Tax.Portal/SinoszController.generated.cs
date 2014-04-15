@@ -260,36 +260,6 @@ namespace Tax.Portal.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListAccountingDocumentsForList);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PrintPDF()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintPDF);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PrintCommContractPDF()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintCommContractPDF);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PrintCommContract()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintCommContract);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PrintDevContractPDF()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintDevContractPDF);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult PrintDevContract()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintDevContract);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SinoszController Actions { get { return MVC.Sinosz; } }
@@ -345,11 +315,6 @@ namespace Tax.Portal.Controllers
             public readonly string List = "List";
             public readonly string ListSinoszUsersForList = "ListSinoszUsersForList";
             public readonly string ListAccountingDocumentsForList = "ListAccountingDocumentsForList";
-            public readonly string PrintPDF = "PrintPDF";
-            public readonly string PrintCommContractPDF = "PrintCommContractPDF";
-            public readonly string PrintCommContract = "PrintCommContract";
-            public readonly string PrintDevContractPDF = "PrintDevContractPDF";
-            public readonly string PrintDevContract = "PrintDevContract";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -394,11 +359,6 @@ namespace Tax.Portal.Controllers
             public const string List = "List";
             public const string ListSinoszUsersForList = "ListSinoszUsersForList";
             public const string ListAccountingDocumentsForList = "ListAccountingDocumentsForList";
-            public const string PrintPDF = "PrintPDF";
-            public const string PrintCommContractPDF = "PrintCommContractPDF";
-            public const string PrintCommContract = "PrintCommContract";
-            public const string PrintDevContractPDF = "PrintDevContractPDF";
-            public const string PrintDevContract = "PrintDevContract";
         }
 
 
@@ -751,46 +711,6 @@ namespace Tax.Portal.Controllers
         {
             public readonly string grid = "grid";
             public readonly string Output = "Output";
-        }
-        static readonly ActionParamsClass_PrintPDF s_params_PrintPDF = new ActionParamsClass_PrintPDF();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PrintPDF PrintPDFParams { get { return s_params_PrintPDF; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PrintPDF
-        {
-            public readonly string grid = "grid";
-        }
-        static readonly ActionParamsClass_PrintCommContractPDF s_params_PrintCommContractPDF = new ActionParamsClass_PrintCommContractPDF();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PrintCommContractPDF PrintCommContractPDFParams { get { return s_params_PrintCommContractPDF; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PrintCommContractPDF
-        {
-            public readonly string suserId = "suserId";
-        }
-        static readonly ActionParamsClass_PrintCommContract s_params_PrintCommContract = new ActionParamsClass_PrintCommContract();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PrintCommContract PrintCommContractParams { get { return s_params_PrintCommContract; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PrintCommContract
-        {
-            public readonly string suserId = "suserId";
-        }
-        static readonly ActionParamsClass_PrintDevContractPDF s_params_PrintDevContractPDF = new ActionParamsClass_PrintDevContractPDF();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PrintDevContractPDF PrintDevContractPDFParams { get { return s_params_PrintDevContractPDF; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PrintDevContractPDF
-        {
-            public readonly string suserId = "suserId";
-        }
-        static readonly ActionParamsClass_PrintDevContract s_params_PrintDevContract = new ActionParamsClass_PrintDevContract();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_PrintDevContract PrintDevContractParams { get { return s_params_PrintDevContract; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_PrintDevContract
-        {
-            public readonly string suserId = "suserId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1282,56 +1202,6 @@ namespace Tax.Portal.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Output", Output);
             ListAccountingDocumentsForListOverride(callInfo, grid, Output);
-            return callInfo;
-        }
-
-        partial void PrintPDFOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, JQGrid.Helpers.GridSettings grid);
-
-        public override System.Web.Mvc.ActionResult PrintPDF(JQGrid.Helpers.GridSettings grid)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintPDF);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
-            PrintPDFOverride(callInfo, grid);
-            return callInfo;
-        }
-
-        partial void PrintCommContractPDFOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid suserId);
-
-        public override System.Web.Mvc.ActionResult PrintCommContractPDF(System.Guid suserId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintCommContractPDF);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "suserId", suserId);
-            PrintCommContractPDFOverride(callInfo, suserId);
-            return callInfo;
-        }
-
-        partial void PrintCommContractOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid suserId);
-
-        public override System.Web.Mvc.ActionResult PrintCommContract(System.Guid suserId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintCommContract);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "suserId", suserId);
-            PrintCommContractOverride(callInfo, suserId);
-            return callInfo;
-        }
-
-        partial void PrintDevContractPDFOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid suserId);
-
-        public override System.Web.Mvc.ActionResult PrintDevContractPDF(System.Guid suserId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintDevContractPDF);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "suserId", suserId);
-            PrintDevContractPDFOverride(callInfo, suserId);
-            return callInfo;
-        }
-
-        partial void PrintDevContractOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid suserId);
-
-        public override System.Web.Mvc.ActionResult PrintDevContract(System.Guid suserId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PrintDevContract);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "suserId", suserId);
-            PrintDevContractOverride(callInfo, suserId);
             return callInfo;
         }
 
