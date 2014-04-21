@@ -25,28 +25,8 @@ namespace Tax.Data.Models
         [Key]
         public Guid Id { get; set; }
         public Guid FileId { get; set; }
-
-        public virtual SinoszUser SinoszUser { get; set; }
-        public virtual FileType FileType { get; set; }
     }
 
-    /// <summary>
-    /// Fájltípus
-    /// </summary>
-    public class FileType
-    {
-        public FileType()
-        {
-            Id = Guid.NewGuid();
-            AttachedFile = new HashSet<AttachedFile>();
-        }
-
-        [Key]
-        public Guid Id { get; set; }
-        public string FileTypeName { get; set; }
-
-        public virtual ICollection<AttachedFile> AttachedFile { get; set; }
-    }
 
     /// <summary>
     /// A filetable
@@ -60,7 +40,6 @@ namespace Tax.Data.Models
         public string name { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string file_type { get; set; }
-        //public string mock { get; set; } 
     }
 
 }

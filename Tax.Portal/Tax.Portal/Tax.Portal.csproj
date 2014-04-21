@@ -228,6 +228,12 @@
     <Compile Include="Helpers\JQGrid\Rule.cs" />
     <Compile Include="Helpers\JQGrid\StringEnum.cs" />
     <Compile Include="Helpers\JQGrid\WhereOperation.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\CultureFormatChecker.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\CultureManager.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\CultureRouteConstraint.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\GlobalisationHtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\GlobalisationRouteHandler.cs" />
+    <Compile Include="Helpers\MvcGlobalizationSupport\GlobalisedRoute.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -273,23 +279,6 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\ajaxloading.gif" />
-    <Content Include="Content\images\bkg_header_pattern.png" />
-    <Content Include="Content\images\bkg_mainpage.jpg" />
-    <Content Include="Content\images\bkg_mainpage_temporary.jpg" />
-    <Content Include="Content\images\footer_logo_egroup.png" />
-    <Content Include="Content\images\footer_logo_invitel.png" />
-    <Content Include="Content\images\Kontakt_logo.png" />
-    <Content Include="Content\images\Kontakt_Tolmacsszolgalat_Logo.png" />
-    <Content Include="Content\images\mo_megujul.png" />
-    <Content Include="Content\images\sinosz.png" />
-    <Content Include="Content\images\sinosz_logo_felirattal.jpg" />
-    <Content Include="Content\images\sinosz_logo_felirattal.png" />
-    <Content Include="Content\images\tabelle.png" />
-    <Content Include="Content\images\uj_szechenyi_terv.png" />
-    <Content Include="Content\images\vri.png" />
-    <Content Include="Content\images\vri2.jpg" />
-    <Content Include="Content\images\vrs.png" />
-    <Content Include="Content\images\vrs2.png" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -900,6 +889,7 @@
     <Content Include="Views\Home\PrintCommContract.cshtml" />
     <Content Include="Views\Home\PrintDevContract.cshtml" />
     <Content Include="Views\UserMailer\ScheduleClosed.cshtml" />
+    <Content Include="Views\Shared\_LocalisationPartial.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

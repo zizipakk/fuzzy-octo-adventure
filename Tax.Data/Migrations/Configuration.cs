@@ -23,37 +23,31 @@ namespace Tax.Data.Migrations
             UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager) { AllowOnlyAlphanumericUserNames = false }; 
             ApplicationUser user;
             IdentityResult result;
-            KontaktUser kontaktuser;
 
             if (null == UserManager.FindByName("admin"))
             {
-                kontaktuser = context.KontaktUser.Create();
-
                 var role = context.Roles.Single(x => x.Name == "SysAdmin");
 
                 user = new ApplicationUser()
                 {
                     UserName = "admin",
+                    Name = "Admin Admin",
                     Email = "admin@tax.hu",
-                    isEmailValidated = true,
-                    Password = "Admin123",
-                    isSynced = true,
-                    KontaktUser = kontaktuser
                 };
-                result = UserManager.Create(user, user.Password);
+                result = UserManager.Create(user, "Admin123");
 
                 if (!result.Succeeded)
                 {
                     throw new ApplicationException("Nem sikerült az admin felhasználó rögzítése");
                 }
 
-                var aur = new ApplicationUserRole()
+                var iur = new IdentityUserRole()
                 {
                     User = user,
                     Role = role
                 };
 
-                context.Entry(aur).State = EntityState.Added;
+                context.Entry(iur).State = EntityState.Added;
             }
 
             context.SaveChanges();            

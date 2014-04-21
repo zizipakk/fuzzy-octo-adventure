@@ -1,0 +1,21 @@
+﻿@using Tax.Portal.MvcGlobalisationSupport;
+@*<li>
+    <a class="dropdown-toggle @(CultureManager.CultureClass())" id="localisationlink" data-toggle="dropdown" href="#"><i class="icon-flag icon-white icon-2x"></i><br />@(CultureManager.CultureName()) <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        @if (!CultureManager.CurrentCultureTwoLetter().Equals(CultureManager.CultureNameHungarian,StringComparison.InvariantCultureIgnoreCase)) 
+        {<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameHungarian), CultureManager.CultureNameHungarian, CultureManager.CultureClass(CultureManager.CultureNameHungarian), ViewContext.RouteData)</li>}
+        @if (!CultureManager.CurrentCultureTwoLetter().Equals(CultureManager.CultureNameEnglish, StringComparison.InvariantCultureIgnoreCase)) 
+        {<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameEnglish),CultureManager.CultureNameEnglish, CultureManager.CultureClass(CultureManager.CultureNameEnglish), ViewContext.RouteData)</li>}
+        @if (!CultureManager.CurrentCultureTwoLetter().Equals(CultureManager.CultureNameGerman, StringComparison.InvariantCultureIgnoreCase))
+        {<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameGerman), CultureManager.CultureNameGerman, CultureManager.CultureClass(CultureManager.CultureNameGerman), ViewContext.RouteData)</li>}
+    </ul>
+</li>*@
+@*<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameHungarian), CultureManager.CultureNameHungarian, CultureManager.CultureClass(CultureManager.CultureNameHungarian), ViewContext.RouteData)</li>
+<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameEnglish),CultureManager.CultureNameEnglish, CultureManager.CultureClass(CultureManager.CultureNameEnglish), ViewContext.RouteData)</li>
+<li>@Html.GlobalisedRouteLink(CultureManager.CultureName(CultureManager.CultureNameGerman), CultureManager.CultureNameGerman, CultureManager.CultureClass(CultureManager.CultureNameGerman), ViewContext.RouteData)</li>*@
+
+<li><a href="/hu"><img src="@Url.Content("~/Content/Images/fl/hu.png")" /><br />@CultureManager.CultureName(CultureManager.CultureNameHungarian)</a></li>
+<li><a href="/en"><img src="@Url.Content("~/Content/Images/fl/gb.png")" /><br />@CultureManager.CultureName(CultureManager.CultureNameEnglish)</a></li>
+
+
+

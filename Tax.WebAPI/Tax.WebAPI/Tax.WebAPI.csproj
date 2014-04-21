@@ -208,17 +208,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressBookController.cs" />
     <Compile Include="Controllers\APITestController.cs" />
-    <Compile Include="Controllers\ChatController.cs" />
-    <Compile Include="Controllers\CommentController.cs" />
-    <Compile Include="Controllers\InterpreterExtensionForCallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaxWebAPIBaseController.cs" />
-    <Compile Include="Controllers\DeviceUsageController.cs" />
-    <Compile Include="Controllers\OriginalDialedNumberController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\SystemParameterController.cs" />
-    <Compile Include="Controllers\BugPostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,13 +227,7 @@
     <Compile Include="Query\UserQueries.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Results\FileResult.cs" />
-    <Compile Include="Service\ChatService.cs" />
-    <Compile Include="Service\CommentService.cs" />
-    <Compile Include="Service\DeviceUsageService.cs" />
-    <Compile Include="Service\PBXService.cs" />
     <Compile Include="Service\ProfileService.cs" />
-    <Compile Include="Service\SurveyService.cs" />
-    <Compile Include="Service\BugPostService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

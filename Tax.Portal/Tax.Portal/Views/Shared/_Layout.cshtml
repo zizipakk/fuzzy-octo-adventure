@@ -11,7 +11,7 @@
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/Scripts/modernizr")
     <style type="text/css">
-        body { padding-top: 118px}
+        body { padding-top: 70px}
     </style>
 
 </head>
@@ -72,10 +72,11 @@
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LocalisationPartial")*@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="min-height: 668px; background-color: gray">
         @RenderBody()
         <footer>
             <div class="input-group-addon row" style="background-color: none;">
