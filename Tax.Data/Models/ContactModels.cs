@@ -40,7 +40,7 @@ namespace Tax.Data.Models
         public string Email { get; set; }
 
 //        [Display(Name = "Photo")]
-        public virtual AttachedFile Photo { get; set; }
+        public virtual File Photo { get; set; }
 //        [Display(Name = "Tags")]
         public virtual ICollection<TagsGlobal> TagsGlobal { get; set; }
 //        [Display(Name = "Állapot")]

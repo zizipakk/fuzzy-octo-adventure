@@ -14,16 +14,16 @@ namespace Tax.WebAPI.Controllers
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(SystemParameterController));
 
-        [AllowAnonymous]
-        public IEnumerable<SystemParameter> Get()
-        {
-            return SystemParameterQueries.GetAllPublicParameters(context);
-        }
+        //[AllowAnonymous]
+        //public IEnumerable<SystemParameter> Get()
+        //{
+        //    return SystemParameterQueries.GetAllPublicParameters(context);
+        //}
 
-        [AllowAnonymous]
-        public SystemParameter Get(string name)
-        {
-            return SystemParameterQueries.GetPublicParameterByName(context, name);
-        }
+        //[AllowAnonymous]
+        //public SystemParameter Get(string name)
+        //{
+        //    return SystemParameterQueries.GetPublicParameterByName(context, name);
+        //}
     }
 }

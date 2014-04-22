@@ -57,7 +57,6 @@ namespace Tax.Data.Models
         public DbSet<Log> Logs { get; set; }
         public DbSet<Menu> Menu { get; set; }
         public DbSet<SubMenu> SubMenu { get; set; }
-        public DbSet<AttachedFile> AttachedFile { get; set; }
         public DbSet<File> File { get; set; }
         public DbSet<CategoriesGlobal> CategoriesGlobal { get; set; }
         public DbSet<CategoriesLocal> CategoriesLocal { get; set; }

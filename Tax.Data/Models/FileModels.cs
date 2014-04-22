@@ -11,23 +11,6 @@ using System.IO;
 
 namespace Tax.Data.Models
 {
-
-    /// <summary>
-    /// A filetable-t kiegészíti a típussal
-    /// </summary>
-    public partial class AttachedFile
-    {
-        public AttachedFile()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        [Key]
-        public Guid Id { get; set; }
-        public Guid FileId { get; set; }
-    }
-
-
     /// <summary>
     /// A filetable
     /// </summary>
