@@ -12,6 +12,7 @@ namespace Tax.WebAPI
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigureAuth(app);
         }
     }
 }

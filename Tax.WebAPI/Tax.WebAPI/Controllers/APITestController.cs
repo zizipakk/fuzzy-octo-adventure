@@ -8,12 +8,13 @@ namespace Tax.WebAPI.Controllers
 {
     public class APITestController : Controller
     {
-        public ActionResult Login()
+        [AllowAnonymous]
+        public ActionResult GetNew()
         {
             return View();
         }
 
-        public ActionResult GetProfile()
+        public ActionResult GetNews()
         {
             return View();
         }

@@ -1,3 +1,4 @@
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\obj\Debug\Tax.WebAPI.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.dll.config
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.pdb
@@ -73,6 +74,5 @@ C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.Security.G
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.Security.Twitter.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\System.Web.Http.Owin.xml
-C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\obj\Debug\Tax.WebAPI.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\obj\Debug\Tax.WebAPI.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\obj\Debug\Tax.WebAPI.pdb
