@@ -51,7 +51,7 @@ namespace Tax.WebAPI.Controllers
         [AllowAnonymous]
         [Route("api/Articles")]
         [ResponseType(typeof(IEnumerable<ArticlesBindingModel>))]
-        public IHttpActionResult Articles(string[] tags, string lang, int? page)
+        public IHttpActionResult Articles(IEnumerable<string> tags, string lang, int? page)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace Tax.WebAPI.Controllers
         [AllowAnonymous]
         [Route("api/SearchArticles")]
         [ResponseType(typeof(IEnumerable<ArticlesBindingModel>))]
-        public IHttpActionResult SearchArticles(string[] tags, string lang, string search)
+        public IHttpActionResult SearchArticles(IEnumerable<string> tags, string lang, string search)
         {
             try
             {

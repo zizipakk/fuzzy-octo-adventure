@@ -20,13 +20,15 @@ namespace Tax.Data.Models
             Id = Guid.NewGuid();
             TagsLocal = new HashSet<TagsLocal>();
             NewsGlobal = new HashSet<NewsGlobal>();
+            ContactsGlobal = new HashSet<ContactsGlobal>();
         }
 
         [Key]
         public Guid Id { get; set; }
         public virtual ICollection<TagsLocal> TagsLocal { get; set; }
-
         public virtual ICollection<NewsGlobal> NewsGlobal { get; set; }
+        public virtual ICollection<ContactsGlobal> ContactsGlobal { get; set; }
+
     }
 
     /// <summary>

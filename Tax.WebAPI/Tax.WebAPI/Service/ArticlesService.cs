@@ -67,7 +67,11 @@ namespace Tax.WebAPI.Service
                         Title2 = resl.Title2,
                         Subtitle = resl.Subtitle,
                         Body = resl.Body_text,
-                        Tags = resg.TagsGlobal.SelectMany(v => context.TagsLocal.Where(z => z.Language.Name == lang), (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                        Tags = resg.TagsGlobal
+                                .SelectMany(v => context.TagsLocal.Where(z => 
+                                                                            z.TagsGlobal.Id == v.Id
+                                                                            && z.Language.ShortName == lang)
+                                    , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                         Date = TimestampHelpers.GetTimestamp((DateTime)resg.PublishingDate),
                     };
                 }
@@ -82,7 +86,7 @@ namespace Tax.WebAPI.Service
         /// <param name="page"></param>
         /// <param name="url"></param>
         /// <returns></returns>
-        public IEnumerable<ArticlesBindingModel> GetArticles(string[] tags, string lang, int? page, string url)
+        public IEnumerable<ArticlesBindingModel> GetArticles(IEnumerable<string> tags, string lang, int? page, string url)
         {
             if (null == page || page <= 0)
             {
@@ -115,23 +119,31 @@ namespace Tax.WebAPI.Service
                         return null;
                     }
 
+                    string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
+
                     var res = context.NewsGlobal
                                 .Where(x => x.NewsStatus.NameGlobal == "Published"
                                         && x.TagsGlobal.Select(y => y.Id.ToString()).ToArray().Intersect(tags).Any()
-                        // vagy && x.TagsGlobal.Any(y => tagsList.Contains(y.Id.ToString()))
                                 )
-                                .SelectMany(x => x.NewsLocal.Where(y => y.Language.ShortName == lang), (x, y) => new { x, y })
+                                .Include(x => x.TagsGlobal)
+                                .SelectMany(x => x.NewsLocal.Where(y => 
+                                                                    y.NewsGlobalId == x.Id
+                                                                    && y.Language.ShortName == lang), (x, y) => new { x, y })
                                 .OrderByDescending(o => o.x.PublishingDate)
                                 .Select(s => new ArticlesBindingModel
                                     {
                                         Id = s.x.Id.ToString(),
-                                        ImageURL = string.Format("{0}api/Image?id={1}", HtmlHelpers.AppBaseUrl(url), s.x.Headline_picture.stream_id.ToString()),
-                                        ThumbnailURL = string.Format("{0}api/Image?id={1}", HtmlHelpers.AppBaseUrl(url), s.x.Thumbnail.stream_id.ToString()),
+                                        ImageURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
+                                        ThumbnailURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
                                         Title1 = s.y.Title1,
                                         Title2 = s.y.Title2,
                                         Subtitle = s.y.Subtitle,
                                         Body = s.y.Body_text,
-                                        Tags = s.x.TagsGlobal.SelectMany(v => context.TagsLocal.Where(z => z.Language.ShortName == lang), (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                        Tags = s.x.TagsGlobal
+                                                    .SelectMany(v => context.TagsLocal.Where(z =>
+                                                                                                z.TagsGlobal.Id == v.Id
+                                                                                                && z.Language.ShortName == lang)
+                                                        , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                                         Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
                                     }
                                 )
@@ -151,7 +163,7 @@ namespace Tax.WebAPI.Service
         /// <param name="search"></param>
         /// <param name="url"></param>
         /// <returns></returns>
-        public IEnumerable<ArticlesBindingModel> SearchArticles(string[] tags, string lang, string search, string url)
+        public IEnumerable<ArticlesBindingModel> SearchArticles(IEnumerable<string> tags, string lang, string search, string url)
         {
             string pagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "SearchPageSize" && x.Public).Value;
 
@@ -167,13 +179,17 @@ namespace Tax.WebAPI.Service
                     return null;
                 }
 
+                string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
                 var searchList = SearchHelpers.GetSaerchList(search, lang);
 
                 var res = context.NewsGlobal
                             .Where(x => x.NewsStatus.NameGlobal == "Published"
                                     && x.TagsGlobal.Select(y => y.Id.ToString()).ToArray().Intersect(tags).Any()
                             )
-                            .SelectMany(x => x.NewsLocal.Where(y => y.Language.ShortName == lang), (x, y) => new { x, y })
+                            .Include(x => x.TagsGlobal)
+                            .SelectMany(x => x.NewsLocal.Where(y =>
+                                                                y.NewsGlobalId == x.Id
+                                                                && y.Language.ShortName == lang), (x, y) => new { x, y })
                             .Where(s => searchList.Any(ss => s.y.Title1.Contains(ss))
                                     || searchList.Any(ss => s.y.Title2.Contains(ss))
                                     || searchList.Any(ss => s.y.Subtitle.Contains(ss))
@@ -183,13 +199,17 @@ namespace Tax.WebAPI.Service
                             .Select(s => new ArticlesBindingModel
                             {
                                 Id = s.x.Id.ToString(),
-                                ImageURL = string.Format("{0}api/Image?id={1}", HtmlHelpers.AppBaseUrl(url), s.x.Headline_picture.stream_id.ToString()),
-                                ThumbnailURL = string.Format("{0}api/Image?id={1}", HtmlHelpers.AppBaseUrl(url), s.x.Thumbnail.stream_id.ToString()),
+                                ImageURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
+                                ThumbnailURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
                                 Title1 = s.y.Title1,
                                 Title2 = s.y.Title2,
                                 Subtitle = s.y.Subtitle,
                                 Body = s.y.Body_text,
-                                Tags = s.x.TagsGlobal.SelectMany(v => context.TagsLocal.Where(z => z.Language.ShortName == lang), (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                Tags = s.x.TagsGlobal
+                                            .SelectMany(v => context.TagsLocal.Where(z =>
+                                                                                        z.TagsGlobal.Id == v.Id
+                                                                                        && z.Language.ShortName == lang)
+                                                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                                 Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
                             }
                             )

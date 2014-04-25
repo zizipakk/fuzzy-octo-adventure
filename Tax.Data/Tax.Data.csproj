@@ -90,6 +90,10 @@
     <Compile Include="Migrations\201404250748128_create index on shortname in language.Designer.cs">
       <DependentUpon>201404250748128_create index on shortname in language.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404251526495_engage tag contact relation.cs" />
+    <Compile Include="Migrations\201404251526495_engage tag contact relation.Designer.cs">
+      <DependentUpon>201404251526495_engage tag contact relation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\MessageModels.cs" />
@@ -147,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404250748128_create index on shortname in language.resx">
       <DependentUpon>201404250748128_create index on shortname in language.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404251526495_engage tag contact relation.resx">
+      <DependentUpon>201404251526495_engage tag contact relation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
