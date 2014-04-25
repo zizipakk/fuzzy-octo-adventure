@@ -13,9 +13,9 @@ using Tax.WebAPI.Results;
 
 namespace Tax.WebAPI.Controllers
 {
-    public class ImageController : TaxWebAPIBaseController
+    public class ImagesController : TaxWebAPIBaseController
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(ImageController));
+        private static readonly ILog log = LogManager.GetLogger(typeof(ImagesController));
 
         //[ResponseType(typeof(UserProfile))]
         //public IHttpActionResult Get()

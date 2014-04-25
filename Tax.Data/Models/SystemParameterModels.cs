@@ -45,6 +45,7 @@ namespace Tax.Data.Models
 
         [Key]
         public Guid Id { get; set; }
+        public string NameGlobal { get; set; }
         public virtual ICollection<NewsStatusesLocal> NewsStatusesLocal { get; set; }
 
         public virtual ICollection<NewsGlobal> NewsGlobal { get; set; }
@@ -83,6 +84,8 @@ namespace Tax.Data.Models
         [Display(Name = "Name")]
         [Required(ErrorMessage = "[{0}] field is required")]
         public string Name { get; set; }
+        [StringLength(2)]        
+        public string ShortName { get; set; }
     }
 
 }

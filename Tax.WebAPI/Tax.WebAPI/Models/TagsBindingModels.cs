@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Tax.WebAPI.Models
 {
-    public class TagBindingModel
+    public class TagsBindingModel
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
     }
 

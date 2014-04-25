@@ -1,0 +1,16 @@
+2014-04-24 00:00:43,075 [9] INFO  Tax.WebAPI.Controllers.NewController - Get News for ID: 2165215215hu, on language: hu
+2014-04-24 00:00:43,154 [9] ERROR Tax.WebAPI.Controllers.NewController - News access by id + language error: 
+System.FormatException: Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).
+   at System.Guid.TryParseGuidWithNoStyle(String guidString, GuidResult& result)
+   at System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   at System.Guid.Parse(String input)
+   at Tax.WebAPI.Service.NewService.GetNew(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\NewService.cs:line 36
+   at Tax.WebAPI.Controllers.NewController.GetNew(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\NewController.cs:line 31
+2014-04-24 00:00:55,351 [11] INFO  Tax.WebAPI.Controllers.NewController - Get News for ID: fsgs32, on language: hu
+2014-04-24 00:00:55,351 [11] ERROR Tax.WebAPI.Controllers.NewController - News access by id + language error: 
+System.FormatException: Guid should contain 32 digits with 4 dashes (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx).
+   at System.Guid.TryParseGuidWithNoStyle(String guidString, GuidResult& result)
+   at System.Guid.TryParseGuid(String g, GuidStyles flags, GuidResult& result)
+   at System.Guid.Parse(String input)
+   at Tax.WebAPI.Service.NewService.GetNew(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\NewService.cs:line 36
+   at Tax.WebAPI.Controllers.NewController.GetNew(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\NewController.cs:line 31

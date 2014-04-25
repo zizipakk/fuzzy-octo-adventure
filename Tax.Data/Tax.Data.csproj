@@ -82,6 +82,14 @@
     <Compile Include="Migrations\201404212148536_initial.Designer.cs">
       <DependentUpon>201404212148536_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404242239476_nameglobal to status.cs" />
+    <Compile Include="Migrations\201404242239476_nameglobal to status.Designer.cs">
+      <DependentUpon>201404242239476_nameglobal to status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404250748128_create index on shortname in language.cs" />
+    <Compile Include="Migrations\201404250748128_create index on shortname in language.Designer.cs">
+      <DependentUpon>201404250748128_create index on shortname in language.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\MessageModels.cs" />
@@ -133,6 +141,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201404212148536_initial.resx">
       <DependentUpon>201404212148536_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404242239476_nameglobal to status.resx">
+      <DependentUpon>201404242239476_nameglobal to status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404250748128_create index on shortname in language.resx">
+      <DependentUpon>201404250748128_create index on shortname in language.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
