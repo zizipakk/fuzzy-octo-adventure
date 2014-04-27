@@ -18,7 +18,6 @@ namespace Tax.Data.Models
         public ExtrasGlobal()
         {
             Id = Guid.NewGuid();
-            CategoriesGlobal = new HashSet<CategoriesGlobal>();
             ExtrasLocal = new HashSet<ExtrasLocal>();
         }
 
@@ -29,7 +28,7 @@ namespace Tax.Data.Models
 //        [Display(Name = "Order")]
         public int Order { get; set; }
 //        [Display(Name = "TaCategoriesGlobalgs")]
-        public virtual ICollection<CategoriesGlobal> CategoriesGlobal { get; set; }
+        public virtual CategoriesGlobal CategoriesGlobal { get; set; }
 //        [Display(Name = "Állapot")]
         public virtual NewsStatusesGlobal NewsStatus { get; set; }
 

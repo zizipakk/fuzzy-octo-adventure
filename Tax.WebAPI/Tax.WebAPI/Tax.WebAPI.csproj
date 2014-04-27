@@ -205,27 +205,37 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AddressBookController.cs" />
-    <Compile Include="Controllers\APITestController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\ExtrasController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\TaxWebAPIBaseController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
-    <Compile Include="Controllers\SystemParameterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SearchHelpers.cs" />
     <Compile Include="Helpers\TimestampHelpers.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Models\ContactsBindingModels.cs" />
+    <Compile Include="Models\ExtrasBindingModels.cs" />
+    <Compile Include="Models\EventsBindingModels.cs" />
+    <Compile Include="Models\CategoriesBindingModels.cs" />
+    <Compile Include="Models\DevicesBindingModels.cs" />
     <Compile Include="Models\TagsBindingModels.cs" />
     <Compile Include="Models\ArticlesBindingModels.cs" />
-    <Compile Include="Models\ProfileModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Query\UserQueries.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Results\FileResult.cs" />
+    <Compile Include="Service\DevicesService.cs" />
+    <Compile Include="Service\ContactsService.cs" />
+    <Compile Include="Service\ExtrasService.cs" />
+    <Compile Include="Service\EventsService.cs" />
+    <Compile Include="Service\TagsService.cs" />
     <Compile Include="Service\ImagesService.cs" />
     <Compile Include="Service\ArticlesService.cs" />
     <Compile Include="Startup.cs" />
@@ -285,18 +295,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\APITest\Login.cshtml" />
-    <Content Include="Views\APITest\GetNew.cshtml" />
-    <Content Include="Views\APITest\ChatMessage.cshtml" />
-    <Content Include="Views\APITest\AddressBook.cshtml" />
-    <Content Include="Views\APITest\SystemParameter.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Webhook\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

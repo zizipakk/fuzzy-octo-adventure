@@ -94,8 +94,17 @@
     <Compile Include="Migrations\201404251526495_engage tag contact relation.Designer.cs">
       <DependentUpon>201404251526495_engage tag contact relation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404262115415_devices.cs" />
+    <Compile Include="Migrations\201404262115415_devices.Designer.cs">
+      <DependentUpon>201404262115415_devices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404262131368_indexes to devices.cs" />
+    <Compile Include="Migrations\201404262131368_indexes to devices.Designer.cs">
+      <DependentUpon>201404262131368_indexes to devices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\DeviceModels.cs" />
     <Compile Include="Models\MessageModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Log4netModels.cs" />
@@ -154,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404251526495_engage tag contact relation.resx">
       <DependentUpon>201404251526495_engage tag contact relation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404262115415_devices.resx">
+      <DependentUpon>201404262115415_devices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404262131368_indexes to devices.resx">
+      <DependentUpon>201404262131368_indexes to devices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

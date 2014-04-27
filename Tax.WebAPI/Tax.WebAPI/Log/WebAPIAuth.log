@@ -1,695 +1,7 @@
-2014-04-25 13:44:42,515 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 13:47:09,201 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 13:57:03,587 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 13:59:24,073 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: FA745507-0D14-4BE3-9430-EDD4EE690EED, on language: hu
-2014-04-25 14:00:10,742 [19] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NullReferenceException: Object reference not set to an instance of an object.
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 42
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:00:33,828 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: FA745507-0D14-4BE3-9430-EDD4EE690EED, on language: hu
-2014-04-25 14:02:06,651 [18] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NullReferenceException: Object reference not set to an instance of an object.
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 42
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:04:22,292 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:04:36,238 [20] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: FA745507-0D14-4BE3-9430-EDD4EE690EED, on language: hu
-2014-04-25 14:05:11,870 [20] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
-2014-04-25 14:06:08,880 [15] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: hu
-2014-04-25 14:06:55,519 [15] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
-2014-04-25 14:14:26,977 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:14:44,388 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: hu
-2014-04-25 14:15:16,293 [17] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.ArgumentException: Incorrect number of arguments supplied for call to method 'Boolean Equals(System.String, System.String, System.StringComparison)'
-   at System.Linq.Expressions.Expression.GetMethodBasedBinaryOperator(ExpressionType binaryType, Expression left, Expression right, MethodInfo method, Boolean liftToNull)
-   at System.Linq.Expressions.Expression.Equal(Expression left, Expression right, Boolean liftToNull, MethodInfo method)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitBinary(BinaryExpression b)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitBinary(BinaryExpression b)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitLambda(LambdaExpression lambda)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitUnary(UnaryExpression u)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter..ctor(Funcletizer funcletizer, Expression expression)
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.CreateExpressionConverter()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 38
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:20:30,187 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:20:41,493 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:24:42,652 [18] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.ArgumentException: Incorrect number of arguments supplied for call to method 'Boolean Equals(System.String, System.String, System.StringComparison)'
-   at System.Linq.Expressions.Expression.GetMethodBasedBinaryOperator(ExpressionType binaryType, Expression left, Expression right, MethodInfo method, Boolean liftToNull)
-   at System.Linq.Expressions.Expression.Equal(Expression left, Expression right, Boolean liftToNull, MethodInfo method)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitBinary(BinaryExpression b)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitBinary(BinaryExpression b)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitLambda(LambdaExpression lambda)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitUnary(UnaryExpression u)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter..ctor(Funcletizer funcletizer, Expression expression)
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.CreateExpressionConverter()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 38
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:27:31,543 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:27:41,266 [5] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:27:56,091 [5] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NotSupportedException: LINQ to Entities does not recognize the method 'System.Text.RegularExpressions.Match Match(System.String, System.String, System.Text.RegularExpressions.RegexOptions)' method, and this method cannot be translated into a store expression.
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberAccessTranslator.TypedTranslate(ExpressionConverter parent, MemberExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 39
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:32:36,119 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:33:00,424 [14] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:33:11,719 [14] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NotSupportedException: LINQ to Entities does not recognize the method 'Int32 IndexOf(System.String, System.StringComparison)' method, and this method cannot be translated into a store expression.
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 39
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:37:36,900 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:38:23,347 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:38:54,263 [10] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.ArgumentException: Incorrect number of arguments supplied for call to method 'Boolean Equals(System.String, System.String, System.StringComparison)'
-   at System.Linq.Expressions.Expression.GetMethodBasedBinaryOperator(ExpressionType binaryType, Expression left, Expression right, MethodInfo method, Boolean liftToNull)
-   at System.Linq.Expressions.Expression.Equal(Expression left, Expression right, Boolean liftToNull, MethodInfo method)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitBinary(BinaryExpression b)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitBinary(BinaryExpression b)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitLambda(LambdaExpression lambda)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitUnary(UnaryExpression u)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter..ctor(Funcletizer funcletizer, Expression expression)
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.CreateExpressionConverter()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 39
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:42:23,992 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:42:27,152 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:42:53,620 [9] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.ArgumentException: Incorrect number of arguments supplied for call to method 'Boolean Equals(System.String, System.String, System.StringComparison)'
-   at System.Linq.Expressions.Expression.GetMethodBasedBinaryOperator(ExpressionType binaryType, Expression left, Expression right, MethodInfo method, Boolean liftToNull)
-   at System.Linq.Expressions.Expression.Equal(Expression left, Expression right, Boolean liftToNull, MethodInfo method)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitBinary(BinaryExpression b)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitBinary(BinaryExpression b)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitLambda(LambdaExpression lambda)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitUnary(UnaryExpression u)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter..ctor(Funcletizer funcletizer, Expression expression)
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.CreateExpressionConverter()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 39
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:44:46,493 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:44:48,923 [14] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:45:18,514 [14] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.ArgumentException: Incorrect number of arguments supplied for call to method 'Boolean Equals(System.String, System.String, System.StringComparison)'
-   at System.Linq.Expressions.Expression.GetMethodBasedBinaryOperator(ExpressionType binaryType, Expression left, Expression right, MethodInfo method, Boolean liftToNull)
-   at System.Linq.Expressions.Expression.Equal(Expression left, Expression right, Boolean liftToNull, MethodInfo method)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitBinary(BinaryExpression b)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitBinary(BinaryExpression b)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitLambda(LambdaExpression lambda)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitUnary(UnaryExpression u)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitExpressionList(ReadOnlyCollection`1 original)
-   at System.Linq.Expressions.EntityExpressionVisitor.VisitMethodCall(MethodCallExpression m)
-   at System.Data.Entity.Core.Objects.ELinq.LinqExpressionNormalizer.VisitMethodCall(MethodCallExpression m)
-   at System.Linq.Expressions.EntityExpressionVisitor.Visit(Expression exp)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter..ctor(Funcletizer funcletizer, Expression expression)
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.CreateExpressionConverter()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__2[TResult](IEnumerable`1 sequence)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source)
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 38
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:55:02,576 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 14:55:17,166 [20] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 14:56:40,901 [20] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NullReferenceException: Object reference not set to an instance of an object.
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 54
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 14:57:45,851 [13] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 15:00:25,944 [13] ERROR Tax.WebAPI.Controllers.ArticlesController - An article access by id + language error: 
-System.NullReferenceException: Object reference not set to an instance of an object.
-   at Tax.WebAPI.Service.ArticlesService.GetArticle(String id, String lang, String url) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 54
-   at Tax.WebAPI.Controllers.ArticlesController.Article(String id, String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 32
-2014-04-25 15:11:48,691 [14] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 15:12:46,359 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 15:13:29,878 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"7accb962-5215-4064-a5cd-eabed41f178c","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-76","Title2":"Cím2-76","Subtitle":"Alcím-76","Body":"76. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436391"}
-2014-04-25 15:13:29,878 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:15:59,800 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: hu
-2014-04-25 15:16:02,343 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"7accb962-5215-4064-a5cd-eabed41f178c","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-76","Title2":"Cím2-76","Subtitle":"Alcím-76","Body":"76. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436391"}
-2014-04-25 15:16:02,345 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:17:15,168 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: hu
-2014-04-25 15:17:15,191 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"7accb962-5215-4064-a5cd-eabed41f178c","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-76","Title2":"Cím2-76","Subtitle":"Alcím-76","Body":"76. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436391"}
-2014-04-25 15:17:15,192 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:17:34,413 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 7ACCB962-5215-4064-A5CD-EABED41F178C, on language: HU
-2014-04-25 15:17:34,450 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"7accb962-5215-4064-a5cd-eabed41f178c","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-76","Title2":"Cím2-76","Subtitle":"Alcím-76","Body":"76. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436391"}
-2014-04-25 15:17:34,450 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:18:09,496 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: HU
-2014-04-25 15:18:09,526 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:18:09,526 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:18:35,787 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 15:18:38,476 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: HU
-2014-04-25 15:21:46,974 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:21:46,974 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:23:10,188 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 15:23:18,340 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: HU
-2014-04-25 15:23:25,440 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:23:25,440 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:23:46,315 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: HU
-2014-04-25 15:23:48,317 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:23:48,317 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:23:55,064 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: hu
-2014-04-25 15:23:56,929 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:23:56,929 [18] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 15:24:02,877 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: h
-2014-04-25 15:24:02,885 [11] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
-2014-04-25 15:24:10,492 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 42083EE6-EF43-4E3F-86A6-CF64754D853F, on language: hu
-2014-04-25 15:24:12,736 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"42083ee6-ef43-4e3f-86a6-cf64754d853f","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-75","Title2":"Cím2-75","Subtitle":"Alcím-75","Body":"75. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398436331"}
-2014-04-25 15:24:12,736 [10] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 17:04:44,195 [14] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 17:29:57,537 [11] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 17:34:56,415 [6] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 17:39:57,825 [6] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 17:48:51,903 [11] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 18:13:51,139 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: hu
-2014-04-25 18:13:58,454 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398431891"}
-2014-04-25 18:13:58,455 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:14:05,625 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: hu
-2014-04-25 18:14:05,667 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398431891"}
-2014-04-25 18:14:05,667 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:14:07,287 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: hu
-2014-04-25 18:14:07,327 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398431891"}
-2014-04-25 18:14:07,327 [22] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:15:17,616 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: hu
-2014-04-25 18:17:18,870 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[],"Date":"1398431891"}
-2014-04-25 18:17:18,871 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:19:34,890 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 18:19:45,498 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: hu
-2014-04-25 18:19:52,705 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}
-2014-04-25 18:19:52,705 [26] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:20:12,055 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - Get an article by id: 4E308A7E-21C2-457A-A5F7-FB18A3100B69, on language: en
-2014-04-25 18:20:12,128 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - model: {"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"","ThumbnailURL":"","Title1":"Title1-1","Title2":"Title2-1","Subtitle":"Subtitle-1","Body":"1. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Business Process Outsourcing"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Corporate Tax"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Commercial Law"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Customs & Global Trade"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Employment Law"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Estates Law"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Global Employer Services"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Immigration Law"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Indirect Tax"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"International Tax"}],"Date":"1398431891"}
-2014-04-25 18:20:12,128 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
-2014-04-25 18:24:52,135 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 18:25:33,985 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by Tags: null, on language: hu, in pagenumber: 1
-2014-04-25 18:26:44,336 [19] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by id + language error: 
-System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
-   at Tax.WebAPI.Controllers.ArticlesController.Articles(String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
-2014-04-25 18:30:30,165 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 18:36:01,398 [13] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by Tags: null, on language: hu, in pagenumber: 1
-2014-04-25 18:36:04,770 [13] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by id + language error: 
-System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
-   at Tax.WebAPI.Controllers.ArticlesController.Articles(IEnumerable`1 tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
-2014-04-25 18:36:38,855 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
-2014-04-25 18:36:45,796 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by Tags: null, on language: hu, in pagenumber: 1
-2014-04-25 18:40:22,935 [19] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by id + language error: 
-System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
-   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
-   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   at System.Lazy`1.CreateValue()
-   at System.Lazy`1.LazyInitValue()
-   at System.Lazy`1.get_Value()
-   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
-   at Tax.WebAPI.Controllers.ArticlesController.Articles(IEnumerable`1 tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
-2014-04-25 18:41:09,315 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles by Tags: null, on language: hu, with searchstring: alma
-2014-04-25 18:41:09,740 [17] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by id + language error: 
+2014-04-27 00:55:30,118 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:00:55,945 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:07:47,489 [6] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: null, on language: hu, by query alma, in pagenumber: 1
+2014-04-27 01:07:54,723 [6] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
 System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
@@ -757,6 +69,12 @@ System.NotSupportedException: LINQ to Entities does not recognize the method 'Sy
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
    at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
    at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
@@ -770,9 +88,9 @@ System.NotSupportedException: LINQ to Entities does not recognize the method 'Sy
    at System.Lazy`1.get_Value()
    at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
    at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
-   at Tax.WebAPI.Controllers.ArticlesController.SearchArticles(IEnumerable`1 tags, String lang, String search) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 92
-2014-04-25 18:41:47,059 [13] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles by Tags: null, on language: hu, with searchstring: alma
-2014-04-25 18:43:20,783 [13] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by id + language error: 
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
+2014-04-27 01:14:52,819 [21] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: null, on language: hu, by query alma, in pagenumber: 1
+2014-04-27 01:14:52,850 [21] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
 System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
@@ -840,6 +158,12 @@ System.NotSupportedException: LINQ to Entities does not recognize the method 'Sy
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
    at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
    at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
    at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
@@ -853,4 +177,379 @@ System.NotSupportedException: LINQ to Entities does not recognize the method 'Sy
    at System.Lazy`1.get_Value()
    at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
    at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
-   at Tax.WebAPI.Controllers.ArticlesController.SearchArticles(IEnumerable`1 tags, String lang, String search) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 92
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
+2014-04-27 01:15:44,666 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:20:55,502 [19] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: null, on language: hu, by query alma, in pagenumber: 1
+2014-04-27 01:20:58,792 [19] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
+System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, List`1 tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 63
+2014-04-27 01:22:14,090 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:36:43,713 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:42:00,857 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:47:02,711 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:49:02,011 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:53:08,669 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 01:59:33,594 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:00:49,827 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:01:38,260 [10] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:01:59,037 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:04:29,264 [18] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:06:11,445 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:07:29,271 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:18:58,987 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:19:48,667 [13] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c"], on language: hu, by query alma, in pagenumber: 1
+2014-04-27 02:22:34,011 [13] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
+System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String[] ToArray[String](System.Collections.Generic.IEnumerable`1[System.String])' method, and this method cannot be translated into a store expression.
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 65
+2014-04-27 02:25:03,740 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:25:29,942 [6] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query alma, in pagenumber: 1
+2014-04-27 02:26:34,033 [6] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
+System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String ToString()' method, and this method cannot be translated into a store expression.
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.TranslateLeft(ExpressionConverter parent, Expression expr)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.BinarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.BinaryTranslator.TypedTranslate(ExpressionConverter parent, BinaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.UnaryTranslator.TypedTranslate(ExpressionConverter parent, UnaryExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ObjectQueryIncludeTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectManyTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 65
+2014-04-27 02:38:13,739 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:38:40,635 [6] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query alma, in pagenumber: 1
+2014-04-27 02:39:29,972 [6] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
+System.NotSupportedException: LINQ to Entities does not recognize the method 'System.String ToString()' method, and this method cannot be translated into a store expression.
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.DefaultTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberInitTranslator.TypedTranslate(ExpressionConverter parent, MemberInitExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateSet(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.UnarySequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 65
+2014-04-27 02:42:40,561 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:42:43,226 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query alma, in pagenumber: 1
+2014-04-27 02:42:51,609 [12] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query alma, in pagenumber: 1
+2014-04-27 02:43:02,494 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
+2014-04-27 02:43:02,603 [12] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
+2014-04-27 02:43:37,996 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query a, in pagenumber: 1
+2014-04-27 02:43:40,977 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 02:43:40,977 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 02:43:54,947 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query a, in pagenumber: 1
+2014-04-27 02:43:57,070 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 02:43:57,071 [16] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 02:44:36,635 [14] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query á, in pagenumber: 1
+2014-04-27 02:44:38,622 [14] INFO  Tax.WebAPI.Controllers.ArticlesController - Not found, end
+2014-04-27 02:44:46,003 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query lorem, in pagenumber: 1
+2014-04-27 02:44:48,486 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 02:44:48,486 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 02:46:20,952 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:46:23,515 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query lorem, in pagenumber: 1
+2014-04-27 02:47:02,899 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 02:47:02,900 [9] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 02:55:12,309 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 02:55:14,585 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query lorem, in pagenumber: 1
+2014-04-27 02:57:32,124 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 02:57:32,124 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 03:01:53,598 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 03:01:56,682 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query lorem, in pagenumber: 1
+2014-04-27 03:02:33,568 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 03:02:33,568 [17] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 03:12:07,874 [18] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 03:13:03,181 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-04-27 03:13:17,066 [15] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: hu, by query lorem, in pagenumber: 1
+2014-04-27 03:16:42,922 [15] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Üzleti folyamatok kiszervezése"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Társasági adó"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Kereskedelmi jog"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Vámügyek, globális kereskedelem"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Munkajog"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Ingatlanjog"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Munkavállalói juttatások adótervezése"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Bevándorlási törvények"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Közvetett adók"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"Nemzetközi adótervezés"}],"Date":"1398431891"}]
+2014-04-27 03:16:42,922 [15] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end
+2014-04-27 03:16:53,551 [12] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: ["b87bc1cb-28e7-439a-bcd2-06eabc50344c","db727365-dbf4-4353-9e6e-0f52112780a7"], on language: en, by query lorem, in pagenumber: 1
+2014-04-27 03:16:53,688 [12] INFO  Tax.WebAPI.Controllers.ArticlesController - model: [{"Id":"4e308a7e-21c2-457a-a5f7-fb18a3100b69","ImageURL":"http://localhost:2214/api/~api/Image?id=","ThumbnailURL":"http://localhost:2214/api/~api/Image?id=","Title1":"Title1-1","Title2":"Title2-1","Subtitle":"Subtitle-1","Body":"1. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Tags":[{"Id":"631f1fbe-e989-435f-bc4c-00decfa69472","Name":"Business Process Outsourcing"},{"Id":"b87bc1cb-28e7-439a-bcd2-06eabc50344c","Name":"Corporate Tax"},{"Id":"2f307c5c-05d0-46e9-831a-09b5afb0840a","Name":"Commercial Law"},{"Id":"db727365-dbf4-4353-9e6e-0f52112780a7","Name":"Customs & Global Trade"},{"Id":"a4ab03f7-4f9e-458d-a94b-14d64b82cbfb","Name":"Employment Law"},{"Id":"77b5b6f7-67f5-4f88-8ee9-19285a4110b1","Name":"Estates Law"},{"Id":"5f16c863-62cd-416a-a1c9-1dee140d409f","Name":"Global Employer Services"},{"Id":"ef8960de-621b-4c6c-a601-401807f10bb4","Name":"Immigration Law"},{"Id":"e0b105f5-9ea8-4a9b-a0ff-45133eebc5c4","Name":"Indirect Tax"},{"Id":"2078fc0c-3adf-44c6-9866-5058737b281d","Name":"International Tax"}],"Date":"1398431891"}]
+2014-04-27 03:16:53,688 [12] INFO  Tax.WebAPI.Controllers.ArticlesController - OK, end

@@ -75,6 +75,8 @@ namespace Tax.Data.Models
         public DbSet<Language> Language { get; set; }
         public DbSet<TagsGlobal> TagsGlobal { get; set; }
         public DbSet<TagsLocal> TagsLocal { get; set; }
+        public DbSet<Device> Device { get; set; }
+        public DbSet<DeviceType> DeviceType { get; set; }
 
     }
 

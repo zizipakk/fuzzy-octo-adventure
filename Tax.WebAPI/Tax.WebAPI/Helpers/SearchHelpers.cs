@@ -13,12 +13,12 @@ namespace Tax.WebAPI.Helpers
             searchStringList.Add(searchString);
             if (Regex.Match(lang, "hu", RegexOptions.IgnoreCase).Success)
             {
-                var regex = new Regex(@"^[^aeiou]+$");
+                var regex = new Regex("[aAeEiIoOuU]");
                 if (regex.IsMatch(searchString))
                 {
                     int i = 0;
                     StringBuilder str = new StringBuilder(searchString);
-                    foreach (char c in searchString)
+                    foreach (char c in searchString.ToLower())
                     {
                         switch (c)
                         {
