@@ -16,39 +16,71 @@ namespace Tax.WebAPI.Helpers
                 var regex = new Regex("[aAeEiIoOuU]");
                 if (regex.IsMatch(searchString))
                 {
-                    int i = 0;
-                    StringBuilder str = new StringBuilder(searchString);
+                    StringBuilder strb;
+                    List<string> tempL;
+                    int i = 0;                    
                     foreach (char c in searchString.ToLower())
                     {
                         switch (c)
                         {
                             case 'a':
-                                str[i] = 'á';
-                                searchStringList.Add(str.ToString());
+                                tempL = new List<string>();
+                                foreach (string str in searchStringList)
+                                {
+                                    strb = new StringBuilder(str);
+                                    strb[i] = 'á';
+                                    tempL.Add(strb.ToString());
+                                }
+                                searchStringList.AddRange(tempL);
                                 break;
                             case 'e':
-                                str[i] = 'é';
-                                searchStringList.Add(str.ToString());
+                                tempL = new List<string>();
+                                foreach (string str in searchStringList)
+                                {
+                                    strb = new StringBuilder(str);
+                                    strb[i] = 'é';
+                                    tempL.Add(strb.ToString());
+                                }
+                                searchStringList.AddRange(tempL);
                                 break;
                             case 'i':
-                                str[i] = 'í';
-                                searchStringList.Add(str.ToString());
+                                tempL = new List<string>();
+                                foreach (string str in searchStringList)
+                                {
+                                    strb = new StringBuilder(str);
+                                    tempL = new List<string>();
+                                    strb[i] = 'í';
+                                    tempL.Add(strb.ToString());
+                                }
+                                searchStringList.AddRange(tempL);
                                 break;
                             case 'o':
-                                str[i] = 'ó';
-                                searchStringList.Add(str.ToString());
-                                str[i] = 'ö';
-                                searchStringList.Add(str.ToString());
-                                str[i] = 'ő';
-                                searchStringList.Add(str.ToString());
+                                tempL = new List<string>();
+                                foreach (string str in searchStringList)
+                                {
+                                    strb = new StringBuilder(str);
+                                    strb[i] = 'ó';
+                                    tempL.Add(strb.ToString());
+                                    strb[i] = 'ö';
+                                    tempL.Add(strb.ToString());
+                                    strb[i] = 'ő';
+                                    tempL.Add(strb.ToString());
+                                }
+                                searchStringList.AddRange(tempL);
                                 break;
                             case 'u':
-                                str[i] = 'ú';
-                                searchStringList.Add(str.ToString());
-                                str[i] = 'ü';
-                                searchStringList.Add(str.ToString());
-                                str[i] = 'ű';
-                                searchStringList.Add(str.ToString());
+                                tempL = new List<string>();
+                                foreach (string str in searchStringList)
+                                {
+                                    strb = new StringBuilder(str);
+                                    strb[i] = 'ú';
+                                    tempL.Add(strb.ToString());
+                                    strb[i] = 'ü';
+                                    tempL.Add(strb.ToString());
+                                    strb[i] = 'ű';
+                                    tempL.Add(strb.ToString());
+                                }
+                                searchStringList.AddRange(tempL);
                                 break;
                             default:
                                 break;
