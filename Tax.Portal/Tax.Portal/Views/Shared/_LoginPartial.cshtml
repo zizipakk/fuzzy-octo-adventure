@@ -9,23 +9,19 @@
     <ul class="nav navbar-nav navbar-right">       
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <span><i class="fa fa-info fw"></i> Üdv kedves <strong>@User.Identity.GetUserName()</strong> !</span>
+                <span><i class="fa fa-info fw"></i><strong>  @User.Identity.GetUserName() </strong></span>
             </a>
             <ul class="dropdown-menu">               
-                <li><a title="Ügyfél profil" href="@Url.Action("AccountProfileEdit", "Account", new { Id = @User.Identity.GetUserId() })"><i class="fa fa-barcode fw"></i> Ügyfélprofil </a></li>
-                <li><a title="Jelszómódosítás" href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i> Jelszómódosítás </a></li>               
+                <li><a title="Jelszómódosítás" href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i> Change Password </a></li>               
             </ul>
         </li>
-
-        @*<li><a title="Ügyfél profil" href="@Url.Action("AccountProfileEdit", "Account", new { Id = @User.Identity.GetUserId() })"><i class="fa fa-info fw"></i> Üdv kedves <strong>@User.Identity.GetUserName()</strong> !</a></li>*@
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw" ></i> Kijelentkezés</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw" ></i> Logout </a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a id="registerLink" href="@Url.Action(MVC.Account.Register())"><i class="fa fa-user fa-fw"></i> Regisztráció</a></li>
-        <li><a id="loginLink" href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i> Bejelentkezés</a></li>        
+        <li><a id="loginLink" href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i> Login </a></li>        
     </ul>
 }

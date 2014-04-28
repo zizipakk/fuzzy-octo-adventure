@@ -37,12 +37,14 @@ namespace T4MVC
             {
                 public readonly string _Empty = "_Empty";
                 public readonly string _Layout = "_Layout";
+                public readonly string _LocalisationPartial = "_LocalisationPartial";
                 public readonly string _LoginPartial = "_LoginPartial";
                 public readonly string _PrintContract = "_PrintContract";
                 public readonly string Error = "Error";
             }
             public readonly string _Empty = "~/Views/Shared/_Empty.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
+            public readonly string _LocalisationPartial = "~/Views/Shared/_LocalisationPartial.cshtml";
             public readonly string _LoginPartial = "~/Views/Shared/_LoginPartial.cshtml";
             public readonly string _PrintContract = "~/Views/Shared/_PrintContract.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";

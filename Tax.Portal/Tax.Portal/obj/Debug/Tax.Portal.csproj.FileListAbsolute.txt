@@ -36,10 +36,8 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.WebPages.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.WebPages.Razor.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\T4MVCExtensions.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Data.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Taxt.Log4Net.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\WebGrease.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Data.pdb
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Taxt.Log4Net.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Antlr3.Runtime.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Essential.Diagnostics.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\log4net.xml

@@ -28,11 +28,9 @@ public static class MVC
     public static Tax.Portal.Controllers.AdminController Admin = new Tax.Portal.Controllers.T4MVC_AdminController();
     public static Tax.Portal.Controllers.ErrorsController Errors = new Tax.Portal.Controllers.T4MVC_ErrorsController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();
-    public static Tax.Portal.Controllers.LogController Log = new Tax.Portal.Controllers.T4MVC_LogController();
-    public static Tax.Portal.Controllers.SinoszController Sinosz = new Tax.Portal.Controllers.T4MVC_SinoszController();
-    public static Tax.Portal.Controllers.StockController Stock = new Tax.Portal.Controllers.T4MVC_StockController();
-    public static T4MVC.MailerController Mailer = new T4MVC.MailerController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
+    public static T4MVC.SinoszController Sinosz = new T4MVC.SinoszController();
+    public static T4MVC.StockController Stock = new T4MVC.StockController();
     public static T4MVC.UserMailerController UserMailer = new T4MVC.UserMailerController();
 }
 
@@ -69,19 +67,6 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
 internal partial class T4MVC_Tax_Portal_Models_JsonpResult : Tax.Portal.Models.JsonpResult, IT4MVCActionResult
 {
     public T4MVC_Tax_Portal_Models_JsonpResult(string area, string controller, string action, string protocol = null): base()
-    {
-        this.InitMVCT4Result(area, controller, action, protocol);
-    }
-    
-    public string Controller { get; set; }
-    public string Action { get; set; }
-    public string Protocol { get; set; }
-    public RouteValueDictionary RouteValueDictionary { get; set; }
-}
-[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-internal partial class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
-{
-    public T4MVC_System_Web_Mvc_ViewResult(string area, string controller, string action, string protocol = null): base()
     {
         this.InitMVCT4Result(area, controller, action, protocol);
     }
@@ -1287,23 +1272,6 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string ajaxloading_gif = Url("ajaxloading.gif");
-            public static readonly string bkg_header_pattern_png = Url("bkg_header_pattern.png");
-            public static readonly string bkg_mainpage_jpg = Url("bkg_mainpage.jpg");
-            public static readonly string bkg_mainpage_temporary_jpg = Url("bkg_mainpage_temporary.jpg");
-            public static readonly string footer_logo_egroup_png = Url("footer_logo_egroup.png");
-            public static readonly string footer_logo_invitel_png = Url("footer_logo_invitel.png");
-            public static readonly string Kontakt_logo_png = Url("Kontakt_logo.png");
-            public static readonly string Kontakt_Tolmacsszolgalat_Logo_png = Url("Kontakt_Tolmacsszolgalat_Logo.png");
-            public static readonly string mo_megujul_png = Url("mo_megujul.png");
-            public static readonly string sinosz_png = Url("sinosz.png");
-            public static readonly string sinosz_logo_felirattal_jpg = Url("sinosz_logo_felirattal.jpg");
-            public static readonly string sinosz_logo_felirattal_png = Url("sinosz_logo_felirattal.png");
-            public static readonly string tabelle_png = Url("tabelle.png");
-            public static readonly string uj_szechenyi_terv_png = Url("uj_szechenyi_terv.png");
-            public static readonly string vri_png = Url("vri.png");
-            public static readonly string vri2_jpg = Url("vri2.jpg");
-            public static readonly string vrs_png = Url("vrs.png");
-            public static readonly string vrs2_png = Url("vrs2.png");
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

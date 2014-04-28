@@ -88,12 +88,6 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ResetPasswordFinalize()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordFinalize);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ResetPasswordCompleted()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordCompleted);
@@ -103,13 +97,6 @@ namespace Tax.Portal.Controllers
         public virtual System.Web.Mvc.ActionResult AccountProfileEdit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccountProfileEdit);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangeEmailAddressStart()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeEmailAddressStart);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -131,12 +118,6 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual Tax.Portal.Models.JsonpResult viPreregister()
-        {
-            return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual Tax.Portal.Models.JsonpResult viResetPasswordStart()
         {
             return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordStart);
@@ -146,32 +127,6 @@ namespace Tax.Portal.Controllers
         public virtual Tax.Portal.Models.JsonpResult viResetPasswordFinalize()
         {
             return new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viResetPasswordFinalize);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> MailAgain()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MailAgain);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Validate()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Validate);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ViewResult ValidateSuccess()
-        {
-            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.ValidateSuccess);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ViewResult ValidateFailure()
-        {
-            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.ValidateFailure);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -190,7 +145,6 @@ namespace Tax.Portal.Controllers
         public class ActionNamesClass
         {
             public readonly string Login = "Login";
-            public readonly string Preregister = "Preregister";
             public readonly string Register = "Register";
             public readonly string Disassociate = "Disassociate";
             public readonly string Manage = "Manage";
@@ -203,27 +157,19 @@ namespace Tax.Portal.Controllers
             public readonly string ExternalLoginFailure = "ExternalLoginFailure";
             public readonly string RemoveAccountList = "RemoveAccountList";
             public readonly string ResetPasswordStart = "ResetPasswordStart";
-            public readonly string ResetPasswordFinalize = "ResetPasswordFinalize";
             public readonly string ResetPasswordCompleted = "ResetPasswordCompleted";
             public readonly string AccountProfileEdit = "AccountProfileEdit";
-            public readonly string ChangeEmailAddressStart = "ChangeEmailAddressStart";
             public readonly string ChangeEmailAddressFinalize = "ChangeEmailAddressFinalize";
             public readonly string ChangeEmailAddressCompleted = "ChangeEmailAddressCompleted";
             public readonly string viRegister = "viRegister";
-            public readonly string viPreregister = "viPreregister";
             public readonly string viResetPasswordStart = "viResetPasswordStart";
             public readonly string viResetPasswordFinalize = "viResetPasswordFinalize";
-            public readonly string MailAgain = "MailAgain";
-            public readonly string Validate = "Validate";
-            public readonly string ValidateSuccess = "ValidateSuccess";
-            public readonly string ValidateFailure = "ValidateFailure";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Login = "Login";
-            public const string Preregister = "Preregister";
             public const string Register = "Register";
             public const string Disassociate = "Disassociate";
             public const string Manage = "Manage";
@@ -236,20 +182,13 @@ namespace Tax.Portal.Controllers
             public const string ExternalLoginFailure = "ExternalLoginFailure";
             public const string RemoveAccountList = "RemoveAccountList";
             public const string ResetPasswordStart = "ResetPasswordStart";
-            public const string ResetPasswordFinalize = "ResetPasswordFinalize";
             public const string ResetPasswordCompleted = "ResetPasswordCompleted";
             public const string AccountProfileEdit = "AccountProfileEdit";
-            public const string ChangeEmailAddressStart = "ChangeEmailAddressStart";
             public const string ChangeEmailAddressFinalize = "ChangeEmailAddressFinalize";
             public const string ChangeEmailAddressCompleted = "ChangeEmailAddressCompleted";
             public const string viRegister = "viRegister";
-            public const string viPreregister = "viPreregister";
             public const string viResetPasswordStart = "viResetPasswordStart";
             public const string viResetPasswordFinalize = "viResetPasswordFinalize";
-            public const string MailAgain = "MailAgain";
-            public const string Validate = "Validate";
-            public const string ValidateSuccess = "ValidateSuccess";
-            public const string ValidateFailure = "ValidateFailure";
         }
 
 
@@ -322,24 +261,6 @@ namespace Tax.Portal.Controllers
             public readonly string model = "model";
             public readonly string returnUrl = "returnUrl";
         }
-        static readonly ActionParamsClass_ResetPasswordStart s_params_ResetPasswordStart = new ActionParamsClass_ResetPasswordStart();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ResetPasswordStart ResetPasswordStartParams { get { return s_params_ResetPasswordStart; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ResetPasswordStart
-        {
-            public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_ResetPasswordFinalize s_params_ResetPasswordFinalize = new ActionParamsClass_ResetPasswordFinalize();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ResetPasswordFinalize ResetPasswordFinalizeParams { get { return s_params_ResetPasswordFinalize; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ResetPasswordFinalize
-        {
-            public readonly string token = "token";
-            public readonly string message = "message";
-            public readonly string model = "model";
-        }
         static readonly ActionParamsClass_ResetPasswordCompleted s_params_ResetPasswordCompleted = new ActionParamsClass_ResetPasswordCompleted();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ResetPasswordCompleted ResetPasswordCompletedParams { get { return s_params_ResetPasswordCompleted; } }
@@ -356,15 +277,6 @@ namespace Tax.Portal.Controllers
         {
             public readonly string Id = "Id";
             public readonly string message = "message";
-            public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_ChangeEmailAddressStart s_params_ChangeEmailAddressStart = new ActionParamsClass_ChangeEmailAddressStart();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ChangeEmailAddressStart ChangeEmailAddressStartParams { get { return s_params_ChangeEmailAddressStart; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ChangeEmailAddressStart
-        {
-            public readonly string model = "model";
         }
         static readonly ActionParamsClass_ChangeEmailAddressFinalize s_params_ChangeEmailAddressFinalize = new ActionParamsClass_ChangeEmailAddressFinalize();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -374,7 +286,6 @@ namespace Tax.Portal.Controllers
         {
             public readonly string token = "token";
             public readonly string message = "message";
-            public readonly string model = "model";
         }
         static readonly ActionParamsClass_ChangeEmailAddressCompleted s_params_ChangeEmailAddressCompleted = new ActionParamsClass_ChangeEmailAddressCompleted();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -389,15 +300,6 @@ namespace Tax.Portal.Controllers
         public ActionParamsClass_viRegister viRegisterParams { get { return s_params_viRegister; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_viRegister
-        {
-            public readonly string model = "model";
-            public readonly string field = "field";
-        }
-        static readonly ActionParamsClass_viPreregister s_params_viPreregister = new ActionParamsClass_viPreregister();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_viPreregister viPreregisterParams { get { return s_params_viPreregister; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_viPreregister
         {
             public readonly string model = "model";
             public readonly string field = "field";
@@ -419,38 +321,6 @@ namespace Tax.Portal.Controllers
         {
             public readonly string model = "model";
             public readonly string field = "field";
-        }
-        static readonly ActionParamsClass_MailAgain s_params_MailAgain = new ActionParamsClass_MailAgain();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_MailAgain MailAgainParams { get { return s_params_MailAgain; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_MailAgain
-        {
-            public readonly string loginname = "loginname";
-        }
-        static readonly ActionParamsClass_Validate s_params_Validate = new ActionParamsClass_Validate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Validate ValidateParams { get { return s_params_Validate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Validate
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_ValidateSuccess s_params_ValidateSuccess = new ActionParamsClass_ValidateSuccess();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ValidateSuccess ValidateSuccessParams { get { return s_params_ValidateSuccess; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ValidateSuccess
-        {
-            public readonly string message = "message";
-        }
-        static readonly ActionParamsClass_ValidateFailure s_params_ValidateFailure = new ActionParamsClass_ValidateFailure();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ValidateFailure ValidateFailureParams { get { return s_params_ValidateFailure; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ValidateFailure
-        {
-            public readonly string message = "message";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -520,15 +390,6 @@ namespace Tax.Portal.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             LoginOverride(callInfo, model, returnUrl);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        partial void PreregisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult Preregister()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Preregister);
-            PreregisterOverride(callInfo);
-            return callInfo;
         }
 
         partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -668,37 +529,6 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void ResetPasswordStartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ResetPasswordStartViewModel model);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ResetPasswordStart(Tax.Portal.Models.ResetPasswordStartViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordStart);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ResetPasswordStartOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        partial void ResetPasswordFinalizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token, string message);
-
-        public override System.Web.Mvc.ActionResult ResetPasswordFinalize(string token, string message)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordFinalize);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
-            ResetPasswordFinalizeOverride(callInfo, token, message);
-            return callInfo;
-        }
-
-        partial void ResetPasswordFinalizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ResetPasswordFinalizeViewModel model);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ResetPasswordFinalize(Tax.Portal.Models.ResetPasswordFinalizeViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResetPasswordFinalize);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ResetPasswordFinalizeOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
         partial void ResetPasswordCompletedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string message);
 
         public override System.Web.Mvc.ActionResult ResetPasswordCompleted(string message)
@@ -720,39 +550,16 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void AccountProfileEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.AccountProfileViewModel model);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> AccountProfileEdit(Tax.Portal.Models.AccountProfileViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AccountProfileEdit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            AccountProfileEditOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        partial void ChangeEmailAddressStartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ChangeEmailAddressStartViewModel model);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ChangeEmailAddressStart(Tax.Portal.Models.ChangeEmailAddressStartViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeEmailAddressStart);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ChangeEmailAddressStartOverride(callInfo, model);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
         partial void ChangeEmailAddressFinalizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token, string message);
 
         public override System.Web.Mvc.ActionResult ChangeEmailAddressFinalize(string token, string message)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeEmailAddressFinalize);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
             ChangeEmailAddressFinalizeOverride(callInfo, token, message);
             return callInfo;
         }
-
-        partial void ChangeEmailAddressFinalizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ChangeEmailAddressFinalizeViewModel model);
-
-
 
         partial void ChangeEmailAddressCompletedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string message);
 
@@ -775,17 +582,6 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void viPreregisterOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.PreRegisterViewModel model, string field);
-
-        public override Tax.Portal.Models.JsonpResult viPreregister(Tax.Portal.Models.PreRegisterViewModel model, string field)
-        {
-            var callInfo = new T4MVC_Tax_Portal_Models_JsonpResult(Area, Name, ActionNames.viPreregister);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
-            viPreregisterOverride(callInfo, model, field);
-            return callInfo;
-        }
-
         partial void viResetPasswordStartOverride(T4MVC_Tax_Portal_Models_JsonpResult callInfo, Tax.Portal.Models.ResetPasswordStartViewModel model, string field);
 
         public override Tax.Portal.Models.JsonpResult viResetPasswordStart(Tax.Portal.Models.ResetPasswordStartViewModel model, string field)
@@ -805,46 +601,6 @@ namespace Tax.Portal.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "field", field);
             viResetPasswordFinalizeOverride(callInfo, model, field);
-            return callInfo;
-        }
-
-        partial void MailAgainOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string loginname);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> MailAgain(string loginname)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MailAgain);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "loginname", loginname);
-            MailAgainOverride(callInfo, loginname);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        partial void ValidateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Validate(string id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Validate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ValidateOverride(callInfo, id);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
-        partial void ValidateSuccessOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, string message);
-
-        public override System.Web.Mvc.ViewResult ValidateSuccess(string message)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.ValidateSuccess);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
-            ValidateSuccessOverride(callInfo, message);
-            return callInfo;
-        }
-
-        partial void ValidateFailureOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, string message);
-
-        public override System.Web.Mvc.ViewResult ValidateFailure(string message)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.ValidateFailure);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
-            ValidateFailureOverride(callInfo, message);
             return callInfo;
         }
 

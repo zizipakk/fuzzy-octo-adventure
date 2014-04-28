@@ -102,11 +102,6 @@ namespace Tax.Portal.Models
     public class ResetPasswordFinalizeViewModel : BootstrapViewModel
     {
         [Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
-        [Display(Name = "Érvényesítőkód")]
-        [TokenMustBeValid]
-        public string Token { get; set; }
-
-        [Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
         [StringLength(100, ErrorMessage = "A {0} legalább {2} karakter hosszú legyen", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Új jelszó")]
@@ -168,40 +163,6 @@ namespace Tax.Portal.Models
 
         [Display(Name = "Használatba vett eszközök")]
         public List<string[]> Devices { get; set; }
-
-    }
-
-    public class PreRegisterViewModel : RegisterViewModel//BootstrapViewModel
-    {
-        [Display(Name = "SINOSZ tagsági azonosító")]
-        [Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
-        public string PreSinoszId { get; set; }
-
-        [Display(Name = "Születési dátum")]
-        [Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
-        [DisplayFormat(DataFormatString="{0:yyyy.MM.dd}", ApplyFormatInEditMode = true)]
-        public DateTime? PreBirthDate { get; set; }
-
-        public Guid? SocialPositionId { get; set; }
-        [Display(Name = "Betöltött társadalmi funkció")]
-        public ICollection<MyListItem> SocialPositionList { get; set; }
-                
-        [Display(Name = "Munkavégzéshez?")]
-        public bool IsNeedForJob { get; set; }
-
-        [Display(Name = "Munkahely-munkakör")]
-        public string Job { get; set; }
-
-        [Display(Name = "Egészségügyi ellátáshoz?")]
-        public bool IsNeedForHealth { get; set; }
-
-        [Display(Name = "Önálló életvitelhez?")]
-        public bool IsNeedForLife { get; set; }
-
-        //[MustBeTrue(ErrorMessage = "A [{0}]-t el kell fogadni a az előregisztrációhoz!")]
-        [MustBeTrue(ErrorMessage = "A [{0}]-t el kell fogadni a a regisztrációhoz!")]
-        [Display(Name = "Szerződés feltételei")]
-        public bool IsAcknowledge { get; set; }
 
     }
 

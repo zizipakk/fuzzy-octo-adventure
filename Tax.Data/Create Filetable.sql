@@ -1,6 +1,4 @@
-﻿--olvasnivaló: #2062: http://egroup.azurewebsites.net/Inquiry/View/8fedc549-c206-436f-92d4-5a3a298ab030
-
---enable filestream
+﻿--enable filestream
 --ez nálam látszólag nem működött, ezért kézzel az SQL Configuration Manager-rel kellett
 --engedélyezni a FileStream-et (PG)
 
@@ -9,26 +7,27 @@
  2. SQL Service restart
  3. Futtatás
 */
+EXEC sp_configure filestream_access_level, 2
+RECONFIGURE
 
 --create directory
-ALTER DATABASE kontaktdb
-SET FILESTREAM (NON_TRANSACTED_ACCESS = FULL, DIRECTORY_NAME = 'FilesShare')
+ALTER DATABASE taxdb
+SET FILESTREAM (DIRECTORY_NAME = 'FilesShare')
 GO
-
 
 ----ALTER DATABASE kontaktdb REMOVE FILE kontaktfiles
 ----ALTER DATABASE kontaktdb REMOVE FILEGROUP kontaktfg
 --create filegroup
-ALTER DATABASE kontaktdb
-ADD FILEGROUP kontaktfg CONTAINS FILESTREAM
+ALTER DATABASE taxdb
+ADD FILEGROUP taxdb CONTAINS FILESTREAM
 GO
 --create file
-ALTER DATABASE kontaktdb
+ALTER DATABASE taxdb
 ADD FILE (
-	Name = kontaktfiles,
-	FILENAME = 'E:\MSSQL11.MSSQLSERVER\MSSQL\Filestream'
+	Name = taxfiles,
+	FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\Filestream'
 )
-TO FILEGROUP kontaktfg
+TO FILEGROUP taxfg
 GO
 
 --create filetable

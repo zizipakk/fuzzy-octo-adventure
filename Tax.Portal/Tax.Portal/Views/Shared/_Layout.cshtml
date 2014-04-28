@@ -1,5 +1,7 @@
 ﻿@using Tax.Data.Models
 @using System.Configuration
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    @*<img src="@Url.Content("~/Content/images/Kontakt_logo.png")" class="img-responsive" alt="" style="border: none;" />*@
+                    @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
                 </a>
             </div>
             <div class="navbar-collapse collapse" style="margin-top: 35px">
@@ -35,38 +37,28 @@
                     {
                         using (var db = new Tax.Data.Models.ApplicationDbContext())
                         {
-                            foreach (var menu in db.Menu.Where(
-                                                    x => x.SubMenu.Any
-                                                        (
-                                                            y => db.SubMenu.Where
-                                                                (
-                                                                    z => z.KontaktRole.Any
-                                                                        (
-                                                                            v => db.ApplicationUserRole
-                                                                                .Where(w => w.User.UserName == User.Identity.Name)
-                                                                                .Select(aa => aa.Role)
-                                                                                .Contains(v)
-                                                                        )
-                                                                ).Contains(y)
-                                                        )
-                                                    ).OrderBy(x => x.Position)
-                                                    .ToList())
+                            string usrId = User.Identity.GetUserId();
+                            bool isAdmin = Roles.IsUserInRole("SysAdmin");
+                            foreach (var menu in db.Menu.OrderBy(x => x.Position).ToList())
                             {
-                                <li class="dropdown">
+                                @*<li class="dropdown">
                                     <a class="dropdown-toggle @(!menu.isActive?"disabled":"")" data-toggle="dropdown" href="#">
                                         @menu.Name
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        @foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position))
-                                        {
-                                            <li>
-                                                <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
-                                                    @menuitem.Name
-                                                </a>
-                                            </li>
+                                    <ul class="dropdown-menu">*@
+                                        foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
+                                        {                                            
+                                            if (@menuitem.Name != "Admin" || isAdmin)
+                                            { 
+                                                <li>
+                                                    <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                        @menuitem.Name
+                                                    </a>
+                                                </li>
+                                            }
                                         }
-                                    </ul>
-                                </li>
+                                    @*</ul>
+                                </li>*@
                             }
                         }
                     }

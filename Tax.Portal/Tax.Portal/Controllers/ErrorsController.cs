@@ -10,22 +10,22 @@ namespace Tax.Portal.Controllers
     {
         public virtual ActionResult General()
         {
-            return Content("Hiba történt és az üzemeltetés értesült erről, ez minden, amit erről tudunk.", "text/plain");
+            return Content("An error occurred and the operation was made aware, that's all you can about it.", "text/plain");
         }
 
         public virtual ActionResult Http500(Exception exception)
         {
-            return Content("Általános probléma", "text/plain");
+            return Content("There is a common problem.", "text/plain");
         }
 
         public virtual ActionResult Http404()
         {
-            return Content("Nem található", "text/plain");
+            return Content("Not found.", "text/plain");
         }
 
         public virtual ActionResult Http403()
         {
-            return Content("Tiltott terület", "text/plain");
+            return Content("Restricted area.", "text/plain");
         }
     }
 }

@@ -39,7 +39,6 @@ namespace Tax.Data.Models
         public SubMenu()
         {
             Id = Guid.NewGuid();
-            ApplicationRole = new HashSet<ApplicationRole>();
         }
         [Key]
         public Guid Id { get; set; }
@@ -49,7 +48,6 @@ namespace Tax.Data.Models
         public bool isActive { get; set; }
         public int Position { get; set; }
 
-        public virtual ICollection<ApplicationRole> ApplicationRole { get; set; }
         public virtual Menu Menu { get; set; }
     }
 

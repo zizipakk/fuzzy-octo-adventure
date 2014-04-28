@@ -205,9 +205,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\StockController.cs" />
-    <Compile Include="Controllers\SinoszController.cs" />
+    <Compile Include="Controllers\NewController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -237,18 +235,10 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MailerController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\JsonpResult.cs" />
     <Compile Include="Models\Log4netModels.cs" />
     <Compile Include="Models\NewViewModels.cs" />
-    <Compile Include="Models\ReservationViewModels.cs" />
-    <Compile Include="Models\SinoszViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -839,64 +829,26 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\UserMailer\ResetPasswordCompleted.cshtml" />
-    <Content Include="Views\UserMailer\Welcome.cshtml" />
-    <Content Include="Views\UserMailer\_Layout.cshtml" />
-    <Content Include="Views\Admin\Trunk.cshtml" />
-    <Content Include="Views\Admin\Log.cshtml" />
-    <Content Include="Views\Account\ValidateSuccess.cshtml" />
-    <Content Include="Views\Account\ValidateFailure.cshtml" />
-    <Content Include="Views\Account\AccountProfileEdit.cshtml" />
-    <Content Include="Views\Account\ResetPasswordStart.cshtml" />
-    <Content Include="Views\Account\ResetPasswordFinalize.cshtml" />
-    <Content Include="Views\UserMailer\ResetPassword.cshtml" />
-    <Content Include="Views\UserMailer\ValidateEmail.cshtml" />
     <Content Include="Views\Admin\Rule.cshtml" />
     <Content Include="Views\Admin\Setup.cshtml" />
-    <Content Include="Views\Sinosz\New.cshtml" />
-    <Content Include="Views\Sinosz\List.cshtml" />
-    <Content Include="Views\Sinosz\PrintCommContract.cshtml" />
-    <Content Include="Views\Shared\_Empty.cshtml" />
     <Content Include="Views\Stock\Devices.cshtml" />
     <Content Include="Views\Stock\Users.cshtml" />
-    <Content Include="Views\Account\PreRegister.cshtml" />
     <Content Include="Views\Home\WaitForEmailValidationAfterPreRegistration.cshtml" />
     <Content Include="Views\Home\WaitForEmailValidation.cshtml" />
-    <Content Include="Views\Home\MissingEmailValidation.cshtml" />
-    <Content Include="Views\Log\Index.cshtml" />
-    <Content Include="Views\UserMailer\WithDeviceElectedEmail.cshtml" />
-    <Content Include="Views\UserMailer\WithoutDeviceElectedEmail.cshtml" />
     <Content Include="Views\Stock\ReservationAdmin.cshtml" />
-    <Content Include="Views\Home\IsNotElected.cshtml" />
-    <Content Include="Views\Home\IsReservationClosed.cshtml" />
     <Content Include="Views\Stock\Reservation.cshtml" />
-    <Content Include="Views\Shared\_PrintContract.cshtml" />
-    <Content Include="Views\Sinosz\Print.cshtml" />
-    <Content Include="Views\Sinosz\PrintDevContract.cshtml" />
-    <Content Include="Views\Home\PrintCommContract.cshtml" />
-    <Content Include="Views\Home\PrintDevContract.cshtml" />
-    <Content Include="Views\UserMailer\ScheduleClosed.cshtml" />
     <Content Include="Views\Shared\_LocalisationPartial.cshtml" />
+    <Content Include="Views\New\_DetailPartial.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Views\Sinosz\Index.cshtml" />
-    <Content Include="Views\Sinosz\Edit.cshtml" />
-    <Content Include="Views\Sinosz\Parameter.cshtml" />
-    <Content Include="Views\UserMailer\RulesEmail.cshtml" />
+    <Content Include="Views\New\Index.cshtml" />
+    <Content Include="Views\New\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />
@@ -912,10 +864,6 @@
     <ProjectReference Include="..\..\Tax.Data\Tax.Data.csproj">
       <Project>{edd3bdb3-cfb4-4f30-9b18-68a953d422b9}</Project>
       <Name>Tax.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tax.Log4Net\Tax.Log4Net.csproj">
-      <Project>{a5091b18-9c11-43d4-a083-1cb501dc287e}</Project>
-      <Name>Tax.Log4Net</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -25,18 +25,18 @@ namespace Tax.Portal.Models
         [Required(ErrorMessage = "[{0}] is required")]
         public Guid ThumbnailId { get; set; }
         [Display(Name = "Tags")]
-        public IEnumerable<TagBindingModel> TagsGlobal { get; set; }
-        [Display(Name = "Állapot")]
+        public IEnumerable<TagsViewModel> TagsGlobal { get; set; }
+        [Display(Name = "Status")]
         public string NewsStatus { get; set; }
         [Display(Name = "Title1")]
         [Required(ErrorMessage = "[{0}] is required")]
-        [StringLength(ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Title1 { get; set; }
         [Display(Name = "Title2")]
-        [StringLength(ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Title2 { get; set; }
         [Display(Name = "Subtitle")]
-        [StringLength(ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Subtitle { get; set; }
         [Display(Name = "Body text")]
         [Required(ErrorMessage = "[{0}] is required")]

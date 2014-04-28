@@ -25,15 +25,5 @@ namespace Tax.Data.Models
         [Display(Name = "It is locked?")]
         public bool isLocked { get; set; }
     }
-
-    public class ApplicationRole : IdentityRole
-    {
-        public ApplicationRole()
-        {
-            SubMenu = new HashSet<SubMenu>();
-        }
-
-        public virtual ICollection<SubMenu> SubMenu { get; set; }
-    }
-
+ 
 }
