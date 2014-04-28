@@ -11,6 +11,8 @@ using Tax.Data.Models;
 using System.Web.Http.Description;
 using Tax.WebAPI.Results;
 using Newtonsoft.Json;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.ModelBinding.Binders;
 
 namespace Tax.WebAPI.Controllers
 {
@@ -22,7 +24,7 @@ namespace Tax.WebAPI.Controllers
         [AllowAnonymous]
         [Route("api/Contacts")]
         [ResponseType(typeof(IEnumerable<ContactsBindingModel>))]
-        public IHttpActionResult Articles(IEnumerable<string> tags, string lang)
+        public IHttpActionResult Contacts([ModelBinder(typeof(ArrayModelBinderProvider))]string[] tags, string lang)
         {
             try
             {

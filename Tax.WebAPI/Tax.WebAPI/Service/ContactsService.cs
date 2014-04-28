@@ -19,19 +19,29 @@ namespace Tax.WebAPI.Service
             this.context = context;
         }
 
-        public IEnumerable<ContactsBindingModel> GetContacts(IEnumerable<string> tags, string lang, string url)
+        public IEnumerable<ContactsBindingModel> GetContacts(string[] tags, string lang, string url)
         {
             string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
 
+            List<Guid> tagsGL = new List<Guid>();
+            foreach (string t in tags.ToList())
+            {
+                tagsGL.Add(Guid.Parse(t));
+            }
+            Guid[] tagsGA = tagsGL.ToArray();
+
             var res = context.ContactsGlobal
                         .Where(x => x.NewsStatus.NameGlobal == "Published"
-                                && x.TagsGlobal.Select(y => y.Id.ToString()).ToArray().Intersect(tags).Any()
+                                && (
+                                    tags.Count() == 0
+                                    || x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
+                                    )
                         )
                         .Include(x => x.TagsGlobal)
                         .SelectMany(x => x.ContactsLocal.Where(y =>
                                                             y.ContactsGlobalId == x.Id
                                                             && y.Language.ShortName == lang), (x, y) => new { x, y })
-                        .OrderByDescending(o => o.x.PublishingDate)
+                        .ToList()
                         .Select(s => new ContactsBindingModel
                             {
                                 Id = s.x.Id.ToString(),
@@ -52,7 +62,9 @@ namespace Tax.WebAPI.Service
                                                 , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                                 linkedinURL = s.x.Linkedin
                             }
-                        );
+                        )
+                        .OrderByDescending(o => o.LastName)
+                        .ThenBy(t => t.FisrtName);
 
             return res; 
         }

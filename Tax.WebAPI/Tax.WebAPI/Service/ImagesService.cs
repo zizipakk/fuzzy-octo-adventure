@@ -21,7 +21,14 @@ namespace Tax.WebAPI.Service
 
         public File GetImage(string id)
         {
-            File file = context.File.Find(id);
+            Guid gid;
+            if (!Guid.TryParse(id, out gid))
+            {
+                return null;
+            }
+
+            File file = context.File.Find(gid);
+
             return file;
         }
     }

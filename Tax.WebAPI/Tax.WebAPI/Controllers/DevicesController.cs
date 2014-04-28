@@ -21,14 +21,14 @@ namespace Tax.WebAPI.Controllers
         [HttpPut]
         [AllowAnonymous]
         [Route("api/PutDevice")]
-        public IHttpActionResult PutDevice(DevicesBindingModel model)
+        public IHttpActionResult PutDevice(string token, string type, string lang)
         {
             try
             {
-                log.Info(string.Format("Put device by token: {0}, type: {1}, language {2}", model.Token, model.Type, model.Lang));
+                log.Info(string.Format("Put device by token: {0}, type: {1}, language {2}", token, type, lang));
 
                 var deviceService = new DevicesService(context);
-                string message = deviceService.PutDevice(model.Token, model.Type, model.Lang);
+                string message = deviceService.PutDevice(token, type, lang);
 
                 if (message != null)
                 {
