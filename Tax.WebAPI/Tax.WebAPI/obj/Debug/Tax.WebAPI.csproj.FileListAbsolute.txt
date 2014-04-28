@@ -39,10 +39,8 @@ C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\System.Web.WebPages.Deplo
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\System.Web.WebPages.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\System.Web.WebPages.Razor.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.Data.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Taxt.Log4Net.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\WebGrease.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.Data.pdb
-C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Taxt.Log4Net.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\log4net.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.Cors.xml

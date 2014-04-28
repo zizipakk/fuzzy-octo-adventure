@@ -415,3 +415,4 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 2014-04-28 16:52:45,690 [104] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Not valid language: eng, end
 2014-04-28 16:53:01,444 [36] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: a1111, type: ios, language en
 2014-04-28 16:53:01,479 [36] INFO  Tax.WebAPI.Controllers.DevicesController - OK, end
+2014-04-28 16:56:11,868 [18] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...

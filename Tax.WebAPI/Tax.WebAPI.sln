@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.WebAPI", "Tax.WebAPI\Tax.WebAPI.csproj", "{0D5D27BB-9290-4A5D-A423-983094707F46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Data", "..\Tax.Data\Tax.Data.csproj", "{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.Log4Net", "..\Tax.Log4Net\Tax.Log4Net.csproj", "{A5091B18-9C11-43D4-A083-1CB501DC287E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,12 +26,6 @@ Global
 		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.TDeployDebug|Any CPU.ActiveCfg = TDeployDebug|Any CPU
 		{EDD3BDB3-CFB4-4F30-9B18-68A953D422B9}.TDeployDebug|Any CPU.Build.0 = TDeployDebug|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.TDeployDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5091B18-9C11-43D4-A083-1CB501DC287E}.TDeployDebug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

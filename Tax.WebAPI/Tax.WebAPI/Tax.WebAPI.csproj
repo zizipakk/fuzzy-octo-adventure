@@ -314,10 +314,6 @@
       <Project>{edd3bdb3-cfb4-4f30-9b18-68a953d422b9}</Project>
       <Name>Kontakt.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tax.Log4Net\Tax.Log4Net.csproj">
-      <Project>{a5091b18-9c11-43d4-a083-1cb501dc287e}</Project>
-      <Name>Kontakt.Log4Net</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
