@@ -25,7 +25,7 @@ namespace Tax.Portal.Models
         [Required(ErrorMessage = "[{0}] is required")]
         public Guid ThumbnailId { get; set; }
         [Display(Name = "Tags")]
-        public IEnumerable<TagsViewModel> TagsGlobal { get; set; }
+        public IEnumerable<TagViewModel> Tags { get; set; }
         [Display(Name = "Status")]
         public string NewsStatus { get; set; }
         [Display(Name = "Title1")]

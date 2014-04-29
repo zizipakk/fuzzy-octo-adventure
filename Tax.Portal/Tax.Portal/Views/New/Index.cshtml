@@ -1,12 +1,4 @@
 ﻿@using Tax.Data.Models;
-@using Microsoft.AspNet.Identity;
-@using Microsoft.AspNet.Identity.EntityFramework;
-
-@{
-    ViewBag.Title = "SINOSZ-tagok keresése";
-}
-
-<h2>@ViewBag.Title</h2>
 
 <style type="text/css">
     .ui-jqgrid .ui-state-highlight {
@@ -26,52 +18,53 @@
     }
 </style>
 
-@using (var db = new Tax.Data.Models.ApplicationDbContext())
-{
-    string usrId = User.Identity.GetUserId();
-    if (db.ApplicationUserRole.Any(x =>
-            x.UserId == usrId
-            && x.Role.Name == "SinoszAdmin"))
-    {
-        <div class="col-lg-3 pull-right">
-            <input id="inactivator" type="button" class="btn btn-warning" data-toggle="modal" data-target=".bs-modal-sm" value="Listázott tagok inaktiválása">
-        </div>
-    }
-}
-   
-<hr />
-
-<div class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="col-md-12">
-                <div style="background-color: white">
-                    <input type="button" class="btn btn-default close" data-dismiss="modal" value=" X " />
-                    <hr />
-                    <div class="row">
-                        <div class="text-center">
-                            <h3>Inaktívvá szeretné tenni a listázott tagokat?</h3>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <input id="btnSuserInactivator" type="button" class="btn btn-warning" data-dismiss="modal" value=" INAKTIVÁLÁS " />
-                        </div>
-                    </div>
-                    <hr />
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">WARNING!</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
                 </div>
             </div>
-        </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ERROR!</h4>
+            </div>
+            <div class="modal-body" style="color:red">
+                <p id="errortext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
     </div>
 </div>
 
 <div class="row">
     <div class="container grid">
         <div class="col-md-12">
-            <div>
-                <table id="sinoszusers" class="display"><tr><td /></tr></table>
-                <div id="sinoszuserspager"></div>
+            <div class="col-sm-7 col-xs-12" style="min-width: 660px">
+                <table id="news" class="display"><tr><td /></tr></table>
+                <div id="newspager"></div>
+            </div>
+            <div class="col-sm-5 col-xs-12" style="min-width: 470px">
+                
             </div>
         </div>
     </div>
@@ -86,11 +79,17 @@
 <script type="text/javascript">
     (function (global, undefined) {
 
-        $("#inactivator").hide().css({ visibility: "hidden" });
-
-        function linkFormatter(cellvalue, options, rowObject) {
-            return '<a href = "@Url.Action("Edit", "Sinosz")?UserID=' + rowObject[0] + '">' + cellvalue + '</a>';
-        }
+        var getColumnIndexByName = function (gridname, columnName) {
+            var grid = $("#" + gridname);
+            var cm = grid.jqGrid('getGridParam', 'colModel');
+            var retval = -1;
+            $.each(cm, function () {
+                if (this.name === columnName) {
+                    retval = cm.indexOf(this);
+                }
+            });
+            return retval;
+        };
 
         initDateSearch = function (elem) {
             setTimeout(function () {
@@ -104,7 +103,7 @@
                     onSelect: function () {
                         if (this.id.substr(0, 3) === "gs_") {
                             setTimeout(function () {
-                                $("#sinoszusers")[0].triggerToolbar();
+                                $("#news")[0].triggerToolbar();
                             }, 50);
                         } else {
                             // to refresh the filter
@@ -140,156 +139,65 @@
             return [true, ""];
         }
 
-        jQuery("#sinoszusers").jqGrid({
-            url: '@Url.Action("ListSinoszUsers", "Sinosz")?SinoszId=@ViewBag.SinoszId',
-            editurl: '@Url.Action("UpdateSinoszUsers", "Sinosz")',
+        function fileFormat(cellvalue, options, rowObject) {
+            @*return '<a href="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                    + '" download="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                    + '" title="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                    + '"><img src="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                            + '" class="img-responsive img-thumbnail" alt="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                            + '" id="' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                    + '"/></a>';*@
+            return '';
+        }
+
+        jQuery("#news").jqGrid({
+            url: '@Url.Action("ListNews", "New")',
             datatype: "json",
+            loadError: function (jqXHR, textStatus, errorThrown) {
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            },
             colNames: [
                 'id'
-                , 'Státusz'
-                , 'Név'
-                , 'Tagsági azonosító'
-                , 'Nyilvántartó szervezet'
-                , 'Utolsó érvényes befizetés'
-                , 'Befizetés jogcíme'
-                , 'Nyugtaszám'
-                , 'Születési név'
-                , 'IRSZ - Város'
-                , 'Lakcím'
-                , 'Tagviszony'
-                , 'Tagkönyv státusza'
-                , 'Születési dátum'
-                , 'Szakképzettség'
-                , 'Születési hely'
-                , 'Anyja neve'
-                , 'Telefon'
-                , 'Nem'
-                , 'Iskolai végzettség'
-                , 'Családi állapot'
-                , 'Belépési dátum'
-                , 'Megjegyzés'
-                , 'Hallássérülés foka'
-                , 'Sérülés ideje'
-                , 'Nyugdíj forma'
-                , 'Határozat száma'
-                , 'Állampolgárság'
-                , 'Utolsó bef. összeg'
-                , 'E-mail'
-                , 'Funkció'
-                , 'Vonalkód'
-            ],
+                , 'Status'
+                , 'Title1'
+                , 'Title2'
+                , 'Tags'
+                , 'Published'
+                , 'Thumbnail'
+            ],  
             colModel: [
                 { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
-                { name: 'StatusName', index: 'StatusName', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false }, //látszik, kereshető, nem vihető fel
-                { name: 'SinoszUserName', index: 'SinoszUserName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true }, formatter: linkFormatter }, //látszik, kereshető. felvihető
-                { name: 'SinoszId', index: 'SinoszId', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false }, //látszik, kereshető, nem vihető fel
-                {
-                    name: 'OrganizationName', index: 'OrganizationName', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem létszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListOrganizations", "Sinosz")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
+                { 
+                    name: 'Status', index: 'Status', width: 80, align: "left", hidden: false, sortable: true, 
+                    search: true, stype: 'select',
+                    searchoptions: {
+                        searchhidden: true,
+                        sopt: ['eq', 'ne'],
+                        dataUrl: '@Url.Action("ListNewsStatus", "New")?isSearch=' + true,
+                        buildSelect: function (result) { return result; }
+                    },
+                    editable: false
                 },
+                { name: 'Title1', index: 'Title1', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'Title2', index: 'Title2', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+                { name: 'Tags', index: 'Tags', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
                 {
-                    name: 'DocumentDate', index: 'DocumentDate',
-                    hidden: true,
+                    name: 'PublishingDate', index: 'PublishingDate',
+                    hidden: false,
                     formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
                     search: true, searchoptions: { searchhidden: true, sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
-                },//nem létszik, kereshető, nem vihető fel
-                { name: 'AccountingTypeName', index: 'AccountingTypeName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem létszik, kereshető, nem vihető fel
-                { name: 'DocumnetNumber', index: 'DocumnetNumber', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                { name: 'BirthName', index: 'BirthName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem létszik, kereshető, nem vihető fel
-                {
-                    name: 'PostCode', index: 'PostCode', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem létszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListPostCode", "Admin")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
                 },
-                { name: 'HomeAddress', index: 'HomeAddress', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: true, editrules: { edithidden: true, required: true } },//nem létszik, kereshető, felvihető
-                { name: 'RelationshipName', index: 'RelationshipName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem létszik, kereshető, nem vihető fel
-                { name: 'CardStatusName', index: 'CardStatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                {
-                    name: 'BirthDate', index: 'BirthDate', width: 140, align: "center",
-                    hidden: false, sortable: true, sorttype: 'date',
-                    editable: true, editoptions: { dataInit: initDateSearch }, editrules: { custom: true, custom_func: datetimecheck },
-                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
-                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
-                },//látszik, kereshető, felvihető
-                { name: 'Qualification', index: 'Qualification', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem létszik, kereshető, nem vihető fel
-                { name: 'BirthPlace', index: 'BirthPlace', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: true, editrules: { edithidden: true, required: true } },//nem létszik, kereshető, felvihető
-                { name: 'MothersName', index: 'MothersName', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true } }, //látszik, kereshető, felvihető
-                { name: 'Telephone', index: 'Telephone', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem létszik, kereshető, nem vihető fel
-                {
-                    name: 'GenusName', index: 'GenusName', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem létszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListGenus", "Sinosz")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
-                },
-                { name: 'EducationName', index: 'EducationName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                { name: 'MaritalStatusName', index: 'MaritalStatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                {
-                    name: 'EnterDate', index: 'EnterDate',
-                    hidden: false, sortable: true, sorttype: 'date',
-                    editable: true, editoptions: { dataInit: initDateSearch }, editrules: { custom: true, custom_func: datetimecheck },
-                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
-                    search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
-                },//nem létszik, kereshető, felvihető
-                { name: 'Remark', index: 'Remark', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                {
-                    name: 'HearingStatusName', index: 'HearingStatusName', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem látszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListHearingStatus", "Sinosz")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
-                },
-                { name: 'InjuryTimeText', index: 'InjuryTimeText', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                {
-                    name: 'PensionTypeName', index: 'PensionTypeName', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem látszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListPensionTypes", "Sinosz")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
-                },
-                { name: 'DecreeNumber', index: 'DecreeNumber', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: true, editrules: { edithidden: true, required: true } },//nem látszik, kereshető, felvihető
-                {
-                    name: 'NationText', index: 'NationText', hidden: true, search: true, searchoptions: { searchhidden: true }, //nem látszik, kereshető, felvihető
-                    editable: true, editrules: { edithidden: true }, edittype: 'select',
-                    editoptions: {
-                        dataUrl: '@Url.Action("ListNations", "Sinosz")',
-                        buildSelect: function (result) { return result; },
-                        NullIfEmpty: true
-                    }
-                },
-                {
-                    name: 'Sum', index: 'Sum',
-                    hidden: true, search: true, template: numberTemplate,
-                    editable: false, 
-                    searchrules: { integer: true }
-                },//nem látszik, kereshető, nem vihető fel
-                { name: 'Email', index: 'Email', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                { name: 'PositionName', index: 'PositionName', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false },//nem látszik, kereshető, nem vihető fel
-                { name: 'Barcode', index: 'Barcode', hidden: true, search: true, searchoptions: { searchhidden: true }, editable: false }//nem látszik, kereshető, nem vihető fel
+                { name: 'Thumbnail', index: 'Thumbnail', hidden: false, sortable: false, search: false, editable: false, formatter: fileFormat }
             ],
             rowNum: 20,
             rowList: [20, 40, 60],
             toppager: true,
-            pager: '#sinoszuserspager',
-            //sortname: 'StatusName',
+            pager: '#newspager',
+            sortname: 'Status,PublishingDate',
             viewrecords: true,
-            //sortorder: "asc",
-            caption: 'SINOSZ-tagok',
+            sortorder: "desc",
+            caption: 'News',
             rownumbers: true,
             gridview: true,
             hoverrows: true,
@@ -301,17 +209,11 @@
                 document.location.href = '@Url.Action("Edit", "Sinosz")?UserID=' + rowid
             },*@
             loadComplete: function () {
-                var postdata = $("#sinoszusers").getGridParam("postData");
-                if ($("#sinoszusers").getGridParam("search")) {
-                    $("#inactivator").show().css({ visibility: "visible" });
-                } else {
-                    $("#inactivator").hide().css({ visibility: "hidden" });
-                }
             }
         });
 
-        jQuery("#sinoszusers").jqGrid('navGrid', '#sinoszuserspager'
-            , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+        jQuery("#news").jqGrid('navGrid', '#newspager'
+            , { edit: true, add: true, del: true, refresh: true, cloneToTop: true }
             , {} //prmEdit
             , { width: 600, recreateForm: true, closeAfterAdd: true } //prmAdd
             , {} //prmDel

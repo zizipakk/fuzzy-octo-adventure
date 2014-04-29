@@ -28,10 +28,9 @@ public static class MVC
     public static Tax.Portal.Controllers.AdminController Admin = new Tax.Portal.Controllers.T4MVC_AdminController();
     public static Tax.Portal.Controllers.ErrorsController Errors = new Tax.Portal.Controllers.T4MVC_ErrorsController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();
+    public static Tax.Portal.Controllers.NewController New = new Tax.Portal.Controllers.T4MVC_NewController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
-    public static T4MVC.SinoszController Sinosz = new T4MVC.SinoszController();
     public static T4MVC.StockController Stock = new T4MVC.StockController();
-    public static T4MVC.UserMailerController UserMailer = new T4MVC.UserMailerController();
 }
 
 namespace T4MVC

@@ -187,7 +187,7 @@ namespace Tax.Portal.Controllers
                     if (result.Succeeded)
                     {
                         log.Info("end with ok");
-                        return RedirectToAction(MVC.Home.WaitForEmailValidation());
+                        return RedirectToAction(MVC.Home.Index());
                     }
                     else
                     {
@@ -328,50 +328,6 @@ namespace Tax.Portal.Controllers
         }
 
         //
-        // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public virtual async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("ExternalLoginCallback"))
-            {
-                log.Info("begin");
-                log.Info(string.Format("returnUrl: {0}", returnUrl));
-                var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (loginInfo == null)
-                {
-                    log.Info("end (with prompt to login)");
-                    return RedirectToAction(MVC.Account.Login());
-                }
-
-                // Sign in the user with this external login provider if the user already has a login
-                var user = await UserManager.FindAsync(loginInfo.Login);
-                if (user != null)
-                {
-                    //Beléptetem
-                    //if (!user.isEmailValidated)
-                    //    return RedirectToAction(MVC.Home.MissingEmailValidation());
-                    //else
-                        await SignInAsync(user, isPersistent: false);                            
-
-                    log.Info("end (with logged in ok))");
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    log.Info("end (with prompt to create account)");
-                    return View(MVC.Account.Views.ExternalLoginConfirmation, 
-                        new ExternalLoginConfirmationViewModel 
-                        { 
-                            UserName = loginInfo.DefaultUserName 
-                        });
-                }
-            }
-        }
-
-        //
         // POST: /Account/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -412,59 +368,6 @@ namespace Tax.Portal.Controllers
         }
 
         //
-        // POST: /Account/ExternalLoginConfirmation
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("ExternalLoginConfirmation(Post)"))
-            {
-                log.Info("begin");
-                log.Info(string.Format("model: {0}, returnUrl: {1}", JsonConvert.SerializeObject(model), returnUrl));
-
-                if (User.Identity.IsAuthenticated)
-                {
-                    //return RedirectToAction("Manage");
-                    return RedirectToAction(MVC.Account.Manage());
-                }
-
-                if (ModelState.IsValid)
-                {
-                    // Get the information about the user from the external login provider
-                    var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                    if (info == null)
-                    {
-                        //return View("ExternalLoginFailure");
-                        return View(MVC.Account.Views.ExternalLoginFailure);
-                    }
-                    var user = new ApplicationUser() { UserName = model.UserName };
-                    var result = await UserManager.CreateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                        if (result.Succeeded)
-                        {
-                            //Beléptetem
-                            //if (!user.isEmailValidated)
-                            //    return RedirectToAction(MVC.Home.MissingEmailValidation());
-                            //else
-                                await SignInAsync(user, isPersistent: false);                            
-
-                            return RedirectToLocal(returnUrl);
-                        }
-                    }
-                    AddErrors(result);
-                }
-
-                ViewBag.ReturnUrl = returnUrl;
-                model.Refresh(ModelState);
-                log.Info("end");
-                return View(model);
-            }
-        }
-
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -489,19 +392,6 @@ namespace Tax.Portal.Controllers
                 log.Info("begin");
                 log.Info("end");
                 return View();
-            }
-        }
-
-        [ChildActionOnly]
-        public virtual ActionResult RemoveAccountList()
-        {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("RemoveAccountList"))
-            {
-                log.Info("begin");
-                var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
-                ViewBag.ShowRemoveButton = HasPassword() || linkedAccounts.Count > 1;
-                log.Info("end");
-                return (ActionResult)PartialView(MVC.Account.Views._RemoveAccountPartial, linkedAccounts);
             }
         }
 

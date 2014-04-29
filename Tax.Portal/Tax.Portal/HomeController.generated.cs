@@ -61,26 +61,12 @@ namespace Tax.Portal.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string About = "About";
-            public readonly string Contact = "Contact";
-            public readonly string WaitForEmailValidation = "WaitForEmailValidation";
-            public readonly string MissingEmailValidation = "MissingEmailValidation";
-            public readonly string WaitForEmailValidationAfterPreRegistration = "WaitForEmailValidationAfterPreRegistration";
-            public readonly string IsNotElected = "IsNotElected";
-            public readonly string IsReservationClosed = "IsReservationClosed";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string About = "About";
-            public const string Contact = "Contact";
-            public const string WaitForEmailValidation = "WaitForEmailValidation";
-            public const string MissingEmailValidation = "MissingEmailValidation";
-            public const string WaitForEmailValidationAfterPreRegistration = "WaitForEmailValidationAfterPreRegistration";
-            public const string IsNotElected = "IsNotElected";
-            public const string IsReservationClosed = "IsReservationClosed";
         }
 
 
@@ -94,25 +80,11 @@ namespace Tax.Portal.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string About = "About";
-                public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
-                public readonly string IsNotElected = "IsNotElected";
-                public readonly string IsReservationClosed = "IsReservationClosed";
-                public readonly string MissingEmailValidation = "MissingEmailValidation";
-                public readonly string PrintCommContract = "PrintCommContract";
-                public readonly string PrintDevContract = "PrintDevContract";
                 public readonly string WaitForEmailValidation = "WaitForEmailValidation";
                 public readonly string WaitForEmailValidationAfterPreRegistration = "WaitForEmailValidationAfterPreRegistration";
             }
-            public readonly string About = "~/Views/Home/About.cshtml";
-            public readonly string Contact = "~/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string IsNotElected = "~/Views/Home/IsNotElected.cshtml";
-            public readonly string IsReservationClosed = "~/Views/Home/IsReservationClosed.cshtml";
-            public readonly string MissingEmailValidation = "~/Views/Home/MissingEmailValidation.cshtml";
-            public readonly string PrintCommContract = "~/Views/Home/PrintCommContract.cshtml";
-            public readonly string PrintDevContract = "~/Views/Home/PrintDevContract.cshtml";
             public readonly string WaitForEmailValidation = "~/Views/Home/WaitForEmailValidation.cshtml";
             public readonly string WaitForEmailValidationAfterPreRegistration = "~/Views/Home/WaitForEmailValidationAfterPreRegistration.cshtml";
         }
@@ -129,69 +101,6 @@ namespace Tax.Portal.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void AboutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult About()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.About);
-            AboutOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void ContactOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult Contact()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Contact);
-            ContactOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void WaitForEmailValidationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult WaitForEmailValidation()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WaitForEmailValidation);
-            WaitForEmailValidationOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void MissingEmailValidationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult MissingEmailValidation()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.MissingEmailValidation);
-            MissingEmailValidationOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void WaitForEmailValidationAfterPreRegistrationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult WaitForEmailValidationAfterPreRegistration()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WaitForEmailValidationAfterPreRegistration);
-            WaitForEmailValidationAfterPreRegistrationOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void IsNotElectedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult IsNotElected()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IsNotElected);
-            IsNotElectedOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void IsReservationClosedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult IsReservationClosed()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.IsReservationClosed);
-            IsReservationClosedOverride(callInfo);
             return callInfo;
         }
 

@@ -217,6 +217,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AttributeHelpers.cs" />
+    <Compile Include="Helpers\LocalisationHelpers.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\JQGrid\Filter.cs" />
     <Compile Include="Helpers\JQGrid\GridModelBinder.cs" />
@@ -238,12 +239,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\JsonpResult.cs" />
     <Compile Include="Models\Log4netModels.cs" />
+    <Compile Include="Models\TagViewModels.cs" />
     <Compile Include="Models\NewViewModels.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharedController.generated.cs">
+    <Compile Include="NewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="SinoszController.generated.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -253,9 +255,6 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserMailerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -218,15 +218,11 @@ namespace Tax.Portal.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Log = "Log";
                 public readonly string Rule = "Rule";
                 public readonly string Setup = "Setup";
-                public readonly string Trunk = "Trunk";
             }
-            public readonly string Log = "~/Views/Admin/Log.cshtml";
             public readonly string Rule = "~/Views/Admin/Rule.cshtml";
             public readonly string Setup = "~/Views/Admin/Setup.cshtml";
-            public readonly string Trunk = "~/Views/Admin/Trunk.cshtml";
         }
     }
 

@@ -68,23 +68,9 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginCallback()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginCallback);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult LinkLogin()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LinkLogin);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginConfirmation()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginConfirmation);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -149,13 +135,10 @@ namespace Tax.Portal.Controllers
             public readonly string Disassociate = "Disassociate";
             public readonly string Manage = "Manage";
             public readonly string ExternalLogin = "ExternalLogin";
-            public readonly string ExternalLoginCallback = "ExternalLoginCallback";
             public readonly string LinkLogin = "LinkLogin";
             public readonly string LinkLoginCallback = "LinkLoginCallback";
-            public readonly string ExternalLoginConfirmation = "ExternalLoginConfirmation";
             public readonly string LogOff = "LogOff";
             public readonly string ExternalLoginFailure = "ExternalLoginFailure";
-            public readonly string RemoveAccountList = "RemoveAccountList";
             public readonly string ResetPasswordStart = "ResetPasswordStart";
             public readonly string ResetPasswordCompleted = "ResetPasswordCompleted";
             public readonly string AccountProfileEdit = "AccountProfileEdit";
@@ -174,13 +157,10 @@ namespace Tax.Portal.Controllers
             public const string Disassociate = "Disassociate";
             public const string Manage = "Manage";
             public const string ExternalLogin = "ExternalLogin";
-            public const string ExternalLoginCallback = "ExternalLoginCallback";
             public const string LinkLogin = "LinkLogin";
             public const string LinkLoginCallback = "LinkLoginCallback";
-            public const string ExternalLoginConfirmation = "ExternalLoginConfirmation";
             public const string LogOff = "LogOff";
             public const string ExternalLoginFailure = "ExternalLoginFailure";
-            public const string RemoveAccountList = "RemoveAccountList";
             public const string ResetPasswordStart = "ResetPasswordStart";
             public const string ResetPasswordCompleted = "ResetPasswordCompleted";
             public const string AccountProfileEdit = "AccountProfileEdit";
@@ -236,14 +216,6 @@ namespace Tax.Portal.Controllers
             public readonly string provider = "provider";
             public readonly string returnUrl = "returnUrl";
         }
-        static readonly ActionParamsClass_ExternalLoginCallback s_params_ExternalLoginCallback = new ActionParamsClass_ExternalLoginCallback();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ExternalLoginCallback ExternalLoginCallbackParams { get { return s_params_ExternalLoginCallback; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ExternalLoginCallback
-        {
-            public readonly string returnUrl = "returnUrl";
-        }
         static readonly ActionParamsClass_LinkLogin s_params_LinkLogin = new ActionParamsClass_LinkLogin();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_LinkLogin LinkLoginParams { get { return s_params_LinkLogin; } }
@@ -251,15 +223,6 @@ namespace Tax.Portal.Controllers
         public class ActionParamsClass_LinkLogin
         {
             public readonly string provider = "provider";
-        }
-        static readonly ActionParamsClass_ExternalLoginConfirmation s_params_ExternalLoginConfirmation = new ActionParamsClass_ExternalLoginConfirmation();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ExternalLoginConfirmation ExternalLoginConfirmationParams { get { return s_params_ExternalLoginConfirmation; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ExternalLoginConfirmation
-        {
-            public readonly string model = "model";
-            public readonly string returnUrl = "returnUrl";
         }
         static readonly ActionParamsClass_ResetPasswordCompleted s_params_ResetPasswordCompleted = new ActionParamsClass_ResetPasswordCompleted();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -333,36 +296,12 @@ namespace Tax.Portal.Controllers
             public class _ViewNamesClass
             {
                 public readonly string _ChangePasswordPartial = "_ChangePasswordPartial";
-                public readonly string _ExternalLoginsListPartial = "_ExternalLoginsListPartial";
-                public readonly string _RemoveAccountPartial = "_RemoveAccountPartial";
-                public readonly string _SetPasswordPartial = "_SetPasswordPartial";
-                public readonly string AccountProfileEdit = "AccountProfileEdit";
-                public readonly string ExternalLoginConfirmation = "ExternalLoginConfirmation";
-                public readonly string ExternalLoginFailure = "ExternalLoginFailure";
                 public readonly string Login = "Login";
                 public readonly string Manage = "Manage";
-                public readonly string PreRegister = "PreRegister";
-                public readonly string Register = "Register";
-                public readonly string ResetPasswordFinalize = "ResetPasswordFinalize";
-                public readonly string ResetPasswordStart = "ResetPasswordStart";
-                public readonly string ValidateFailure = "ValidateFailure";
-                public readonly string ValidateSuccess = "ValidateSuccess";
             }
             public readonly string _ChangePasswordPartial = "~/Views/Account/_ChangePasswordPartial.cshtml";
-            public readonly string _ExternalLoginsListPartial = "~/Views/Account/_ExternalLoginsListPartial.cshtml";
-            public readonly string _RemoveAccountPartial = "~/Views/Account/_RemoveAccountPartial.cshtml";
-            public readonly string _SetPasswordPartial = "~/Views/Account/_SetPasswordPartial.cshtml";
-            public readonly string AccountProfileEdit = "~/Views/Account/AccountProfileEdit.cshtml";
-            public readonly string ExternalLoginConfirmation = "~/Views/Account/ExternalLoginConfirmation.cshtml";
-            public readonly string ExternalLoginFailure = "~/Views/Account/ExternalLoginFailure.cshtml";
             public readonly string Login = "~/Views/Account/Login.cshtml";
             public readonly string Manage = "~/Views/Account/Manage.cshtml";
-            public readonly string PreRegister = "~/Views/Account/PreRegister.cshtml";
-            public readonly string Register = "~/Views/Account/Register.cshtml";
-            public readonly string ResetPasswordFinalize = "~/Views/Account/ResetPasswordFinalize.cshtml";
-            public readonly string ResetPasswordStart = "~/Views/Account/ResetPasswordStart.cshtml";
-            public readonly string ValidateFailure = "~/Views/Account/ValidateFailure.cshtml";
-            public readonly string ValidateSuccess = "~/Views/Account/ValidateSuccess.cshtml";
         }
     }
 
@@ -453,16 +392,6 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void ExternalLoginCallbackOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginCallback);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            ExternalLoginCallbackOverride(callInfo, returnUrl);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
         partial void LinkLoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string provider);
 
         public override System.Web.Mvc.ActionResult LinkLogin(string provider)
@@ -482,17 +411,6 @@ namespace Tax.Portal.Controllers
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
-        partial void ExternalLoginConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.ExternalLoginConfirmationViewModel model, string returnUrl);
-
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> ExternalLoginConfirmation(Tax.Portal.Models.ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginConfirmation);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            ExternalLoginConfirmationOverride(callInfo, model, returnUrl);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
-
         partial void LogOffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         public override System.Web.Mvc.ActionResult LogOff()
@@ -508,15 +426,6 @@ namespace Tax.Portal.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ExternalLoginFailure);
             ExternalLoginFailureOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void RemoveAccountListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult RemoveAccountList()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveAccountList);
-            RemoveAccountListOverride(callInfo);
             return callInfo;
         }
 

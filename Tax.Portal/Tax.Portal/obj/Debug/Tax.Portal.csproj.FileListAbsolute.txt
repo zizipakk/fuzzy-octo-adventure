@@ -1,3 +1,4 @@
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\EntityFramework.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.dll.config
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Tax.Portal.pdb
@@ -55,7 +56,6 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.Razor.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.WebPages.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.WebPages.Deployment.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\System.Web.WebPages.Razor.xml
-C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\EntityFramework.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\EntityFramework.SqlServer.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.AspNet.Identity.Core.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.AspNet.Identity.Owin.xml
