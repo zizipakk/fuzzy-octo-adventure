@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Routing;
 
-namespace funk.MvcGlobalisationSupport
+namespace Tax.MvcGlobalisationSupport
 {
     public class GlobalisedRoute : Route
     {

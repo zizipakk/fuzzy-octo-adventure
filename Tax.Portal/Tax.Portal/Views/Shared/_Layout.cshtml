@@ -2,6 +2,7 @@
 @using System.Configuration
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
+@using Tax.MvcGlobalisationSupport;
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,8 @@
 
 </head>
 <body>
-    <div class="navbar navbar navbar-fixed-top">        
-        <div class="container">
+    <div class="navbar navbar navbar-fixed-top">                
+        <div class="container">            
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -30,9 +31,11 @@
                     @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
                 </a>
             </div>
-            <div class="navbar-collapse collapse" style="margin-top: 35px">
-                <ul class="nav navbar-nav">
-
+            <div class="navbar-collapse collapse" style="margin-top: 0px">
+                <ul class="nav navbar-nav pull-right">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+                <ul class="nav navbar-nav pull-right">
                     @if (Request.IsAuthenticated)
                     {
                         using (var db = new Tax.Data.Models.ApplicationDbContext())
@@ -41,33 +44,29 @@
                             bool isAdmin = Roles.IsUserInRole("SysAdmin");
                             foreach (var menu in db.Menu.OrderBy(x => x.Position).ToList())
                             {
-                                @*<li class="dropdown">
-                                    <a class="dropdown-toggle @(!menu.isActive?"disabled":"")" data-toggle="dropdown" href="#">
-                                        @menu.Name
-                                    </a>
-                                    <ul class="dropdown-menu">*@
-                                        foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
-                                        {                                            
-                                            if (@menuitem.Name != "Admin" || isAdmin)
-                                            { 
-                                                <li>
-                                                    <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
-                                                        @menuitem.Name
-                                                    </a>
-                                                </li>
-                                            }
-                                        }
-                                    @*</ul>
-                                </li>*@
+                                foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
+                                {                                            
+                                    if (@menuitem.Name != "Admin" || isAdmin)
+                                    { 
+                                        <li>
+                                            <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                @menuitem.Name
+                                            </a>
+                                        </li>
+                                    }
+                                }
                             }
                         }
                     }
                 </ul>
-                @Html.Partial("_LoginPartial")
-                @*@Html.Partial("_LocalisationPartial")*@
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="/hu"><br />@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)</a></li>
+                    <li><a href="/en"><br />@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)</a></li>
+                </ul>
             </div>
         </div>
     </div>
+    @*@Html.Partial("_LocalisationPartial")*@
     <div class="container body-content" style="min-height: 668px; background-color: gray">
         @RenderBody()
         <footer>

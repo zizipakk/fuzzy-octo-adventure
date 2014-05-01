@@ -44,16 +44,20 @@ namespace Tax.Portal.Controllers
 
             var rs0 = db.NewsGlobal
                                 .SelectMany(x => x.NewsLocal.Where(y =>
-                                                                    y.NewsGlobalId == x.Id
-                                                                    && y.LanguageId == lguid), (x, y) => new { x, y })
-                       .Select(s => new 
+                                                                    //y.NewsGlobalId == x.Id
+                                                                    //&& 
+                                                                    y.LanguageId == lguid), (x, y) => new { x, y })
+                                .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
+                                    , (z, v) => new { z, v })
+                        .ToList()
+                        .Select(s => new 
                         {
-                            Id = s.x.Id,
-                            Status = s.x.NewsStatus.NewsStatusesLocal.FirstOrDefault(v => v.Language.ShortName == lid).Name,
-                            Title1 = s.y.Title1,
-                            Title2 = s.y.Title2,
-                            PublishingDate = null == s.x.PublishingDate ? DateTime.MinValue : s.x.PublishingDate,
-                            Thumbnail = null == s.x.Thumbnail ? Guid.Empty : s.x.Thumbnail.stream_id
+                            Id = s.z.x.Id,
+                            Status = s.v.Name,
+                            Title1 = s.z.y.Title1,
+                            Title2 = s.z.y.Title2,
+                            PublishingDate = null == s.z.x.PublishingDate ? DateTime.MinValue : (DateTime)s.z.x.PublishingDate.Value.Date,
+                            Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
                         }).AsEnumerable();
 
 
@@ -94,7 +98,7 @@ namespace Tax.Portal.Controllers
                                 ,r.Title1
                                 ,r.Title2
                                 ,r.Tags
-                                ,r.PublishingDate.ToString()
+                                ,DateTime.MinValue == r.PublishingDate ? "" : r.PublishingDate.ToString()
                                 ,r.Thumbnail.ToString()
                                }
                            }).ToArray();

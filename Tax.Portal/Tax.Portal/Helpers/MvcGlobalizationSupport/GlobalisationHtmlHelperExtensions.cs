@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 
-namespace funk.MvcGlobalisationSupport
+namespace Tax.MvcGlobalisationSupport
 {
     public static class GlobalisationHtmlHelperExtensions
     {

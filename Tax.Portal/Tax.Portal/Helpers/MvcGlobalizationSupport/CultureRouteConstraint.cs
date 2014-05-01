@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Routing;
 
 
-namespace funk.MvcGlobalisationSupport
+namespace Tax.MvcGlobalisationSupport
 {
     public class CultureRouteConstraint : IRouteConstraint
     {

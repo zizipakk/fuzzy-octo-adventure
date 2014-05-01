@@ -77,8 +77,6 @@
     @Scripts.Render("~/Scripts/jqgrid")
 
 <script type="text/javascript">
-    (function (global, undefined) {
-
         var getColumnIndexByName = function (gridname, columnName) {
             var grid = $("#" + gridname);
             var cm = grid.jqGrid('getGridParam', 'colModel');
@@ -183,7 +181,7 @@
                 { name: 'Title2', index: 'Title2', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
                 { name: 'Tags', index: 'Tags', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
                 {
-                    name: 'PublishingDate', index: 'PublishingDate',
+                    name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                     hidden: false,
                     formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
                     search: true, searchoptions: { searchhidden: true, sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
@@ -220,31 +218,21 @@
             , {
                 width: 600,
                 multipleSearch: true,
-                //multipleGroup: true,
                 recreateFilter: true,
                 //closeOnEscape: true,
-                //closeAfterSearch: true,
+                closeAfterSearch: true,
                 overlay: 0,
                 afterRedraw: function () {
                     $('input.add-rule', this)//.button().val('Add new rule')
-                        .attr('title', 'Új szabály hozzáadása');
-                    //$('input.add-group', this)//.button().val('Add new group or rules')
-                    //    .attr('title', 'Új szabálycsoport hozzáadása');
+                        .attr('title', 'Add new search rule');
                     $('input.delete-rule', this)//.button().val('Delete rule')
-                        .attr('title', 'Szabály törlése');
-                    //$('input.delete-group', this)//.button().val('Delete group')
-                    //    .attr('title', 'Szabálycsoport törlése');
-                    //$(this).find("table.group:not(:first)").css({
-                    //    borderWidth: "1px",
-                    //    borderStyle: "dashed"
-                    //});
+                        .attr('title', 'Delete rule');
                 }
             } //prmSearch
             , {} //prmView
         ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
 
-
-        $('#btnSuserInactivator').click(function () {
+        @*$('#btnSuserInactivator').click(function () {
             var postdata = $("#sinoszusers").getGridParam("postData");
             $.ajax({
                 url: '@Url.Action("ListSinoszUsers", "Sinosz")?'
@@ -263,9 +251,7 @@
                 },
                 loadError: function (xhr, status, error) { alert(status + " " + error); }
             });
-        });
-
-    }(window));
+        });*@
     </script>
 
 }

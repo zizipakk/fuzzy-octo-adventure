@@ -5,7 +5,7 @@ using System.Text;
 using System.Globalization;
 using System.Threading;
 
-namespace funk.MvcGlobalisationSupport
+namespace Tax.MvcGlobalisationSupport
 {
     public static class CultureManager
     {
@@ -44,6 +44,25 @@ namespace funk.MvcGlobalisationSupport
                     return "Magyar";
                 case CultureNameGerman:
                     return "Deutsch";
+                default:
+                    return "";
+            }
+        }
+
+        public static string CultureShortname(string code = null)
+        {
+            if (String.IsNullOrEmpty(code))
+            {
+                code = CurrentCultureTwoLetter();
+            }
+            switch (code)
+            {
+                case CultureNameEnglish:
+                    return "EN";
+                case CultureNameHungarian:
+                    return "HU";
+                case CultureNameGerman:
+                    return "DE";
                 default:
                     return "";
             }
