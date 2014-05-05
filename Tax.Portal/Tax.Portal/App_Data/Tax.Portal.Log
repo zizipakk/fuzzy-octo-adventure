@@ -4974,3 +4974,778 @@ System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042e
 2014-05-02 01:11:03,600 [13] INFO  Tax.Portal.Controllers.HomeController [Index] end
 2014-05-02 01:12:22,525 [5] INFO  Tax.Portal.Controllers.HomeController [Index] begin
 2014-05-02 01:12:22,533 [5] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 21:41:45,113 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-05 21:41:45,415 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-05 21:41:45,584 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 21:41:45,591 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 21:42:44,829 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:42:44,830 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:47:36,699 [12] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:47:36,701 [12] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:50:36,330 [12] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:50:36,333 [12] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:51:21,047 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:51:21,049 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:51:44,198 [18] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:51:44,200 [18] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:53:34,461 [20] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:53:34,463 [20] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:54:00,418 [11] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:54:00,420 [11] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:55:30,572 [10] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:55:30,573 [10] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:56:14,795 [9] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:56:14,797 [9] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:56:51,968 [10] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:56:51,970 [10] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:58:19,126 [16] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:58:19,127 [16] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 21:59:39,205 [12] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 21:59:39,206 [12] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:00:43,883 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:00:43,885 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:03:00,447 [9] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:03:00,448 [9] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:03:57,895 [20] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:03:57,897 [20] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:06:00,259 [20] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-05 22:06:00,540 [20] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-05 22:06:01,615 [20] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:06:01,616 [20] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:07:19,256 [23] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:07:19,257 [23] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:08:47,243 [21] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:08:47,245 [21] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:10:37,069 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:10:37,072 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:12:13,823 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:12:13,825 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:13:13,781 [21] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:13:13,782 [21] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:17:21,060 [21] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:17:21,062 [21] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:22:26,643 [11] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 22:22:26,654 [11] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 22:22:26,716 [11] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 22:27:26,608 [8] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 22:27:26,629 [8] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 22:27:26,656 [8] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 22:30:38,201 [14] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:30:38,203 [14] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:34:59,634 [14] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:34:59,637 [14] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:36:06,105 [23] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:36:06,107 [23] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:36:35,614 [13] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:36:35,615 [13] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:36:56,956 [22] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:36:56,959 [22] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:38:03,670 [22] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:38:03,671 [22] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:40:24,686 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:40:24,687 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:41:13,278 [24] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:41:13,280 [24] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:43:30,739 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:43:30,740 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:44:38,645 [28] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-05 22:44:38,954 [28] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-05 22:44:39,659 [28] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:44:39,661 [28] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:48:55,106 [22] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:48:55,109 [22] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:49:07,143 [11] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 22:49:07,144 [11] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 22:50:47,083 [22] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 22:50:47,084 [22] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 22:50:57,919 [20] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 22:50:57,923 [20] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 22:51:05,749 [25] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:51:05,750 [25] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:54:32,745 [20] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:54:32,747 [20] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:56:13,638 [11] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:56:13,640 [11] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 22:56:19,064 [18] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 22:56:19,065 [18] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 22:56:23,368 [18] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 22:56:23,370 [18] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:01:26,101 [13] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:01:26,111 [13] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:01:26,201 [13] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:06:26,059 [21] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:06:26,060 [21] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:06:26,065 [21] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:08:07,482 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:08:07,484 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:09:07,255 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:09:07,257 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:10:24,676 [9] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:10:24,677 [9] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:11:07,547 [29] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:11:07,549 [29] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:14:33,027 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:14:33,028 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:15:51,907 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:15:51,909 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:19:10,868 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:19:10,870 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:22:29,890 [18] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:22:29,891 [18] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:27:34,709 [18] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:27:34,713 [18] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:27:34,765 [18] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:29:29,847 [10] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 23:29:29,864 [10] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 23:29:46,626 [24] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:29:46,627 [24] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:34:59,551 [25] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:34:59,578 [25] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:34:59,714 [25] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:35:54,219 [25] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-05 23:35:54,487 [25] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-05 23:35:55,208 [25] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:35:55,209 [25] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:36:14,358 [13] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:36:14,359 [13] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/en/News/UpdateStatus' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:36:14,361 [13] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:36:35,275 [13] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:36:35,276 [13] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/en/News/UpdateStatus' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:36:35,278 [13] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:40:40,879 [24] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:40:40,882 [24] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:45:48,549 [11] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:45:48,555 [11] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:45:48,592 [11] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-05 23:48:44,601 [5] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 23:48:44,605 [5] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 23:48:47,863 [11] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:48:47,864 [11] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:51:20,525 [11] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-05 23:51:20,526 [11] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-05 23:51:22,950 [12] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:51:22,951 [12] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:52:31,996 [11] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-05 23:52:31,997 [11] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-05 23:57:37,516 [15] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-05 23:57:37,518 [15] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-05 23:57:37,544 [15] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:12:00,913 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-06 00:12:01,210 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-06 00:12:01,286 [7] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-06 00:12:01,289 [7] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-06 00:12:26,085 [10] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:12:26,087 [10] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:12:53,662 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:12:53,669 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:12:53,773 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:14:06,537 [7] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:14:06,538 [7] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Duplicate type name within an assembly.
+   at System.Reflection.Emit.ModuleBuilder.CheckTypeNameConflict(String strTypeName, Type enclosingType)
+   at System.Reflection.Emit.AssemblyBuilderData.CheckTypeNameConflict(String strTypeName, TypeBuilder enclosingType)
+   at System.Reflection.Emit.TypeBuilder.Init(String fullname, TypeAttributes attr, Type parent, Type[] interfaces, ModuleBuilder module, PackingSize iPackingSize, Int32 iTypeSize, TypeBuilder enclosingType)
+   at System.Reflection.Emit.ModuleBuilder.DefineType(String name, TypeAttributes attr, Type parent, Type[] interfaces)
+   at System.Data.Entity.Core.Objects.Internal.EntityProxyFactory.ProxyTypeBuilder.get_TypeBuilder()
+   at System.Data.Entity.Core.Objects.Internal.EntityProxyFactory.ProxyTypeBuilder.CreateType(ModuleBuilder moduleBuilder)
+   at System.Data.Entity.Core.Objects.Internal.EntityProxyFactory.BuildType(ModuleBuilder moduleBuilder, ClrEntityType ospaceEntityType, MetadataWorkspace workspace)
+   at System.Data.Entity.Core.Objects.Internal.EntityProxyFactory.TryCreateProxyType(EntityType ospaceEntityType, MetadataWorkspace workspace)
+   at System.Data.Entity.Core.Objects.Internal.EntityProxyFactory.GetProxyType(ClrEntityType ospaceEntityType, MetadataWorkspace workspace)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslatorVisitor.Visit(EntityColumnMap columnMap, TranslatorArg arg)
+   at System.Data.Entity.Core.Query.InternalTrees.EntityColumnMap.Accept[TResultType,TArgType](ColumnMapVisitorWithResults`2 visitor, TArgType arg)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslatorVisitor.ProcessCollectionColumnMap(CollectionColumnMap columnMap, TranslatorArg arg, ColumnMap discriminatorColumnMap, Object discriminatorValue)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslatorVisitor.ProcessCollectionColumnMap(CollectionColumnMap columnMap, TranslatorArg arg)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslatorVisitor.Visit(SimpleCollectionColumnMap columnMap, TranslatorArg arg)
+   at System.Data.Entity.Core.Query.InternalTrees.SimpleCollectionColumnMap.Accept[TResultType,TArgType](ColumnMapVisitorWithResults`2 visitor, TArgType arg)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslateColumnMap[T](ColumnMap columnMap, MetadataWorkspace workspace, SpanIndex spanIndex, MergeOption mergeOption, Boolean streaming, Boolean valueLayer)
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Translator.TranslateColumnMap(Translator translator, Type elementType, ColumnMap columnMap, MetadataWorkspace workspace, SpanIndex spanIndex, MergeOption mergeOption, Boolean streaming, Boolean valueLayer)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlanFactory.Prepare(ObjectContext context, DbQueryCommandTree tree, Type elementType, MergeOption mergeOption, Boolean streaming, Span span, IEnumerable`1 compiledQueryParameters, AliasGenerator aliasGenerator)
+   at System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__a()
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClassb.<GetResults>b__9()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Tax.Portal.Controllers.NewController.UpdateNewStatus(Nullable`1 id, String to) in c:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\Controllers\NewController.cs:line 147
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:14:06,571 [7] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:18:28,793 [12] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:18:28,907 [12] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:18:29,238 [12] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:23:47,484 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-06 00:23:47,709 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-06 00:23:47,778 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-06 00:23:47,779 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-06 00:23:59,997 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:23:59,998 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:29:05,077 [19] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:29:05,083 [19] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:29:05,149 [19] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:32:00,758 [23] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:32:00,760 [23] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:32:44,542 [13] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:32:44,546 [13] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:32:45,270 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:32:45,272 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:36:00,369 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-06 00:36:00,649 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-06 00:36:01,022 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-06 00:36:01,023 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-06 00:37:46,923 [10] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:37:46,927 [10] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:37:46,973 [10] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 00:37:46,993 [7] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:37:46,995 [7] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:38:43,150 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 00:38:43,151 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 00:43:49,072 [20] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 00:43:49,077 [20] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 00:43:49,116 [20] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 01:00:57,905 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-06 01:00:58,149 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-06 01:00:58,219 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-06 01:00:58,220 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-06 01:01:13,532 [10] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:01:13,533 [10] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:07:09,037 [12] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 01:07:09,042 [12] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 01:07:09,139 [12] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 01:07:35,941 [13] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:07:35,942 [13] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:09:21,600 [14] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:09:21,602 [14] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:21:18,885 [18] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:21:18,887 [18] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:27:06,103 [11] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 01:27:06,106 [11] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/b2c9011ee12042ef9f9f6531561a6d5a/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 01:27:06,164 [11] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 01:31:54,706 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-06 01:31:54,976 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-06 01:31:56,292 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:31:56,293 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:31:56,325 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:31:56,326 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:32:01,052 [5] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 01:32:01,052 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-06 01:32:01,054 [5] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.InvalidOperationException: T4MVC was called incorrectly. You may need to force it to regenerate by right clicking on T4MVC.tt and choosing Run Custom Tool
+   at System.Web.Mvc.T4Extensions.GetT4MVCResult(ActionResult result)
+   at System.Web.Mvc.T4Extensions.GetRouteValueDictionary(ActionResult result)
+   at System.Web.Mvc.T4Extensions.Action(UrlHelper urlHelper, ActionResult result, String protocol, String hostName)
+   at System.Web.Mvc.T4Extensions.Action(UrlHelper urlHelper, ActionResult result)
+   at ASP._Page_Views_New_Index_cshtml.Execute() in c:\Users\Tamás\AppData\Local\Temp\Temporary ASP.NET Files\root\fc642938\9eb6c062\App_Web_index.cshtml.1e6ffa6.5z5-ddv0.0.cs:line 0
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.RunPage()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Castle.Proxies.Invocations.IView_Render.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IViewProxy.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.InvokeActionResult_callback(ControllerContext controllerContext, ActionResult actionResult)
+   at Castle.Proxies.Invocations.ControllerActionInvoker_InvokeActionResult.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 01:32:01,084 [5] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 01:32:01,058 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.InvalidOperationException: T4MVC was called incorrectly. You may need to force it to regenerate by right clicking on T4MVC.tt and choosing Run Custom Tool
+   at System.Web.Mvc.T4Extensions.GetT4MVCResult(ActionResult result)
+   at System.Web.Mvc.T4Extensions.GetRouteValueDictionary(ActionResult result)
+   at System.Web.Mvc.T4Extensions.Action(UrlHelper urlHelper, ActionResult result, String protocol, String hostName)
+   at System.Web.Mvc.T4Extensions.Action(UrlHelper urlHelper, ActionResult result)
+   at ASP._Page_Views_New_Index_cshtml.Execute() in c:\Users\Tamás\AppData\Local\Temp\Temporary ASP.NET Files\root\fc642938\9eb6c062\App_Web_index.cshtml.1e6ffa6.5z5-ddv0.0.cs:line 0
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.RunPage()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Castle.Proxies.Invocations.IView_Render.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IViewProxy.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.InvokeActionResult_callback(ControllerContext controllerContext, ActionResult actionResult)
+   at Castle.Proxies.Invocations.ControllerActionInvoker_InvokeActionResult.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-06 01:32:01,106 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-06 01:33:00,092 [11] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:33:00,094 [11] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:36:52,775 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:36:52,777 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:37:31,462 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:37:31,465 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:38:00,571 [22] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:38:00,573 [22] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:38:32,597 [16] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:38:32,598 [16] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:39:26,884 [14] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:39:26,886 [14] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-06 01:40:39,730 [19] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-06 01:40:39,731 [19] INFO  Tax.Portal.Controllers.NewController [(null)] end

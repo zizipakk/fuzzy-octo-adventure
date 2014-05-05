@@ -843,11 +843,12 @@
     <Content Include="Views\Stock\Reservation.cshtml" />
     <Content Include="Views\Shared\_LocalisationPartial.cshtml" />
     <Content Include="Views\New\_DetailPartial.cshtml" />
+    <Content Include="Views\New\Edit.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Views\New\Index.cshtml" />
-    <Content Include="Views\New\Edit.cshtml" />
+    <Content Include="Views\New\Edit_pl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />

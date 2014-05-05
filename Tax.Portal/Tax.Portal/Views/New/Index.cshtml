@@ -56,8 +56,10 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row">    
     <div class="container grid">
+        <span><i class="fa fa-plus fa-2x" onclick="@Url.Action("")"></i><i class="fa fa-pencil fa-2x"></i><i class="fa fa-trash-o fa-2x"></i></span>
+        @*<input id="Publish" type="button" class="btn btn-default" value="Publish" onclick="@Url.Action("")" style="visibility:hidden" />*@
         <div class="col-md-12">
             <div class="col-sm-7 col-xs-12" style="min-width: 660px">
                 <table id="news" class="display"><tr><td /></tr></table>
@@ -70,8 +72,7 @@
     </div>
 </div>
 
-
-
+<input id="rowid" style="visibility: hidden" /> 
 
 @section Scripts {
     @Scripts.Render("~/Scripts/jqgrid")
@@ -138,14 +139,13 @@
         }
 
         function fileFormat(cellvalue, options, rowObject) {
-            @*return '<a href="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
-                    + '" download="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
-                    + '" title="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
-                    + '"><img src="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
-                            + '" class="img-responsive img-thumbnail" alt="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
-                            + '" id="' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
-                    + '"/></a>';*@
-            return '';
+            return '<a href="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
+                    //+ '" download="' + rowObject[getColumnIndexByName('news', 'Name') - 1]
+                    //+ '" title="' + rowObject[getColumnIndexByName('news', 'Name') - 1]
+                    + '"><img src="@Url.Action("DownloadImage", "New")?fileId=' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
+                            + '" class="img-responsive img-thumbnail" alt="' //+ rowObject[getColumnIndexByName('news', 'Name') - 1]
+                            + '" id="' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
+                    + '"/></a>';
         }
 
         jQuery("#news").jqGrid({
@@ -183,10 +183,10 @@
                 {
                     name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                     hidden: false,
-                    formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                    formatter: 'date', //formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
                     search: true, searchoptions: { searchhidden: true, sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
                 },
-                { name: 'Thumbnail', index: 'Thumbnail', hidden: false, sortable: false, search: false, editable: false, formatter: fileFormat }
+                { name: 'Thumbnail', index: 'Thumbnail', width: 150, align: "center", hidden: false, sortable: false, search: false, editable: false, formatter: fileFormat }
             ],
             rowNum: 20,
             rowList: [20, 40, 60],
@@ -203,23 +203,34 @@
             shrinkToFit: false,
             height: '100%',
             width: '800',
-            @*beforeSelectRow: function (rowid, e) {
-                document.location.href = '@Url.Action("Edit", "Sinosz")?UserID=' + rowid
-            },*@
+            onSelectRow: function (rowid) {
+                $("#rowid").val(rowid);
+                if ($(this).getCell(rowid, 'Status') == 'Published' || $(this).getCell(rowid, 'Status') == 'Kiadva')
+                { $("#CallBack").show().css({ visibility: "visible" }); }
+                else
+                { $("#CallBack").hide().css({ visibility: "hidden" }); }
+                if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt'
+                    || $(this).getCell(rowid, 'Status') == 'Unpublished' || $(this).getCell(rowid, 'Status') == 'Visszavonva')
+                { $("#Publish").show().css({ visibility: "visible" }); }
+                else
+                { $("#Publish").hide().css({ visibility: "hidden" }); }                                
+            },
             loadComplete: function () {
+                $("#Publish").hide().css({ visibility: "hidden" });
+                $("#CallBack").hide().css({ visibility: "hidden" });
             }
         });
 
         jQuery("#news").jqGrid('navGrid', '#newspager'
-            , { edit: true, add: true, del: true, refresh: true, cloneToTop: true }
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
             , {} //prmEdit
-            , { width: 600, recreateForm: true, closeAfterAdd: true } //prmAdd
+            , {} //prmAdd
             , {} //prmDel
             , {
                 width: 600,
                 multipleSearch: true,
                 recreateFilter: true,
-                //closeOnEscape: true,
+                closeOnEscape: true,
                 closeAfterSearch: true,
                 overlay: 0,
                 afterRedraw: function () {
@@ -230,28 +241,73 @@
                 }
             } //prmSearch
             , {} //prmView
-        ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+        )
+        .jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" })
+        .jqGrid('navButtonAdd', '#newspager',
+            { 
+                caption: ""/*"Show"*/, 
+                buttonicon: "ui-icon-extlink", 
+                title: "Show Link",
+                onClickButton: function() {
+                    var grid = $("#news");
+                    var rowid = grid.jqGrid('getGridParam', 'selrow');
+                    document.location.href = '@Url.Action("Edit", "New")?id=' + rowid;
+                }
+            }
+        );
 
-        @*$('#btnSuserInactivator').click(function () {
-            var postdata = $("#sinoszusers").getGridParam("postData");
+        $('#Publish').click(function () {
             $.ajax({
-                url: '@Url.Action("ListSinoszUsers", "Sinosz")?'
-                        + '_search=' + $("#sinoszusers").getGridParam("search")
-                        + '&page=' + postdata.page
-                        + '&rows=' + $("#sinoszusers").getGridParam("reccount")
-                        + '&sidx=' + $("#sinoszusers").getGridParam("sortname")
-                        + '&sord=' + $("#sinoszusers").getGridParam("sortorder")
-                        + '&filters=' + postdata.filters
-                        + '&isInactivator=True',
+                url: '@Url.Action("UpdateNewStatus", "New")?id=' + $("#rowid").val() + '&to=Published',
                 type: 'POST',
-                beforeSend: function (jqXHR, textStatus) { jQuery('#grid_id').block({ message: '<h3>Betöltés…</h3>' }); },
+                beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
                 complete: function (jqXHR, textStatus) {
-                    jQuery('#grid_id').unblock();
-                    $("#sinoszusers").trigger("reloadGrid", [{ current: true }]);
+                    var str = JSON.parse(jqXHR.responseText);
+                    if (!str.success) {
+                        if (str.error) {
+                            $('#errortext').text(str.response);
+                            $('#errormodal').modal({ show: true });
+                        }
+                        else {
+                            $('#warningtext').text(str.response);
+                            $('#warningmodal').modal({ show: true });
+                        }
+                    }
+                    jQuery('#news').unblock();
+                    $("#news").trigger("reloadGrid", [{ current: true }]);
                 },
-                loadError: function (xhr, status, error) { alert(status + " " + error); }
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#errortext').text(jqXHR.responseText);
+                    $('#errormodal').modal({ show: true });
+                }
             });
-        });*@
+        });
+        $('#CallBack').click(function () {
+            $.ajax({
+                url: '@Url.Action("UpdateNewStatus", "New")?id=' + $("#rowid").val() + '&to=Unpublished',
+                type: 'POST',
+                beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
+                complete: function (jqXHR, textStatus) {
+                    var str = JSON.parse(jqXHR.responseText);
+                    if (!str.success) {
+                        if (str.error) {
+                            $('#errortext').text(str.response);
+                            $('#errormodal').modal({ show: true });
+                        }
+                        else {
+                            $('#warningtext').text(str.response);
+                            $('#warningmodal').modal({ show: true });
+                        }
+                    }
+                    jQuery('#news').unblock();
+                    $("#news").trigger("reloadGrid", [{ current: true }]);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#errortext').text(jqXHR.responseText);
+                    $('#errormodal').modal({ show: true });
+                }
+            });
+        });
     </script>
 
 }

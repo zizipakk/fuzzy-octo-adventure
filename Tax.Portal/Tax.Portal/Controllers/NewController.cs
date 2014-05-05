@@ -30,11 +30,14 @@ namespace Tax.Portal.Controllers
             return View();
         }
 
+        #region list
+
         /// <summary>
         /// A karbantartó grid adatforrása
         /// </summary>
         /// <param name="grid">Grid szűrés és lapozás paraméterek</param>
         /// <returns>Grid adatforrás</returns>
+        [Authorize(Roles = "SysAdmin, User")]
         public virtual System.Web.Mvc.JsonResult ListNews(GridSettings grid)
         {
             JQGrid.Helpers.JsonResult result;
@@ -110,7 +113,7 @@ namespace Tax.Portal.Controllers
         /// Lenyílók a gridhez
         /// </summary>
         /// <returns></returns>
-        /// 
+        [Authorize(Roles = "SysAdmin, User")]
         public virtual string ListNewsStatus(bool? isSearch)
         {
             string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
@@ -142,6 +145,58 @@ namespace Tax.Portal.Controllers
             return result;
         }
 
+        #endregion list 
+
+        #region edit
+
+        [HttpGet]
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult Edit(Guid? id)
+        {
+            return null;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult Edit()
+        {
+            return null;
+        }
+
+        #endregion edit
+
+        #region statusbuttons
+
+        /// <summary>
+        /// státsuzgombok
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult UpdateNewStatus(Guid? id, string to)
+        {
+            var sta = db.NewsStatusesGlobal.Where(x => x.NameGlobal == to).FirstOrDefault();
+            if (null != id && null != sta)
+            {
+                var n = db.NewsGlobal.Find(id);
+                if (null != n)
+                {
+                    n.NewsStatus = sta;
+                    if (to == "Published")
+                    { n.PublishingDate = DateTime.Now.Date; }
+                    else
+                    { n.PublishingDate = null; }
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                return Json(new { success = false, error = false, response = "Not found" });
+            }
+            return Json(new { success = false, error = true, response = "Bad request" });
+        }
+
+        #endregion statusbuttons
+
         #region filestream
 
         private Task<System.Web.Mvc.JsonResult> UploadTask(Guid id, HttpPostedFileBase hpf)
@@ -166,6 +221,7 @@ namespace Tax.Portal.Controllers
             });
         }
 
+        [Authorize(Roles = "SysAdmin, User")]
         public async Task<System.Web.Mvc.JsonResult> Upload(HttpPostedFileBase file, Guid? filetypeId, Guid? suserId)
         {
             try
@@ -266,6 +322,7 @@ namespace Tax.Portal.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SysAdmin, User")]
         public async Task<System.Web.Mvc.JsonResult> DeleteAttachement(Guid id)
         {
             try
@@ -321,6 +378,7 @@ namespace Tax.Portal.Controllers
 
         //public async Task<FileResult> DownloadFirst(Guid suserId, Guid? filetypeId, Guid? fileId)
         [System.Web.Mvc.OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        [Authorize(Roles = "SysAdmin, User")]
         public async Task<FileResult> DownloadImage(Guid fileId)
         {
             try

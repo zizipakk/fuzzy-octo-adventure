@@ -1,0 +1,1338 @@
+﻿@model Tax.Portal.Models.SinoszUserViewModel
+@using Tax.Data.Models;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = "SINOSZ-tag módosítása";
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    /*nem tudom a web lapon customizálni*/
+    .container .grid {
+        border: 1px solid #ddd;
+        padding-left: 0px;
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+
+    .modal-dialog {
+        width: 400px; /* your width */
+        height: auto;
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-sm-2 col-xs-12 pull-right">
+        <input id="back" type="button" class="btn btn-toolbar" value="Vissza a kereséshez" />
+    </div>
+    <div class="col-sm-1 col-xs-12 pull-right">
+        <input id="delete" type="button" class="btn btn-warning" data-toggle="modal" data-target="#deleteuser" value="Törlés">
+    </div>
+    @if (null != @ViewBag.isCommunication && @ViewBag.isCommunication)
+    {
+        <div class="col-sm-3 col-xs-12 pull-right">
+            <input type="button" class="btn btn-default" value="Szolg. szerz. nyomtatása" onclick="document.location.href='@Url.Action("PrintCommContractPDF", "Sinosz", new { @suserId = Model.SinoszUserModel.Id })'" />
+        </div>
+    }
+    @if (null != @ViewBag.isDevice && @ViewBag.isDevice)
+    {
+        <div class="col-sm-3 col-xs-12 pull-right">
+            <input type="button" class="btn btn-default" value="Készülék szerz. nyomtatása" onclick="document.location.href='@Url.Action(MVC.Sinosz.PrintDevContractPDF(Model.SinoszUserModel.Id))'" />
+        </div>
+    }
+</div>
+
+
+<div class="modal fade bs-modal-sm" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Valóban törölni szeretné a tagot?</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input id="btnSuserDelete" type="button" class="btn btn-warning" data-dismiss="modal" value=" TÖRLÉS " />
+                </div>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="deletepict" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Valóban törölni szeretné a fényképet?</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input id="btnPictDelete" type="button" class="btn btn-warning" data-dismiss="modal" value=" TÖRLÉS " />
+                </div>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="insertcard" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Rögzíti a befizetéshez tartozó tagkönyvet?</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center pull-left">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" MÉGSEM " />
+                </div>
+                <div class="text-center pull-right">
+                    <button id="btnCardInsert" type="button" class="btn btn-primary" data-dismiss="modal"> RÖGZÍTÉS </button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="morethanonepict" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sajnos csak egyetlen fényképet fogadunk!</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
+                </div>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@Html.ValidationSummary()
+<div class="bs-example bs-example-tabs">
+    <ul id="SinoszTab" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a data-toggle="tab" href="#Személyes_adatok">Személyes adatok</a></li>
+        <li><a data-toggle="tab" href="#Szervezeti_adatok">Szervezeti adatok</a></li>
+        <li><a data-toggle="tab" href="#Pénzügyi_adatok">Pénzügyi adatok</a></li>
+        <li><a data-toggle="tab" href="#Elérhetőségek">Elérhetőségek</a></li>
+        <li><a data-toggle="tab" href="#Csatolt_fájok">Csatolt fájok</a></li>
+        <li><a data-toggle="tab" href="#Napló">Napló</a></li>
+    </ul>
+
+    <div class="row" id="dz_section">
+        <div class="col-sm-3 col-xs-12 pull-right" id="form_width">
+            <form action="@Url.Action("Upload")" class="dropzone square" id="my-dropzone" style="background-color: cornsilk; ">
+                <div class="col-sm-4 col-xs-12" style="margin-top: -7px" id="dropdown_width">
+                    @Html.DropDownList("FileType", new SelectList(Model.FileTypeList, "Value", "Text"), new { @id = "filetypeId", @class = "form-control" })
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @using (Html.BeginForm(MVC.Sinosz.Edit(), FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.HiddenFor(m => m.SinoszUserModel.Id, new { @id = "userId" })
+        @Html.HiddenFor(m => m.fileId, new { @id = "fileId" })
+        <div id="filestoupload" class="filestoupload"></div>
+        <div id="SinoszTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="Személyes_adatok">
+                <div class="row">
+                    <div class="col-sm-10 col-xs-12">
+                        <div class="form-group">
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.SinoszId, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        @using (var db = new Tax.Data.Models.ApplicationDbContext())
+                                        {
+                                            string usrId = User.Identity.GetUserId();
+                                            if (db.ApplicationUserRole.Any(x =>
+                                                    x.UserId == usrId
+                                                    && x.Role.Name == "SinoszAdmin"))
+                                            {
+                                                <div class="col-sm-9 col-xs-9" style="padding-right:0px;">
+                                                    @Html.TextBoxFor(m => m.SinoszUserModel.SinoszId, new { @class = "form-control", placeholder = "Tagi azonosító" })
+                                                </div>
+                                                <div class="col-sm-3 col-xs-3 text-center" style="padding-left:0px;">
+                                                    <button class="btn btn-warning" id="CreateSinoszId" type="button"><i class="fa fa-refresh"></i></button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-12 col-xs-12">
+                                                    @Html.TextBoxFor(m => m.SinoszUserModel.SinoszId, new { disabled = "disabled", @class = "form-control", placeholder = "Tagi azonosító" })
+                                                    @Html.HiddenFor(m => m.SinoszUserModel.SinoszId, new { @id = "SinoszId" })
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <span class="help-block" id="confirmsinosziderrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmsinosziderrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.SinoszUserName, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.SinoszUserName, new { @class = "form-control", placeholder = "Felhasználónév" })
+                                </div>
+                                <span class="help-block" id="confirmsinoszusernameerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmsinoszusernameerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.GenusList, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @{Guid GenusId = null == Model.SinoszUserModel.Genus ? Guid.Empty : Model.SinoszUserModel.Genus.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.Genus.Id, new SelectList(Model.GenusList, "Value", "Text", GenusId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmgenuserrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmgenuserrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.MaritalStatusList, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @{Guid MaritalStatusId = null == Model.SinoszUserModel.MaritalStatus ? Guid.Empty : Model.SinoszUserModel.MaritalStatus.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.MaritalStatus.Id, new SelectList(Model.MaritalStatusList, "Value", "Text", MaritalStatusId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmmartialstatuserrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmmartialstatuserrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.BirthName, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.BirthName, new { @class = "form-control", placeholder = "Születési név" })
+                                </div>
+                                <span class="help-block" id="confirmbirthnameerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmbirthnameerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.BirthDate, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    <div class="col-sm-9 col-xs-9" style="padding-left: 0px">
+                                        @Html.TextBoxFor(m => m.SinoszUserModel.BirthDate, "{0:yyyy.MM.dd}", new { @class = "form-control", placeholder = "Születési dátum" })
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3 text-center" style="padding-left:0px; margin-top:7px">
+                                        @{
+                                    DateTime zero = new DateTime(1, 1, 1);
+                                    TimeSpan span;
+                                    string olds = "";
+                                    string sign = "";
+                                    if (DateTime.Today > @Model.SinoszUserModel.BirthDate.AddDays(1))
+                                    {
+                                        span = DateTime.Today - @Model.SinoszUserModel.BirthDate;
+                                        olds = ((zero + span).AddDays(-1).Year - 1).ToString();
+                                    }
+                                    else if (DateTime.Today.AddDays(1) < @Model.SinoszUserModel.BirthDate)
+                                    {
+                                        span = @Model.SinoszUserModel.BirthDate - DateTime.Today;
+                                        olds = ((zero + span).AddDays(-1).Year - 1).ToString();
+                                    }
+                                    else
+                                    {
+                                        olds = "0";
+                                    }
+                                    if (DateTime.Today >= @Model.SinoszUserModel.BirthDate)
+                                    {
+                                        sign = "";
+                                    }
+                                    else
+                                    {
+                                        sign = "-";
+                                    }
+                                        }
+                                        @Html.Label(string.Format("{0}{1}", sign, olds))
+                                    </div>
+                                </div>
+                                <span class="help-block" id="confirmbirthdateerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmbirthdateerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.BirthPlace, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.BirthPlace, new { @class = "form-control", placeholder = "Születési hely" })
+                                </div>
+                                <span class="help-block" id="confirmbirthplaceerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmbirthplaceerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.PensionTypeList, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @{Guid PensionTypeId = null == Model.SinoszUserModel.PensionType ? Guid.Empty : Model.SinoszUserModel.PensionType.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.PensionType.Id, new SelectList(Model.PensionTypeList, "Value", "Text", PensionTypeId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmpensiontypeerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmpensiontypeerrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.MothersName, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.MothersName, new { @class = "form-control", placeholder = "Anyja neve" })
+                                </div>
+                                <span class="help-block" id="confirmmothernameerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmmothernameerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.NationList, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @{Guid NationId = null == Model.SinoszUserModel.Nation ? Guid.Empty : Model.SinoszUserModel.Nation.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.Nation.Id, new SelectList(Model.NationList, "Value", "Text", NationId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmnationerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmnationerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.EducationList, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @{Guid EducationId = null == Model.SinoszUserModel.Education ? Guid.Empty : Model.SinoszUserModel.Education.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.Education.Id, new SelectList(Model.EducationList, "Value", "Text", EducationId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmeducationerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmeducationerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.Qualification, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.Qualification, new { @class = "form-control", placeholder = "Szakképzettség" })
+                                </div>
+                                <span class="help-block" id="confirmqualificationerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmqualificationerrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.Remark, new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.TextAreaFor(m => m.SinoszUserModel.Remark, new { @class = "form-control", placeholder = "Megjegyzés" })
+                                    <span class="input-group-addon" style="visibility: hidden;"></span>@*//valamiért csak ezzel nő meg*@
+                                </div>
+                                <span class="help-block" id="confirmremarkerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmremarkerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserModel.Barcode, new { @class = "control-label" })
+                                <div class="input-group col-sm-12 col-xs-12">
+                                    @Html.TextBoxFor(m => m.SinoszUserModel.Barcode, new { @class = "form-control", placeholder = "Vonalkód" })
+                                </div>
+                                <span class="help-block" id="confirmbarcodeerrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmbarcodeerrortext"></span>
+                                </span>
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                @Html.LabelFor(m => m.SinoszUserStatusList, new { @class = "control-label" })
+                                <div class="input-group">
+                                    @{Guid SinoszUserStatusId = null == Model.SinoszUserModel.SinoszUserStatus ? Guid.Empty : Model.SinoszUserModel.SinoszUserStatus.Id; }
+                                    @Html.DropDownListFor(m => m.SinoszUserModel.SinoszUserStatus.Id, new SelectList(Model.SinoszUserStatusList, "Value", "Text", SinoszUserStatusId), new { @class = "form-control" })
+                                </div>
+                                <span class="help-block" id="confirmsinoszuserstatuserrorgroup" style="visibility: hidden;">
+                                    <span class="label label-danger" id="confirmsinoszuserstatuserrortext"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-12">
+                        <div class="form-group" id="fileGroup">
+                            <div class="col-sm-12 col-xs-12">
+                                @Html.Label("Fénykép", new { @class = "control-label" })
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <img src="" class="img-responsive img-thumbnail" id="imageFile" alt="Fénykép" />
+                            </div>
+                            <div class="col-sm-12 col-xs-12 text-center">
+                                <input id="deleteFile" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepict" value="Törlés" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="Szervezeti_adatok">
+                <div class="form-group">
+                    <div class="col-sm-4 col-xs-12 pull-left">
+                        @Html.LabelFor(m => m.SinoszUserModel.isImplant, new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-1 col-xs-12 pull-left">
+                        <div class="input-group">
+                            @Html.CheckBoxFor(m => m.SinoszUserModel.isImplant, new { @style = "height: 25px; width: 25px;  margin-top: 5px;" })
+                        </div>
+                        <span class="help-block" id="confirmisimplanterrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmisimplanterrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-xs-12 pull-left">
+                        @Html.LabelFor(m => m.SinoszUserModel.isHearingAid, new { @class = "control-label" })
+                    </div>
+                    <div class="col-sm-1 col-xs-12 pull-left">
+                        <div class="input-group">
+                            @Html.CheckBoxFor(m => m.SinoszUserModel.isHearingAid, new { @style = "height: 25px; width: 25px;  margin-top: 5px;" })
+                        </div>
+                        <span class="help-block" id="confirmishearingaiderrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmishearingaiderrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.OrganizationList, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @{Guid OrganizationId = null == Model.SinoszUserModel.Organization ? Guid.Empty : Model.SinoszUserModel.Organization.Id; }
+                            @Html.DropDownListFor(m => m.SinoszUserModel.Organization.Id, new SelectList(Model.OrganizationList, "Value", "Text", OrganizationId), new { @class = "form-control" })
+                        </div>
+                        <span class="help-block" id="confirmorganizationerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmorganizationerrortext"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        @*@Html.LabelFor(m => m.RelationshipList, new { @class = "control-label" })*@
+                        @Html.LabelFor(m => m.SinoszUserModel.Relationship.RelationshipName, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @*@{Guid RelationshipId = null == Model.SinoszUserModel.Relationship ? Guid.Empty : Model.SinoszUserModel.Relationship.Id; }
+                                @Html.DropDownListFor(m => m.SinoszUserModel.Relationship.Id, new SelectList(Model.RelationshipList, "Value", "Text", RelationshipId), new { @class = "form-control" })*@
+                            @Html.TextBoxFor(m => m.SinoszUserModel.Relationship.RelationshipName, new { disabled = "disabled", @class = "form-control", placeholder = "Tagviszony" })
+                        </div>
+                        <span class="help-block" id="confirmrelationshiperrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmrelationshiperrortext"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.SinoszUserModel.DecreeNumber, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.SinoszUserModel.DecreeNumber, new { @class = "form-control", placeholder = "Határozat száma" })
+                        </div>
+                        <span class="help-block" id="confirmdecreenumbererrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmdecreenumbererrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.PositionList, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @{Guid PositionId = null == Model.SinoszUserModel.Position ? Guid.Empty : Model.SinoszUserModel.Position.Id; }
+                            @Html.DropDownListFor(m => m.SinoszUserModel.Position.Id, new SelectList(Model.PositionList, "Value", "Text", PositionId), new { @class = "form-control" })
+                        </div>
+                        <span class="help-block" id="confirmpositionerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmpositionerrortext"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.SinoszUserModel.EnterDate, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.SinoszUserModel.EnterDate, "{0:yyyy.MM.dd}", new { @class = "form-control", placeholder = "Belépés dátuma" })
+                        </div>
+                        <span class="help-block" id="confirmenterdateerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmenterdateerrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.HearingStatusList, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @{Guid HearingStatusId = null == Model.SinoszUserModel.HearingStatus ? Guid.Empty : Model.SinoszUserModel.HearingStatus.Id; }
+                            @Html.DropDownListFor(m => m.SinoszUserModel.HearingStatus.Id, new SelectList(Model.HearingStatusList, "Value", "Text", HearingStatusId), new { @class = "form-control" })
+                        </div>
+                        <span class="help-block" id="confirmhearingstatuserrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmhearingstatuserrortext"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        @Html.LabelFor(m => m.InjuryTimeList, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @{Guid InjuryTimeId = null == Model.SinoszUserModel.InjuryTime ? Guid.Empty : Model.SinoszUserModel.InjuryTime.Id; }
+                            @Html.DropDownListFor(m => m.SinoszUserModel.InjuryTime.Id, new SelectList(Model.InjuryTimeList, "Value", "Text", InjuryTimeId), new { @class = "form-control" })
+                        </div>
+                        <span class="help-block" id="confirminjurytimeerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirminjurytimeerrortext"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="Pénzügyi_adatok">
+                <div class="container grid">
+                    <div class="col-sm-6 col-xs-12" style="min-width: 560px">
+                        <table id="documents" class="display"><tr><td /></tr></table>
+                        <div id="documentspager"></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12" style="min-width: 560px">
+                        <table id="cards" class="display"><tr><td /></tr></table>
+                        <div id="cardspager"></div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="tab-pane fade" id="Elérhetőségek">
+                <div class="form-group">
+                    <div class="col-sm-3 col-xs-12">
+                        @Html.LabelFor(m => m.PostcodeList, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @{Guid PostcodeId = null == Model.SinoszUserModel.Postcode ? Guid.Empty : Model.SinoszUserModel.Postcode.Id; }
+                            @Html.DropDownListFor(m => m.SinoszUserModel.Postcode.Id, new SelectList(Model.PostcodeList, "Value", "Text", PostcodeId), new { @class = "form-control" })
+                        </div>
+                        <span class="help-block" id="confirmpostcodeerrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmpostcodeerrortext"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-5 col-xs-12">
+                        @Html.LabelFor(m => m.SinoszUserModel.HomeAddress, new { @class = "control-label" })
+                        <div class="input-group col-sm-12 col-xs-12">
+                            @Html.TextBoxFor(m => m.SinoszUserModel.HomeAddress, new { @class = "form-control", placeholder = "Lakcím" })
+                        </div>
+                        <span class="help-block" id="confirmhomeaddresserrorgroup" style="visibility: hidden;">
+                            <span class="label label-danger" id="confirmhomeaddresserrortext"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container grid">
+                        <div class="col-sm-12 col-xs-12">
+                            <div>
+                                <table id="addresses" class="display"><tr><td /></tr></table>
+                                <div id="addressespager"></div>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="Csatolt_fájok">
+                <div class="row">
+                    <div class="container grid">
+                        <div class="col-sm-12 col-xs-12">
+                            <div>
+                                <table id="files" class="display"><tr><td /></tr></table>
+                                <div id="filepager"></div>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="Napló">
+                <div class="row">
+                    <div class="container grid">
+                        <div class="col-sm-12 col-xs-12">
+                            <div>
+                                <table id="logs" class="display"><tr><td /></tr></table>
+                                <div id="logspager"></div>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 col-xs-12 pull-right">
+                <input type="submit" id="submit" class="btn btn-warning" value="Mentés" />
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+    <script type="text/javascript">
+        (function (global, undefined) {
+//TODO: a kliens oldali böngésző dátumvalidálása halott a magyar lokalizációval firefox-ban és iexplorerben
+            $("input[data-val-date]").removeAttr("data-val-date");
+
+            //$("#SinoszUserModel_SinoszId").removeAttr("disabled");
+
+            //gombok
+            if ('Törölt' == $('#SinoszUserModel_SinoszUserStatus_Id :selected').text()
+                || 'Várakozó' == $('#SinoszUserModel_SinoszUserStatus_Id :selected').text()
+                ) {
+                $("#delete").hide().css({ visibility: "hidden" });
+            } else {
+                $("#delete").show().css({ visibility: "visible" });
+            }
+
+            $('#btnSuserDelete').click(function () {
+                document.location.href = '@Url.Action("DeleteSinoszUser", "Sinosz")?userId=' + $("#userId").val()
+            });
+
+            $('#back').click(function () {
+                document.location.href = '@Url.Action("Index", "Sinosz")'
+            });
+
+            $('#btnPictDelete').click(function () {
+                $.ajax({
+                    url: '@Url.Action("DeleteAttachement", "Sinosz")',
+                    type: 'POST',
+                    data: { id: $("#fileId").val() },
+                    success: function (data) {
+                        $("#fileId").val('');
+                        $('#imageFile').attr('src', '');
+                        $("#deleteFile").hide().css({ visibility: "hidden" });
+                        $("#imageFile").hide().css({ visibility: "hidden" });
+                        $("#filetypeId").hide().css({ visibility: "hidden" });
+                        $('#form_width').attr('class', "col-sm-3 pull-right");
+                        $("#dz_section").show().css({ visibility: "visible" });
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+
+            $('#btnCardInsert').click(function () {
+                $.ajax({
+                    url: '@Url.Action("UpdateCards", "Sinosz")',
+                    type: 'POST',
+                    data: { id: "_empty", oper: "add", uid: $("#userId").val() },
+                    success: function (data) {
+                        $("#cards").trigger("reloadGrid", [{ current: true }]);
+                    },
+                    failure: function (errMsg) { alert(errMsg); }
+                });
+            });
+
+            $('#CreateSinoszId').click(function () {
+                $.ajax({
+                    url: '@Url.Action("CreateSinoszId", "Sinosz")',
+                    type: 'POST',
+                    data: { userId: $("#userId").val() },
+                    success: function (data) {
+                        $('#SinoszUserModel_SinoszId').val(data[0]);
+                        refreshDropdown('SinoszUserModel_SinoszUserStatus_Id', data[1]);
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            });
+
+            //alapértelmezések betöltéskor
+            $("#filetypeId").hide().css({ visibility: "hidden" });
+            $('#fileId').val('@Model.fileId'); //post után a form nem frissíti be a hidden mezőket a modellből
+            if ("" == $('#fileId').val()) //még nincs fénykép
+            {
+                $("#dz_section").show().css({ visibility: "visible" });
+                $("#imageFile").hide().css({ visibility: "hidden" });
+                $('#imageFile').attr('src', '');
+                $('#deleteFile').hide().css({ visibility: "hidden" });
+
+            }
+            else //már van fénykép
+            {
+                $("#dz_section").hide().css({ visibility: "hidden" });
+                $("#imageFile").show().css({ visibility: "visible" });
+                @*$('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + $("#fileId").val() + '&suserId=' + $("#userId").val());*@
+                $('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + $("#fileId").val());
+                $('#deleteFile').show().css({ visibility: "visible" });
+            }
+
+            //tabváltáskor
+            $('#SinoszTab a').click(function (e) {
+                switch (this.innerHTML) {
+                    case "Személyes adatok":
+                        if ("" == $('#fileId').val() && "" == $('#imageFile').attr('src')) //még vagy már nincs fénykép
+                        {
+                            $('#form_width').attr('class', "col-sm-3 col-xs-12 pull-right");
+                            $("#dz_section").show().css({ visibility: "visible" });
+                            $("#imageFile").hide().css({ visibility: "hidden" });
+                            $('#deleteFile').hide().css({ visibility: "hidden" });
+                            $("#filetypeId").hide().css({ visibility: "hidden" });
+                        }
+                        else {
+                            $("#dz_section").hide().css({ visibility: "hidden" });
+                            $("#imageFile").show().css({ visibility: "visible" });
+                            $('#deleteFile').show().css({ visibility: "visible" });
+                        };
+                        $('#submit').show().css({ visibility: "visible" });
+                        break;
+                    case "Szervezeti adatok":
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                        $('#submit').show().css({ visibility: "visible" });
+                        break;
+                    case "Pénzügyi adatok":
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                        $('#submit').hide().css({ visibility: "hidden" });
+                        break;
+                    case "Elérhetőségek":
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                        $('#submit').show().css({ visibility: "visible" });
+                        break;
+                    case "Csatolt fájok":
+                        $('#form_width').attr('class', "col-lg-8 col-md-8 col-sm-12 col-xs-12 pull-left");
+                        $('#dropdown_width').attr('class', "col-sm-4 col-xs-12");
+                        $("#dz_section").show().css({ visibility: "visible" });
+                        $("#filetypeId").show().css({ visibility: "visible" });
+                        $('#submit').hide().css({ visibility: "hidden" });
+                        break;
+                    case "Napló":
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                        $('#submit').hide().css({ visibility: "hidden" });
+                        break;
+                }
+            });
+
+            var getColumnIndexByName = function (gridname, columnName) {
+                var grid = $("#" + gridname);
+                var cm = grid.jqGrid('getGridParam', 'colModel');
+                var retval = -1;
+                $.each(cm, function () {
+                    if (this.name === columnName) {
+                        retval = cm.indexOf(this);
+                    }
+                });
+                return retval;
+            };
+
+            var refreshDropdown = function (ddid, value) {
+                var dd = document.getElementById(ddid);
+                for (var i = 0; i < $('#' + ddid + ' option').length - 1; i++) {
+                    if (value == dd.options[i].text) {
+                        dd.selectedIndex = i;
+                        break;
+                    }
+                }
+            };
+
+            jQuery("#addresses").jqGrid({
+                url: '@Url.Action("ListAddresses", "Sinosz")?uid=' + $("#userId").val(),
+                editurl: '@Url.Action("UpdateAddresses", "Sinosz")?uid=' + $("#userId").val(),
+                datatype: "json",
+                colNames: [
+                    'Műveletek'
+                    , 'id'
+                    , 'Típus'
+                    , 'Cím'
+                ],
+                colModel: [
+                    {
+                        "name": "act"
+                        , "formatoptions": { "keys": false, "editbutton": true, "delbutton": true }
+                        , "width": 60
+                        , "formatter": "actions"
+                        , "searchoptions": {}
+                        , "index": "act"
+                        , sortable: false
+                        , search: false
+                    },
+                    { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                    {
+                        name: 'AddressTypeName', index: 'AddressTypeName', width: 160, align: "left", editable: true, sortable: true, edittype: 'select',
+                        editoptions: {
+                            dataUrl: '@Url.Action("ListAddressTypes", "Sinosz")',
+                            buildSelect: function (result) { return result; },
+                            NullIfEmpty: true
+                        }
+                    },
+                    { name: 'AddressText', index: 'AddressText', width: 390, align: "left", editable: true, sortable: true }
+                ],
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                toppager: true,
+                pager: '#addressespager',
+                sortname: 'AddressTypeName',
+                viewrecords: true,
+                sortorder: "asc",
+                caption: 'Elérhetőségek',
+                rownumbers: true,
+                gridview: true,
+                hoverrows: true,
+                scrollrows: false,
+                shrinkToFit: false,
+                height: '100%',
+                width: '640'
+            });
+
+            jQuery("#addresses").jqGrid('navGrid', '#addressespager'
+                , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+                , {} //prmEdit
+                , { width: 350, recreateForm: true, closeAfterAdd: true } //prmAdd
+                , {} //prmDel
+                , { width: 500 } //prmSearch
+                , {} //prmView
+            ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+            jQuery("#logs").jqGrid({
+                url: '@Url.Action("ListLogs", "Sinosz")?uid=' + $("#userId").val(),
+                datatype: "json",
+                colNames: [
+                     'id'
+                    , 'Dátum'
+                    , 'Felhasználó'
+                    , 'Tevékenység'
+                ],
+                colModel: [
+                    { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                    { name: 'ActionTime', index: 'ActionTime', width: 130, align: "left", editable: false, sortable: true },
+                    { name: 'UserName', index: 'UserName', width: 170, align: "left", editable: false, sortable: true },
+                    { name: 'ActionName', index: 'ActionName', width: 400, align: "left", editable: false, sortable: true }
+                ],
+                rowNum: 20,
+                rowList: [20, 40, 60],
+                toppager: true,
+                pager: '#logspager',
+                //sortname: 'ActionTime',
+                viewrecords: true,
+                //sortorder: "desc",
+                caption: 'Napló',
+                rownumbers: true,
+                gridview: true,
+                hoverrows: true,
+                scrollrows: false,
+                shrinkToFit: false,
+                height: '100%',
+                width: '730'
+            });
+
+            jQuery("#logs").jqGrid('navGrid', '#logspager'
+                , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+                , {} //prmEdit
+                , {} //prmAdd
+                , {} //prmDel
+                , { width: 500 } //prmSearch
+                , {} //prmView
+            ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+            function checkBoxFormatter(cellvalue, options, rowObject) {
+                if (cellvalue == "True")
+                {
+                    return '<input type="checkbox" checked="checked" value="True" offval="no" disabled="disabled">'
+                } else {
+                    return '<input type="checkbox" value="False" offval="no">'
+                }
+                return null
+            }
+
+            //hálából Olegnek: http://stackoverflow.com/questions/6495172/customizing-the-add-edit-dialog-in-jqgrid
+            changeTypeSelect = function (typeId, typeElem) {
+                var $typeElem = $(typeElem);
+                var $sumElem = $typeElem.closest('form.FormGrid').find("#Sum.FormElement");
+                $.ajax({
+                    url: '@Url.Action("GetDocumentTypeParams", "Sinosz")?typeId=' + typeId,
+                    type: 'GET',
+                    beforeSend: function (jqXHR, textStatus) { $typeElem.attr('disabled', 'disabled'); },
+                    success: function (response) {
+                        $sumElem.val(response[0]);
+                        if ("True" == response[1]) {
+                            $sumElem.attr('disabled', 'disabled');
+                        } else {
+                            $sumElem.removeAttr('disabled');
+                        }
+                        $typeElem.removeAttr('disabled');
+                    },
+                    loadError: function (xhr, status, error) { alert(status + " " + error); }
+                });
+            }
+
+            initDateSearch = function (elem) {
+                setTimeout(function () {
+                    $(elem).datepicker({
+                        autoSize: true,
+                        //showOn: 'button', // it dosn't work in searching dialog
+                        changeYear: true,
+                        changeMonth: true,
+                        showButtonPanel: true,
+                        showWeek: true,
+                        onSelect: function () {
+                            if (this.id.substr(0, 3) === "gs_") {
+                                setTimeout(function () {
+                                    $("#documents")[0].triggerToolbar();
+                                }, 50);
+                            } else {
+                                // to refresh the filter
+                                $(this).trigger('change');
+                            }
+                        }
+                    });
+                }, 100);
+            };
+
+            numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
+
+            numberTemplate = {
+                formatter: 'integer', align: 'right', sorttype: 'number',
+                searchoptions: { sopt: numberSearchOptions }
+            };
+
+            myDefaultSearch = 'cn';
+
+            function datetimecheck(value, colname) {
+                if (value.length != 10)
+                    return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
+                var dateParts = value.split(".");
+                var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+                if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
+                    return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
+                var min = new Date("1753.01.01");
+                var max = new Date("9999.12.31");
+                if (dat < min || dat > max)
+                    return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
+                return [true, ""];
+            }
+
+            jQuery("#documents").jqGrid({
+                url: '@Url.Action("ListDocuments", "Sinosz")?uid=' + $("#userId").val(),
+                editurl: '@Url.Action("UpdateDocuments", "Sinosz")?uid=' + $("#userId").val(),
+                datatype: "json",
+                colNames: [
+                    'id'
+                    , 'Dátum'
+                    , 'Jogcím'
+                    , 'Összeg'
+                    , 'Bizonylatszám'
+                    , 'Törölt?'
+                ],
+                colModel: [
+                    { name: 'adId', index: 'adId', hidden: true, sortable: false },
+                    {
+                        name: 'DocumentDate', index: 'DocumentDate', width: 80, align: "center",
+                        hidden: false, sortable: true, sorttype: 'date',
+                        editable: true, editoptions: { dataInit: initDateSearch }, editrules: { custom: true, custom_func: datetimecheck },
+                        formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                        search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                    },
+                    {
+                        name: 'AccountingTypeName', index: 'AccountingTypeName', width: 240, align: "left",
+                        editable: true, editrules: { required: true }, edittype: 'select', sortable: true,
+                        editoptions: {
+                            dataUrl: '@Url.Action("ListAccountingTypes", "Sinosz")',
+                            buildSelect: function (result) {
+                                return result;
+                            },
+                            dataEvents: [
+                                { type: 'change', fn: function (e) { changeTypeSelect($(e.target).val(), e.target); } },
+                                { type: 'keyup', fn: function (e) { $(e.target).trigger('change'); } }
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Sum', index: 'Sum', width: 70, align: "right",
+                        hidden: false, search: true, template: numberTemplate,
+                        editable: true, editrules: { integer: true }, searchrules: { integer: true }
+                    },
+                    { name: 'DocumnetNumber', index: 'DocumnetNumber', width: 90, align: "left", editable: true, editrules: { required: true }, sortable: true },
+                    {
+                        name: 'AccountingStatusName', index: 'AccountingStatusName', width: 50, align: "center", editable: false,
+                        edittype: 'checkbox', editoptions: { value: "True:False" },
+                        searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                        formatter: checkBoxFormatter, sortable: true
+                    }
+                ],
+                rowNum: 20,
+                rowList: [20, 40, 60],
+                toppager: true,
+                pager: '#documentspager',
+                //sortname: 'DocumentDate',
+                viewrecords: true,
+                //sortorder: "asc",
+                caption: 'Pénzügyi bizonylatok',
+                rownumbers: true,
+                gridview: true,
+                hoverrows: true,
+                scrollrows: false,
+                shrinkToFit: false,
+                height: '100%',
+                width: '560',
+                loadComplete: function () {
+                    var i = getColumnIndexByName('documents', 'AccountingStatusName');
+                    $("table#documents > tbody > tr.jqgrow > td:nth-child(" + (i + 1) + ") > input").click(function (e) {
+                        var data = new Array(2);
+                        data[0] = "{docid: '" + $(this).parents('tr').attr('id').replace(/^s*|s*$/g, "") + "',"; // replace = trim
+                        var value = ($(this).is(':checked')) ? "True" : "False";
+                        data[1] = "status: '" + value + "'}";
+                        $.ajax({
+                            url: '@Url.Action("UpdateDocumnetStatus", "Sinosz")',
+                            type: 'POST',
+                            data: eval('(' + data[0] + data[1] + ')'),  //eval is string to json
+                            beforeSend: function (jqXHR, textStatus) { jQuery('#grid_id').block({ message: '<h3>Betöltés…</h3>' }); },
+                            complete: function (jqXHR, textStatus) { jQuery('#grid_id').unblock(); $("#documents").trigger("reloadGrid", [{ current: true }]); },
+                            loadError: function (xhr, status, error) { alert(status + " " + error); }
+                        });
+                    });
+                }
+            });
+
+            jQuery("#documents").jqGrid('navGrid', '#documentspager'
+                , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+                , {} //prmEdit
+                , {
+                    width: 550, recreateForm: true, closeAfterAdd: true,
+                    afterSubmit: function (response) {
+                        if (response.responseJSON[0] != null)
+                            $('#SinoszUserModel_Relationship_RelationshipName').val(response.responseJSON[0]);
+                        if (response.responseJSON[1] != null)
+                            refreshDropdown('SinoszUserModel_SinoszUserStatus_Id', response.responseJSON[1]);
+                        if ("True" == response.responseJSON[2])
+                            $('#insertcard').modal({
+                                show: true
+                            });
+                        return [true, ''];
+                    },
+                    afterShowForm: function (form) {
+                        //be kell lépni a dátummezőbe, hogy feljöjjön a datepicke, ezért elveszem a focust
+                        $('#DocumentDate', form).blur();
+                    }
+                } //prmAdd
+                , {} //prmDel
+                , {
+                    width: 550,
+                    multipleSearch: true,
+                    //multipleGroup: true,
+                    recreateFilter: true,
+                    //closeOnEscape: true,
+                    //closeAfterSearch: true,
+                    overlay: 0,
+                    afterRedraw: function () {
+                        $('input.add-rule', this)//.button().val('Add new rule')
+                            .attr('title', 'Új szabály hozzáadása');
+                        //$('input.add-group', this)//.button().val('Add new group or rules')
+                        //    .attr('title', 'Új szabálycsoport hozzáadása');
+                        $('input.delete-rule', this)//.button().val('Delete rule')
+                            .attr('title', 'Szabály törlése');
+                        //$('input.delete-group', this)//.button().val('Delete group')
+                        //    .attr('title', 'Szabálycsoport törlése');
+                        //$(this).find("table.group:not(:first)").css({
+                        //    borderWidth: "1px",
+                        //    borderStyle: "dashed"
+                        //});
+                    }
+                } //prmSearch
+                , {} //prmView
+            ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+            initDateSearchCard = function (elem) {
+                setTimeout(function () {
+                    $(elem).datepicker({
+                        autoSize: true,
+                        //showOn: 'button', // it dosn't work in searching dialog
+                        changeYear: true,
+                        changeMonth: true,
+                        showButtonPanel: true,
+                        showWeek: true,
+                        onSelect: function () {
+                            if (this.id.substr(0, 3) === "gs_") {
+                                setTimeout(function () {
+                                    $("#cards")[0].triggerToolbar();
+                                }, 50);
+                            } else {
+                                // to refresh the filter
+                                $(this).trigger('change');
+                            }
+                        }
+                    });
+                }, 100);
+            };
+
+            jQuery("#cards").jqGrid({
+                url: '@Url.Action("ListCards", "Sinosz")?uid=' + $("#userId").val(),
+                editurl: '@Url.Action("UpdateCards", "Sinosz")?uid=' + $("#userId").val(),
+                datatype: "json",
+                colNames: [
+                     'Művelet'
+                    , 'id'
+                    , 'Dátum'
+                    , 'Státusz'
+                    , 'Megjegyzés'
+                ],
+                colModel: [
+                    {
+                        "name": "act"
+                        , "formatoptions": { "keys": false, "editbutton": true, "delbutton": false }
+                        , "width": 50
+                        , "formatter": "actions"
+                        , "searchoptions": {}
+                        , "index": "act"
+                        , sortable: false
+                        , search: false
+                    },
+                    { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                    {
+                        name: 'CreateDate', index: 'CreateDate', width: 80, align: "center",
+                        hidden: false, sortable: true, sorttype: 'date',
+                        editable: false,
+                        formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y.m.d' },
+                        search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearchCard }, searchrules: { custom: true, custom_func: datetimecheck }
+                    },
+                    {
+                        name: 'CardStatusName', index: 'CardStatusName', width: 120, align: "left", editable: true, sortable: true, edittype: 'select',
+                        editoptions: {
+                            dataUrl: '@Url.Action("ListCardStatuses", "Sinosz")',
+                            buildSelect: function (result) { return result; },
+                            NullIfEmpty: true
+                        }
+                    },
+                    { name: 'Remark', index: 'Remark', width: 270, align: "left", editable: true, edittype: 'textarea', sortable: true }
+                ],
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                toppager: true,
+                pager: '#cardspager',
+                //sortname: 'CreateDate',
+                viewrecords: true,
+                //sortorder: "asc",
+                caption: 'Tagkönyvek',
+                rownumbers: true,
+                gridview: true,
+                hoverrows: true,
+                scrollrows: false,
+                shrinkToFit: false,
+                height: '100%',
+                width: '550'
+            });
+
+            jQuery("#cards").jqGrid('navGrid', '#cardspager'
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+                , {} //prmEdit
+                , { width: 400, recreateForm: true, closeAfterAdd: true } //prmAdd
+                , {} //prmDel
+                , {
+                    width: 500,
+                    multipleSearch: true,
+                    //multipleGroup: true,
+                    recreateFilter: true,
+                    //closeOnEscape: true,
+                    //closeAfterSearch: true,
+                    overlay: 0,
+                    afterRedraw: function () {
+                        $('input.add-rule', this)//.button().val('Add new rule')
+                            .attr('title', 'Új szabály hozzáadása');
+                        //$('input.add-group', this)//.button().val('Add new group or rules')
+                        //    .attr('title', 'Új szabálycsoport hozzáadása');
+                        $('input.delete-rule', this)//.button().val('Delete rule')
+                            .attr('title', 'Szabály törlése');
+                        //$('input.delete-group', this)//.button().val('Delete group')
+                        //    .attr('title', 'Szabálycsoport törlése');
+                        //$(this).find("table.group:not(:first)").css({
+                        //    borderWidth: "1px",
+                        //    borderStyle: "dashed"
+                        //});
+                    }
+                } //prmSearch
+                , {} //prmView
+            ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+            function fileFormat(cellvalue, options, rowObject) {
+                @*return '<a href="@Url.Action("DownloadFirst", "Sinosz")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1] + '&suserId=' + $("#userId").val()*@
+                return '<a href="@Url.Action("DownloadFirst", "Sinosz")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                        + '" download="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                        + '" title="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                        @*+ '"><img src="@Url.Action("DownloadFirst", "Sinosz")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1] + '&suserId=' + $("#userId").val()*@
+                        + '"><img src="@Url.Action("DownloadFirst", "Sinosz")?fileId=' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                                + '" class="img-responsive img-thumbnail" alt="' + rowObject[getColumnIndexByName('files', 'Name') - 1]
+                                + '" id="' + rowObject[getColumnIndexByName('files', 'FileId') - 1]
+                        + '"/></a>';
+            }
+
+            jQuery("#files").jqGrid({
+                url: '@Url.Action("ListFiles", "Sinosz")?uid=' + $("#userId").val(),
+                editurl: '@Url.Action("UpdateFiles", "Sinosz")?uid=' + $("#userId").val(),
+                datatype: "json",
+                colNames: [
+                     'Művelet'
+                    , 'id'
+                    , 'Fájltípus'
+                    , 'Fájlnév'
+                    , 'Fájl'
+                    , ''
+                ],
+                colModel: [
+                    {
+                        "name": "act"
+                        , "formatoptions": { "keys": false, "editbutton": true, "delbutton": true }
+                        , "width": 50
+                        , "formatter": "actions"
+                        , "searchoptions": {}
+                        , "index": "act"
+                        , sortable: false
+                        , search: false
+                    },
+                    { name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false },
+                    {
+                        name: 'FileTypeName', index: 'FileTypeName', width: 260, align: "left", editable: true, sortable: true, edittype: 'select',
+                        editoptions: {
+                            dataUrl: '@Url.Action("ListFileTypes", "Sinosz")',
+                            buildSelect: function (result) { return result; },
+                            NullIfEmpty: true
+                        }
+                    },
+                    { name: 'Name', index: 'Name', width: 170, align: "center", editable: false, sortable: true },
+                    { name: '', index: '', width: 240, align: "center", editable: false, sortable: false, formatter: fileFormat },
+                    { name: 'FileId', index: 'FileId', width: 200, align: "center", editable: false, sortable: true },
+                ],
+                rowNum: 10,
+                rowList: [10, 20, 30],
+                toppager: true,
+                pager: '#filespager',
+                //sortname: 'CreateDate',
+                viewrecords: true,
+                //sortorder: "asc",
+                caption: 'Csatolt fájlok',
+                rownumbers: true,
+                gridview: true,
+                hoverrows: true,
+                scrollrows: false,
+                shrinkToFit: false,
+                height: '100%',
+                width: '750',
+            });
+
+            jQuery("#files").jqGrid('navGrid', '#filespager'
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+                , {} //prmEdit
+                , {} //prmAdd
+                , {} //prmDel
+                , { width: 500 } //prmSearch
+                , {} //prmView
+            ).jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" });
+
+        }(window));
+
+    </script>
+
+    <link rel="stylesheet" href="~/Scripts/dropzone/css/basic.css">
+    <script src="~/Scripts/dropzone/dropzone.js"></script>
+    <style type="text/css">
+        .filestoupload {
+            height: 0px;
+        }
+
+        .dz-max-files-reached {
+            background-color: red;
+        }
+
+        .dropzone {
+            margin: 0px 0px 10px 0px;
+        }
+    </style>
+
+    <script>
+
+        //nem törlök a dropzone-ból
+        //function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
+        //var afiles = []; //itt gyűjtjük a felküldött file-okat
+        //var aids = [];
+
+        Dropzone.options.myDropzone = {
+            paramName: "file",
+            addRemoveLinks: true,
+            maxFiles: 1,
+            accept: function (file, done) {
+                console.log("uploaded");
+                done();
+            },
+            init: function () {
+                //this.on("error", function (file, message) { alert(message); });
+                this.on("maxfilesexceeded", function (file) {
+                    $('#morethanonepict').modal({
+                        show: true
+                    });
+                });
+
+                //nem törlök a dropzone-ból
+                @*this.on("removedfile", function (file) {
+                var position = $.inArray(file.name, afiles);
+                if (~position) {
+                    var id = aids[position];
+                    afiles.splice(position, 1);
+                    aids.splice(position, 1);
+                    $("#storedfileid" + id).remove();
+                    $.ajax({
+                        url: '@Url.Action("DeleteAttachement", "Sinosz")',
+                        type: 'POST',
+                        data: {id: id}//,
+                    });
+                }
+                });*@
+                this.on("sending", function (file, xhr, formData) {
+                    //nem törlök a dropzone-ból
+                    //var id = b(0);
+                    //afiles.push(file.name);
+                    //aids.push(id)
+                    //formData.append("id", id); // Will send the id along with the file as POST data.
+                    formData.append("suserId", $("#userId").val());
+                    if ($("#filetypeId").css("visibility") == "visible") {
+                        formData.append("filetypeId", $("#filetypeId").val());
+                    }
+                    //nem törlök a dropzone-ból
+                    //$("#filestoupload").append($("<input name=\"StoredFileIds\" type=\"hidden\" value=\"" + id + "\" id=\"storedfileid" + id + "\"/>"));
+                    $("#filestoupload").append($("<input name=\"StoredNames\" type=\"hidden\" value=\"" + file.name + "\"/>")); //ez mindenképpen kell, mert küklönben nem megy fel a formdata
+                });
+                this.on("error", function (file, message) {
+                    $('.dz-error-message').val(message);
+                });
+                var _this = this;
+                this.on("success", function (file, responseText) {
+                    //a feltöltött, kisöpröm
+                    _this.removeAllFiles();
+                    if ($("#filetypeId").css("visibility") == "visible") {
+                        $("#files").trigger("reloadGrid", [{ current: true }]);
+                    }
+                    else {
+                        $.ajax({//meg kell szerezni a kép azonosítóját
+                            url: '@Url.Action("GetUserPictId", "Sinosz")?suserId=' + $("#userId").val(),
+                            complete: function (request, textStatus) { //for additional info
+                                $('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + request.responseJSON);
+                                $("#fileId").val(request.responseJSON);
+                            },
+                            loadError: function (xhr, status, error) { alert(status + " " + error); }
+                        });
+                        $("#deleteFile").show().css({ visibility: "visible" });
+                        $("#imageFile").show().css({ visibility: "visible" });
+                        $("#filetypeId").hide().css({ visibility: "hidden" });
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                    }
+                    file.previewTemplate.appendChild(document.createTextNode(responseText));
+                });
+
+                @*a képvisszatöltés nem megy, és a form miatt nem is tudom használni
+            var mockFile = {};
+            var myDropzone = this;
+            myDropzone.options.addedfile.call(myDropzone, mockFile);
+            myDropzone.options.thumbnail.call(myDropzone, mockFile, '@Url.Action("DownloadFirst", "Sinosz")?suserId=' + $("#userId").val());*@
+            }
+
+        };
+
+    </script>
+}

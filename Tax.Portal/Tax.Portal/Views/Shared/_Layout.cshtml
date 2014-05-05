@@ -14,7 +14,7 @@
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/Scripts/modernizr")
     <style type="text/css">
-        body { padding-top: 70px}
+        body { padding-top: 45px}
     </style>
 
 </head>
@@ -31,11 +31,9 @@
                     @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
                 </a>
             </div>
-            <div class="navbar-collapse collapse" style="margin-top: 0px">
-                <ul class="nav navbar-nav pull-right">
-                    @Html.Partial("_LoginPartial")
-                </ul>
-                <ul class="nav navbar-nav pull-right">
+            <div class="navbar-collapse collapse" style="margin-top: 5px">
+                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
                     @if (Request.IsAuthenticated)
                     {
                         using (var db = new Tax.Data.Models.ApplicationDbContext())
@@ -45,9 +43,9 @@
                             foreach (var menu in db.Menu.OrderBy(x => x.Position).ToList())
                             {
                                 foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
-                                {                                            
+                                {
                                     if (@menuitem.Name != "Admin" || isAdmin)
-                                    { 
+                                    {
                                         <li>
                                             <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
                                                 @menuitem.Name
@@ -59,21 +57,29 @@
                         }
                     }
                 </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li><a href="/hu"><br />@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)</a></li>
-                    <li><a href="/en"><br />@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)</a></li>
-                </ul>
+
+            </div>            
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12" style="margin-top: 0px;">
+                    <input id="Publish" type="button" class="btn btn-default" value="Publish" style="visibility:hidden" />
+                    <input id="CallBack" type="button" class="btn btn-default" value="CallBack" style="visibility:hidden" />
+                </div>
+                <div class="col-sm-6 col-xs-12 text-right" style="margin-top: 0px;">
+                    <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)" onclick="location.href='/hu'" />
+                    <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)" onclick="location.href='/en'" />
+                </div>
             </div>
         </div>
     </div>
-    @*@Html.Partial("_LocalisationPartial")*@
-    <div class="container body-content" style="min-height: 668px; background-color: gray">
+    <div class="container body-content" style="min-height: 668px; background-color: lightgray">
         @RenderBody()
         <footer>
             <div class="input-group-addon row" style="background-color: none;">
                 <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
                     <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
-                </div>                
+                </div>
             </div>
         </footer>
     </div>
@@ -82,11 +88,11 @@
     @* megmarad az ie 6-7-8 kompatibilitás *@
     @* http://stackoverflow.com/a/18782433/208922 *@
     @Scripts.Render("~/Scripts/jquery")
-                    <!--[if lte IE 8]>
+                        <!--[if lte IE 8]>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <![endif]-->
-                    @Scripts.Render("~/Scripts/bootstrap")
-                    @RenderSection("scripts", required: false)
+                        @Scripts.Render("~/Scripts/bootstrap")
+                        @RenderSection("scripts", required: false)
 
 </body>
 </html>
