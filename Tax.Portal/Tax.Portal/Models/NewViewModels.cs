@@ -12,9 +12,37 @@ using System.Web.Mvc;
 
 namespace Tax.Portal.Models
 {
-   
+    /// <summary>
+    /// Lenyílók a ViewModelekhez
+    /// </summary>
+    [NotMapped]
+    public class MyListItem
+    {
+        public Guid? Value { get; set; }
+        public string Text { get; set; }
+    }
+
     public class NewViewModel : BootstrapViewModel
     {
+        public NewsGlobal NewGlobalModel { get; set; }        
+        public NewsLocal NewLocalModel { get; set; }        
+
+        public NewViewModel(NewsGlobal NewGlobalModel, NewsLocal NewLocalModel)
+        {
+            this.NewGlobalModel = NewGlobalModel;
+            this.NewLocalModel = NewLocalModel;
+
+            TagFromList = new HashSet<MyListItem>();
+            TagToList = new HashSet<MyListItem>();
+        }
+
+        public NewViewModel()
+        {}
+
+        [Display(Name = "Tags")]
+        public ICollection<MyListItem> TagFromList { get; set; }
+        public ICollection<MyListItem> TagToList { get; set; }
+
         public Guid Id { get; set; }
         [Display(Name = "PublishingDate")]
         public DateTime? PublishingDate { get; set; }
@@ -24,8 +52,6 @@ namespace Tax.Portal.Models
         [Display(Name = "Thumbnail")]
         [Required(ErrorMessage = "[{0}] is required")]
         public Guid ThumbnailId { get; set; }
-        [Display(Name = "Tags")]
-        public IEnumerable<TagViewModel> Tags { get; set; }
         [Display(Name = "Status")]
         public string NewsStatus { get; set; }
         [Display(Name = "Title1")]
@@ -41,6 +67,5 @@ namespace Tax.Portal.Models
         [Display(Name = "Body text")]
         [Required(ErrorMessage = "[{0}] is required")]
         public string Body_text { get; set; }
-
     }
 }

@@ -261,10 +261,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="nuget.config" />
-    <None Include="Properties\PublishProfiles\DEPLOY.pubxml" />
-    <None Include="Properties\PublishProfiles\DEPLOYTOSERVER.pubxml" />
-    <None Include="Properties\PublishProfiles\PUBLIC_TEST.pubxml" />
-    <None Include="Properties\PublishProfiles\LOCAL_KRISTOF.pubxml" />
+    <None Include="Properties\PublishProfiles\DEPLOY.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\DEPLOYTOSERVER.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

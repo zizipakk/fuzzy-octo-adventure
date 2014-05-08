@@ -12,6 +12,7 @@ using Tax.Portal.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
+using Tax.Portal.Models;
 
 
 namespace Tax.Portal.Controllers
@@ -151,16 +152,292 @@ namespace Tax.Portal.Controllers
 
         [HttpGet]
         [Authorize(Roles = "SysAdmin, User")]
-        public virtual ActionResult Edit(Guid? id)
+        public virtual ActionResult Edit(Guid id)
         {
-            return null;
+            using (log4net.ThreadContext.Stacks["NDC"].Push("GET New/Edit"))
+            {
+                log.Info("begin");
+                var ng = db.NewsGlobal.Find(id);
+                if (null != ng)
+                {
+
+                }
+                else
+                {
+                    return null;
+                }
+
+                NewViewModel suvm = new NewViewModel(ng);
+
+                suvm.OrganizationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Organization
+                                                    .Where(x => !isSinoszUser //SysAdmin vagy SinoszAdmin vagyok, mindent látok
+                                                    || (null != orgId && x.Id == orgId) //vagy SinoszUser vagyok és tagszervezetem szerinti tagok
+                                                    || (null != x.UpperOrganization && x.UpperOrganization.Id == orgId) //vagy SinoszUser vagyok és tagszervezetem feletti szervezet tagjai
+                                                    )
+                                                    .Select(x => new MyListItem { Value = x.Id, Text = x.OrganizationName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.PostcodeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Postcode.Select(x => new MyListItem { Value = x.Id, Text = x.Code + "-" + x.City }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.GenusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Genus.Select(x => new MyListItem { Value = x.Id, Text = x.GenusName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.HearingStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.HearingStatus.Select(x => new MyListItem { Value = x.Id, Text = x.HearingStatusName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.PensionTypeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.PensionType.Select(x => new MyListItem { Value = x.Id, Text = x.PensionTypeName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.NationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Nation.Select(x => new MyListItem { Value = x.Id, Text = x.NationText }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.PositionList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Position.Select(x => new MyListItem { Value = x.Id, Text = x.PositionName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.MaritalStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.MaritalStatus.Select(x => new MyListItem { Value = x.Id, Text = x.MaritalStatusName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.InjuryTimeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.InjuryTime.Select(x => new MyListItem { Value = x.Id, Text = x.InjuryTimeText }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.EducationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.Education.Select(x => new MyListItem { Value = x.Id, Text = x.EducationName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                //suvm.RelationshipList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                //                            .Union(db.Relationship.Select(x => new MyListItem { Value = x.Id, Text = x.RelationshipName }))
+                //                            .OrderBy(x => x.Text)
+                //                            .ToList();
+                suvm.SinoszUserStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.SinoszUserStatus.Select(x => new MyListItem { Value = x.Id, Text = x.StatusName }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                //egyszerűbb lita az állománytípusokhoz
+                suvm.FileTypeList = db.FileType.Select(x => new MyListItem { Value = x.Id, Text = x.FileTypeName })
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                var af = db.AttachedFile.FirstOrDefault(x => x.SinoszUser.Id == UserId && x.FileType == null);
+                suvm.fileId = null == af ? null : (Guid?)af.FileId;
+
+                log.Info("end");
+                return View(suvm);
+            }
         }
 
+
         [HttpPost]
-        [Authorize(Roles = "SysAdmin, User")]
-        public virtual ActionResult Edit()
+        [Authorize(Roles = "SysAdmin, SinoszAdmin, SinoszUser")]
+        public virtual ActionResult Edit(SinoszUserViewModel model)
         {
-            return null;
+            using (log4net.ThreadContext.Stacks["NDC"].Push("Sinosz/Edit"))
+            {
+                log.Info("begin");
+
+                if (ModelState.IsValid)
+                {
+                    SinoszUser resm = model.SinoszUserModel;
+                    //csak így lehet módosítani a nav. prop-ot
+                    var res = db.SinoszUser
+                        .Include(o => o.Organization)
+                        .Include(o => o.Postcode)
+                        .Include(g => g.Genus)
+                        .Include(h => h.HearingStatus)
+                        .Include(p => p.PensionType)
+                        .Include(n => n.Nation)
+                        .Include(po => po.Position)
+                        .Include(m => m.MaritalStatus)
+                        .Include(i => i.InjuryTime)
+                        .Include(e => e.Education)
+                        .Include(r => r.Relationship)
+                        .Include(s => s.SinoszUserStatus)
+                        .Where(x => x.Id == resm.Id)
+                        .FirstOrDefault();
+                    if (null == res.Organization ?
+                        Guid.Empty != resm.Organization.Id :
+                        res.Organization.Id != resm.Organization.Id)  //csak itt van adat a modellben
+                    {
+                        //SinoszLog-írás
+                        var org = db.Organization.Find(resm.Organization.Id);
+                        var slog = db.SinoszLog.Create();
+                        slog.ApplicationUser = db.Users.SingleOrDefault(x => x.UserName == User.Identity.Name); //aki éppen be van lépve
+                        slog.SinoszUser = res;
+                        slog.ActionName = string.Format("Módosítás: {0} => {1}", null == res.Organization ? "" : res.Organization.OrganizationName, null == org ? "" : org.OrganizationName);
+                        slog.ActionTime = DateTime.Now;
+                        db.Entry(slog).State = EntityState.Added;
+                        //nav prop beállítása
+                        res.Organization = org;
+                    }
+                    if (null == res.Postcode ?
+                        Guid.Empty != resm.Postcode.Id :
+                        res.Postcode.Id != resm.Postcode.Id) { res.Postcode = db.Postcode.Find(resm.Postcode.Id); }
+                    if (null == res.Genus ?
+                        Guid.Empty != resm.Genus.Id :
+                        res.Genus.Id != resm.Genus.Id) { res.Genus = db.Genus.Find(resm.Genus.Id); }
+                    if (null == res.HearingStatus ?
+                        Guid.Empty != resm.HearingStatus.Id :
+                        res.HearingStatus.Id != resm.HearingStatus.Id) { res.HearingStatus = db.HearingStatus.Find(resm.HearingStatus.Id); }
+                    if (null == res.PensionType ?
+                        Guid.Empty != resm.PensionType.Id :
+                        res.PensionType.Id != resm.PensionType.Id) { res.PensionType = db.PensionType.Find(resm.PensionType.Id); }
+                    if (null == res.Nation ?
+                        Guid.Empty != resm.Nation.Id :
+                        res.Nation.Id != resm.Nation.Id) { res.Nation = db.Nation.Find(resm.Nation.Id); }
+                    if (null == res.Position ?
+                        Guid.Empty != resm.Position.Id :
+                        res.Position.Id != resm.Position.Id) { res.Position = db.Position.Find(resm.Position.Id); }
+                    if (null == res.MaritalStatus ?
+                        Guid.Empty != resm.MaritalStatus.Id :
+                        res.MaritalStatus.Id != resm.MaritalStatus.Id) { res.MaritalStatus = db.MaritalStatus.Find(resm.MaritalStatus.Id); }
+                    if (null == res.InjuryTime ?
+                        Guid.Empty != resm.InjuryTime.Id :
+                        res.InjuryTime.Id != resm.InjuryTime.Id) { res.InjuryTime = db.InjuryTime.Find(resm.InjuryTime.Id); }
+                    if (null == res.Education ?
+                        Guid.Empty != resm.Education.Id :
+                        res.Education.Id != resm.Education.Id) { res.Education = db.Education.Find(resm.Education.Id); }
+                    //if (null == res.Relationship ?
+                    //    Guid.Empty != resm.Relationship.Id :
+                    //    res.Relationship.Id != resm.Relationship.Id) { res.Relationship = db.Relationship.Find(resm.Relationship.Id); }
+                    if (null == res.SinoszUserStatus ?
+                        Guid.Empty != resm.SinoszUserStatus.Id :
+                        res.SinoszUserStatus.Id != resm.SinoszUserStatus.Id) { res.SinoszUserStatus = db.SinoszUserStatus.Find(resm.SinoszUserStatus.Id); }
+                    //már ez is módosulhat
+                    if (res.SinoszId != resm.SinoszId) { res.SinoszId = resm.SinoszId; }
+                    //egyéb
+                    if (res.BirthDate != resm.BirthDate) { res.BirthDate = resm.BirthDate; }
+                    if (res.BirthName != resm.BirthName) { res.BirthName = resm.BirthName; }
+                    if (res.BirthPlace != resm.BirthPlace) { res.BirthPlace = resm.BirthPlace; }
+                    if (res.DecreeNumber != resm.DecreeNumber) { res.DecreeNumber = resm.DecreeNumber; }
+                    if (res.EnterDate != resm.EnterDate) { res.EnterDate = resm.EnterDate; }
+                    if (res.HomeAddress != resm.HomeAddress) { res.HomeAddress = resm.HomeAddress; }
+                    if (res.isHearingAid != resm.isHearingAid) { res.isHearingAid = resm.isHearingAid; }
+                    if (res.isImplant != resm.isImplant) { res.isImplant = resm.isImplant; }
+                    if (res.MothersName != resm.MothersName) { res.MothersName = resm.MothersName; }
+                    if (res.Remark != resm.Remark) { res.Remark = resm.Remark; }
+                    if (res.SinoszId != resm.SinoszId) { res.SinoszId = resm.SinoszId; }
+                    if (res.SinoszUserName != resm.SinoszUserName) { res.SinoszUserName = resm.SinoszUserName; }
+                    if (res.Barcode != resm.Barcode) { res.Barcode = resm.Barcode; }
+
+                    db.SaveChanges();
+                    log.Info("end with ok");
+
+                    return RedirectToAction(MVC.Sinosz.Edit(model.SinoszUserModel.Id, null));
+                }
+                else
+                {
+                    //TODO béna megoldás átmenetileg, mert nem tudom különben átírni a hibaüzenetet, ami angol
+                    if (ModelState["SinoszUserModel.BirthDate"].Errors.Count() > 0
+                        && !ModelState["SinoszUserModel.BirthDate"].Errors.Select(x => x.ErrorMessage).Contains("A(z) [Születési idő] mezőt kötelező kitölteni"))
+                    {
+                        ModelState["SinoszUserModel.BirthDate"].Errors.Clear();
+                        ModelState["SinoszUserModel.BirthDate"].Errors.Add(new ModelError("Érvénytelen dátum a [Születési dátum] mezőben!"));
+                    }
+                    if (ModelState["SinoszUserModel.EnterDate"].Errors.Count() > 0
+                        && !ModelState["SinoszUserModel.EnterDate"].Errors.Select(x => x.ErrorMessage).Contains("A(z) [Belépés ideje] mezőt kötelező kitölteni"))
+                    {
+                        ModelState["SinoszUserModel.EnterDate"].Errors.Clear();
+                        ModelState["SinoszUserModel.EnterDate"].Errors.Add(new ModelError("Érvénytelen dátum a [Belépési dátum] mezőben!"));
+                    }
+                    //
+
+                    // If we got this far, something failed, redisplay form
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
+                    log.Info("end with validation error");
+                    model.Refresh(ModelState);
+
+                    //lenyílókat megint inicializálni kell
+                    string userId = User.Identity.GetUserId();
+                    Guid? orgId = null;
+                    bool isSinoszUser = false;
+                    var ur = db.ApplicationUserRole.FirstOrDefault(x =>
+                                                                        x.UserId == userId
+                                                                        && x.Role.Name == "SinoszUser");
+                    if (null != ur)
+                    {
+                        isSinoszUser = true;
+                        var kur = ur.KontaktUserRole;
+                        if (null != kur)
+                        {
+                            var org = kur.Organization;
+                            if (null != org)
+                            {
+                                orgId = org.Id;
+                            }
+                        }
+                    }
+                    model.OrganizationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Organization
+                                                        .Where(x => !isSinoszUser //SysAdmin vagy SinoszAdmin vagyok, mindent látok
+                                                        || (null != orgId && x.Id == orgId) //vagy SinoszUser vagyok és tagszervezetem szerinti tagok
+                                                        || (null != x.UpperOrganization && x.UpperOrganization.Id == orgId) //vagy SinoszUser vagyok és tagszervezetem feletti szervezet tagjai
+                                                        )
+                                                        .Select(x => new MyListItem { Value = x.Id, Text = x.OrganizationName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.PostcodeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Postcode.Select(x => new MyListItem { Value = x.Id, Text = x.Code + "-" + x.City }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.GenusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Genus.Select(x => new MyListItem { Value = x.Id, Text = x.GenusName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.HearingStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.HearingStatus.Select(x => new MyListItem { Value = x.Id, Text = x.HearingStatusName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.PensionTypeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.PensionType.Select(x => new MyListItem { Value = x.Id, Text = x.PensionTypeName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.NationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Nation.Select(x => new MyListItem { Value = x.Id, Text = x.NationText }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.PositionList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Position.Select(x => new MyListItem { Value = x.Id, Text = x.PositionName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.MaritalStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.MaritalStatus.Select(x => new MyListItem { Value = x.Id, Text = x.MaritalStatusName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.InjuryTimeList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.InjuryTime.Select(x => new MyListItem { Value = x.Id, Text = x.InjuryTimeText }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.EducationList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.Education.Select(x => new MyListItem { Value = x.Id, Text = x.EducationName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    //model.RelationshipList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                    //                            .Union(db.Relationship.Select(x => new MyListItem { Value = x.Id, Text = x.RelationshipName }))
+                    //                            .OrderBy(x => x.Text)
+                    //                            .ToList();
+                    model.SinoszUserStatusList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.SinoszUserStatus.Select(x => new MyListItem { Value = x.Id, Text = x.StatusName }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    //egyszerűbb lsita az állománytípusokhoz
+                    model.FileTypeList = db.FileType.Select(x => new MyListItem { Value = x.Id, Text = x.FileTypeName })
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    //ez action-ön kívül változhat
+                    var af = db.AttachedFile.FirstOrDefault(x => x.SinoszUser.Id == model.SinoszUserModel.Id && x.FileType == null);
+                    model.fileId = null == af ? null : (Guid?)af.FileId;
+
+                    return View(model);
+                }
+            }
         }
 
         #endregion edit
