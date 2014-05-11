@@ -4,9 +4,8 @@
     .ui-jqgrid .ui-state-highlight {
         background: #cccccc;
     }
-    /*nem tudom a web lapon customizálni*/
     .container .grid {
-        border: 1px solid #ddd;
+        /*border: 1px solid #ddd;*/
         padding-left: 0px;
         padding-top: 35px;
         padding-right: 0px;
@@ -56,18 +55,40 @@
     </div>
 </div>
 
+<div class="modal fade bs-modal-sm" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ATTENTION!</h4>
+            </div>
+            <div class="modal-body">
+                <p id="deletetext" style="text-align:center">Do you really want to delete this?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center pull-left">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value=" CANCEL " />
+                </div>
+                <div class="text-center pull-right">
+                    <input id="deletebutton" type="button" class="btn btn-warning" data-dismiss="modal" value=" DELETE " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
 <div class="row">    
     <div class="container grid">
-        <div class="btn-group" style="margin-left:15px">
-            <a id="create" class="btn btn-default" href="#"><i class="fa fa-plus fa-lg"></i></a> 
-            <a id="edit" class="btn btn-default" href="#" style="visibility:hidden"><i class="fa fa-pencil fa-lg"></i></a>
-            <a id="del" class="btn btn-default" href="#" style="visibility:hidden"><i class="fa fa-trash-o fa-lg"></i></a>
-        </div>
         <div class="col-sm-12">
             <div class=" col-sm-7 col-xs-12" style="min-width:660px">
-            <table id="news" class="display"><tr><td /></tr></table>
-            <div id="newspager"></div>
-        </div>
+                <div class="btn-group">
+                    <a id="create" class="btn btn-default" href="#"><i class="fa fa-plus fa-lg"></i></a>
+                    <a id="edit" class="btn btn-default" href="#" style="visibility:hidden"><i class="fa fa-pencil fa-lg"></i></a>
+                    <a id="del" class="btn btn-default" style="visibility:hidden" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash-o fa-lg"></i></a>
+                </div>
+                <table id="news" class="display"><tr><td /></tr></table>
+                <div id="newspager"></div>
+            </div>
             <div class="col-sm-5 col-xs-12" style="min-width: 470px">
                 
             </div>
@@ -315,19 +336,40 @@
                 }
             });
         });
- 
-    $('#create').click(function () {
-        document.location.href = '@Url.Action("Create", "New")?id=' + $("#rowid").val();
-    });
- 
-    $('#edit').click(function () {
-        document.location.href = '@Url.Action("Edit", "New")?id=' + $("#rowid").val();
-    });
+        $('#deletebutton').click(function () {
+            $.ajax({
+                url: '@Url.Action("DeleteNew", "New")?id=' + $("#rowid").val(),
+                type: 'POST',
+                beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
+                complete: function (jqXHR, textStatus) {
+                    var str = JSON.parse(jqXHR.responseText);
+                    if (!str.success) {
+                        if (str.error) {
+                            $('#errortext').text(str.response);
+                            $('#errormodal').modal({ show: true });
+                        }
+                        else {
+                            $('#warningtext').text(str.response);
+                            $('#warningmodal').modal({ show: true });
+                        }
+                    }
+                    jQuery('#news').unblock();
+                    $("#news").trigger("reloadGrid", [{ current: true }]);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#errortext').text(jqXHR.responseText);
+                    $('#errormodal').modal({ show: true });
+                }
+            });
+        });
 
-    $('#del').click(function () {
-        //visszakérdezés
-        document.location.href = '@Url.Action("Delete", "New")?id=' + $("#rowid").val();
-    });
+        $('#create').click(function () {
+            document.location.href = '@Url.Action("Create", "New")?id=' + $("#rowid").val();
+        });
+ 
+        $('#edit').click(function () {
+            document.location.href = '@Url.Action("Edit", "New")?id=' + $("#rowid").val();
+        });
 
     </script>
 

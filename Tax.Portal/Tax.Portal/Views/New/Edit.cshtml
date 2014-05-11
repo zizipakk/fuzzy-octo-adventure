@@ -1,1 +1,285 @@
-﻿
+﻿@model Tax.Portal.Models.NewViewModel
+
+
+<div class="modal fade bs-modal-sm" id="deletepict" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Valóban törölni szeretné a fényképet?</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input id="btnPictDelete" type="button" class="btn btn-warning" data-dismiss="modal" value=" TÖRLÉS " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="morethanonepict" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sajnos csak egyetlen fényképet fogadunk!</h4>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@Html.ValidationSummary()
+<div class="row" id="dz_section">
+    <div class="col-sm-3 col-xs-12 pull-right" id="form_width">
+        <form action="@Url.Action("Upload")" class="dropzone square" id="my-dropzone" style="background-color: cornsilk; ">
+        </form>
+    </div>
+</div>
+
+@using (Html.BeginForm(MVC.New.Edit(), FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div id="filestoupload" class="filestoupload"></div>
+    <div class="row">
+        <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+                <div class="col-sm-6 col-xs-12">
+                    @Html.LabelFor(m => m.Title1, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Title1, new { @class = "form-control", placeholder = "Type here title1" })
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    @Html.LabelFor(m => m.Title2, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Title2, new { @class = "form-control", placeholder = "Type here title2" })
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    @Html.LabelFor(m => m.Subtitle, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Subtitle, new { @class = "form-control", placeholder = "Type here subtitle" })
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    @Html.LabelFor(m => m.TagFromList, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.DropDownList("TagFromList", new SelectList(Model.TagFromList, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.ListBoxFor(m => m.TagToList, new SelectList(Model.TagToList, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-xs-12">
+            <div class="form-group" id="fileGroup">
+                <div class="col-sm-12 col-xs-12">
+                    @Html.Label("Fénykép", new { @class = "control-label" })
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <img src="" class="img-responsive img-thumbnail" id="imageFile" alt="Fénykép" />
+                </div>
+                <div class="col-sm-12 col-xs-12 text-center">
+                    <input id="deleteFile" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepict" value="Törlés" />
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.TextAreaFor(m => m.Subtitle, new { @class = "control-label" })
+                </div>
+
+            </div>        
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 col-xs-12 pull-right">
+            <input type="submit" id="submit" class="btn btn-warning" value="Mentés" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+    <script type="text/javascript">
+        $("input[data-val-date]").removeAttr("data-val-date");
+
+        $('#btnPictDelete').click(function () {
+            $.ajax({
+                url: '@Url.Action("DeleteAttachement", "Sinosz")',
+                type: 'POST',
+                data: { id: $("#fileId").val() },
+                success: function (data) {
+                    $("#fileId").val('');
+                    $('#imageFile').attr('src', '');
+                    $("#deleteFile").hide().css({ visibility: "hidden" });
+                    $("#imageFile").hide().css({ visibility: "hidden" });
+                    $("#filetypeId").hide().css({ visibility: "hidden" });
+                    $('#form_width').attr('class', "col-sm-3 pull-right");
+                    $("#dz_section").show().css({ visibility: "visible" });
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        });
+
+        $('#fileId').val('@Model.fileId'); //post után a form nem frissíti be a hidden mezőket a modellből
+        if ("" == $('#fileId').val()) //még nincs fénykép
+        {
+            $("#dz_section").show().css({ visibility: "visible" });
+            $("#imageFile").hide().css({ visibility: "hidden" });
+            $('#imageFile').attr('src', '');
+            $('#deleteFile').hide().css({ visibility: "hidden" });
+
+        }
+        else //már van fénykép
+        {
+            $("#dz_section").hide().css({ visibility: "hidden" });
+            $("#imageFile").show().css({ visibility: "visible" });
+            @*$('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + $("#fileId").val() + '&suserId=' + $("#userId").val());*@
+            $('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + $("#fileId").val());
+            $('#deleteFile').show().css({ visibility: "visible" });
+        }
+
+    </script>
+
+    <link rel="stylesheet" href="~/Scripts/dropzone/css/basic.css">
+    <script src="~/Scripts/dropzone/dropzone.js"></script>
+    <style type="text/css">
+        .filestoupload {
+            height: 0px;
+        }
+
+        .dz-max-files-reached {
+            background-color: red;
+        }
+
+        .dropzone {
+            margin: 0px 0px 10px 0px;
+        }
+    </style>
+
+    <link href="~/Scripts/ckeditor/contents.css" rel="stylesheet" />
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script>
+
+        //nem törlök a dropzone-ból
+        //function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
+        //var afiles = []; //itt gyűjtjük a felküldött file-okat
+        //var aids = [];
+
+        Dropzone.options.myDropzone = {
+            paramName: "file",
+            addRemoveLinks: true,
+            maxFiles: 1,
+            accept: function (file, done) {
+                console.log("uploaded");
+                done();
+            },
+            init: function () {
+                //this.on("error", function (file, message) { alert(message); });
+                this.on("maxfilesexceeded", function (file) {
+                    $('#morethanonepict').modal({
+                        show: true
+                    });
+                });
+
+                //nem törlök a dropzone-ból
+                @*this.on("removedfile", function (file) {
+                var position = $.inArray(file.name, afiles);
+                if (~position) {
+                    var id = aids[position];
+                    afiles.splice(position, 1);
+                    aids.splice(position, 1);
+                    $("#storedfileid" + id).remove();
+                    $.ajax({
+                        url: '@Url.Action("DeleteAttachement", "Sinosz")',
+                        type: 'POST',
+                        data: {id: id}//,
+                    });
+                }
+                });*@
+                this.on("sending", function (file, xhr, formData) {
+                    //nem törlök a dropzone-ból
+                    //var id = b(0);
+                    //afiles.push(file.name);
+                    //aids.push(id)
+                    //formData.append("id", id); // Will send the id along with the file as POST data.
+                    formData.append("suserId", $("#userId").val());
+                    if ($("#filetypeId").css("visibility") == "visible") {
+                        formData.append("filetypeId", $("#filetypeId").val());
+                    }
+                    //nem törlök a dropzone-ból
+                    //$("#filestoupload").append($("<input name=\"StoredFileIds\" type=\"hidden\" value=\"" + id + "\" id=\"storedfileid" + id + "\"/>"));
+                    $("#filestoupload").append($("<input name=\"StoredNames\" type=\"hidden\" value=\"" + file.name + "\"/>")); //ez mindenképpen kell, mert küklönben nem megy fel a formdata
+                });
+                this.on("error", function (file, message) {
+                    $('.dz-error-message').val(message);
+                });
+                var _this = this;
+                this.on("success", function (file, responseText) {
+                    //a feltöltött, kisöpröm
+                    _this.removeAllFiles();
+                    if ($("#filetypeId").css("visibility") == "visible") {
+                        $("#files").trigger("reloadGrid", [{ current: true }]);
+                    }
+                    else {
+                        $.ajax({//meg kell szerezni a kép azonosítóját
+                            url: '@Url.Action("GetUserPictId", "Sinosz")?suserId=' + $("#userId").val(),
+                            complete: function (request, textStatus) { //for additional info
+                                $('#imageFile').attr('src', '@Url.Action("DownloadFirst", "Sinosz")?fileId=' + request.responseJSON);
+                                $("#fileId").val(request.responseJSON);
+                            },
+                            loadError: function (xhr, status, error) { alert(status + " " + error); }
+                        });
+                        $("#deleteFile").show().css({ visibility: "visible" });
+                        $("#imageFile").show().css({ visibility: "visible" });
+                        $("#filetypeId").hide().css({ visibility: "hidden" });
+                        $("#dz_section").hide().css({ visibility: "hidden" });
+                    }
+                    file.previewTemplate.appendChild(document.createTextNode(responseText));
+                });
+
+                @*a képvisszatöltés nem megy, és a form miatt nem is tudom használni
+            var mockFile = {};
+            var myDropzone = this;
+            myDropzone.options.addedfile.call(myDropzone, mockFile);
+            myDropzone.options.thumbnail.call(myDropzone, mockFile, '@Url.Action("DownloadFirst", "Sinosz")?suserId=' + $("#userId").val());*@
+            }
+        };
+
+        //ck editor init
+        function beforeShowForm() {
+            if (typeof (CKEDITOR.instances.Subtitle) != 'undefined') {
+                try {
+                    CKEDITOR.instances.Subtitle.destroy();
+                } catch (e) {
+                    delete CKEDITOR.instances.Subtitle;
+                }
+            }
+            CKEDITOR.replace('Subtitle', { height: 200, language: 'hu' });
+        };
+
+        //ck editor load
+        function afterShowForm() {
+            CKEDITOR.instances.Subtitle.setData(@Model.Subtitle);
+        };
+
+        //ck editor save
+        function beforeSubmit() {
+            @Model.Subtitle = CKEDITOR.instances.Subtitle.getData();
+        };
+
+    </script>
+}
