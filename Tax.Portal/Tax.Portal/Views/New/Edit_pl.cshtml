@@ -157,7 +157,7 @@
         </div>
     </div>
 
-    @using (Html.BeginForm(MVC.Sinosz.Edit(), FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm(MVC.Sinosz.Edit(), FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "main" }))
     {
         @Html.HiddenFor(m => m.SinoszUserModel.Id, new { @id = "userId" })
         @Html.HiddenFor(m => m.fileId, new { @id = "fileId" })

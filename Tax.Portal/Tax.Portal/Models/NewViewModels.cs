@@ -24,24 +24,17 @@ namespace Tax.Portal.Models
 
     public class NewViewModel : BootstrapViewModel
     {
-        public NewsGlobal NewGlobalModel { get; set; }        
-        public NewsLocal NewLocalModel { get; set; }        
-
-        public NewViewModel(NewsGlobal NewGlobalModel, NewsLocal NewLocalModel)
-        {
-            this.NewGlobalModel = NewGlobalModel;
-            this.NewLocalModel = NewLocalModel;
-
-            TagFromList = new HashSet<MyListItem>();
-            TagToList = new HashSet<MyListItem>();
-        }
-
         public NewViewModel()
         {}
 
         [Display(Name = "Tags")]
-        public ICollection<MyListItem> TagFromList { get; set; }
-        public ICollection<MyListItem> TagToList { get; set; }
+        public Guid[] TagsOut { get; set; }
+        [NotMapped]
+        public List<MyListItem> TagFromList { get; set; }
+        [Required]
+        public Guid[] TagsIn { get; set; }
+        [NotMapped]
+        public List<MyListItem> TagToList { get; set; }
 
         public Guid Id { get; set; }
         [Display(Name = "PublishingDate")]
@@ -53,7 +46,7 @@ namespace Tax.Portal.Models
         [Required(ErrorMessage = "[{0}] is required")]
         public Guid ThumbnailId { get; set; }
         [Display(Name = "Status")]
-        public string NewsStatus { get; set; }
+        public string NewsStatusName { get; set; }
         [Display(Name = "Title1")]
         [Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
@@ -66,6 +59,7 @@ namespace Tax.Portal.Models
         public string Subtitle { get; set; }
         [Display(Name = "Body text")]
         [Required(ErrorMessage = "[{0}] is required")]
+        [AllowHtml]
         public string Body_text { get; set; }
     }
 }

@@ -77,7 +77,7 @@ namespace Tax.Data.Models
         public DbSet<TagsLocal> TagsLocal { get; set; }
         public DbSet<Device> Device { get; set; }
         public DbSet<DeviceType> DeviceType { get; set; }
-
+        public DbSet<TagsGlobalNewsGlobal> TagsGlobalNewsGlobal { get; set; }
     }
 
     /// <summary>

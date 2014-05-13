@@ -51,4 +51,16 @@ namespace Tax.Data.Models
         public string Subtitle { get; set; }
         public string Body_text { get; set; }
     }
+
+    /// <summary>
+    /// A kapcsoló táblát létrehozta, de kell a karnbantartásához
+    /// </summary>
+    [Table("TagsGlobalNewsGlobals")] //Rámappelem 
+    public partial class TagsGlobalNewsGlobal
+    {
+        [Key, Column(Order = 0)]
+        public Guid TagsGlobal_Id { get; set; }
+        [Key, Column(Order = 1)]
+        public Guid NewsGlobal_Id { get; set; }
+    }
 }

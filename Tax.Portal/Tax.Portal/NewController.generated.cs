@@ -50,6 +50,24 @@ namespace Tax.Portal.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListNews);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DeleteNew()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteNew);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UpdateNewStatus()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateNewStatus);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public NewController Actions { get { return MVC.New; } }
@@ -68,6 +86,9 @@ namespace Tax.Portal.Controllers
         {
             public readonly string Index = "Index";
             public readonly string ListNews = "ListNews";
+            public readonly string Edit = "Edit";
+            public readonly string DeleteNew = "DeleteNew";
+            public readonly string UpdateNewStatus = "UpdateNewStatus";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,6 +96,9 @@ namespace Tax.Portal.Controllers
         {
             public const string Index = "Index";
             public const string ListNews = "ListNews";
+            public const string Edit = "Edit";
+            public const string DeleteNew = "DeleteNew";
+            public const string UpdateNewStatus = "UpdateNewStatus";
         }
 
 
@@ -85,6 +109,32 @@ namespace Tax.Portal.Controllers
         public class ActionParamsClass_ListNews
         {
             public readonly string grid = "grid";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
+        {
+            public readonly string id = "id";
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_DeleteNew s_params_DeleteNew = new ActionParamsClass_DeleteNew();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteNew DeleteNewParams { get { return s_params_DeleteNew; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteNew
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_UpdateNewStatus s_params_UpdateNewStatus = new ActionParamsClass_UpdateNewStatus();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateNewStatus UpdateNewStatusParams { get { return s_params_UpdateNewStatus; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateNewStatus
+        {
+            public readonly string id = "id";
+            public readonly string to = "to";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,10 +148,12 @@ namespace Tax.Portal.Controllers
             {
                 public readonly string _DetailPartial = "_DetailPartial";
                 public readonly string Edit = "Edit";
+                public readonly string Edit_pl = "Edit_pl";
                 public readonly string Index = "Index";
             }
             public readonly string _DetailPartial = "~/Views/New/_DetailPartial.cshtml";
             public readonly string Edit = "~/Views/New/Edit.cshtml";
+            public readonly string Edit_pl = "~/Views/New/Edit_pl.cshtml";
             public readonly string Index = "~/Views/New/Index.cshtml";
         }
     }
@@ -127,6 +179,47 @@ namespace Tax.Portal.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListNews);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
             ListNewsOverride(callInfo, grid);
+            return callInfo;
+        }
+
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        public override System.Web.Mvc.ActionResult Edit(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.NewViewModel model);
+
+        public override System.Web.Mvc.ActionResult Edit(Tax.Portal.Models.NewViewModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            EditOverride(callInfo, model);
+            return callInfo;
+        }
+
+        partial void DeleteNewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        public override System.Web.Mvc.ActionResult DeleteNew(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteNew);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteNewOverride(callInfo, id);
+            return callInfo;
+        }
+
+        partial void UpdateNewStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid? id, string to);
+
+        public override System.Web.Mvc.ActionResult UpdateNewStatus(System.Guid? id, string to)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateNewStatus);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "to", to);
+            UpdateNewStatusOverride(callInfo, id, to);
             return callInfo;
         }
 
