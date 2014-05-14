@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.LabelFor(m => m.TagFromList, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.TagsIn, new { @class = "control-label" })
                     <div class="input-group col-sm-12 col-xs-12">
                         <div class="col-sm-10 col-xs-12" style="padding:0px">
                             @Html.DropDownListFor(m => m.TagsOut, new SelectList(Model.TagFromList, "Value", "Text"), new { @class = "form-control" })

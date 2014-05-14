@@ -27,11 +27,12 @@ namespace Tax.Portal.Models
         public NewViewModel()
         {}
 
-        [Display(Name = "Tags")]
+        [NotMapped]
         public Guid[] TagsOut { get; set; }
         [NotMapped]
         public List<MyListItem> TagFromList { get; set; }
-        [Required]
+        [Display(Name = "Tags")]
+        [Required(ErrorMessage = "[{0}] is required")]
         public Guid[] TagsIn { get; set; }
         [NotMapped]
         public List<MyListItem> TagToList { get; set; }

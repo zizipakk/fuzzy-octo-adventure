@@ -229,10 +229,13 @@ namespace Tax.Portal.Controllers
                         .Include(x => x.Headline_picture)
                         .Include(x => x.Thumbnail)
                         .Include(x => x.NewsStatus)
+
                         .Where(x => x.Id == model.Id)
                         .FirstOrDefault();
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
+                if (null == model.TagsIn)
+                { model.TagsIn = new Guid[] { }; }
 
                 if (ModelState.IsValid)
                 {                    
@@ -252,37 +255,21 @@ namespace Tax.Portal.Controllers
                     if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
                     if (resl.Subtitle != model.Subtitle) { resl.Subtitle = model.Subtitle; }
                     if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    
+                    //nem szerepel a db contextben a many-to-many, ezért be kell tölteni
+                    db.Entry(resg).Collection(t => t.TagsGlobal).Load();
 
-                    if (null == model.TagsIn)
+                    IEnumerable<Guid> removeGuids = resg.TagsGlobal.Select(x => x.Id).Except(model.TagsIn);
+                    foreach (var tg in db.TagsGlobal.Where(x => removeGuids.Contains(x.Id)).ToList())
                     {
-                        model.TagsIn = new Guid[] { };
+                        resg.TagsGlobal.Remove(tg);
                     }
 
-                    foreach (var n2t in db.TagsGlobalNewsGlobals
-                                .Where(x =>
-                                    x.NewsGlobal_Id == model.Id
-                                    && !model.TagsIn.Contains(x.TagsGlobal_Id)
-                                )
-                                .ToList()
-                            )
+                    //foreach (Guid id in model.TagsIn.Where(x => !resg.TagsGlobal.Select(y => y.Id).Contains(x)).ToList())
+                    IEnumerable<Guid> addGuids = model.TagsIn.Except(resg.TagsGlobal.Select(x => x.Id));
+                    foreach (var tg in db.TagsGlobal.Where(x => addGuids.Contains(x.Id)).ToList())
                     {
-                        db.Entry(n2t).State = EntityState.Deleted;
-                    }
-
-                    foreach (Guid id in model.TagsIn)
-                    {
-                        if (
-                            !db.TagsGlobalNewsGlobals
-                                .Where(x => x.NewsGlobal_Id == model.Id)
-                                .Select(x => x.TagsGlobal_Id)
-                                .Contains(id)
-                           )
-                        {
-                            TagsGlobalNewsGlobal n2t = db.TagsGlobalNewsGlobals.Create();
-                            n2t.NewsGlobal_Id = model.Id;
-                            n2t.TagsGlobal_Id = id;
-                            db.Entry(n2t).State = EntityState.Added;
-                        }
+                        resg.TagsGlobal.Add(tg);
                     }
 
                     db.SaveChanges();

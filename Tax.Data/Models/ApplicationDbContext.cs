@@ -78,20 +78,7 @@ namespace Tax.Data.Models
         public DbSet<TagsLocal> TagsLocal { get; set; }
         public DbSet<Device> Device { get; set; }
         public DbSet<DeviceType> DeviceType { get; set; }
-        public DbSet<TagsGlobalNewsGlobal> TagsGlobalNewsGlobals { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<NewsGlobal>()
-        //        .HasMany(a => a.TagsGlobal).WithMany(b => b.NewsGlobal).Map(m =>
-        //    {
-        //        m.MapLeftKey("NewsGlobal_Id");
-        //        m.MapRightKey("TagsGlobal_Id");
-        //        m.ToTable("TagsGlobalNewsGlobals");
-        //    });
-        //    base.OnModelCreating(modelBuilder);
-        //}
-        
     }
 
     /// <summary>
