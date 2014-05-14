@@ -102,9 +102,13 @@
     <Compile Include="Migrations\201404262131368_indexes to devices.Designer.cs">
       <DependentUpon>201404262131368_indexes to devices.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405131228430_kamu a new-tag kapcsoló felmappeléséhez.cs" />
-    <Compile Include="Migrations\201405131228430_kamu a new-tag kapcsoló felmappeléséhez.Designer.cs">
-      <DependentUpon>201405131228430_kamu a new-tag kapcsoló felmappeléséhez.cs</DependentUpon>
+    <Compile Include="Migrations\201405131527107_split roles from submenus.cs" />
+    <Compile Include="Migrations\201405131527107_split roles from submenus.Designer.cs">
+      <DependentUpon>201405131527107_split roles from submenus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405132239063_map test.cs" />
+    <Compile Include="Migrations\201405132239063_map test.Designer.cs">
+      <DependentUpon>201405132239063_map test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -174,8 +178,11 @@
     <EmbeddedResource Include="Migrations\201404262131368_indexes to devices.resx">
       <DependentUpon>201404262131368_indexes to devices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405131228430_kamu a new-tag kapcsoló felmappeléséhez.resx">
-      <DependentUpon>201405131228430_kamu a new-tag kapcsoló felmappeléséhez.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405131527107_split roles from submenus.resx">
+      <DependentUpon>201405131527107_split roles from submenus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405132239063_map test.resx">
+      <DependentUpon>201405132239063_map test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

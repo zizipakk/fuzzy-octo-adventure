@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
 using System.Web;
+using System.Data.Entity.ModelConfiguration;
 
 namespace Tax.Data.Models
 {
@@ -51,7 +52,7 @@ namespace Tax.Data.Models
                 var assemblyname = assembly.GetName();
                 return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", assemblyname.Name, assemblyname.Version);
             }
-        }
+        }       
 
         public DbSet<SystemParameter> SystemParameter { get; set; }
         public DbSet<Log> Logs { get; set; }
@@ -77,7 +78,20 @@ namespace Tax.Data.Models
         public DbSet<TagsLocal> TagsLocal { get; set; }
         public DbSet<Device> Device { get; set; }
         public DbSet<DeviceType> DeviceType { get; set; }
-        public DbSet<TagsGlobalNewsGlobal> TagsGlobalNewsGlobal { get; set; }
+        public DbSet<TagsGlobalNewsGlobal> TagsGlobalNewsGlobals { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<NewsGlobal>()
+        //        .HasMany(a => a.TagsGlobal).WithMany(b => b.NewsGlobal).Map(m =>
+        //    {
+        //        m.MapLeftKey("NewsGlobal_Id");
+        //        m.MapRightKey("TagsGlobal_Id");
+        //        m.ToTable("TagsGlobalNewsGlobals");
+        //    });
+        //    base.OnModelCreating(modelBuilder);
+        //}
+        
     }
 
     /// <summary>

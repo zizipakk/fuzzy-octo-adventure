@@ -6,6 +6,8 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+//using System.Data.Entity.Infrastructure;
 
 namespace Tax.Data.Models
 {
@@ -13,6 +15,7 @@ namespace Tax.Data.Models
     /// <summary>
     /// News globalzed model
     /// </summary>
+    //[Table("NewsGlobals")] //Rámappelem 
     public class NewsGlobal
     {
         public NewsGlobal()
@@ -52,15 +55,21 @@ namespace Tax.Data.Models
         public string Body_text { get; set; }
     }
 
+    //a kapcsoló tábla még nem megy data annotetion-nel
     /// <summary>
-    /// A kapcsoló táblát létrehozta, de kell a karnbantartásához
+    /// A kapcsoló táblát létrehozta, de kell a karbantartásához
     /// </summary>
     [Table("TagsGlobalNewsGlobals")] //Rámappelem 
     public partial class TagsGlobalNewsGlobal
     {
         [Key, Column(Order = 0)]
         public Guid TagsGlobal_Id { get; set; }
+        [ForeignKey("TagsGlobal_Id")]
+        public virtual TagsGlobal TagsGlobal { get; set; }
         [Key, Column(Order = 1)]
         public Guid NewsGlobal_Id { get; set; }
+        [ForeignKey("NewsGlobal_Id")]
+        public virtual NewsGlobal NewsGlobal { get; set; }
     }
+
 }

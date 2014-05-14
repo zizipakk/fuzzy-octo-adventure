@@ -192,24 +192,26 @@ namespace Tax.Portal.Controllers
                     suvm.Body_text = nl.Body_text;
                 }
 
+                var ngList = ng.TagsGlobal.Select(v => v.Id).ToList();
                 suvm.TagsOut = db.TagsGlobal
-                                .Where(z => !ng.TagsGlobal.Select(v => v.Id).Contains(z.Id))
+                                .Where(z => !ngList.Contains(z.Id))
                                 .Select(x => x.Id)
                                 .ToArray();
                 suvm.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                             .Union(db.TagsLocal
-                                                    .Where(z => !ng.TagsGlobal.Select(v => v.Id).Contains(z.TagsGlobalId) &&z.LanguageId == lguid)
+                                                    .Where(z => !ngList.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
                                                     .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
                                             .OrderBy(x => x.Text)
                                             .ToList();
                 suvm.TagsIn = db.TagsGlobal
-                                .Where(z => ng.TagsGlobal.Select(v => v.Id).Contains(z.Id))
+                                .Where(z => ngList.Contains(z.Id))
                                 .Select(x => x.Id)
                                 .ToArray();
-                suvm.TagToList = ng.TagsGlobal.Select(x => 
-                                            new MyListItem { Value = x.Id, Text = x.TagsLocal.FirstOrDefault(z => z.LanguageId == lguid).Name })
-                                            .OrderBy(x => x.Text)
-                                            .ToList();
+                suvm.TagToList = db.TagsLocal
+                                    .Where(z => ngList.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                                    .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name })
+                                    .OrderBy(x => x.Text)
+                                    .ToList();
 
                 log.Info("end");
                 return View(suvm);
@@ -236,10 +238,10 @@ namespace Tax.Portal.Controllers
                 {                    
                     //if (resg.PublishingDate != model.PublishingDate) { resg.PublishingDate = model.PublishingDate; }
                     if (null == resg.Headline_picture ?
-                        null != model.Headline_pictureId :
+                        Guid.Empty != model.Headline_pictureId :
                         resg.Headline_picture.stream_id != model.Headline_pictureId) { resg.Headline_picture.stream_id = model.Headline_pictureId; }
                     if (null == resg.Thumbnail ?
-                        null != model.ThumbnailId :
+                        Guid.Empty != model.ThumbnailId :
                         resg.Thumbnail.stream_id != model.ThumbnailId) { resg.Thumbnail.stream_id = model.ThumbnailId; }
                     //if (null == resg.NewsStatus ?
                     //    null != model.NewsStatusName :
@@ -256,13 +258,12 @@ namespace Tax.Portal.Controllers
                         model.TagsIn = new Guid[] { };
                     }
 
-                    //töröljük a törlendő topicsokat
-                    foreach (TagsGlobalNewsGlobal n2t in
-                                db.TagsGlobalNewsGlobal
+                    foreach (var n2t in db.TagsGlobalNewsGlobals
                                 .Where(x =>
                                     x.NewsGlobal_Id == model.Id
                                     && !model.TagsIn.Contains(x.TagsGlobal_Id)
-                                ).ToList()
+                                )
+                                .ToList()
                             )
                     {
                         db.Entry(n2t).State = EntityState.Deleted;
@@ -271,13 +272,13 @@ namespace Tax.Portal.Controllers
                     foreach (Guid id in model.TagsIn)
                     {
                         if (
-                            !db.TagsGlobalNewsGlobal
+                            !db.TagsGlobalNewsGlobals
                                 .Where(x => x.NewsGlobal_Id == model.Id)
                                 .Select(x => x.TagsGlobal_Id)
                                 .Contains(id)
                            )
                         {
-                            TagsGlobalNewsGlobal n2t = db.TagsGlobalNewsGlobal.Create();
+                            TagsGlobalNewsGlobal n2t = db.TagsGlobalNewsGlobals.Create();
                             n2t.NewsGlobal_Id = model.Id;
                             n2t.TagsGlobal_Id = id;
                             db.Entry(n2t).State = EntityState.Added;
@@ -295,6 +296,11 @@ namespace Tax.Portal.Controllers
                     log.Info("end with validation error");
                     model.Refresh(ModelState);
 
+                    //lista vagyok a viewban karbantartani
+                    model.TagsOut = db.TagsGlobal
+                                    .Where(z => !model.TagsIn.Contains(z.Id))
+                                    .Select(x => x.Id)
+                                    .ToArray();
                     model.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                                 .Union(db.TagsLocal
                                                         .Where(z => model.TagsOut.Contains(z.TagsGlobalId) && z.LanguageId == lguid)

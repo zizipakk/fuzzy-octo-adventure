@@ -19,23 +19,21 @@ namespace Tax.WebAPI.Service
             this.context = context;
         }
 
-        public IEnumerable<ContactsBindingModel> GetContacts(string[] tags, string lang, string url)
+        //public IEnumerable<ContactsBindingModel> GetContacts(string[] tags, string lang, string url)
+        public IEnumerable<ContactsBindingModel> GetContacts(string lang, string url)
         {
             string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
 
-            List<Guid> tagsGL = new List<Guid>();
-            foreach (string t in tags.ToList())
-            {
-                tagsGL.Add(Guid.Parse(t));
-            }
-            Guid[] tagsGA = tagsGL.ToArray();
+            //List<Guid> tagsGL = new List<Guid>();
+            //foreach (string t in tags.ToList())
+            //{
+            //    tagsGL.Add(Guid.Parse(t));
+            //}
+            //Guid[] tagsGA = tagsGL.ToArray();
 
             var res = context.ContactsGlobal
                         .Where(x => x.NewsStatus.NameGlobal == "Published"
-                                && (
-                                    tags.Count() == 0
-                                    || x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
-                                    )
+                                //&& x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
                         )
                         .Include(x => x.TagsGlobal)
                         .SelectMany(x => x.ContactsLocal.Where(y =>

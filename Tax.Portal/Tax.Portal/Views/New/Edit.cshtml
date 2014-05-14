@@ -1,5 +1,5 @@
 ﻿@model Tax.Portal.Models.NewViewModel
-@using Tax.Data.Models;
+@using Tax.Portal.Models;
 
 <div class="modal fade bs-modal-sm" id="deletepict" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -53,7 +53,7 @@
     @Html.HiddenFor(m => m.NewsStatusName)
     @Html.HiddenFor(m => m.Headline_pictureId)
     @Html.HiddenFor(m => m.ThumbnailId)
-    
+        
     <div id="filestoupload" class="filestoupload"></div>
     <div class="row">
         <div class="col-sm-4 col-xs-12">
@@ -82,13 +82,13 @@
                         <div class="col-sm-10 col-xs-12" style="padding:0px">
                             @Html.DropDownListFor(m => m.TagsOut, new SelectList(Model.TagFromList, "Value", "Text"), new { @class = "form-control" })
                         </div>
-                        <a id="add" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-plus fa-lg"></i></a>                        
+                        <a id="add" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-plus fa-fw"></i></a>                        
                     </div>
                     <div class="input-group col-sm-12 col-xs-12">
                         <div class="col-sm-10 col-xs-12" style="padding:0px">
                             @Html.ListBoxFor(m => m.TagsIn, new SelectList(Model.TagToList, "Value", "Text"), new { @class = "form-control" })
                         </div>
-                        <a id="remove" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-minus fa-lg"></i></a>
+                        <a id="remove" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-minus fa-fw"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,30 +111,39 @@
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
-        $("#Publish").hide().css({ visibility: "hidden" });
-        $("#CallBack").hide().css({ visibility: "hidden" });
-        $("#Back").show().css({ visibility: "visible" });
-        $("#Save").show().css({ visibility: "visible" });
-
+        //repül a ckeditor
         CKEDITOR.replace('Body_text', {
             //height: 200,
             language: 'en'
         });
 
+        //gombok a headerben
+        $("#Publish").hide().css({ visibility: "hidden" });
+        $("#CallBack").hide().css({ visibility: "hidden" });
+        $("#Back").show().css({ visibility: "visible" });
+        $("#Save").show().css({ visibility: "visible" });
+
+        //kapcsoló lista kezelése
         $("#add").click(function () {
-            if ($('#TagFromList').prop('selectedIndex') != 0) {
-                $("#TagFromList > option:selected").each(function () {
-                    $(this).remove().appendTo("#TagToList");
+            if ($('#TagsOut').prop('selectedIndex') != 0) {
+                $("#TagsOut > option:selected").each(function () {
+                    $(this).remove().appendTo("#TagsIn");
                 });
             }
         });
-
         $("#remove").click(function () {
-            $("#TagToList > option:selected").each(function () {
-                $(this).remove().appendTo("#TagFromList");
+            $("#TagsIn > option:selected").each(function () {
+                $(this).remove().appendTo("#TagsOut");
             });
         });
-
+        $("#TagsIn > option").each(function () {
+            $(this).removeAttr('selected');            
+        });
+        $("#main").submit(function () {//csak selecttel tudom frissíteni a modellt
+            $("#TagsIn > option").each(function () {
+                $(this).attr('selected', 'selected');
+            });
+        });
     </script>
 
     <link rel="stylesheet" href="~/Scripts/dropzone/css/basic.css">

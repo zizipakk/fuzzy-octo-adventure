@@ -24,14 +24,17 @@ namespace Tax.WebAPI.Controllers
         [AllowAnonymous]
         [Route("api/Contacts")]
         [ResponseType(typeof(IEnumerable<ContactsBindingModel>))]
-        public IHttpActionResult Contacts([ModelBinder(typeof(ArrayModelBinderProvider))]string[] tags, string lang)
+        //public IHttpActionResult Contacts([ModelBinder(typeof(ArrayModelBinderProvider))] string[] tags, string lang)
+        public IHttpActionResult Contacts(string lang)
         {
             try
             {
-                log.Info(string.Format("Get all of Contacts in order of PublishedDate by Tags: {0}, on language: {1}", JsonConvert.SerializeObject(tags), lang));
+                //log.Info(string.Format("Get all of Contacts in order of PublishedDate by Tags: {0}, on language: {1}", JsonConvert.SerializeObject(tags), lang));
+                log.Info(string.Format("Get all of Contacts in order of PublishedDate by language: {0}", lang));
 
                 var contactsService = new ContactsService(context);
-                var contacts = contactsService.GetContacts(tags, lang, Url.Content("~"));
+                //var contacts = contactsService.GetContacts(tags, lang, Url.Content("~"));
+                var contacts = contactsService.GetContacts(lang, Url.Content("~"));
 
                 if (contacts == null || contacts.Count() == 0)
                 {
