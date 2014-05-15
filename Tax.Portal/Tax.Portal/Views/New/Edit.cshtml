@@ -114,7 +114,15 @@
         //repül a ckeditor
         CKEDITOR.replace('Body_text', {
             height: 200,
-            language: 'en'
+            language: 'en',
+            toolbar: [
+    		    { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+                { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
+	            { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+	            { name: 'links', items: ['Link', 'Unlink'] },
+	            { name: 'insert', items: ['Image', 'Table'] },
+	            { name: 'styles', items: ['Styles', 'Format'] }
+            ]
         });
 
         //gombok a headerben

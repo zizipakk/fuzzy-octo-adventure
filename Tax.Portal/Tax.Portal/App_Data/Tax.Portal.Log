@@ -12598,3 +12598,111 @@ System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 2014-05-15 12:29:07,173 [131] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-16 01:15:31,321 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-16 01:15:31,742 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-16 01:15:37,959 [5] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-16 01:15:37,961 [5] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Web.Mvc.ActionResult Edit(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-16 01:15:38,006 [5] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-16 01:16:03,255 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-16 01:16:03,288 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-16 01:17:14,879 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-16 01:17:14,880 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-16 01:17:28,841 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:17:29,397 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:20:53,943 [9] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:20:54,038 [9] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:26:00,120 [23] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-16 01:26:00,125 [23] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/55225b7993dd46f395ae7a69ac338269/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-16 01:26:00,167 [23] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-16 01:26:02,080 [22] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:26:02,283 [22] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:30:19,036 [21] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:30:19,087 [21] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:32:30,277 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:32:30,551 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:33:18,802 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:33:18,890 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:33:49,718 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:33:49,770 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:34:30,302 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:34:30,366 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:35:36,510 [17] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] begin
+2014-05-16 01:35:49,452 [17] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] end with ok
+2014-05-16 01:35:49,992 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:35:50,294 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-16 01:36:42,358 [17] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] begin
+2014-05-16 01:36:42,450 [17] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] end with ok
+2014-05-16 01:36:42,685 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-16 01:36:42,765 [17] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
