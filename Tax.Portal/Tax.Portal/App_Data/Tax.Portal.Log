@@ -11981,3 +11981,620 @@ System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c
 2014-05-15 00:40:07,835 [6] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] begin
 2014-05-15 00:40:07,897 [6] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] model: {"TagsOut":["734d29fb-e9cc-4566-8092-fd06935bd7f1"],"TagFromList":null,"TagsIn":[],"TagToList":null,"Id":"a8415b7e-6c74-4a8f-92a0-0112236c63fa","PublishingDate":null,"Headline_pictureId":"00000000-0000-0000-0000-000000000000","ThumbnailId":"00000000-0000-0000-0000-000000000000","NewsStatusName":"Unpublished","Title1":null,"Title2":"Cím2-25","Subtitle":null,"Body_text":"<p>25. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\r\n","IsValid":false,"ErrorKeys":null}
 2014-05-15 00:40:07,898 [6] INFO  Tax.Portal.Controllers.NewController [POST: New/Edit] end with validation error
+2014-05-15 08:33:38,863 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-15 08:33:39,130 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-15 08:33:41,971 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 08:33:41,977 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Web.Mvc.ActionResult Edit(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__36(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass45.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3e()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2f(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<>c__DisplayClass28.<BeginInvokeAction>b__19()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__1b(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 08:33:42,031 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 08:38:19,580 [11] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-15 08:38:19,582 [11] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-15 08:43:35,331 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 08:43:35,333 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 08:43:35,343 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 08:48:35,593 [9] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 08:48:35,600 [9] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 08:48:35,654 [9] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 08:51:24,388 [16] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-15 08:51:24,393 [16] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-15 08:51:44,806 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-15 08:51:45,367 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-15 08:56:50,518 [11] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 08:56:50,522 [11] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 08:56:50,539 [11] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 08:58:49,635 [11] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-15 08:58:49,802 [11] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-15 08:59:32,873 [7] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-15 08:59:32,969 [7] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-15 10:34:00,176 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-15 10:34:00,554 [16] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-15 10:39:07,213 [23] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 10:39:07,215 [23] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 10:39:07,257 [23] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 10:44:07,203 [26] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 10:44:07,205 [26] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 10:44:07,207 [26] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 10:49:07,203 [33] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 10:49:07,205 [33] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 10:49:07,207 [33] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 10:54:07,197 [41] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 10:54:07,199 [41] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 10:54:07,200 [41] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 10:59:07,190 [46] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 10:59:07,192 [46] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 10:59:07,193 [46] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:04:07,187 [53] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:04:07,189 [53] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:04:07,190 [53] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:09:07,194 [60] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:09:07,196 [60] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:09:07,204 [60] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:14:07,195 [65] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:14:07,196 [65] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:14:07,198 [65] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:19:07,186 [69] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:19:07,228 [69] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:19:07,230 [69] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:24:07,173 [68] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:24:07,174 [68] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:24:07,176 [68] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:29:07,195 [73] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:29:07,196 [73] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:29:07,198 [73] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:34:07,187 [82] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:34:07,188 [82] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:34:07,190 [82] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:39:07,175 [88] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:39:07,177 [88] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:39:07,179 [88] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:44:07,195 [91] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:44:07,197 [91] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:44:07,198 [91] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:49:07,203 [95] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:49:07,205 [95] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:49:07,207 [95] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:54:07,188 [94] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:54:07,189 [94] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:54:07,191 [94] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 11:59:07,188 [101] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 11:59:07,190 [101] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 11:59:07,192 [101] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:04:07,187 [104] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:04:07,188 [104] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:04:07,190 [104] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:09:07,197 [111] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:09:07,199 [111] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:09:07,201 [111] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:14:07,197 [117] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:14:07,199 [117] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:14:07,200 [117] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:19:07,194 [120] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:19:07,196 [120] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:19:07,198 [120] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:24:07,194 [127] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:24:07,196 [127] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:24:07,198 [127] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-15 12:29:07,170 [131] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-15 12:29:07,171 [131] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/12688814d1a740c3a10bd538ddf33188/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-15 12:29:07,173 [131] INFO  Tax.Portal.MvcApplication [Application_Error] end

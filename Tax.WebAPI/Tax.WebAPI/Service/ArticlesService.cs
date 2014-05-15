@@ -19,64 +19,6 @@ namespace Tax.WebAPI.Service
             this.context = context;
         }
 
-        ///// <summary>
-        ///// Only one article after search
-        ///// </summary>
-        ///// <param name="Id"></param>
-        ///// <returns></returns>
-        //public ArticlesBindingModel GetArticle(string id, string lang, string url)
-        //{
-        //    Guid gId; 
-        //    if (null == id)
-        //    {
-        //        return null;
-        //    }
-        //    else
-        //    {
-        //        gId = Guid.Parse(id);
-        //        var resg = context.NewsGlobal.Where(x => x.Id == gId
-        //                                                && x.NewsStatus.NameGlobal == "Published")
-        //                                                .Include(x => x.TagsGlobal)
-        //                                                .SingleOrDefault();
-
-        //        var resl = context.NewsLocal.Where(x => x.NewsGlobalId == gId 
-        //                                                && x.Language.ShortName == lang)
-        //                                                .SingleOrDefault();
-
-        //        if (null == resg || null == resl)
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
-        //            string imageURL = null == resg.Headline_picture ?
-        //                "" :
-        //                string.Format("{0}api/Image?id={1}", baseurl, resg.Headline_picture.stream_id.ToString());
-        //            string thumbnailURL = null == resg.Thumbnail ?
-        //                "" :
-        //                string.Format("{0}api/Image?id={1}", baseurl, resg.Thumbnail.stream_id.ToString());
-
-        //            return new ArticlesBindingModel
-        //            {
-        //                Id = resg.Id.ToString(),
-        //                ImageURL = imageURL,
-        //                ThumbnailURL = thumbnailURL,
-        //                Title1 = resl.Title1,
-        //                Title2 = resl.Title2,
-        //                Subtitle = resl.Subtitle,
-        //                Body = resl.Body_text,
-        //                Tags = resg.TagsGlobal
-        //                        .SelectMany(v => context.TagsLocal.Where(z => 
-        //                                                                    z.TagsGlobal.Id == v.Id
-        //                                                                    && z.Language.ShortName == lang)
-        //                            , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
-        //                Date = TimestampHelpers.GetTimestamp((DateTime)resg.PublishingDate)
-        //            };
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Searching for articles by tags & language & page
         /// </summary>
@@ -84,9 +26,8 @@ namespace Tax.WebAPI.Service
         /// <param name="lang"></param>
         /// <param name="query"></param>
         /// <param name="page"></param>
-        /// <param name="url"></param>
         /// <returns></returns>
-        public IEnumerable<ArticlesBindingModel> GetArticles(string query, string[] tags, string lang, int? page, string url)
+        public IEnumerable<ArticlesBindingModel> GetArticles(string query, string[] tags, string lang, int? page)
         {
             if (page <= 0)
             {
@@ -95,7 +36,11 @@ namespace Tax.WebAPI.Service
             else
             {
                 string pagesize = null;
-                if (null == page || page == 1)
+                if (null == page)
+                {
+                    page = 1;
+                }
+                if (page == 1)
                 {
                     pagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "FirstPageSize" && x.Public).Value;
                 }
@@ -120,7 +65,7 @@ namespace Tax.WebAPI.Service
                     }
 
 
-                    string baseurl = url;//ebben a környezetben nem jó a HtmlHelpers.AppBaseUrl(url);
+                    string baseurl = HtmlHelpers.AppBaseUrl("/api/Image?id=");
                     var searchList = SearchHelpers.GetSaerchList(query, lang);
 
                     List<Guid> tagsGL = new List<Guid>();
@@ -137,21 +82,26 @@ namespace Tax.WebAPI.Service
                                             || x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
                                             )
                                 )
-                                .Include(x => x.TagsGlobal)
+                                //.Include(x => x.TagsGlobal)
                                 .SelectMany(x => x.NewsLocal.Where(y =>
                                                                     y.NewsGlobalId == x.Id
                                                                     && y.Language.ShortName == lang), (x, y) => new { x, y })
-                                .Where(s => searchList.Any(ss => s.y.Title1.Contains(ss))
-                                        || searchList.Any(ss => s.y.Title2.Contains(ss))
-                                        || searchList.Any(ss => s.y.Subtitle.Contains(ss))
-                                        || searchList.Any(ss => s.y.Body_text.Contains(ss))
+                                .Where(s =>
+                                        searchList.Count() == 0
+                                        ||
+                                        (
+                                            searchList.Any(ss => s.y.Title1.Contains(ss))
+                                            || searchList.Any(ss => s.y.Title2.Contains(ss))
+                                            || searchList.Any(ss => s.y.Subtitle.Contains(ss))
+                                            || searchList.Any(ss => s.y.Body_text.Contains(ss))
+                                        )
                                 )
                                 .ToList()
                                 .Select(s => new ArticlesBindingModel
                                 {
                                     Id = s.x.Id.ToString(),
-                                    ImageURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
-                                    ThumbnailURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
+                                    ImageURL = string.Format("{0}{1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
+                                    ThumbnailURL = string.Format("{0}{1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
                                     Title1 = s.y.Title1,
                                     Title2 = s.y.Title2,
                                     Subtitle = s.y.Subtitle,

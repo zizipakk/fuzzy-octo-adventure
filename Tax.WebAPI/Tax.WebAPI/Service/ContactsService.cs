@@ -20,9 +20,9 @@ namespace Tax.WebAPI.Service
         }
 
         //public IEnumerable<ContactsBindingModel> GetContacts(string[] tags, string lang, string url)
-        public IEnumerable<ContactsBindingModel> GetContacts(string lang, string url)
+        public IEnumerable<ContactsBindingModel> GetContacts(string lang)
         {
-            string baseurl = url;//ebben a környezetben nem jóHtmlHelpers.AppBaseUrl(url);
+            string baseurl = HtmlHelpers.AppBaseUrl("/api/Image?id=");
 
             //List<Guid> tagsGL = new List<Guid>();
             //foreach (string t in tags.ToList())
@@ -48,7 +48,7 @@ namespace Tax.WebAPI.Service
                                 Department = s.y.Department,
                                 Position = s.y.Position,
                                 Profil = s.y.Profile,
-                                ImageURL = string.Format("{0}api/Image?id={1}", baseurl, null == s.x.Photo ? "" : s.x.Photo.stream_id.ToString()),
+                                ImageURL = string.Format("{0}{1}", baseurl, null == s.x.Photo ? "" : s.x.Photo.stream_id.ToString()),
                                 PhoneNumbers = new List<PhonenumbersBindingModel>() { 
                                     new PhonenumbersBindingModel() { Label = "Phone", Number = s.x.Phone }, 
                                     new PhonenumbersBindingModel() { Label = "Mobile", Number = s.x.Mobile } },
