@@ -1,5 +1,4 @@
 ﻿@using Tax.Data.Models
-@using System.Configuration
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
 @using Tax.MvcGlobalisationSupport;
@@ -90,11 +89,11 @@
     @* megmarad az ie 6-7-8 kompatibilitás *@
     @* http://stackoverflow.com/a/18782433/208922 *@
     @Scripts.Render("~/Scripts/jquery")
-                        <!--[if lte IE 8]>
+        <!--[if lte IE 8]>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <![endif]-->
-                        @Scripts.Render("~/Scripts/bootstrap")
-                        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

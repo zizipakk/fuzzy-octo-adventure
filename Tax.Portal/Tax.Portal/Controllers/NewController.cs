@@ -149,6 +149,106 @@ namespace Tax.Portal.Controllers
 
         #endregion list 
 
+        #region create
+
+        [HttpGet]
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult Create()
+        {
+            using (log4net.ThreadContext.Stacks["NDC"].Push("GET: New/Create"))
+            {
+                log.Info("begin");
+
+                NewViewModel suvm = new NewViewModel();
+
+                suvm.Mode = "create";
+                suvm.TagsOut = db.TagsGlobal
+                                .Select(x => x.Id)
+                                .ToArray();
+                suvm.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                            .Union(db.TagsLocal
+                                                    .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
+                                            .OrderBy(x => x.Text)
+                                            .ToList();
+                suvm.TagsIn = new Guid[] {};
+                suvm.TagToList = new List<MyListItem>();
+
+                log.Info("end");
+                return View("Edit", suvm);
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult Create(NewViewModel model)
+        {
+            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: New/Edit"))
+            {
+                log.Info("begin");
+                NewsGlobal resg = db.NewsGlobal.Create();
+                string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
+                if (null == model.TagsIn)
+                { model.TagsIn = new Guid[] { }; }
+
+                if (ModelState.IsValid)
+                {                    
+                    resg.PublishingDate = null;
+                    resg.Headline_picture = db.File.Find(model.Headline_pictureId);
+                    resg.Thumbnail = db.File.Find(model.ThumbnailId);
+                    resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == "Editing");
+
+                    NewsLocal resl = db.NewsLocal.Create();
+                    resl.NewsGlobal = resg;
+                    resl.Language = db.Language.Find(lguid);
+                    resl.Title1 = model.Title1;
+                    resl.Title2 = model.Title2;
+                    resl.Subtitle = model.Subtitle; 
+                    resl.Body_text = model.Body_text;
+                    
+                    //nem szerepel a db contextben a many-to-many, ezért be kell tölteni
+                    //db.Entry(resg).Collection(t => t.TagsGlobal).Load();
+
+                    foreach (var tg in db.TagsGlobal.Where(x => model.TagsIn.Contains(x.Id)).ToList())
+                    {
+                        resg.TagsGlobal.Add(tg);
+                    }
+
+                    db.Entry(resg).State = EntityState.Added;
+                    db.SaveChanges();
+                    log.Info("end with ok");
+
+                    return RedirectToAction(MVC.New.Edit(resg.Id));
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
+                    log.Info("end with validation error");
+                    model.Refresh(ModelState);
+                    //listák
+                    model.TagsOut = db.TagsGlobal
+                                    .Where(z => !model.TagsIn.Contains(z.Id))
+                                    .Select(x => x.Id)
+                                    .ToArray();
+                    model.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                                                .Union(db.TagsLocal
+                                                        .Where(z => model.TagsOut.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                                                        .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
+                                                .OrderBy(x => x.Text)
+                                                .ToList();
+                    model.TagToList = db.TagsLocal
+                                        .Where(z => model.TagsIn.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                                        .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name })
+                                        .OrderBy(x => x.Text)
+                                        .ToList();
+
+                    return View("Edit", model);
+                }
+            }
+        }
+
+        #endregion create
+
         #region edit
 
         [HttpGet]
@@ -163,8 +263,8 @@ namespace Tax.Portal.Controllers
                 NewViewModel suvm = new NewViewModel(){
                     Id = ng.Id,
                     PublishingDate = ng.PublishingDate,
-                    Headline_pictureId = null == ng.Headline_picture ? Guid.Empty : ng.Headline_picture.stream_id,
-                    ThumbnailId = null == ng.Thumbnail ? Guid.Empty : ng.Thumbnail.stream_id,
+                    Headline_pictureId = null == ng.Headline_picture ? null : (Guid?)ng.Headline_picture.stream_id,
+                    ThumbnailId = null == ng.Thumbnail ? null : (Guid?)ng.Thumbnail.stream_id,
                     NewsStatusName = ng.NewsStatus.NameGlobal
                 };
 
@@ -229,7 +329,6 @@ namespace Tax.Portal.Controllers
                         .Include(x => x.Headline_picture)
                         .Include(x => x.Thumbnail)
                         .Include(x => x.NewsStatus)
-
                         .Where(x => x.Id == model.Id)
                         .FirstOrDefault();
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
@@ -241,11 +340,27 @@ namespace Tax.Portal.Controllers
                 {                    
                     //if (resg.PublishingDate != model.PublishingDate) { resg.PublishingDate = model.PublishingDate; }
                     if (null == resg.Headline_picture ?
-                        Guid.Empty != model.Headline_pictureId :
-                        resg.Headline_picture.stream_id != model.Headline_pictureId) { resg.Headline_picture.stream_id = model.Headline_pictureId; }
+                        null != model.Headline_pictureId :
+                        resg.Headline_picture.stream_id != model.Headline_pictureId) 
+                    {
+                        if (null != resg.Headline_picture && null == model.Headline_pictureId)
+                        {
+                            var headline = db.File.Find(resg.Headline_picture.stream_id);
+                            db.Entry(headline).State = EntityState.Deleted;
+                        }
+                        resg.Headline_picture = db.File.Find(model.Headline_pictureId);
+                    }
                     if (null == resg.Thumbnail ?
-                        Guid.Empty != model.ThumbnailId :
-                        resg.Thumbnail.stream_id != model.ThumbnailId) { resg.Thumbnail.stream_id = model.ThumbnailId; }
+                        null != model.ThumbnailId :
+                        resg.Thumbnail.stream_id != model.ThumbnailId) 
+                    {
+                        if (null != resg.Thumbnail && null == model.ThumbnailId)
+                        {
+                            var thumbnail = db.File.Find(resg.Thumbnail.stream_id);
+                            db.Entry(thumbnail).State = EntityState.Deleted;
+                        }
+                        resg.Thumbnail = db.File.Find(model.ThumbnailId); 
+                    }
                     //if (null == resg.NewsStatus ?
                     //    null != model.NewsStatusName :
                     //    resg.NewsStatus.NameGlobal != model.NewsStatusName) { resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == model.NewsStatusName); }
@@ -282,8 +397,7 @@ namespace Tax.Portal.Controllers
                     log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
                     log.Info("end with validation error");
                     model.Refresh(ModelState);
-
-                    //lista vagyok a viewban karbantartani
+                    //listák
                     model.TagsOut = db.TagsGlobal
                                     .Where(z => !model.TagsIn.Contains(z.Id))
                                     .Select(x => x.Id)
@@ -390,7 +504,7 @@ namespace Tax.Portal.Controllers
         }
 
         [Authorize(Roles = "SysAdmin, User")]
-        public async Task<System.Web.Mvc.JsonResult> Upload(HttpPostedFileBase file, Guid? filetypeId, Guid? suserId)
+        public async Task<System.Web.Mvc.JsonResult> Upload(HttpPostedFileBase file, Guid id, string picttype)
         {
             try
             {
@@ -401,67 +515,74 @@ namespace Tax.Portal.Controllers
                     {
                         //TODO: a nem express IIS nem engedi át a server errort, de az 500-ast kinyitottuk a web.configban, ezért csak 500-ast adok vissza
                         Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
-                        return Json("A fájlméret nem lehet 0!");
+                        return Json("Picture size equal 0!");
                     }
                     if (file.ContentLength > 10485760)
                     {
                         Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
-                        return Json("A fájlméret nem lehet nagyobb mint 10 MB!");
+                        return Json("Picture size more then 10 MB!");
                     }
                 }
                 else
                 {
                     Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    return Json("Nem sikerült a feltöltés!");
+                    return Json("Upload error!");
                 }
 
-                //csak fényképnél
-                if (null == filetypeId)
+                ////a megadott kiterjesztést nézem
+                //if (file.ContentType.ToLower() != "image/jpg"
+                //    &&
+                //    file.ContentType.ToLower() != "image/jpeg")
+                //{
+                //    Response.StatusCode = 500;//(int)HttpStatusCode.InternalServerError;
+                //    return Json("A megadott fájl típust nem lehet feltölteni! (Elfogadott típusok: jpg, jpeg)!");
+                //}
+
+                //megpróbjálom konvertálni képpé
+                System.Drawing.Image image = null;
+                try
                 {
-                    //a megadott kiterjesztést nézem
-                    if (file.ContentType.ToLower() != "image/jpg"
-                        &&
-                        file.ContentType.ToLower() != "image/jpeg")
-                    {
-                        Response.StatusCode = 500;//(int)HttpStatusCode.InternalServerError;
-                        return Json("A megadott fájl típust nem lehet feltölteni! (Elfogadott típusok: jpg, jpeg)!");
-                    }
-
-                    //megpróbjálom konvertálni képpé
-                    System.Drawing.Image image = null;
-                    try
-                    {
-                        //image = System.Drawing.Image.FromStream(filetemp.InputStream);
-                        image = System.Drawing.Image.FromStream(file.InputStream);
-                    }
-                    catch (Exception e)
-                    {
-                        Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
-                        return Json("A megadott fájl kiterjesztése nem felel meg a tartalmának! (Elfogadott típusok: jpg, jpeg)!");
-                    }
-
-                    //akkor ez kép, nézem a méretét
-                    if (null != image)
-                    {
-                        if (image.Width < 195
-                            || image.Width > 200
-                            || image.Height < 255
-                            || image.Height > 260)
-                        {
-                            Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
-                            return Json("A feltölteni kívánt kép mérete eltér a kívánttól (200x260 pixel)!");
-                        }
-                    }
-                    else
-                    {
-                        Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
-                        return Json("A fénykép beolvasása nem sikerült!");
-                    }
-                    //a konverzió miatt vissza kell állni a filestream elejére
-                    file.InputStream.Position = 0;
+                    image = System.Drawing.Image.FromStream(file.InputStream);
+                }
+                catch (Exception e)
+                {
+                    Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
+                    return Json("There is not a picture!");
                 }
 
-                Guid id = Guid.NewGuid();//most én csinálom, mert a képról nem töröl a dropzone
+                //akkor ez kép, nézem a méretét
+                if (null != image)
+                {
+                    switch (picttype)
+                    {
+                        case "headline":
+                            if (image.Width > 640
+                                || image.Height > 320)
+                            {
+                                Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
+                                return Json("Invalid picture size! (max. 640x320 pixels expected)!");
+                            }
+                            break;
+                        case "thumbnail":
+                            if (image.Width > 160
+                                || image.Height > 160)
+                            {
+                                Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
+                                return Json("Invalid picture size! (max. 160x160 pixels expected)!");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
+                    return Json("Can't load this picture!");
+                }
+                //a konverzió miatt vissza kell állni a filestream elejére
+                file.InputStream.Position = 0;
+
                 var uploadTask = UploadTask(id, file);
                 await Task.WhenAll(uploadTask);
                 var retval = await uploadTask;
@@ -475,7 +596,7 @@ namespace Tax.Portal.Controllers
             }
         }
 
-        private async Task<System.Web.Mvc.JsonResult> DeleteAttachementTask(Guid id)
+        private async Task<System.Web.Mvc.JsonResult> DeleteImageTask(Guid id)
         {
             return await Task.Run(async () =>
             {
@@ -491,11 +612,11 @@ namespace Tax.Portal.Controllers
 
         [HttpPost]
         [Authorize(Roles = "SysAdmin, User")]
-        public async Task<System.Web.Mvc.JsonResult> DeleteAttachement(Guid id)
+        public async Task<System.Web.Mvc.JsonResult> DeleteImage(Guid id)
         {
             try
             {
-                var deleteTask = DeleteAttachementTask(id);
+                var deleteTask = DeleteImageTask(id);
                 await Task.WhenAll(deleteTask);
                 var retval = await deleteTask;
                 db.SaveChanges();
@@ -547,11 +668,11 @@ namespace Tax.Portal.Controllers
         //public async Task<FileResult> DownloadFirst(Guid suserId, Guid? filetypeId, Guid? fileId)
         [System.Web.Mvc.OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         [Authorize(Roles = "SysAdmin, User")]
-        public async Task<FileResult> DownloadImage(Guid fileId)
+        public async Task<FileResult> DownloadImage(Guid id)
         {
             try
             {
-                var downloadTask = DownloadTask(fileId);
+                var downloadTask = DownloadTask(id);
                 await Task.WhenAll(downloadTask);
                 var retval = await downloadTask;
 

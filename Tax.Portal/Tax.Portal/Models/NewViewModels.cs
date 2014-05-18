@@ -27,6 +27,7 @@ namespace Tax.Portal.Models
         public NewViewModel()
         {}
 
+        public string Mode { get; set; }
         [NotMapped]
         public Guid[] TagsOut { get; set; }
         [NotMapped]
@@ -42,10 +43,10 @@ namespace Tax.Portal.Models
         public DateTime? PublishingDate { get; set; }
         [Display(Name = "Headline picture")]
         [Required(ErrorMessage = "[{0}] is required")]
-        public Guid Headline_pictureId { get; set; }
+        public Guid? Headline_pictureId { get; set; }
         [Display(Name = "Thumbnail")]
         [Required(ErrorMessage = "[{0}] is required")]
-        public Guid ThumbnailId { get; set; }
+        public Guid? ThumbnailId { get; set; }
         [Display(Name = "Status")]
         public string NewsStatusName { get; set; }
         [Display(Name = "Title1")]
