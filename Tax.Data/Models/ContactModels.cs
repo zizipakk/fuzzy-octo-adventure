@@ -24,28 +24,17 @@ namespace Tax.Data.Models
 
         [Key]
         public Guid Id { get; set; }
-//        [Display(Name = "PublishingDate")]
         public DateTime? PublishingDate { get; set; }
-//        [Display(Name = "First name")]
         public string First_name { get; set; }
-//        [Display(Name = "Last name")]
         public string Last_name { get; set; }
-//        [Display(Name = "Linkedin")]
         public string Linkedin { get; set; }
-//        [Display(Name = "Phone")]
         public string Phone { get; set; }
-//        [Display(Name = "Mobile")]
         public string Mobile { get; set; }
-//        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-//        [Display(Name = "Photo")]
         public virtual File Photo { get; set; }
-//        [Display(Name = "Tags")]
         public virtual ICollection<TagsGlobal> TagsGlobal { get; set; }
-//        [Display(Name = "Állapot")]
         public virtual NewsStatusesGlobal NewsStatus { get; set; }
-
         public virtual ICollection<ContactsLocal> ContactsLocal { get; set; }
     }
 
@@ -62,13 +51,8 @@ namespace Tax.Data.Models
         public Guid LanguageId { get; set; }
         [ForeignKey("LanguageId")]
         public virtual Language Language { get; set; }
-
-        //[Display(Name = "Department")]
-        //[Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
         public string Department { get; set; }
-        //[Display(Name = "Position")]        
         public string Position { get; set; }
-        //[Display(Name = "Profile")]
         public string Profile { get; set; }
     }
 }

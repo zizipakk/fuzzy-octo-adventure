@@ -26,6 +26,7 @@ public static class MVC
 {
     public static Tax.Portal.Controllers.AccountController Account = new Tax.Portal.Controllers.T4MVC_AccountController();
     public static Tax.Portal.Controllers.AdminController Admin = new Tax.Portal.Controllers.T4MVC_AdminController();
+    public static Tax.Portal.Controllers.ContactController Contact = new Tax.Portal.Controllers.T4MVC_ContactController();
     public static Tax.Portal.Controllers.ErrorsController Errors = new Tax.Portal.Controllers.T4MVC_ErrorsController();
     public static Tax.Portal.Controllers.EventController Event = new Tax.Portal.Controllers.T4MVC_EventController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();

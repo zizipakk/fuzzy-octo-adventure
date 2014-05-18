@@ -1,0 +1,327 @@
+﻿@model Tax.Portal.Models.ContactViewModel
+@using Tax.Portal.Models;
+
+<style type="text/css">
+    .modal-dialog {
+        width: 400px; /* your width */
+        height: auto;
+    }
+</style>
+
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">WARNING</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ERROR</h4>
+            </div>
+            <div class="modal-body" style="color:red">
+                <p id="errortext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="row" style="padding-top:35px; margin-top: 0px;">
+    @Html.ValidationSummary()
+    <div class="col-sm-4 col-xs-12">
+        @using (Html.BeginForm(MVC.Contact.Edit(), FormMethod.Post, new { @id = "main", @class = "form-horizontal", @role = "form", @style = "padding-top:0px; margin-top: 0px;" }))
+        {
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Mode)
+            @Html.HiddenFor(m => m.NewsStatusName)         
+            @Html.HiddenFor(m => m.PhotoId)
+            @Html.HiddenFor(m => m.Profile)
+            @Html.HiddenFor(m => m.TagsIn)
+
+            <div class="form-group">
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.First_name, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.First_name, new { @class = "form-control", placeholder = "Type here title1" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Last_name, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Last_name, new { @class = "form-control", placeholder = "Type here title2" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Department, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Department, new { @class = "form-control", placeholder = "Type here department" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Position, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Position, new { @class = "form-control", placeholder = "Type here position" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Linkedin, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Linkedin, new { @class = "form-control", placeholder = "Type here linkedin" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Type here phone" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Mobile, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", placeholder = "Type here mobile" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Type here email" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-sm-8 col-xs-12" style="padding-left:0px;padding-right:0px">
+        <div class="form-group">
+            <div class="col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.TagsIn, new { @class = "control-label" })
+                <div class="input-group col-sm-12 col-xs-12">
+                    <div class="col-sm-10 col-xs-12" style="padding:0px">
+                        @Html.DropDownList("OuterTagsOut", new SelectList(Model.TagFromList, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                    <a id="add" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-plus fa-fw"></i></a>
+                </div>
+                <div class="input-group col-sm-12 col-xs-12">
+                    <div class="col-sm-10 col-xs-12" style="padding:0px">
+                        @Html.ListBox("OuterTagsIn", new SelectList(Model.TagToList, "Value", "Text"), new { @class = "form-control", @style = "height:135px" })
+                    </div>
+                    <a id="remove" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-minus fa-fw"></i></a>
+                </div>
+            </div>
+            <div id="photoupload" class="filestoupload" style="height: 0px"></div>
+            <div class="col-sm-3 col-xs-12">
+                @Html.LabelFor(m => m.PhotoId, new { @style = "padding-top:7px; margin-bottom:0px" })
+                <div class="input-group col-sm-12 col-xs-12">
+                    <form action="@Url.Action("Upload", "New")" class="dropzone square" id="photo-dropzone" 
+                          style="min-height:155px; padding: 0px 0px 0px 0px; background-color: white"></form>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                @Html.LabelFor(m => m.Profile, new { @style = "padding-top:7px; margin-bottom:0px" })
+                <div class="input-group col-sm-12 col-xs-12">
+                    <form id="ckeditor_form">
+                        @Html.TextArea("ckeditor_text", new { @style = "visibility:hidden" })
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @*<link href="~/Scripts/ckeditor/contents.css" rel="stylesheet" />*@
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        //közös a view, ezért magic
+        if ($('#Mode').val() == "create")
+        {
+            $('#main').attr('action', '/Contact/Create');
+        }
+        //visszalépési irány
+        $('#Back').attr('onclick', 'document.location.href = "@Url.Action(MVC.Contact.Index())"');
+
+        //kitöltöm a kirekedt objektumokat
+        $('#ckeditor_text').val($('#Profile').val());
+        $('#OuterTagOut').val($('#TagsOut').val());
+        $('#OuterTagsIn').val($('#TagsIn').val());
+
+        //repül a ckeditor
+        CKEDITOR.replace('ckeditor_text', {
+            height: 400,
+            language: 'en',
+            toolbar: [
+                { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+                { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'insert', items: ['Image', 'Table'] },
+                { name: 'styles', items: ['Styles', 'Format'] }
+            ]
+        });
+
+        //gombok a headerben
+        $("#CallBack").hide().css({ visibility: "hidden" });
+        $("#Publish").hide().css({ visibility: "hidden" });
+        $("#Back").show().css({ visibility: "visible" });
+        $("#Save").show().css({ visibility: "visible" });
+
+        //kapcsoló lista kezelése
+        $("#add").click(function () {
+            if ($('#OuterTagsOut').prop('selectedIndex') != 0) {
+                $("#OuterTagsOut > option:selected").each(function () {
+                    $(this).remove().appendTo("#OuterTagsIn");
+                });
+            }
+        });
+        $("#remove").click(function () {
+            $("#OuterTagsIn > option:selected").each(function () {
+                $(this).remove().appendTo("#OuterTagsOut");
+            });
+        });
+        $("#OuterTagsIn > option").each(function () {
+            $(this).removeAttr('selected');
+        });
+
+        $("#main").submit(function () {
+            //visszatöltök az editorból
+            $("#ckeditor_form").submit();
+            //csak selecttel tudom frissíteni az adatot
+            $("#OuterTagsIn > option").each(function () {
+                $(this).attr('selected', 'selected');
+            });
+            //visszapakolok az igazi formra
+            $("#Profile").val($("#ckeditor_text").val());
+            $("#TagsOut").val($("#OuterTagsOut").val());
+            $("#TagsIn").val($("#OuterTagsIn").val());
+        });
+    </script>
+
+    <link rel="stylesheet" href="~/Scripts/dropzone/css/basic.css">
+    <script src="~/Scripts/dropzone/dropzone.js"></script>
+    <style type="text/css">
+        .dz-message {
+            text-align: center;
+            padding-top: 35px;
+        }
+        .dz-max-files-reached {
+            background-color: red;
+        }
+        /*.dropzone .dz-preview, .dropzone-previews .dz-preview {
+            width: 320px;
+            min-height: 125px;
+        }
+        .dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details {
+            width: inherit;
+            height: inherit;
+        }
+        .dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img {
+            width: inherit;
+            height: 130px;
+        }*/
+    </style>
+
+    <script>
+        function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
+        //most csak egyet kezelőnk
+        //var afiles = [];
+        //var aids = [];
+
+        Dropzone.options.photoDropzone = {
+            paramName: "file",
+            addRemoveLinks: true,
+            maxFiles: 1,
+            accept: function (file, done) {
+                console.log("uploaded");
+                done();
+            },
+            init: function () {
+                var id = null;
+                //töltöm, ha van mi                
+                if ($('#PhotoId').val() != "")//már képem
+                {
+                    var mockFile = {};
+                    this.options.addedfile.call(this, mockFile);
+                    this.options.thumbnail.call(this, mockFile, '@Url.Action("DownloadImage", "New")?id=' + $("#PhotoId").val());
+                    this.options.maxFiles = 0;
+                    $('.dz-filename').hide().css({ visibility: "hidden" });
+                    $('.dz-size').hide().css({ visibility: "hidden" });
+                }
+                this.on("removedfile", function (file) {
+                    //var position = $.inArray(file.name, afiles);
+                    //if (~position) {
+                    //    var id = aids[position];
+                    //    afiles.splice(position, 1);
+                    //    aids.splice(position, 1);
+                    //    $("#storedfileid" + id).remove();
+                    //    $.ajax({
+                    //        url: '@Url.Action("DeleteImage", "New")',
+                    //        type: 'POST',
+                    //        data: { id: id }
+                    //    });
+                    //}
+                    if (
+                        $('#PhotoId').val() != ""
+                        && (new String(file.name) == "undefined"//régi kép
+                            || id != null) //vagy most töltöttem fel hiab nélkül
+                        )
+                    {
+                        $('#PhotoId').val("");
+                        this.options.maxFiles = 1;
+                    }
+                    if (id != null)//felküldtem, de meggondoltam magam
+                    {
+                        $("#photoid" + id).remove();
+                        $.ajax({
+                            url: '@Url.Action("DeleteImage", "New")',
+                            type: 'POST',
+                            data: { id: id }
+                        });
+                    }
+                });
+                this.on("sending", function (file, xhr, formData) {
+                    id = b(0);
+                    //afiles.push(file.name);
+                    //aids.push(id)
+                    formData.append("id", id); // Will send the id along with the file as POST data.
+                    formData.append("picttype", "photo"); // Will send the id along with the file as POST data.
+                    $("#photoupload").append($("<input name=\"photoid\" type=\"hidden\" value=\"" + id + "\"/>"));
+                });
+                this.on("error", function (file, message) {
+                    //$('.dz-error-message').val(message);
+                    $("#photoid" + id).remove();
+                    id = null;
+                    $('#errortext').text(message);
+                    $('#errormodal').modal({ show: true });
+                });              
+                this.on("success", function (file, responseText) {
+                    $('#PhotoId').val(id);
+                    file.name = "undefined";
+                    file.previewTemplate.appendChild(document.createTextNode(responseText));
+                });
+            }
+        };
+
+    </script>
+}

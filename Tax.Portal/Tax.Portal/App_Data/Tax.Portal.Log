@@ -23596,3 +23596,75 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 2014-05-18 21:14:27,545 [10] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-18 23:46:13,223 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-18 23:46:13,606 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-18 23:46:13,689 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-18 23:46:13,690 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-18 23:46:41,417 [8] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:46:41,418 [8] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:48:46,882 [10] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:48:46,884 [10] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:49:36,501 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:49:36,503 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:50:15,912 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:50:15,913 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:50:36,693 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:50:36,695 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:50:51,483 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-18 23:50:51,485 [11] INFO  Tax.Portal.Controllers.ContactController [(null)] end
+2014-05-18 23:51:55,586 [11] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Create] begin
+2014-05-18 23:51:55,693 [11] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Create] end
+2014-05-18 23:54:22,887 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-18 23:54:23,283 [7] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-18 23:54:23,803 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-18 23:54:23,804 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-18 23:54:27,278 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] begin
+2014-05-18 23:54:35,083 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] model: {"Mode":"create","TagsOut":null,"TagFromList":null,"TagsIn":["00000000-0000-0000-0000-000000000000"],"TagToList":null,"Id":"00000000-0000-0000-0000-000000000000","PublishingDate":null,"PhotoId":null,"NewsStatusName":null,"First_name":null,"Last_name":null,"Linkedin":null,"Phone":null,"Mobile":null,"Email":null,"Department":null,"Position":null,"Profile":null,"IsValid":false,"ErrorKeys":null}
+2014-05-18 23:54:35,085 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] end with validation error
+2014-05-18 23:57:04,642 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] begin
+2014-05-18 23:57:04,701 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] model: {"Mode":"create","TagsOut":null,"TagFromList":null,"TagsIn":["00000000-0000-0000-0000-000000000000"],"TagToList":null,"Id":"00000000-0000-0000-0000-000000000000","PublishingDate":null,"PhotoId":null,"NewsStatusName":null,"First_name":null,"Last_name":null,"Linkedin":null,"Phone":null,"Mobile":null,"Email":null,"Department":null,"Position":null,"Profile":null,"IsValid":false,"ErrorKeys":null}
+2014-05-18 23:57:04,702 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] end with validation error
+2014-05-18 23:58:15,953 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] begin
+2014-05-18 23:58:15,990 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] model: {"Mode":"create","TagsOut":null,"TagFromList":null,"TagsIn":["233a5004-01ad-4da5-8fc2-a1a735807aae"],"TagToList":null,"Id":"00000000-0000-0000-0000-000000000000","PublishingDate":null,"PhotoId":null,"NewsStatusName":null,"First_name":"first","Last_name":"last","Linkedin":"link","Phone":"123","Mobile":"123","Email":"123","Department":"dep","Position":"pos","Profile":"<p>lkjfa&eacute;slkjfd&eacute;lkasjdfl</p>\r\n","IsValid":false,"ErrorKeys":null}
+2014-05-18 23:58:15,991 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] end with validation error
+2014-05-18 23:59:47,999 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] begin
+2014-05-18 23:59:48,392 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Create] end with ok
+2014-05-18 23:59:48,587 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] begin
+2014-05-18 23:59:49,011 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] end
+2014-05-18 23:59:58,380 [7] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-18 23:59:58,383 [7] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/9e7b6a17586c4b719511f19d91442bc1/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-18 23:59:58,439 [7] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-19 00:00:00,046 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] begin
+2014-05-19 00:00:00,447 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] end with ok
+2014-05-19 00:00:00,690 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] begin
+2014-05-19 00:00:00,925 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] end
+2014-05-19 00:00:31,486 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] begin
+2014-05-19 00:00:31,573 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] model: {"Mode":null,"TagsOut":null,"TagFromList":null,"TagsIn":[],"TagToList":null,"Id":"21b463f0-eb59-4259-9879-934536debd88","PublishingDate":null,"PhotoId":null,"NewsStatusName":"Editing","First_name":"first","Last_name":"last","Linkedin":"link","Phone":"123","Mobile":"123","Email":"123","Department":"dep","Position":"pos","Profile":"<p>lkjfa&eacute;slkjfd&eacute;lkasjdfl</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>knfksad</p>\r\n","IsValid":false,"ErrorKeys":null}
+2014-05-19 00:00:31,575 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] end with validation error
+2014-05-19 00:01:03,604 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] begin
+2014-05-19 00:01:03,802 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] end with ok
+2014-05-19 00:01:04,062 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] begin
+2014-05-19 00:01:04,184 [7] INFO  Tax.Portal.Controllers.ContactController [GET: Contact/Edit] end
+2014-05-19 00:01:19,751 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] begin
+2014-05-19 00:01:19,779 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] model: {"Mode":null,"TagsOut":null,"TagFromList":null,"TagsIn":[],"TagToList":null,"Id":"21b463f0-eb59-4259-9879-934536debd88","PublishingDate":null,"PhotoId":"ce6b2b08-fbe0-4ee2-a2e3-fc7f8483f917","NewsStatusName":"Editing","First_name":"first","Last_name":"last","Linkedin":"link","Phone":"123","Mobile":"123","Email":"123","Department":"dep","Position":"pos","Profile":"<p>lkjfa&eacute;slkjfd&eacute;lkasjdfl</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>knfksad</p>\r\n","IsValid":false,"ErrorKeys":null}
+2014-05-19 00:01:19,781 [7] INFO  Tax.Portal.Controllers.ContactController [POST: Contact/Edit] end with validation error
+2014-05-19 00:01:29,911 [7] INFO  Tax.Portal.Controllers.ContactController [(null)] begin
+2014-05-19 00:01:29,912 [7] INFO  Tax.Portal.Controllers.ContactController [(null)] end

@@ -48,10 +48,8 @@ namespace Tax.Portal.Controllers
             Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
             var rs0 = db.NewsGlobal
-                                .SelectMany(x => x.NewsLocal.Where(y =>
-                                                                    //y.NewsGlobalId == x.Id
-                                                                    //&& 
-                                                                    y.LanguageId == lguid), (x, y) => new { x, y })
+                                .SelectMany(x => x.NewsLocal.Where(y => y.LanguageId == lguid)
+                                    , (x, y) => new { x, y })
                                 .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
                                     , (z, v) => new { z, v })
                         .ToList()
@@ -599,6 +597,14 @@ namespace Tax.Portal.Controllers
                             {
                                 Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
                                 return Json("Invalid picture size! (max. 160x160 pixels expected)!");
+                            }
+                            break;
+                        case "photo":
+                            if (image.Width > 120
+                                || image.Height > 120)
+                            {
+                                Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
+                                return Json("Invalid picture size! (max. 120x120 pixels expected)!");
                             }
                             break;
                         default:

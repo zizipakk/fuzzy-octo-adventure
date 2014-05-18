@@ -26,3 +26,4 @@
 2014-05-18 21:51:55,939 [8] INFO  Tax.WebAPI.Controllers.CategoriesController - Get all of Categories on language: hu
 2014-05-18 21:51:55,950 [8] INFO  Tax.WebAPI.Controllers.CategoriesController - model: [{"Id":"891cca24-5d92-4f31-bd03-0b8685bb11b9","Name":"Adóráták","Order":1},{"Id":"7a853d80-501a-4099-9c6b-7786ef844e6c","Name":"Adó kisokos","Order":2},{"Id":"ab350601-e6f6-4640-8c14-2ca63c650b0e","Name":"Kiemelt szolgáltatások","Order":3},{"Id":"33d6deba-6738-4d30-a8c3-33761d98f62e","Name":"Kiemelt szakértõk","Order":4},{"Id":"adf99fad-2da2-469f-a146-b71d02ee8651","Name":"Tanulmányok","Order":5},{"Id":"7ada043e-0b23-4c65-918f-5874b0486418","Name":"Hang- és videóanyagok","Order":6}]
 2014-05-18 21:51:55,950 [8] INFO  Tax.WebAPI.Controllers.CategoriesController - OK, end
+2014-05-18 21:55:25,947 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...

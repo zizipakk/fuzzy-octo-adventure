@@ -1,0 +1,358 @@
+﻿@using Tax.Data.Models;
+
+<style type="text/css">
+    .ui-jqgrid .ui-state-highlight {
+        background: #cccccc;
+    }
+    .container .grid {
+        /*border: 1px solid #ddd;*/
+        padding-left: 0px;
+        padding-top: 35px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+    }
+</style>
+
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">WARNING!</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ERROR!</h4>
+            </div>
+            <div class="modal-body" style="color:red">
+                <p id="errortext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ATTENTION!</h4>
+            </div>
+            <div class="modal-body">
+                <p id="deletetext" style="text-align:center">Do you really want to delete this?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center pull-left">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value=" CANCEL " />
+                </div>
+                <div class="text-center pull-right">
+                    <input id="deletebutton" type="button" class="btn btn-warning" data-dismiss="modal" value=" DELETE " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="row">    
+    <div class="container grid">
+        <div class="col-sm-12">
+            <div class=" col-sm-12 col-xs-12" style="padding-left:0px">
+                <div class="btn-group">
+                    <a id="create" class="fa fa-plus fa-lg" style="padding-left:5px; padding-right:5px"></a>
+                    <a id="edit" class="fa fa-pencil fa-lg" style="visibility:hidden; padding-right:5px"></a>
+                    <a id="del" class="fa fa-trash-o fa-lg" style="visibility:hidden; padding-right:5px" data-toggle="modal" data-target="#deletemodal"></a>
+                </div>
+                <table id="contacts" class="display"><tr><td /></tr></table>
+                <div id="contactspager"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="rowid" style="visibility: hidden" /> 
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqgrid")
+
+<script type="text/javascript">
+    var getColumnIndexByName = function (gridname, columnName) {
+        var grid = $("#" + gridname);
+        var cm = grid.jqGrid('getGridParam', 'colModel');
+        var retval = -1;
+        $.each(cm, function () {
+            if (this.name === columnName) {
+                retval = cm.indexOf(this);
+            }
+        });
+        return retval;
+    };
+
+    initDateSearch = function (elem) {
+        setTimeout(function () {
+            $(elem).datepicker({
+                autoSize: true,
+                //showOn: 'button', // it dosn't work in searching dialog
+                changeYear: true,
+                changeMonth: true,
+                showButtonPanel: true,
+                showWeek: true,
+                onSelect: function () {
+                    if (this.id.substr(0, 3) === "gs_") {
+                        setTimeout(function () {
+                            $("#contacts")[0].triggerToolbar();
+                        }, 50);
+                    } else {
+                        // to refresh the filter
+                        $(this).trigger('change');
+                    }
+                }
+            });
+        }, 100);
+    };
+
+    numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
+
+    numberTemplate = {
+        formatter: 'integer', align: 'right', sorttype: 'number',
+        searchoptions: { searchhidden: true, sopt: numberSearchOptions }
+    };
+
+    myDefaultSearch = 'cn';
+
+    var ids = [];
+
+    function datetimecheck(value, colname) {
+        if (value.length != 10)
+            return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
+        var dateParts = value.split(".");
+        var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+        if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
+            return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
+        var min = new Date("1753.01.01");
+        var max = new Date("9999.12.31");
+        if (dat < min || dat > max)
+            return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
+        return [true, ""];
+    }
+
+    function textareaFormat(cellvalue, options, rowObject) {
+        return '<textarea style="border-width:0px" disabled="disabled">' + cellvalue + '</textarea>';
+    }
+
+    jQuery("#contacts").jqGrid({
+        url: '@Url.Action("ListContacts", "Contact")',
+        datatype: "json",
+        loadError: function (jqXHR, textStatus, errorThrown) {
+            $('#errortext').text(jqXHR.responseText);
+            $('#errormodal').modal({ show: true });
+        },
+        colNames: [
+            'id'
+            , 'Status'
+            , 'First name'
+            , 'Last name'
+            , 'Department'
+            , 'Position'
+            , 'Phone'
+            , 'Mobile'
+            , 'E-mail'
+            , 'Tags'
+        ],
+        colModel: [
+            { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
+            {
+                name: 'Status', index: 'Status', width: 80, align: "left", hidden: false, sortable: true,
+                search: true, stype: 'select',
+                searchoptions: {
+                    searchhidden: true,
+                    sopt: ['eq', 'ne'],
+                    dataUrl: '@Url.Action("ListNewsStatus", "New")?isSearch=' + true,
+                    buildSelect: function (result) { return result; }
+                },
+                editable: false
+            },
+            { name: 'First_name', index: 'First_name', width: 90, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Last_name', index: 'Last_name', width: 100, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Department', index: 'Department', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Position', index: 'Position', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Phone', index: 'Phone', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Mobile', index: 'Mobile', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'E-mail', index: 'E-mail', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Tags', index: 'Tags', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false }
+        ],
+        rowNum: 20,
+        rowList: [20, 40, 60],
+        toppager: true,
+        pager: '#contactspager',
+        sortname: 'Status,First_name',
+        viewrecords: true,
+        sortorder: "asc",
+        caption: 'Contacts',
+        rownumbers: false,
+        gridview: true,
+        hoverrows: true,
+        scrollrows: true,
+        shrinkToFit: false,
+        height: '100%',
+        //width: '800',
+        autowidth: true,
+        onSelectRow: function (rowid) {
+            $("#rowid").val(rowid);
+            if ($(this).getCell(rowid, 'Status') == 'Published' || $(this).getCell(rowid, 'Status') == 'Kiadva')
+            { $("#CallBack").show().css({ visibility: "visible" }); }
+            else
+            { $("#CallBack").hide().css({ visibility: "hidden" }); }
+            if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt'
+                || $(this).getCell(rowid, 'Status') == 'Unpublished' || $(this).getCell(rowid, 'Status') == 'Visszavonva')
+            { $("#Publish").show().css({ visibility: "visible" }); }
+            else
+            { $("#Publish").hide().css({ visibility: "hidden" }); }
+            $("#edit").show().css({ visibility: "visible" });
+            $("#del").show().css({ visibility: "visible" });
+        },
+        loadComplete: function () {
+            $("#Publish").hide().css({ visibility: "hidden" });
+            $("#CallBack").hide().css({ visibility: "hidden" });
+            $("#edit").hide().css({ visibility: "hidden" });
+            $("#del").hide().css({ visibility: "hidden" });
+            $("#flash").hide().css({ visibility: "hidden" });
+        }
+    });
+
+    jQuery("#contacts").jqGrid('navGrid', '#contactspager'
+        , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
+        , {} //prmedit
+        , {} //prmadd
+        , {} //prmdel
+        , {
+            width: 600,
+            multiplesearch: true,
+            recreatefilter: true,
+            closeonescape: true,
+            closeaftersearch: true,
+            overlay: 0,
+            afterredraw: function () {
+                $('input.add-rule', this)//.button().val('add new rule')
+                    .attr('title', 'add new search rule');
+                $('input.delete-rule', this)//.button().val('delete rule')
+                    .attr('title', 'delete rule');
+            }
+        } //prmsearch
+        , {} //prmview
+    )
+    .jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" })
+
+    $('#Publish').click(function () {
+        $.ajax({
+            url: '@Url.Action("UpdateContactStatus", "Contact")?id=' + $("#rowid").val() + '&to=Published',
+            type: 'POST',
+            beforeSend: function (jqXHR, textStatus) { jQuery('#contacts').block({ message: '<h3>Wait…</h3>' }); },
+            complete: function (jqXHR, textStatus) {
+                var str = JSON.parse(jqXHR.responseText);
+                if (!str.success) {
+                    if (str.error) {
+                        $('#errortext').text(str.response);
+                        $('#errormodal').modal({ show: true });
+                    }
+                    else {
+                        $('#warningtext').text(str.response);
+                        $('#warningmodal').modal({ show: true });
+                    }
+                }
+                jQuery('#contacts').unblock();
+                $("#contacts").trigger("reloadGrid", [{ current: true }]);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            }
+        });
+    });
+    $('#CallBack').click(function () {
+        $.ajax({
+            url: '@Url.Action("UpdateContactStatus", "Contact")?id=' + $("#rowid").val() + '&to=Unpublished',
+            type: 'POST',
+            beforeSend: function (jqXHR, textStatus) { jQuery('#contacts').block({ message: '<h3>Wait…</h3>' }); },
+            complete: function (jqXHR, textStatus) {
+                var str = JSON.parse(jqXHR.responseText);
+                if (!str.success) {
+                    if (str.error) {
+                        $('#errortext').text(str.response);
+                        $('#errormodal').modal({ show: true });
+                    }
+                    else {
+                        $('#warningtext').text(str.response);
+                        $('#warningmodal').modal({ show: true });
+                    }
+                }
+                jQuery('#contacts').unblock();
+                $("#contacts").trigger("reloadGrid", [{ current: true }]);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            }
+        });
+    });
+    $('#deletebutton').click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteContact", "Contact")?id=' + $("#rowid").val(),
+            type: 'POST',
+            beforeSend: function (jqXHR, textStatus) { jQuery('#contacts').block({ message: '<h3>Wait…</h3>' }); },
+            complete: function (jqXHR, textStatus) {
+                var str = JSON.parse(jqXHR.responseText);
+                if (!str.success) {
+                    if (str.error) {
+                        $('#errortext').text(str.response);
+                        $('#errormodal').modal({ show: true });
+                    }
+                    else {
+                        $('#warningtext').text(str.response);
+                        $('#warningmodal').modal({ show: true });
+                    }
+                }
+                jQuery('#contacts').unblock();
+                $("#contacts").trigger("reloadGrid", [{ current: true }]);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#errortext').text(jqXHR.responseText);
+                $('#errormodal').modal({ show: true });
+            }
+        });
+    });
+
+    $('#create').click(function () {
+        document.location.href = '@Url.Action("Create", "Contact")';
+    });
+
+    $('#edit').click(function () {
+        document.location.href = '@Url.Action("Edit", "Contact")?id=' + $("#rowid").val();
+    });
+
+    </script>
+
+}
