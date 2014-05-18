@@ -848,7 +848,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Views\New\Index.cshtml" />
-    <Content Include="Views\New\Edit_pl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />

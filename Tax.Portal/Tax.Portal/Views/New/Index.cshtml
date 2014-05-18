@@ -89,7 +89,8 @@
                 <table id="news" class="display"><tr><td /></tr></table>
                 <div id="newspager"></div>
             </div>
-            <div class="col-sm-5 col-xs-12" style="min-width: 470px">
+            <div id="flash" class="col-sm-5 col-xs-12" style="min-width: 470px; background-color: white; margin-top: 23px; padding-top: 15px; visibility: hidden">
+                <div id="flash_thumb"></div>
             </div>
         </div>
     </div>
@@ -226,7 +227,8 @@
         scrollrows: true,
         shrinkToFit: false,
         height: '100%',
-        width: '800',
+        //width: '800',
+        autowidth: true,
         onSelectRow: function (rowid) {
             $("#rowid").val(rowid);
             if ($(this).getCell(rowid, 'Status') == 'Published' || $(this).getCell(rowid, 'Status') == 'Kiadva')
@@ -240,12 +242,25 @@
             { $("#Publish").hide().css({ visibility: "hidden" }); }
             $("#edit").show().css({ visibility: "visible" });
             $("#del").show().css({ visibility: "visible" });
+            $.ajax({
+                url: '@Url.Action("FlashNew", "New")?id=' + rowid,
+                type: 'GET',
+                success: function (data) {
+                    $("#flash_thumb").html(data);
+                    $("#flash").show().css({ visibility: "visible" });
+                },
+                onerror: function (jqXHR, textStatus, errorThrown) {
+                    $('#errortext').text(jqXHR.responseText);
+                    $('#errormodal').modal({ show: true });
+                }
+            });
         },
         loadComplete: function () {
             $("#Publish").hide().css({ visibility: "hidden" });
             $("#CallBack").hide().css({ visibility: "hidden" });
             $("#edit").hide().css({ visibility: "hidden" });
             $("#del").hide().css({ visibility: "hidden" });
+            $("#flash").hide().css({ visibility: "hidden" });
         }
     });
 

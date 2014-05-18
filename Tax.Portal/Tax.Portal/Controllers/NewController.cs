@@ -147,6 +147,38 @@ namespace Tax.Portal.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "SysAdmin, User")]
+        public virtual ActionResult FlashNew(Guid id)
+        {
+            using (log4net.ThreadContext.Stacks["NDC"].Push("GET: New/FlashNew"))
+            {
+                log.Info("begin");
+
+                var ng = db.NewsGlobal.Find(id);
+                NewViewModel suvm = new NewViewModel()
+                {
+                    Id = ng.Id,
+                    PublishingDate = ng.PublishingDate,
+                    Headline_pictureId = null == ng.Headline_picture ? null : (Guid?)ng.Headline_picture.stream_id,
+                    ThumbnailId = null == ng.Thumbnail ? null : (Guid?)ng.Thumbnail.stream_id,
+                    NewsStatusName = ng.NewsStatus.NameGlobal
+                };
+
+                string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
+                var nl = db.NewsLocal.FirstOrDefault(x => x.NewsGlobalId == id && x.LanguageId == lguid);
+                suvm.Title1 = nl.Title1;
+                suvm.Title2 = nl.Title2;
+                suvm.Subtitle = nl.Subtitle;
+                suvm.Body_text = nl.Body_text;
+
+                log.Info("end");
+                return PartialView("_DetailPartial", suvm);
+            }
+        }
+
+
         #endregion list 
 
         #region create

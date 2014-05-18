@@ -1,34 +1,32 @@
-﻿@using Microsoft.AspNet.Identity
-@model Tax.Portal.Models.ManageUserViewModel
+﻿@model Tax.Portal.Models.NewViewModel
 
-@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Change password</h4>
-    <hr />
-    @Html.ValidationSummary()
-    <div class="form-group">
-        @Html.LabelFor(m => m.OldPassword, new { @class = "col-sm-3 col-xs-12 control-label" })
-        <div class="col-sm-4 col-xs-12">
-            @Html.PasswordFor(m => m.OldPassword, new { @class = "form-control", placeholder = "Old password" })
-        </div>
+<div class="form-group">
+    <div class="input-group col-sm-12 col-xs-12">
+        <img src="@Url.Action("DownloadImage", "New")?id=@Model.Headline_pictureId" class="img-responsive" alt="Headline" style="border: none;" />'                    
     </div>
-    <div class="form-group">
-                @Html.LabelFor(m => m.NewPassword, new { @class = "col-sm-3 col-xs-12 control-label" })
-        <div class="col-sm-4 col-xs-12">
-            @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control", placeholder = "New password" })
-        </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Title1)
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-sm-3 col-xs-12 control-label" })
-        <div class="col-sm-4 col-xs-12">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "New password again" })
-        </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.PublishingDate.ToString())
     </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Title2)
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Subtitle)
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        <img src="@Url.Action("DownloadImage", "New")?id=@Model.ThumbnailId" class="img-responsive" alt="Thumbnail" style="border: none;" />'
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Body_text)
+    </div>
+</div>
 
-    <div class="form-group">
-        <div class="col-sm-2 col-xs-12 pull-right">
-            <input type="submit" value="Change password" class="btn btn-warning" />
-        </div>
-    </div>
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    <script type="text/javascript">
+    </script>
 }
