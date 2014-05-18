@@ -33,23 +33,36 @@ namespace Tax.WebAPI.Service
                                                                     y.ExtrasGlobalId == x.Id
                                                                     && y.Language.ShortName == lang)
                             , (x, y) => new { x, y })
-                        .SelectMany(v => context.CategoriesLocal.Where(z =>
-                                                                    z.CategoriesGlobalId == v.x.CategoriesGlobal.Id
-                                                                    && z.Language.ShortName == lang)
-                            , (v, z) => new { v, z })
+                        //.SelectMany(v => context.CategoriesLocal.Where(z =>
+                        //                                            z.CategoriesGlobalId == v.x.CategoriesGlobal.Id
+                        //                                            && z.Language.ShortName == lang)
+                        //    , (v, z) => new { v, z })
+                        //.ToList()
+                        //.Select(s => new ExtrasBindingModel
+                        //{
+                        //    Id = s.v.x.Id.ToString(),
+                        //    Title1 = s.v.y.Title1,
+                        //    Title2 = s.v.y.Title2,
+                        //    Subtitle = s.v.y.Subtitle,
+                        //    Body = s.v.y.Body_text,
+                        //    Order = s.v.x.Order,
+                        //    Date = TimestampHelpers.GetTimestamp((DateTime)s.v.x.PublishingDate),
+                        //    Category = new CategoriesBindingModel { Id = s.z.CategoriesGlobalId.ToString(), Name = s.z.Name, Order = s.v.x.CategoriesGlobal.Order } 
+                        //})
                         .ToList()
                         .Select(s => new ExtrasBindingModel
                         {
-                            Id = s.v.x.Id.ToString(),
-                            Title1 = s.v.y.Title1,
-                            Title2 = s.v.y.Title2,
-                            Subtitle = s.v.y.Subtitle,
-                            Body = s.v.y.Body_text,
-                            Order = s.v.x.Order,
-                            Date = TimestampHelpers.GetTimestamp((DateTime)s.v.x.PublishingDate),
-                            Category = new CategoriesBindingModel { Id = s.z.CategoriesGlobalId.ToString(), Name = s.z.Name, Order = s.v.x.CategoriesGlobal.Order } 
+                            Id = s.x.Id.ToString(),
+                            Title1 = s.y.Title1,
+                            Title2 = s.y.Title2,
+                            Subtitle = s.y.Subtitle,
+                            Body = s.y.Body_text,
+                            Order = s.x.Order,
+                            Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
+                            Category = s.x.CategoriesGlobal.Id.ToString()
                         })
-                        .OrderByDescending(o => o.Date);
+                        .OrderBy(o => o.Order)
+                        .ThenByDescending(o => o.Date);
 
             if (null == resl)
             {

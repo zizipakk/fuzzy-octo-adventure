@@ -60,6 +60,7 @@ namespace Tax.Data.Models
         public DbSet<SubMenu> SubMenu { get; set; }
         public DbSet<File> File { get; set; }
         public DbSet<IdentityUserRole> IdentityUserRole { get; set; }
+        public DbSet<CategoriesGlobal> CategoriesGlobal { get; set; }
         public DbSet<CategoriesLocal> CategoriesLocal { get; set; }
         public DbSet<ContactsGlobal> ContactsGlobal { get; set; }
         public DbSet<ContactsLocal> ContactsLocal { get; set; }

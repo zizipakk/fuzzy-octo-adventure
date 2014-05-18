@@ -12,7 +12,8 @@ namespace Tax.WebAPI.Models
         public string Body { get; set; }
         public int Order { get; set; }
         public string Date { get; set; }
-        public CategoriesBindingModel Category { get; set; }
+        //public CategoriesBindingModel Category { get; set; }
+        public string Category { get; set; }
     }
 
 }

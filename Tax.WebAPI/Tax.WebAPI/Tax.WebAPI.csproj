@@ -209,6 +209,7 @@
     <Compile Include="Controllers\ExtrasController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Service\ContactsService.cs" />
     <Compile Include="Service\ExtrasService.cs" />
     <Compile Include="Service\EventsService.cs" />
+    <Compile Include="Service\CategoriesService.cs" />
     <Compile Include="Service\TagsService.cs" />
     <Compile Include="Service\ImagesService.cs" />
     <Compile Include="Service\ArticlesService.cs" />
