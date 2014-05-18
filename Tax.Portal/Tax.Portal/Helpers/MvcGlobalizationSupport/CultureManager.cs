@@ -123,9 +123,52 @@ namespace Tax.MvcGlobalisationSupport
         {
             InitializeSupportedCultures();
             CultureToID = new Dictionary<string, System.Guid>();
-            CultureToID.Add(CultureNameHungarian, new Guid("0E64694A-EC2D-4A78-AFFB-4C734E7E38A6"));
-            CultureToID.Add(CultureNameEnglish, new Guid("BE5DB246-2061-4C42-B1D5-467EF08AE158"));
-            CultureToID.Add(CultureNameGerman, new Guid("6EFE193D-EFC8-46FB-B588-07CDEE45DD70"));
+            CultureToID.Add(CultureNameHungarian, new Guid("d83ec8c0-2413-41e6-b960-2a290b834255"));
+            CultureToID.Add(CultureNameEnglish, new Guid("520a9822-f477-43ae-9511-9b6a9240ccd3"));
+            CultureToID.Add(CultureNameGerman, new Guid("00000000-0000-0000-0000-000000000000"));
         }
+
+        public static string CultureDateFormGrid()
+        {
+            var lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+            switch (lid)
+            {
+                case "hu":
+                    return "Y.m.d";
+                case "en":
+                    return "m/d/Y";
+                default:
+                    return "Y.m.d";
+            }
+        }
+
+        public static string CultureShortDateFromDateTime()
+        {
+            var lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+            switch (lid)
+            {
+                case "hu":
+                    return "{0:yyyy.MM.dd}";
+                case "en":
+                    return "{0:MM/dd/yyyy}";
+                default:
+                    return "{0:yyyy.MM.dd}";
+            }
+        }
+
+        public static string CultureShortDateForm()
+        {
+            var lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+            switch (lid)
+            {
+                case "hu":
+                    return "yyyy.mm.dd";
+                case "en":
+                    return "mm/dd/yyyy";
+                default:
+                    return "yyyy.mm.dd";
+            }
+        }
+
     }
 }

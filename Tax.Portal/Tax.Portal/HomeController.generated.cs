@@ -81,12 +81,8 @@ namespace Tax.Portal.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
-                public readonly string WaitForEmailValidation = "WaitForEmailValidation";
-                public readonly string WaitForEmailValidationAfterPreRegistration = "WaitForEmailValidationAfterPreRegistration";
             }
             public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string WaitForEmailValidation = "~/Views/Home/WaitForEmailValidation.cshtml";
-            public readonly string WaitForEmailValidationAfterPreRegistration = "~/Views/Home/WaitForEmailValidationAfterPreRegistration.cshtml";
         }
     }
 

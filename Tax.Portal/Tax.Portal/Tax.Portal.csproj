@@ -205,11 +205,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\NewController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="ErrorsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -239,6 +243,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\JsonpResult.cs" />
     <Compile Include="Models\Log4netModels.cs" />
+    <Compile Include="Models\EventViewModels.cs" />
     <Compile Include="Models\TagViewModels.cs" />
     <Compile Include="Models\NewViewModels.cs" />
     <Compile Include="NewController.generated.cs">
@@ -249,9 +254,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="StockController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -341,6 +343,8 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\datepicker\css\datepicker.css" />
+    <Content Include="Scripts\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Tax.Portal.wpp.targets" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -716,6 +720,7 @@
     <Content Include="Scripts\dropzone\css\dropzone.css" />
     <Content Include="Scripts\dropzone\css\stylus\dropzone.styl" />
     <Content Include="Scripts\dropzone\css\stylus\basic.styl" />
+    <Content Include="Scripts\datepicker\less\datepicker.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -835,15 +840,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\Rule.cshtml" />
     <Content Include="Views\Admin\Setup.cshtml" />
-    <Content Include="Views\Stock\Devices.cshtml" />
-    <Content Include="Views\Stock\Users.cshtml" />
-    <Content Include="Views\Home\WaitForEmailValidationAfterPreRegistration.cshtml" />
-    <Content Include="Views\Home\WaitForEmailValidation.cshtml" />
-    <Content Include="Views\Stock\ReservationAdmin.cshtml" />
-    <Content Include="Views\Stock\Reservation.cshtml" />
     <Content Include="Views\Shared\_LocalisationPartial.cshtml" />
     <Content Include="Views\New\_DetailPartial.cshtml" />
     <Content Include="Views\New\Edit.cshtml" />
+    <Content Include="Views\Event\_DetailPartial.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

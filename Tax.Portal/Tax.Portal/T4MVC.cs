@@ -27,10 +27,10 @@ public static class MVC
     public static Tax.Portal.Controllers.AccountController Account = new Tax.Portal.Controllers.T4MVC_AccountController();
     public static Tax.Portal.Controllers.AdminController Admin = new Tax.Portal.Controllers.T4MVC_AdminController();
     public static Tax.Portal.Controllers.ErrorsController Errors = new Tax.Portal.Controllers.T4MVC_ErrorsController();
+    public static Tax.Portal.Controllers.EventController Event = new Tax.Portal.Controllers.T4MVC_EventController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();
     public static Tax.Portal.Controllers.NewController New = new Tax.Portal.Controllers.T4MVC_NewController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
-    public static T4MVC.StockController Stock = new T4MVC.StockController();
 }
 
 namespace T4MVC
@@ -1088,6 +1088,38 @@ namespace Links
             }
         
             public static readonly string styles_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/styles.min.js") ? Url("styles.min.js") : Url("styles.js");
+        }
+    
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class datepicker {
+            private const string URLPATH = "~/Scripts/datepicker";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class css {
+                private const string URLPATH = "~/Scripts/datepicker/css";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string datepicker_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/datepicker.min.css") ? Url("datepicker.min.css") : Url("datepicker.css");
+                     
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class js {
+                private const string URLPATH = "~/Scripts/datepicker/js";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string bootstrap_datepicker_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-datepicker.min.js") ? Url("bootstrap-datepicker.min.js") : Url("bootstrap-datepicker.js");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class less {
+                private const string URLPATH = "~/Scripts/datepicker/less";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string datepicker_less = Url("datepicker.less");
+            }
+        
         }
     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

@@ -1,0 +1,26 @@
+﻿@model Tax.Portal.Models.EventViewModel
+
+<div class="form-group">
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Title1)
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.PublishingDate.ToString())
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Date.ToString())
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Title2)
+    </div>
+    <div class="input-group col-sm-12 col-xs-12">
+        @MvcHtmlString.Create(Model.Body_text)
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    <script type="text/javascript">
+    </script>
+}

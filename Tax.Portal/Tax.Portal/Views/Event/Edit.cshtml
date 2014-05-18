@@ -1,0 +1,139 @@
+﻿@model Tax.Portal.Models.EventViewModel
+@using Tax.Portal.Models;
+@using Tax.MvcGlobalisationSupport;
+
+<style type="text/css">
+    .modal-dialog {
+        width: 400px; /* your width */
+        height: auto;
+    }
+</style>
+
+<div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:orange">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">WARNING</h4>
+            </div>
+            <div class="modal-body" style="color:orange">
+                <p id="warningtext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-warning" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+<div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="color:red">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">ERROR</h4>
+            </div>
+            <div class="modal-body" style="color:red">
+                <p id="errortext" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center text-center">
+                    <input type="button" class="btn btn-danger" data-dismiss="modal" value=" OK " />
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+@using (Html.BeginForm(MVC.Event.Edit(), FormMethod.Post, new { @id = "main", @class = "form-horizontal", @role = "form", @style = "padding-top:0px; margin-top: 35px;" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Mode)
+    @Html.HiddenFor(m => m.NewsStatusName)         
+    @Html.HiddenFor(m => m.Date) //le van tiltva        
+                                 
+    @Html.ValidationSummary()                                 
+    <div class="row">
+        <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Title1, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Title1, new { @class = "form-control", placeholder = "Type here title1" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Title2, new { @class = "control-label" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextBoxFor(m => m.Title2, new { @class = "form-control", placeholder = "Type here title2" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Date, new { @class = "control-label" })
+                    <div class="input-group date" id="DatePicker" data-date="" data-date-format="@CultureManager.CultureShortDateForm()">                        
+                        @Html.TextBox("DateDisabled", @Model.Date, CultureManager.CultureShortDateFromDateTime(), new { @class = "form-control", @disabled = "disabled" })
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-xs-12">
+            <div class="form-group">
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Body_text, new { @style = "padding-top:7px; margin-bottom:0px" })
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.TextAreaFor(m => m.Body_text, new { @id = "ckeditor_text", @style = "visibility:hidden" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    @*<link href="~/Scripts/ckeditor/contents.css" rel="stylesheet" />*@
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        //közös a view, ezért magic
+        if ($('#Mode').val() == "create")
+        {
+            $('#main').attr('action', '/Event/Create');
+        }
+        //visszalépési irány
+        $('#Back').attr('onclick', 'document.location.href = "@Url.Action(MVC.Event.Index())"');        
+
+        //repül a ckeditor
+        CKEDITOR.replace('ckeditor_text', {
+            height: 400,
+            language: 'en',
+            toolbar: [
+                { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+                { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
+                { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'insert', items: ['Image', 'Table'] },
+                { name: 'styles', items: ['Styles', 'Format'] }
+            ]
+        });
+
+        //datepicker
+        $('#DatePicker').datepicker({ autoclose: true, todayHighlight: true });
+
+        //gombok a headerben
+        $("#CallBack").hide().css({ visibility: "hidden" });
+        $("#Publish").hide().css({ visibility: "hidden" });
+        $("#Back").show().css({ visibility: "visible" });
+        $("#Save").show().css({ visibility: "visible" });
+
+        $("#main").submit(function () {
+            //a letiltott controllok feltöltése
+            $("#Date").val($("#DateDisabled").val());
+        });
+
+    </script>
+}

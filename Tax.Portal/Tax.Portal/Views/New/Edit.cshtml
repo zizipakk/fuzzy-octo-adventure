@@ -137,6 +137,9 @@
         {
             $('#main').attr('action', '/New/Create');
         }
+        //visszalépési irány
+        $('#Back').attr('onclick', 'document.location.href = "@Url.Action(MVC.New.Index())"');
+
 
         //kitöltöm a fake taxtarea-t betöltésnél
         $('#ckeditor_text').val($('#Body_text').val());

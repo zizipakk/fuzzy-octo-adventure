@@ -39,7 +39,9 @@ namespace Tax.Portal
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle(Links.bundles.scripts.bootstrap).Include(
-                        "~/Scripts/bootstrap.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/datepicker/js/bootstrap-datepicker.js"
+            ));
 
             bundles.Add(new ScriptBundle(Links.bundles.scripts.jqgrid).Include(
                         "~/Scripts/jquery.blockUI.min.js", 
@@ -52,7 +54,8 @@ namespace Tax.Portal
             bundles.Add(new StyleBundle(Links.bundles.styles.css).Include(
                         "~/Content/bootstrap.css",    
                         "~/Content/font-awesome.css",
-                        "~/Content/jquery.jqGrid/ui.jqgrid.css"
+                        "~/Content/jquery.jqGrid/ui.jqgrid.css",
+                        "~/Scripts/datepicker/css/datepicker.css"
             ));
 
             bundles.Add(new StyleBundle(Links.bundles.styles.theme).Include(

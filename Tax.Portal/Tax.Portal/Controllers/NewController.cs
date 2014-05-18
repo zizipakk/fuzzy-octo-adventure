@@ -61,10 +61,10 @@ namespace Tax.Portal.Controllers
                             Status = s.v.Name,
                             Title1 = s.z.y.Title1,
                             Title2 = s.z.y.Title2,
-                            PublishingDate = null == s.z.x.PublishingDate ? DateTime.MinValue : (DateTime)s.z.x.PublishingDate.Value.Date,
+                            PublishingDate = s.z.x.PublishingDate,
                             Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
-                        }).AsEnumerable();
-
+                        })
+                        .AsEnumerable();
 
             var rs00 = db.NewsGlobal
                             .SelectMany(v => db.TagsLocal.Where(z => v.TagsGlobal.Contains(z.TagsGlobal) && z.LanguageId == lguid)
@@ -79,7 +79,8 @@ namespace Tax.Portal.Controllers
                             )
                             .AsEnumerable();
 
-            var rs = rs0.SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
+            var rs = rs0
+                        .SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
                             {
                                 Id = a.Id,
                                 Status = a.Status,
@@ -103,7 +104,7 @@ namespace Tax.Portal.Controllers
                                 ,r.Title1
                                 ,r.Title2
                                 ,r.Tags
-                                ,DateTime.MinValue == r.PublishingDate ? "" : r.PublishingDate.ToString()
+                                ,r.PublishingDate.ToString()
                                 ,r.Thumbnail.ToString()
                                }
                            }).ToArray();
@@ -214,7 +215,7 @@ namespace Tax.Portal.Controllers
         [Authorize(Roles = "SysAdmin, User")]
         public virtual ActionResult Create(NewViewModel model)
         {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: New/Edit"))
+            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: New/Create"))
             {
                 log.Info("begin");
                 NewsGlobal resg = db.NewsGlobal.Create();
@@ -229,6 +230,11 @@ namespace Tax.Portal.Controllers
                     resg.Headline_picture = db.File.Find(model.Headline_pictureId);
                     resg.Thumbnail = db.File.Find(model.ThumbnailId);
                     resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == "Editing");
+                    foreach (var tg in db.TagsGlobal.Where(x => model.TagsIn.Contains(x.Id)).ToList())
+                    {
+                        resg.TagsGlobal.Add(tg);
+                    }
+                    db.Entry(resg).State = EntityState.Added;
 
                     NewsLocal resl = db.NewsLocal.Create();
                     resl.NewsGlobal = resg;
@@ -237,16 +243,8 @@ namespace Tax.Portal.Controllers
                     resl.Title2 = model.Title2;
                     resl.Subtitle = model.Subtitle; 
                     resl.Body_text = model.Body_text;
-                    
-                    //nem szerepel a db contextben a many-to-many, ezért be kell tölteni
-                    //db.Entry(resg).Collection(t => t.TagsGlobal).Load();
 
-                    foreach (var tg in db.TagsGlobal.Where(x => model.TagsIn.Contains(x.Id)).ToList())
-                    {
-                        resg.TagsGlobal.Add(tg);
-                    }
-
-                    db.Entry(resg).State = EntityState.Added;
+                    db.Entry(resl).State = EntityState.Added;
                     db.SaveChanges();
                     log.Info("end with ok");
 
