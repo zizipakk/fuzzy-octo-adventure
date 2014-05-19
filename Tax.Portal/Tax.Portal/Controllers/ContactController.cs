@@ -130,15 +130,15 @@ namespace Tax.Portal.Controllers
             using (log4net.ThreadContext.Stacks["NDC"].Push("GET: Contact/Create"))
             {
                 log.Info("begin");
+                string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
                 ContactViewModel cvm = new ContactViewModel();
 
                 cvm.Mode = "create";
-                cvm.TagsOut = db.TagsGlobal
-                                .Select(x => x.Id)
-                                .ToArray();
                 cvm.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                             .Union(db.TagsLocal
+                                                    .Where(x => x.LanguageId == lguid)
                                                     .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
                                             .OrderBy(x => x.Text)
                                             .ToList();
@@ -200,13 +200,13 @@ namespace Tax.Portal.Controllers
                     log.Info("end with validation error");
                     model.Refresh(ModelState);
                     //listák
-                    model.TagsOut = db.TagsGlobal
-                                    .Where(z => !model.TagsIn.Contains(z.Id))
-                                    .Select(x => x.Id)
-                                    .ToArray();
+                    //model.TagsOut = db.TagsGlobal
+                    //                .Where(z => !model.TagsIn.Contains(z.Id))
+                    //                .Select(x => x.Id)
+                    //                .ToArray();
                     model.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                                 .Union(db.TagsLocal
-                                                        .Where(z => model.TagsOut.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                                                        .Where(z => !model.TagsIn.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
                                                         .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
                                                 .OrderBy(x => x.Text)
                                                 .ToList();
@@ -267,10 +267,10 @@ namespace Tax.Portal.Controllers
                 }
 
                 var ngList = cg.TagsGlobal.Select(v => v.Id).ToList();
-                cvm.TagsOut = db.TagsGlobal
-                                .Where(z => !ngList.Contains(z.Id))
-                                .Select(x => x.Id)
-                                .ToArray();
+                //cvm.TagsOut = db.TagsGlobal
+                //                .Where(z => !ngList.Contains(z.Id))
+                //                .Select(x => x.Id)
+                //                .ToArray();
                 cvm.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                             .Union(db.TagsLocal
                                                     .Where(z => !ngList.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
@@ -364,13 +364,13 @@ namespace Tax.Portal.Controllers
                     log.Info("end with validation error");
                     model.Refresh(ModelState);
                     //listák
-                    model.TagsOut = db.TagsGlobal
-                                    .Where(z => !model.TagsIn.Contains(z.Id))
-                                    .Select(x => x.Id)
-                                    .ToArray();
+                    //model.TagsOut = db.TagsGlobal
+                    //                .Where(z => !model.TagsIn.Contains(z.Id))
+                    //                .Select(x => x.Id)
+                    //                .ToArray();
                     model.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                                 .Union(db.TagsLocal
-                                                        .Where(z => model.TagsOut.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                                                        .Where(z => !model.TagsIn.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
                                                         .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
                                                 .OrderBy(x => x.Text)
                                                 .ToList();

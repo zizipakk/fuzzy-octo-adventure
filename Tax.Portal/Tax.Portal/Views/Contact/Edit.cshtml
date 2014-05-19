@@ -56,8 +56,7 @@
             @Html.HiddenFor(m => m.NewsStatusName)         
             @Html.HiddenFor(m => m.PhotoId)
             @Html.HiddenFor(m => m.Profile)
-            @Html.HiddenFor(m => m.TagsIn)
-
+            
             <div class="form-group">
                 <div class="col-sm-12 col-xs-12">
                     @Html.LabelFor(m => m.First_name, new { @class = "control-label" })
@@ -108,6 +107,9 @@
                     </div>
                 </div>
             </div>
+            
+            //alulra kell raknom, mert eltolja
+            @Html.ListBoxFor(m => m.TagsIn, Enumerable.Empty<SelectListItem>(), new { style = "height:0px; visibility:hidden" })            
         }
     </div>
     <div class="col-sm-8 col-xs-12" style="padding-left:0px;padding-right:0px">
@@ -163,9 +165,7 @@
         $('#Back').attr('onclick', 'document.location.href = "@Url.Action(MVC.Contact.Index())"');
 
         //kitöltöm a kirekedt objektumokat
-        $('#ckeditor_text').val($('#Profile').val());
-        $('#OuterTagOut').val($('#TagsOut').val());
-        $('#OuterTagsIn').val($('#TagsIn').val());
+        $('#ckeditor_text').val($('#Profile').val());        
 
         //repül a ckeditor
         CKEDITOR.replace('ckeditor_text', {
@@ -207,14 +207,14 @@
         $("#main").submit(function () {
             //visszatöltök az editorból
             $("#ckeditor_form").submit();
-            //csak selecttel tudom frissíteni az adatot
-            $("#OuterTagsIn > option").each(function () {
-                $(this).attr('selected', 'selected');
-            });
             //visszapakolok az igazi formra
             $("#Profile").val($("#ckeditor_text").val());
-            $("#TagsOut").val($("#OuterTagsOut").val());
-            $("#TagsIn").val($("#OuterTagsIn").val());
+            $("#OuterTagsIn > option").each(function () {                
+                $(this).appendTo("#TagsIn");
+            });
+            $("#TagsIn > option").each(function () {
+                $(this).attr('selected', 'selected');
+            });
         });
     </script>
 

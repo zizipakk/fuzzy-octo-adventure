@@ -208,6 +208,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExtrasController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\NewController.cs" />
@@ -218,6 +219,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="EventController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -245,6 +249,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ExtraViewModels.cs" />
     <Compile Include="Models\JsonpResult.cs" />
     <Compile Include="Models\Log4netModels.cs" />
     <Compile Include="Models\EventViewModels.cs" />
@@ -853,6 +858,9 @@
     <Content Include="Views\Event\Index.cshtml" />
     <Content Include="Views\Contact\Edit.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Extra\_DetailPartial.cshtml" />
+    <Content Include="Views\Extra\Edit.cshtml" />
+    <Content Include="Views\Extra\Index.cshtml" />
     <None Include="Web.TDeployDebug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

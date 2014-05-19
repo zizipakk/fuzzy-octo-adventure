@@ -19,8 +19,6 @@ namespace Tax.Portal.Models
 
         public string Mode { get; set; }
         [NotMapped]
-        public Guid[] TagsOut { get; set; }
-        [NotMapped]
         public List<MyListItem> TagFromList { get; set; }
         [Display(Name = "Tags")]
         [Required(ErrorMessage = "[{0}] is required")]

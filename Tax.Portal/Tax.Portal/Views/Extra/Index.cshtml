@@ -86,8 +86,8 @@
                     <a id="edit" class="fa fa-pencil fa-lg" style="visibility:hidden; padding-right:5px"></a>
                     <a id="del" class="fa fa-trash-o fa-lg" style="visibility:hidden; padding-right:5px" data-toggle="modal" data-target="#deletemodal"></a>
                 </div>
-                <table id="news" class="display"><tr><td /></tr></table>
-                <div id="newspager"></div>
+                <table id="extras" class="display"><tr><td /></tr></table>
+                <div id="extraspager"></div>
             </div>
             <div id="flash" class="col-sm-5 col-xs-12" style="min-width: 470px; background-color: white; margin-top: 23px; padding-top: 15px; visibility: hidden">
                 <div id="flash_thumb"></div>
@@ -126,7 +126,7 @@
                 onSelect: function () {
                     if (this.id.substr(0, 3) === "gs_") {
                         setTimeout(function () {
-                            $("#news")[0].triggerToolbar();
+                            $("#extras")[0].triggerToolbar();
                         }, 50);
                     } else {
                         // to refresh the filter
@@ -166,15 +166,8 @@
         return '<textarea style="border-width:0px" disabled="disabled">' + cellvalue + '</textarea>';
     }
 
-    function fileFormat(cellvalue, options, rowObject) {
-        return '<img src="@Url.Action("DownloadImage", "New")?id=' + rowObject[getColumnIndexByName('news', 'Thumbnail')]
-                + '" class="img-responsive img-thumbnail" alt="'
-                + '" id="' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
-                + '"/>';
-    }
-
-    jQuery("#news").jqGrid({
-        url: '@Url.Action("ListNews", "New")',
+    jQuery("#extras").jqGrid({
+        url: '@Url.Action("ListExtras", "Extra")',
         datatype: "json",
         loadError: function (jqXHR, textStatus, errorThrown) {
             $('#errortext').text(jqXHR.responseText);
@@ -185,9 +178,11 @@
             , 'Status'
             , 'Title1'
             , 'Title2'
-            , 'Tags'
+            , 'Subtitle'
             , 'Published'
-            , 'Thumbnail'
+            , 'Category'
+            , 'Order1'
+            , 'Order2'
         ],
         colModel: [
             { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
@@ -202,25 +197,27 @@
                 },
                 editable: false
             },
-            { name: 'Title1', index: 'Title1', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Title2', index: 'Title2', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Tags', index: 'Tags', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Title1', index: 'Title1', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Title2', index: 'Title2', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Subtitle', index: 'Subtitle', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
                 search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
             },
-            { name: 'Thumbnail', index: 'Thumbnail', width: 150, align: "center", hidden: false, sortable: false, search: false, editable: false, formatter: fileFormat }
+            { name: 'Category', index: 'Category', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Order1', index: 'Order1', width: 50, template: numberTemplate, hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Order2', index: 'Order2', width: 50, template: numberTemplate, hidden: false, sortable: true, search: true, editable: false }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],
         toppager: true,
-        pager: '#newspager',
-        sortname: 'Status',//,PublishingDate',
+        pager: '#extraspager',
+        sortname: 'Status,PublishingDate,Order1,Order2',
         viewrecords: true,
         sortorder: "desc",
-        caption: 'News',
+        caption: 'Extras',
         rownumbers: false,
         gridview: true,
         hoverrows: true,
@@ -243,7 +240,7 @@
             $("#edit").show().css({ visibility: "visible" });
             $("#del").show().css({ visibility: "visible" });
             $.ajax({
-                url: '@Url.Action("FlashNew", "New")?id=' + rowid,
+                url: '@Url.Action("FlashExtra", "Extra")?id=' + rowid,
                 type: 'GET',
                 success: function (data) {
                     $("#flash_thumb").html(data);
@@ -264,7 +261,7 @@
         }
     });
 
-    jQuery("#news").jqGrid('navGrid', '#newspager'
+    jQuery("#extras").jqGrid('navGrid', 'extraspager'
         , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
         , {} //prmedit
         , {} //prmadd
@@ -289,9 +286,9 @@
 
     $('#Publish').click(function () {
         $.ajax({
-            url: '@Url.Action("UpdateNewStatus", "New")?id=' + $("#rowid").val() + '&to=Published',
+            url: '@Url.Action("UpdateExtraStatus", "Extra")?id=' + $("#rowid").val() + '&to=Published',
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#extras').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
@@ -304,8 +301,8 @@
                         $('#warningmodal').modal({ show: true });
                     }
                 }
-                jQuery('#news').unblock();
-                $("#news").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#extras').unblock();
+                $("#extras").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -315,9 +312,9 @@
     });
     $('#CallBack').click(function () {
         $.ajax({
-            url: '@Url.Action("UpdateNewStatus", "New")?id=' + $("#rowid").val() + '&to=Unpublished',
+            url: '@Url.Action("UpdateExtraStatus", "Extra")?id=' + $("#rowid").val() + '&to=Unpublished',
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#extras').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
@@ -330,8 +327,8 @@
                         $('#warningmodal').modal({ show: true });
                     }
                 }
-                jQuery('#news').unblock();
-                $("#news").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#extras').unblock();
+                $("#extras").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -341,9 +338,9 @@
     });
     $('#deletebutton').click(function () {
         $.ajax({
-            url: '@Url.Action("DeleteNew", "New")?id=' + $("#rowid").val(),
+            url: '@Url.Action("DeleteExtra", "Extra")?id=' + $("#rowid").val(),
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#news').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#extras').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
@@ -356,8 +353,8 @@
                         $('#warningmodal').modal({ show: true });
                     }
                 }
-                jQuery('#news').unblock();
-                $("#news").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#extras').unblock();
+                $("#extras").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -367,11 +364,11 @@
     });
 
     $('#create').click(function () {
-        document.location.href = '@Url.Action("Create", "New")';
+        document.location.href = '@Url.Action("Create", "Extra")';
     });
 
     $('#edit').click(function () {
-        document.location.href = '@Url.Action("Edit", "New")?id=' + $("#rowid").val();
+        document.location.href = '@Url.Action("Edit", "Extra")?id=' + $("#rowid").val();
     });
 
     </script>

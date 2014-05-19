@@ -23,11 +23,8 @@ namespace Tax.Data.Models
 
         [Key]
         public Guid Id { get; set; }
-        //        [Display(Name = "Date")]
         public DateTime? Date { get; set; }
-        //        [Display(Name = "PublishingDate")]
         public DateTime? PublishingDate { get; set; }
-        //        [Display(Name = "Állapot")]
         public virtual NewsStatusesGlobal NewsStatus { get; set; }
 
         public virtual ICollection<EventsLocal> EventsLocal { get; set; }
@@ -47,14 +44,8 @@ namespace Tax.Data.Models
         [ForeignKey("LanguageId")]
         public virtual Language Language { get; set; }
 
-
-        //[Display(Name = "Title1")]
-        //[Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
         public string Title1 { get; set; }
-        //[Display(Name = "Title2")]        
         public string Title2 { get; set; }
-
-        //[Display(Name = "Body text")]
         public string Body_text { get; set; }
     }
 }

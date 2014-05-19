@@ -52,17 +52,17 @@ namespace Tax.Portal.Controllers
                                     , (x, y) => new { x, y })
                                 .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
                                     , (z, v) => new { z, v })
-                        .ToList()
-                        .Select(s => new 
-                        {
-                            Id = s.z.x.Id,
-                            Status = s.v.Name,
-                            Title1 = s.z.y.Title1,
-                            Title2 = s.z.y.Title2,
-                            PublishingDate = s.z.x.PublishingDate,
-                            Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
-                        })
-                        .AsEnumerable();
+                        .ToList();
+                        //.Select(s => new 
+                        //{
+                        //    Id = s.z.x.Id,
+                        //    Status = s.v.Name,
+                        //    Title1 = s.z.y.Title1,
+                        //    Title2 = s.z.y.Title2,
+                        //    PublishingDate = s.z.x.PublishingDate,
+                        //    Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
+                        //})
+                        //.AsEnumerable();
 
             var rs00 = db.NewsGlobal
                             .SelectMany(v => db.TagsLocal.Where(z => v.TagsGlobal.Contains(z.TagsGlobal) && z.LanguageId == lguid)
@@ -78,18 +78,32 @@ namespace Tax.Portal.Controllers
                             .AsEnumerable();
 
             var rs = rs0
-                        .SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
+                        //.SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
+                        //    {
+                        //        Id = a.Id,
+                        //        Status = a.Status,
+                        //        Title1 = a.Title1,
+                        //        Title2 = a.Title2,
+                        //        Tags = null == b ? "" : b.Tags,
+                        //        PublishingDate = a.PublishingDate,
+                        //        Thumbnail = a.Thumbnail
+                        //    }
+                        //)
+                        //.AsQueryable().GridPage(grid, out result);
+                        .SelectMany(a => rs00.Where(b => b.Id == a.z.x.Id).DefaultIfEmpty(), (a, b) => new
                             {
-                                Id = a.Id,
-                                Status = a.Status,
-                                Title1 = a.Title1,
-                                Title2 = a.Title2,
+                                Id = a.z.x.Id,
+                                Status = a.v.Name,
+                                Title1 = a.z.y.Title1,
+                                Title2 = a.z.y.Title2,
                                 Tags = null == b ? "" : b.Tags,
-                                PublishingDate = a.PublishingDate,
-                                Thumbnail = a.Thumbnail
+                                //PublishingDate = a.z.x.PublishingDate,
+                                // = null == a.z.x.Thumbnail ? Guid.Empty : a.z.x.Thumbnail.stream_id
                             }
                         )
                         .AsQueryable().GridPage(grid, out result);
+
+            foreach (var i in rs.ToList()) { Debug.WriteLine(i); }
 
             result.rows = (from r in rs
                            select new JsonRow
@@ -102,8 +116,8 @@ namespace Tax.Portal.Controllers
                                 ,r.Title1
                                 ,r.Title2
                                 ,r.Tags
-                                ,r.PublishingDate.ToString()
-                                ,r.Thumbnail.ToString()
+                                ,""//r.PublishingDate.ToString()
+                                ,""//r.Thumbnail.ToString()
                                }
                            }).ToArray();
 
@@ -189,6 +203,8 @@ namespace Tax.Portal.Controllers
             using (log4net.ThreadContext.Stacks["NDC"].Push("GET: New/Create"))
             {
                 log.Info("begin");
+                string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
                 NewViewModel suvm = new NewViewModel();
 
@@ -198,6 +214,7 @@ namespace Tax.Portal.Controllers
                                 .ToArray();
                 suvm.TagFromList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
                                             .Union(db.TagsLocal
+                                                    .Where(x => x.LanguageId == lguid)
                                                     .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name }))
                                             .OrderBy(x => x.Text)
                                             .ToList();
