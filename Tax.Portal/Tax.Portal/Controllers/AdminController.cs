@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Tax.Portal.Helpers;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 
 namespace Tax.Portal.Controllers
@@ -42,7 +43,7 @@ namespace Tax.Portal.Controllers
         {
             JQGrid.Helpers.JsonResult result;
 
-            var rs = (db.Users
+            var rs = db.Users
                        .Select(u => new
                             {
                                 Id = u.Id,
@@ -75,27 +76,27 @@ namespace Tax.Portal.Controllers
 
         [HttpPost]
         [Authorize(Roles = "SysAdmin")]
-        public virtual ActionResult CreateUser(ApplicationUser u, string Password)
+        public virtual ActionResult CreateUser(string UserName, string Password, string Name, string Email)
         {
             using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Admin/CreateUser"))
             {
                 log.Info("begin");
                 //kézi validálás
-                if ("" == u.UserName || "" == u.Name || "" == u.Email)
+                if ("" == UserName || "" == Name || "" == Email)
                 {
                     return Json(new { success = false, error = false, response = "[UsrName] and [Name] and [Email] is required" });
                 }
                 int minlenght = 3;
-                if (u.UserName.Length < minlenght || u.Name.Length < minlenght)
+                if (UserName.Length < minlenght || Name.Length < minlenght)
                 {
                     return Json(new { success = false, error = true, response = string.Format("The UserName and Name must be at least {0} characters long.", minlenght) });
                 }
                 //barátunk a usermanager
                 var user = new ApplicationUser()
                 {
-                    UserName = u.UserName,
-                    Name = u.Name,
-                    Email = u.Email,
+                    UserName = UserName,
+                    Name = Name,
+                    Email = Email,
                     isLocked = false
                 };
 
@@ -105,14 +106,14 @@ namespace Tax.Portal.Controllers
                 {
                     user.Roles.Add(new IdentityUserRole() { Role = role });
                 }
-
-                AccountController ctr = new AccountController();
-                var result = ctr.UserManager.CreateAsync(user, Password);//ez menti a modeleket
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager) { AllowOnlyAlphanumericUserNames = false }; 
+                IdentityResult result = UserManager.Create(user, Password);//ez menti a modeleket
                 log.Info("User létrehozva");
-                if (!result.Result.Succeeded)
+                if (!result.Succeeded)
                 {
                     log.Info("end with error");
-                    return Json(new { success = false, error = true, response = result.Result.Errors });
+                    return Json(new { success = false, error = true, response = result.Errors });
                 }
 
                 log.Info("end with ok");
@@ -145,8 +146,23 @@ namespace Tax.Portal.Controllers
                         if (res.UserName != u.UserName) { res.UserName = u.UserName; }
                         if (res.Name != u.Name) { res.Name = u.Name; }
                         if (res.Email != u.Email) { res.Email = u.Email; }
-                        if (res.isLocked != u.isLocked) { res.isLocked = u.isLocked; }
-//Todo: itt felvesszük meg elveszszük az SysAdmin szerepet
+                        if (res.isLocked != u.isLocked) 
+                        { 
+                            res.isLocked = u.isLocked;
+                            db.Entry(res).Collection(t => t.Roles).Load();
+                            IdentityRole rol = db.Roles.FirstOrDefault(x => x.Name == "SysAdmin");
+                            if (null != rol)
+                            {
+                                if (u.isLocked)
+                                {
+                                    res.Roles.Add(new IdentityUserRole() { Role = rol });
+                                }
+                                else
+                                {
+                                    res.Roles.Remove(new IdentityUserRole() { Role = rol });
+                                }
+                            }
+                        }
                     }
                     break;
                 default:
@@ -161,6 +177,30 @@ namespace Tax.Portal.Controllers
             {
                 return Json(new { success = false, error = false, response = response });
             }
+        }
+
+        /// <summary>
+        /// Törlés
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult DeleteUser(string id)
+        {
+            var u = db.Users.Find(id);
+            if (null != u)
+            {
+                //még nem volt implementálva az identitybe a delete
+                db.Entry(u).Collection(t => t.Roles).Load();
+                foreach (IdentityUserRole rol in u.Roles.ToList())
+                { 
+                    u.Roles.Remove(rol); 
+                }
+                db.Entry(u).State = EntityState.Deleted;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false, error = false, response = "Not found" });
         }
 
 #endregion User
@@ -209,25 +249,26 @@ namespace Tax.Portal.Controllers
 
         [HttpPost]
         [Authorize(Roles = "SysAdmin")]
-        public virtual ActionResult CreateSetup(SystemParameter r)
+        public virtual ActionResult CreateSetup(string Name, string Value, string Description)
         {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Admin/CreateUser"))
+            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Admin/CreateSetup"))
             {
                 log.Info("begin");
                 //kézi validálás
-                if ("" == r.Name || "" == r.Value)
+                if ("" == Name || "" == Value)
                 {
                     return Json(new { success = false, error = false, response = "[Name] and [Value] are required" });
                 }
                 int minlenght = 3;
-                if (r.Name.Length < minlenght)
+                if (Name.Length < minlenght)
                 {
                     return Json(new { success = false, error = true, response = string.Format("The Name must be at least {0} characters long.", minlenght) });
                 }
                 //barátunk a usermanager
                 var sys = db.SystemParameter.Create();
-                sys.Name = r.Name;
-                sys.Value = r.Value;
+                sys.Name = Name;
+                sys.Value = Value;
+                sys.Description = Description;
                 sys.Public = true;
                 db.Entry(sys).State = EntityState.Added;
                 db.SaveChanges();
@@ -242,25 +283,25 @@ namespace Tax.Portal.Controllers
         public virtual ActionResult EditSetup(string id, string oper, SystemParameter r)
         {
             //kézi validálás
-            if ("" == u.UserName || "" == u.Name || "" == u.Email)
+            if ("" == r.Name || "" == r.Value)
             {
-                return Json(new { success = false, error = false, response = "[UsrName] and [Name] and [Email] is required" });
+                return Json(new { success = false, error = false, response = "[Name] and [Value] is required" });
             }
             int minlenght = 3;
-            if (u.UserName.Length < minlenght || u.Name.Length < minlenght)
+            if (r.Name.Length < minlenght)
             {
-                return Json(new { success = false, error = true, response = string.Format("The UserName and Name must be at least {0} characters long.", minlenght) });
+                return Json(new { success = false, error = true, response = string.Format("The Name must be at least {0} characters long.", minlenght) });
             }
 
             string response = "";            
-            r.Id = "_empty" != id ? Guid.Parse(id) : Guid.NewGuid();
+            Guid gid = Guid.Parse(id);
 
             SystemParameter res;
 
             switch (oper)
             {
                 case "edit":
-                    res = db.SystemParameter.Find(r.Id);
+                    res = db.SystemParameter.Find(gid);
                     if (res.Name != r.Name) { res.Name = r.Name; }
                     if (res.Value != r.Value) { res.Value = r.Value; }
                     if (res.Description != r.Description) { res.Description = r.Description; }
@@ -281,6 +322,23 @@ namespace Tax.Portal.Controllers
             }
         }
 
+        /// <summary>
+        /// Törlés
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult DeleteSetup(Guid id)
+        {
+            var s = db.SystemParameter.Find(id);
+            if (null != s)
+            {
+                db.Entry(s).State = EntityState.Deleted;
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false, error = false, response = "Not found" });
+        }
 
 #endregion Setup
 

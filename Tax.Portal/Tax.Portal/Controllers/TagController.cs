@@ -89,22 +89,22 @@ namespace Tax.Portal.Controllers
             using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Tag/Create"))
             {
                 log.Info("begin");
-                if ("" == nameEn)
+                if ("" == NameEn)
                 {
                     return Json(new { success = false, error = false, response = "[ENG] is required" });
                 }
-                if ("" == nameHu)
+                if ("" == NameHu)
                 {
                     return Json(new { success = false, error = false, response = "[HUN] is required" });
                 }
                 int minlenght = 3;
-                if (nameEn.Length < minlenght)
+                if (NameEn.Length < minlenght)
                 {
                     return Json(new { success = false, error = true, response = string.Format("The ENG must be at least {0} characters long.", minlenght) });
                 }
-                if (nameHu.Length < minlenght)
+                if (NameHu.Length < minlenght)
                 {
-                    return Json(new { success = false, error = true, response = string.Format("The ENG must be at least {0} characters long.", minlenght) });
+                    return Json(new { success = false, error = true, response = string.Format("The HUN must be at least {0} characters long.", minlenght) });
                 }
                 TagsGlobal resg = db.TagsGlobal.Create();
                 db.Entry(resg).State = EntityState.Added;
@@ -114,13 +114,13 @@ namespace Tax.Portal.Controllers
                 TagsLocal reslEn = db.TagsLocal.Create();
                 reslEn.TagsGlobal = resg;
                 reslEn.Language = db.Language.Find(lguidEn);
-                reslEn.Name = nameEn;
+                reslEn.Name = NameEn;
                 db.Entry(reslEn).State = EntityState.Added;
                 Guid lguidHu = LocalisationHelpers.GetLanguageId("hu", db);
                 TagsLocal reslHu = db.TagsLocal.Create();
                 reslHu.TagsGlobal = resg;
                 reslHu.Language = db.Language.Find(lguidHu);
-                reslHu.Name = nameHu;
+                reslHu.Name = NameHu;
                 db.Entry(reslHu).State = EntityState.Added;
                 db.SaveChanges();
                 log.Info("end with ok");
@@ -138,19 +138,19 @@ namespace Tax.Portal.Controllers
         {
             using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Contact/Edit"))
             {
-                Guid Id = Guid.Parse(id);
+                Guid gid = Guid.Parse(id);
                 log.Info("begin");
                 TagsGlobal resg;
 
                 switch (oper)
                 {
                     case "edit":
-                        resg = db.TagsGlobal.Find(id);
+                        resg = db.TagsGlobal.Find(gid);
                         Guid lguidEn = LocalisationHelpers.GetLanguageId("en", db);
-                        TagsLocal reslEn = db.TagsLocal.FirstOrDefault(x => x.TagsGlobalId == Id && x.LanguageId == lguidEn);
+                        TagsLocal reslEn = db.TagsLocal.FirstOrDefault(x => x.TagsGlobalId == gid && x.LanguageId == lguidEn);
                         if (reslEn.Name != nameEn) { reslEn.Name = nameEn; }
                         Guid lguidHu = LocalisationHelpers.GetLanguageId("hu", db);
-                        TagsLocal reslHu = db.TagsLocal.FirstOrDefault(x => x.TagsGlobalId == Id && x.LanguageId == lguidHu);
+                        TagsLocal reslHu = db.TagsLocal.FirstOrDefault(x => x.TagsGlobalId == gid && x.LanguageId == lguidHu);
                         if (reslHu.Name != nameHu) { reslHu.Name = nameHu; }
                         break;
                     default:

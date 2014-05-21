@@ -65,7 +65,9 @@
                 <h4 class="modal-title">Add message</h4>
             </div>
             <div class="modal-body" style="height:200px">
-                @Html.ValidationSummary()
+                <div id="customvalidation" class="validation-summary-errors" data-valmsg-summary="true" style="display:none">
+                    <div id="message"></div>
+                </div>
                 <div class="col-sm-12 col-xs-12">
                     @Html.Label("New message on english")
                 </div>
@@ -73,7 +75,7 @@
                     @Html.TextBox("NewmessageEn", "", new { @class = "form-control", placeholder = "Type here a name of new message on english" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
-                    @Html.Label("New tag on hungarian")
+                    @Html.Label("New message on hungarian")
                 </div>
                 <div class="col-sm-12 col-xs-12">
                     @Html.TextBox("NewmessageHu", "", new { @class = "form-control", placeholder = "Type here a name of new message on hungarian" })
@@ -121,8 +123,8 @@
                     <a id="create" class="fa fa-plus fa-lg" style="padding-left:5px; padding-right:5px" data-toggle="modal" data-target="#createmodal"></a>
                     <a id="del" class="fa fa-trash-o fa-lg" style="visibility:hidden; padding-right:5px" data-toggle="modal" data-target="#deletemodal"></a>
                 </div>
-                <table id="messages" class="display"><tr><td /></tr></table>
-                <div id="messagespager"></div>
+                <table id="msg" class="display"><tr><td /></tr></table>
+                <div id="msgpager"></div>
             </div>
         </div>
     </div>
@@ -158,7 +160,7 @@
                 onSelect: function () {
                     if (this.id.substr(0, 3) === "gs_") {
                         setTimeout(function () {
-                            $("#messages")[0].triggerToolbar();
+                            $("#msg")[0].triggerToolbar();
                         }, 50);
                     } else {
                         // to refresh the filter
@@ -180,7 +182,7 @@
 
     var ids = [];
 
-    jQuery("#messages").jqGrid({
+    jQuery("#msg").jqGrid({
         url: '@Url.Action("ListMessages", "Message")',
         editurl: '@Url.Action("Edit", "Message")',
         datatype: "json",
@@ -205,17 +207,17 @@
                 , formatoptions: {
                     keys: false, editbutton: true, delbutton: false,
                     afterSave: function () {
-                        $("#tags").trigger("reloadGrid", [{ current: true }]);
+                        $("#msg").trigger("reloadGrid", [{ current: true }]);
                     },
                     afterRestore: function () {
-                        $("#tags").trigger("reloadGrid", [{ current: true }]);
+                        $("#msg").trigger("reloadGrid", [{ current: true }]);
                     },
                     onError: function (jqXHR, textStatus, errorThrown) {
                         $('#errortext').text(jqXHR.responseText);
                         $('#errormodal').modal({ show: true });
                     }
                 }
-                , width: 45
+                , width: 55
                 , sortable: false
                 , search: false
             },
@@ -237,19 +239,24 @@
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
-                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }//, searchrules: { custom: true, custom_func: datetimecheck }
-                ,editable: false
+                search: true,
+                searchoptions: {
+                    sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'],
+                    dataInit: initDateSearch
+                },
+                searchrules: { custom: true, custom_func: datetimecheck },
+                editable: false
             },
             { name: 'Response', index: 'Response', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: false, edittype: "textarea" }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],
         toppager: true,
-        pager: '#messagespager',
+        pager: '#msgpager',
         sortname: 'MessageEn',
         viewrecords: true,
         sortorder: "asc",
-        caption: 'Tags',
+        caption: 'Messages',
         rownumbers: false,
         gridview: true,
         hoverrows: true,
@@ -260,23 +267,27 @@
         autowidth: true,
         onSelectRow: function (rowid) {
             $("#rowid").val(rowid);
-            $("#del").show().css({ visibility: "visible" });
-            if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt')
-            { $("#Publish").show().css({ visibility: "visible" }); }
+            if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt') {
+                $("#Publish").show().css({ visibility: "visible" });
+                $("#del").show().css({ visibility: "visible" });
+            }
             else
-            { $("#Publish").hide().css({ visibility: "hidden" }); }
+            {
+                $("#Publish").hide().css({ visibility: "hidden" });
+                $("#del").hide().css({ visibility: "hidden" });
+            }
         },
         loadComplete: function () {
             $("#del").hide().css({ visibility: "hidden" });
             $("#Publish").hide().css({ visibility: "hidden" });
-            var ids = jQuery("#messages").getDataIDs();
-            for (var i = 0; i < ids.length; i++) 
+            var ids = jQuery("#msg").getDataIDs();
+            for (var i = 0; i < ids.length; i++)
             {
                 if ($(this).getCell(ids[i], 'Status') == 'Under editing' || $(this).getCell(ids[i], 'Status') == 'Szerkesztés alatt')
                 {
                     $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-edit").show();
                 }
-                else 
+                else
                 {
                     $("tr#" + $.jgrid.jqID(ids[i]) + " div.ui-inline-edit").hide();
                 };
@@ -284,7 +295,7 @@
         }
     });
 
-    jQuery("#message").jqGrid('navGrid', '#messagespager'
+    jQuery("#msg").jqGrid('navGrid', '#msgpager'
         , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
         , {} //prmedit
         , {} //prmadd
@@ -307,7 +318,7 @@
     )
     .jqGrid('filterToolbar', { stringResult: true, searchOnEnter: true, defaultSearch: "cn" })
 
-    jQuery("#messages").bind("jqGridInlineSuccessSaveRow",
+    jQuery("#msg").bind("jqGridInlineSuccessSaveRow",
         function (e, jqXHR, rowid, options) {
             var str = JSON.parse(jqXHR.responseText);
             if (!str.success) {
@@ -328,7 +339,7 @@
         $.ajax({
             url: '@Url.Action("DeleteMessage", "Message")?id=' + $("#rowid").val(),
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#messages').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#msg').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
@@ -341,8 +352,8 @@
                         $('#warningmodal').modal({ show: true });
                     }
                 }
-                jQuery('#messages').unblock();
-                $("#messages").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#msg').unblock();
+                $("#msg").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -355,31 +366,19 @@
         $.ajax({
             url: '@Url.Action("Create", "Message")?messageEn=' + $("#NewmessageEn").val() + '&messageHu=' + $("#NewmessageHu").val(),
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#messages').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#msg').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
-//<li style="display:none"></li>
-                    $('.validation-summary-valid').attr('class', 'validation-summary-errors');
-                    //$(".validation-summary-error > ul").appendChild(str.response);
-                    $(".validation-summary-error ul").append('<li style="display:normal">teszt</li>');
-
-                    //val(str.response);
-                    //if (str.error) {
-                    //    $('#errortext').text(str.response);
-                    //    $('#errormodal').modal({ show: true });
-                    //}
-                    //else {
-                    //    $('#warningtext').text(str.response);
-                    //    $('#warningmodal').modal({ show: true });
-                    //}
+                    $('#message').text(str.response)
+                    $('#customvalidation').show().css({ visibility: "visible" });
                 }
-                else
-                {
-                    $('#createbutton').modal({ show: false });
+                else {
+                    $("#customvalidation").hide().css({ visibility: "hidden" });
+                    $('#createmodal').modal('hide');
                 }
-                jQuery('#messages').unblock();
-                $("#messages").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#msg').unblock();
+                $("#msg").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -388,11 +387,17 @@
         });
     });
 
+    $("#createmodal").on("hide.bs.modal", function () {
+        $("#customvalidation").hide().css({ visibility: "hidden" });
+        $('#NewmessageEn').val('');
+        $('#NewmessageHu').val('');
+    });
+
     $('#Publish').click(function () {
         $.ajax({
             url: '@Url.Action("UpdateMessageStatus", "Message")?id=' + $("#rowid").val() + '&to=Published',
             type: 'POST',
-            beforeSend: function (jqXHR, textStatus) { jQuery('#messages').block({ message: '<h3>Wait…</h3>' }); },
+            beforeSend: function (jqXHR, textStatus) { jQuery('#msg').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
@@ -405,8 +410,8 @@
                         $('#warningmodal').modal({ show: true });
                     }
                 }
-                jQuery('#messages').unblock();
-                $("#messages").trigger("reloadGrid", [{ current: true }]);
+                jQuery('#msg').unblock();
+                $("#msg").trigger("reloadGrid", [{ current: true }]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -414,7 +419,7 @@
             }
         });
     });
-
+ 
     </script>
 
 }

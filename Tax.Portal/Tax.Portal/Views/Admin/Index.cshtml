@@ -67,33 +67,33 @@
                 <h4 class="modal-title">Add user</h4>
             </div>
             <div class="modal-body" style="height:200px">
-                @Html.ValidationSummary()
+                <div id="customvalidationuser" class="validation-summary-errors" data-valmsg-summary="true" style="display:none">
+                    <div id="messageuser"></div>
+                </div>
+
                 <div class="col-sm-12 col-xs-12">
                     @Html.Label("New username")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("UserName", "", new { @class = "form-control", placeholder = "Type here new username" })
+                    @Html.TextBox("NewUserName", "", new { @class = "form-control", placeholder = "Type here new username" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
                     @Html.Label("New initial password")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.Password("Password", "", new { @class = "form-control", placeholder = "Type here new initial password" })
+                    @Html.Password("NewPassword", "", new { @class = "form-control", placeholder = "Type here new initial password" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
                     @Html.Label("New name")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("Name", "", new { @class = "form-control", placeholder = "Type here new name" })
+                    @Html.TextBox("NewName", "", new { @class = "form-control", placeholder = "Type here new name" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
                     @Html.Label("New email")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("Email", "", new { @class = "form-control", placeholder = "Type here new email" })
-                </div>
-                <div class="col-sm-12 col-xs-12" style="padding-top:10px">
-                    @Html.Label("Admin?")
+                    @Html.TextBox("NewEmail", "", new { @class = "form-control", placeholder = "Type here new email" })
                 </div>
             </div>
             <div class="modal-footer">
@@ -138,36 +138,26 @@
                 <h4 class="modal-title">Add setup</h4>
             </div>
             <div class="modal-body" style="height:200px">
-                @Html.ValidationSummary()
-                <div class="col-sm-12 col-xs-12">
-                    @Html.Label("New username")
+                <div id="customvalidationsetup" class="validation-summary-errors" data-valmsg-summary="true" style="display:none">
+                    <div id="messagesetup"></div>
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("UserName", "", new { @class = "form-control", placeholder = "Type here new username" })
-                </div>
-                <div class="col-sm-12 col-xs-12" style="padding-top:10px">
-                    @Html.Label("New initial password")
-                </div>
-                <div class="col-sm-12 col-xs-12">
-                    @Html.Password("Password", "", new { @class = "form-control", placeholder = "Type here new initial password" })
-                </div>
-                <div class="col-sm-12 col-xs-12" style="padding-top:10px">
                     @Html.Label("New name")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("Name", "", new { @class = "form-control", placeholder = "Type here new name" })
+                    @Html.TextBox("Name", "", new { @class = "form-control", placeholder = "Type here new parameter name" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
-                    @Html.Label("New email")
+                    @Html.Label("New value")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("Email", "", new { @class = "form-control", placeholder = "Type here new email" })
+                    @Html.TextBox("Value", "", new { @class = "form-control", placeholder = "Type here new parameter value" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
-                    @Html.Label("Admin?")
+                    @Html.Label("New description")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.CheckBox("isLocked", "")
+                    @Html.TextArea("Description", "", new { @class = "form-control", placeholder = "Type here new parameter description" })
                 </div>
             </div>
             <div class="modal-footer">
@@ -209,7 +199,7 @@
         <li class="active"><a data-toggle="tab" href="#Users">Users</a></li>
         <li><a data-toggle="tab" href="#Setup">Setup</a></li>
     </ul>
-    <div id="SinoszTabContent" class="tab-content">
+    <div id="AdminTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="Users">
             <div class="row">
                 <div class="container grid">
@@ -229,8 +219,8 @@
                 <div class="container grid">
                     <div class="col-sm-12 col-xs-12">
                         <div class="btn-group">
-                            <a id="createsetup" class="fa fa-plus fa-lg" style="padding-left:5px; padding-right:5px" data-toggle="modal" data-target="#createmodaluser"></a>
-                            <a id="delsetup" class="fa fa-trash-o fa-lg" style="visibility:hidden; padding-right:5px" data-toggle="modal" data-target="#deletemodaluser"></a>
+                            <a id="createsetup" class="fa fa-plus fa-lg" style="padding-left:5px; padding-right:5px" data-toggle="modal" data-target="#createmodalsetup"></a>
+                            <a id="delsetup" class="fa fa-trash-o fa-lg" style="visibility:hidden; padding-right:5px" data-toggle="modal" data-target="#deletemodalsetup"></a>
                         </div>
                         <table id="setups" class="display"><tr><td /></tr></table>
                         <div id="setupspager"></div>
@@ -264,7 +254,7 @@
 
         jQuery("#users").jqGrid({
             url: '@Url.Action("ListUsers", "Admin")',
-            editurl: '@Url.Action("UpdateUsers", "Admin")',
+            editurl: '@Url.Action("EditUser", "Admin")',
             datatype: "json",        
             loadError: function (jqXHR, textStatus, errorThrown) {
                 $('#errortext').text(jqXHR.responseText);
@@ -274,45 +264,50 @@
                 'Action'
                 , 'id'
                 , 'Username'
-                , 'Name'
                 , 'Password'
+                , 'Name'
                 , 'Email'
                 , 'Admin?'
             ],
             colModel: [
-            {
-                name: "act"
-                , index: "act"
-                , formatter: "actions"
-                , formatoptions: {
-                    keys: false, editbutton: true, delbutton: false,
-                    afterSave: function () {
-                        $("#users").trigger("reloadGrid", [{ current: true }]);
-                    },
-                    afterRestore: function () {
-                        $("#users").trigger("reloadGrid", [{ current: true }]);
-                    },
-                    onError: function (jqXHR, textStatus, errorThrown) {
-                        $('#errortext').text(jqXHR.responseText);
-                        $('#errormodal').modal({ show: true });
+                {
+                    name: "act"
+                    , index: "act"
+                    , align: "center"
+                    , formatter: "actions"
+                    , formatoptions: {
+                        keys: false, editbutton: true, delbutton: false,
+                        afterSave: function () {
+                            $("#users").trigger("reloadGrid", [{ current: true }]);
+                        },
+                        afterRestore: function () {
+                            $("#users").trigger("reloadGrid", [{ current: true }]);
+                        },
+                        onError: function (jqXHR, textStatus, errorThrown) {
+                            $('#errortext').text(jqXHR.responseText);
+                            $('#errormodal').modal({ show: true });
+                        }
                     }
+                    , width: 55
+                    , sortable: false
+                    , search: false
                 },
                 {
-                    name: 'Id', index: 'Id', width: 80, align: "left", hidden: true, sortable: false, editable: false,
+                    name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false,
                     editoptions: {
                         dataInit: function (element) {
                             $(this).jqGrid('getColProp', 'Admin').formatoptions.disabled = false;
                         }
                     }
                 },
-                { name: 'UserName', index: 'UserName', width: 90, align: "left", editable: true, sortable: true },
-                { name: 'Name', index: 'Name', width: 90, align: "left", editable: true, sortable: true },
-                { name: 'Password', index: 'Password', width: 90, align: "left", editable: false, sortable: true },
-                { name: 'Email', index: 'Email', width: 120, align: "left", editable: true, sortable: true },
+                { name: 'UserName', index: 'UserName', width: 150, align: "left", editable: true, sortable: true },
+                { name: 'Password', index: 'Password', width: 100, align: "center", editable: false, sortable: false, search: false },
+                { name: 'Name', index: 'Name', width: 250, align: "left", editable: true, sortable: true },
+                { name: 'Email', index: 'Email', width: 200, align: "left", editable: true, sortable: true },
                 {
                     name: 'isLocked', index: 'isLocked', width: 45, align: "center", editable: true,
                     edittype: 'checkbox', editoptions: { value: "True:False" },
-                    searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                    searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
                     formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
                 }
             ],
@@ -333,10 +328,10 @@
             autowidth: true,
             onSelectRow: function (rowid, e) {
                 $("#rowidUser").val(rowid);
-                $("#delUser").show().css({ visibility: "visible" });
+                $("#deluser").show().css({ visibility: "visible" });
             },
             loadComplete: function () {
-                $("#delUser").hide().css({ visibility: "hidden" });
+                $("#deluser").hide().css({ visibility: "hidden" });
             }
         });
     
@@ -408,7 +403,10 @@
 
         $('#createbuttonuser').click(function () {
             $.ajax({
-                url: '@Url.Action("CreateUser", "Admin")?nameEn=' + $("#NewtagNameEn").val() + '&nameHu=' + $("#NewtagNameHu").val(),
+                url: '@Url.Action("CreateUser", "Admin")?UserName=' + $('#NewUserName').val()
+                        + '&Password=' + $('#NewPassword').val()
+                        + '&Name=' + $('#NewName').val()
+                        + '&Email=' + $('#NewEmail').val(),
                 type: 'POST',
                 beforeSend: function (jqXHR, textStatus) {
                     jQuery('#users').block({ message: '<h3>Wait…</h3>' });
@@ -416,24 +414,12 @@
                 complete: function (jqXHR, textStatus) {
                     var str = JSON.parse(jqXHR.responseText);
                     if (!str.success) {
-                        //<li style="display:none"></li>
-                        $('.validation-summary-valid').attr('class', 'validation-summary-errors');
-                        //$(".validation-summary-error > ul").appendChild(str.response);
-                        //$(".validation-summary-error ul").append('<li style="display:normal">teszt</li>');
-                        $("#ValidationSummary ul").append('<li style="display:normal">teszt</li>');
-
-                        //val(str.response);
-                        //if (str.error) {
-                        //    $('#errortext').text(str.response);
-                        //    $('#errormodal').modal({ show: true });
-                        //}
-                        //else {
-                        //    $('#warningtext').text(str.response);
-                        //    $('#warningmodal').modal({ show: true });
-                        //}
+                        $('#messageuser').text(str.response)
+                        $('#customvalidationuser').show().css({ visibility: "visible" });
                     }
                     else {
-                        $('#createbuttonuser').modal({ show: false });
+                        $("#customvalidationuser").hide().css({ visibility: "hidden" });
+                        $('#createmodaluser').modal('hide');
                     }
                     jQuery('#users').unblock();
                     $("#users").trigger("reloadGrid", [{ current: true }]);
@@ -445,37 +431,50 @@
             });
         });
 
+        $("#createmodaluser").on("hide.bs.modal", function () {
+            $("#customvalidationuser").hide().css({ visibility: "hidden" });
+            $('#NewUserName').val('');
+            $('#NewPassword').val('');
+            $('#NewName').val('');
+            $('#NewEmail').val('');
+        });
+
+
         //setup
 
         jQuery("#setups").jqGrid({
             url: '@Url.Action("ListSystemParameters", "Admin")',
-            editurl: '@Url.Action("UpdateSystemParameters", "Admin")',
+            editurl: '@Url.Action("EditSetup", "Admin")',
             datatype: "json",
             colNames: [
-                'Műveletek'
+                'Action'
                 , 'id'
-                , 'Megnevezés'
-                , 'Érték'
-                , 'Leírás'
-                , 'Nyilvános?'
+                , 'Name'
+                , 'Value'
+                , 'Descriptiom'
+                , 'Public?'
             ],
             colModel: [
-            {
-                name: "act"
-                , index: "act"
-                , formatter: "actions"
-                , formatoptions: {
-                    keys: false, editbutton: true, delbutton: false,
-                    afterSave: function () {
-                        $("#setups").trigger("reloadGrid", [{ current: true }]);
-                    },
-                    afterRestore: function () {
-                        $("#setups").trigger("reloadGrid", [{ current: true }]);
-                    },
-                    onError: function (jqXHR, textStatus, errorThrown) {
-                        $('#errortext').text(jqXHR.responseText);
-                        $('#errormodal').modal({ show: true });
+                {
+                    name: "act"
+                    , index: "act"
+                    , formatter: "actions"
+                    , formatoptions: {
+                        keys: false, editbutton: true, delbutton: false,
+                        afterSave: function () {
+                            $("#setups").trigger("reloadGrid", [{ current: true }]);
+                        },
+                        afterRestore: function () {
+                            $("#setups").trigger("reloadGrid", [{ current: true }]);
+                        },
+                        onError: function (jqXHR, textStatus, errorThrown) {
+                            $('#errortext').text(jqXHR.responseText);
+                            $('#errormodal').modal({ show: true });
+                        }
                     }
+                    , width: 55
+                    , sortable: false
+                    , search: false
                 },
                 {
                     name: 'Id', index: 'Id', hidden: true, sortable: false, editable: false,
@@ -487,11 +486,11 @@
                 },
                 { name: 'Name', index: 'Name', width: 200, align: "left", editable: true, sortable: true },
                 { name: 'Value', index: 'Value', width: 100, align: "right", editable: true, sortable: true },
-                { name: 'Description', index: 'Description', width: 250, align: "left", editable: true, edittype: 'textarea', sortable: true },
+                { name: 'Description', index: 'Description', width: 400, align: "left", editable: true, edittype: 'textarea', sortable: true },
                 {
                     name: 'Public', index: 'Public', width: 50, align: "center",
                     editable: true, edittype: 'checkbox', editoptions: { value: "True:False" },
-                    searchoptions: { sopt: ['eq'], value: '"":Mind;True:Aktív;False:Inaktív' }, stype: 'select',
+                    searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
                     formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
                 }
             ],
@@ -512,15 +511,15 @@
             autowidth: true,
             onSelectRow: function (rowid, e) {
                 $("#rowidSetup").val(rowid);
-                $("#delSetup").show().css({ visibility: "visible" });
+                $("#delsetup").show().css({ visibility: "visible" });
             },
             loadComplete: function () {
-                $("#delSetup").hide().css({ visibility: "hidden" });
+                $("#delsetup").hide().css({ visibility: "hidden" });
             }
         });
 
         jQuery("#setups").jqGrid('navGrid', '#setupspager'
-            , { edit: false, add: true, del: false, refresh: true, cloneToTop: true }
+            , { edit: false, add: false, del: false, refresh: true, cloneToTop: true }
             , {} //prmEdit
             , { width: 500, recreateForm: true, closeAfterAdd: true } //prmAdd
             , {} //prmDel
@@ -585,32 +584,22 @@
             });
         });
 
-        $('#createbuttonsetups').click(function () {
+        $('#createbuttonsetup').click(function () {
             $.ajax({
-                url: '@Url.Action("CreateSetup", "Admin")?nameEn=' + $("#NewtagNameEn").val() + '&nameHu=' + $("#NewtagNameHu").val(),
+                url: '@Url.Action("CreateSetup", "Admin")?Name=' + $('#Name').val()
+                        + '&Value=' + $('#Value').val()
+                        + '&Description=' + $('#Description').val(),
                 type: 'POST',
                 beforeSend: function (jqXHR, textStatus) { jQuery('#setups').block({ message: '<h3>Wait…</h3>' }); },
                 complete: function (jqXHR, textStatus) {
                     var str = JSON.parse(jqXHR.responseText);
                     if (!str.success) {
-                        //<li style="display:none"></li>
-                        $('.validation-summary-valid').attr('class', 'validation-summary-errors');
-                        //$(".validation-summary-error > ul").appendChild(str.response);
-                        //$(".validation-summary-error ul").append('<li style="display:normal">teszt</li>');
-                        $("#ValidationSummary ul").append('<li style="display:normal">teszt</li>');
-
-                        //val(str.response);
-                        //if (str.error) {
-                        //    $('#errortext').text(str.response);
-                        //    $('#errormodal').modal({ show: true });
-                        //}
-                        //else {
-                        //    $('#warningtext').text(str.response);
-                        //    $('#warningmodal').modal({ show: true });
-                        //}
+                        $('#messagesetup').text(str.response)
+                        $('#customvalidationsetup').show().css({ visibility: "visible" });
                     }
                     else {
-                        $('#createbuttonsetup').modal({ show: false });
+                        $("#customvalidationsetup").hide().css({ visibility: "hidden" });
+                        $('#createmodalsetup').modal('hide');
                     }
                     jQuery('#setups').unblock();
                     $("#setups").trigger("reloadGrid", [{ current: true }]);
@@ -620,6 +609,13 @@
                     $('#errormodal').modal({ show: true });
                 }
             });
+        });
+
+        $("#createmodalsetup").on("hide.bs.modal", function () {
+            $("#customvalidationsetup").hide().css({ visibility: "hidden" });
+            $('#Name').val('');
+            $('#Value').val('');
+            $('#Description').val('');
         });
 
     </script>

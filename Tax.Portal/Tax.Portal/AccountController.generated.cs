@@ -188,6 +188,7 @@ namespace Tax.Portal.Controllers
         public class ActionParamsClass_Register
         {
             public readonly string model = "model";
+            public readonly string Password = "Password";
         }
         static readonly ActionParamsClass_Disassociate s_params_Disassociate = new ActionParamsClass_Disassociate();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -340,13 +341,14 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Portal.Models.RegisterViewModel model);
+        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Tax.Data.Models.ApplicationUser model, string Password);
 
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Register(Tax.Portal.Models.RegisterViewModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Register(Tax.Data.Models.ApplicationUser model, string Password)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            RegisterOverride(callInfo, model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Password", Password);
+            RegisterOverride(callInfo, model, Password);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 

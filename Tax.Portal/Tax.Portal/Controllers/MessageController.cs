@@ -77,7 +77,7 @@ namespace Tax.Portal.Controllers
                                {
                                 string.Empty
                                 ,r.Id.ToString()
-                                r.Status
+                                ,r.Status
                                 ,r.MessageEn
                                 ,r.MessageHu
                                 ,r.PublishingDate.ToString()
@@ -152,19 +152,19 @@ namespace Tax.Portal.Controllers
         {
             using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Message/Edit"))
             {
-                Guid Id = Guid.Parse(id);
+                Guid gid = Guid.Parse(id);
                 log.Info("begin");
                 MessagesGlobal resg;
 
                 switch (oper)
                 {
                     case "edit":
-                        resg = db.MessagesGlobal.Find(id);
+                        resg = db.MessagesGlobal.Find(gid);
                         Guid lguidEn = LocalisationHelpers.GetLanguageId("en", db);
-                        MessagesLocal reslEn = db.MessagesLocal.FirstOrDefault(x => x.MessagesGlobalId == Id && x.LanguageId == lguidEn);
+                        MessagesLocal reslEn = db.MessagesLocal.FirstOrDefault(x => x.MessagesGlobalId == gid && x.LanguageId == lguidEn);
                         if (reslEn.Message != MessageEn) { reslEn.Message = MessageEn; }
                         Guid lguidHu = LocalisationHelpers.GetLanguageId("hu", db);
-                        MessagesLocal reslHu = db.MessagesLocal.FirstOrDefault(x => x.MessagesGlobalId == Id && x.LanguageId == lguidHu);
+                        MessagesLocal reslHu = db.MessagesLocal.FirstOrDefault(x => x.MessagesGlobalId == gid && x.LanguageId == lguidHu);
                         if (reslHu.Message != MessageHu) { reslHu.Message = MessageHu; }
                         break;
                     default:

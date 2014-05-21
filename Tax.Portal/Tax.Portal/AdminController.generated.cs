@@ -46,33 +46,27 @@ namespace Tax.Portal.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Rule()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Rule);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult ListUsers()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListUsers);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpdateUsers()
+        public virtual System.Web.Mvc.ActionResult CreateUser()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateUsers);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateUser);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult ListUserRoles()
+        public virtual System.Web.Mvc.ActionResult EditUser()
         {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListUserRoles);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditUser);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpdateRolesIsInclude()
+        public virtual System.Web.Mvc.ActionResult DeleteUser()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRolesIsInclude);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteUser);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,15 +76,21 @@ namespace Tax.Portal.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpdateSystemParameters()
+        public virtual System.Web.Mvc.ActionResult CreateSetup()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateSystemParameters);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateSetup);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult UpdateSetupIspublic()
+        public virtual System.Web.Mvc.ActionResult EditSetup()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateSetupIspublic);
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditSetup);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DeleteSetup()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteSetup);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -108,42 +108,32 @@ namespace Tax.Portal.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Log = "Log";
-            public readonly string Rule = "Rule";
+            public readonly string Index = "Index";
             public readonly string ListUsers = "ListUsers";
-            public readonly string UpdateUsers = "UpdateUsers";
-            public readonly string ListUserRoles = "ListUserRoles";
-            public readonly string UpdateRolesIsInclude = "UpdateRolesIsInclude";
-            public readonly string Setup = "Setup";
+            public readonly string CreateUser = "CreateUser";
+            public readonly string EditUser = "EditUser";
+            public readonly string DeleteUser = "DeleteUser";
             public readonly string ListSystemParameters = "ListSystemParameters";
-            public readonly string UpdateSystemParameters = "UpdateSystemParameters";
-            public readonly string UpdateSetupIspublic = "UpdateSetupIspublic";
+            public readonly string CreateSetup = "CreateSetup";
+            public readonly string EditSetup = "EditSetup";
+            public readonly string DeleteSetup = "DeleteSetup";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Log = "Log";
-            public const string Rule = "Rule";
+            public const string Index = "Index";
             public const string ListUsers = "ListUsers";
-            public const string UpdateUsers = "UpdateUsers";
-            public const string ListUserRoles = "ListUserRoles";
-            public const string UpdateRolesIsInclude = "UpdateRolesIsInclude";
-            public const string Setup = "Setup";
+            public const string CreateUser = "CreateUser";
+            public const string EditUser = "EditUser";
+            public const string DeleteUser = "DeleteUser";
             public const string ListSystemParameters = "ListSystemParameters";
-            public const string UpdateSystemParameters = "UpdateSystemParameters";
-            public const string UpdateSetupIspublic = "UpdateSetupIspublic";
+            public const string CreateSetup = "CreateSetup";
+            public const string EditSetup = "EditSetup";
+            public const string DeleteSetup = "DeleteSetup";
         }
 
 
-        static readonly ActionParamsClass_Rule s_params_Rule = new ActionParamsClass_Rule();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Rule RuleParams { get { return s_params_Rule; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Rule
-        {
-            public readonly string KontaktUserId = "KontaktUserId";
-        }
         static readonly ActionParamsClass_ListUsers s_params_ListUsers = new ActionParamsClass_ListUsers();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ListUsers ListUsersParams { get { return s_params_ListUsers; } }
@@ -152,34 +142,34 @@ namespace Tax.Portal.Controllers
         {
             public readonly string grid = "grid";
         }
-        static readonly ActionParamsClass_UpdateUsers s_params_UpdateUsers = new ActionParamsClass_UpdateUsers();
+        static readonly ActionParamsClass_CreateUser s_params_CreateUser = new ActionParamsClass_CreateUser();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateUsers UpdateUsersParams { get { return s_params_UpdateUsers; } }
+        public ActionParamsClass_CreateUser CreateUserParams { get { return s_params_CreateUser; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateUsers
+        public class ActionParamsClass_CreateUser
+        {
+            public readonly string UserName = "UserName";
+            public readonly string Password = "Password";
+            public readonly string Name = "Name";
+            public readonly string Email = "Email";
+        }
+        static readonly ActionParamsClass_EditUser s_params_EditUser = new ActionParamsClass_EditUser();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditUser EditUserParams { get { return s_params_EditUser; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditUser
         {
             public readonly string id = "id";
             public readonly string oper = "oper";
             public readonly string u = "u";
         }
-        static readonly ActionParamsClass_ListUserRoles s_params_ListUserRoles = new ActionParamsClass_ListUserRoles();
+        static readonly ActionParamsClass_DeleteUser s_params_DeleteUser = new ActionParamsClass_DeleteUser();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ListUserRoles ListUserRolesParams { get { return s_params_ListUserRoles; } }
+        public ActionParamsClass_DeleteUser DeleteUserParams { get { return s_params_DeleteUser; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ListUserRoles
+        public class ActionParamsClass_DeleteUser
         {
-            public readonly string grid = "grid";
-            public readonly string uid = "uid";
-        }
-        static readonly ActionParamsClass_UpdateRolesIsInclude s_params_UpdateRolesIsInclude = new ActionParamsClass_UpdateRolesIsInclude();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateRolesIsInclude UpdateRolesIsIncludeParams { get { return s_params_UpdateRolesIsInclude; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateRolesIsInclude
-        {
-            public readonly string UserId = "UserId";
-            public readonly string RoleId = "RoleId";
-            public readonly string isInclude = "isInclude";
+            public readonly string id = "id";
         }
         static readonly ActionParamsClass_ListSystemParameters s_params_ListSystemParameters = new ActionParamsClass_ListSystemParameters();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -189,24 +179,33 @@ namespace Tax.Portal.Controllers
         {
             public readonly string grid = "grid";
         }
-        static readonly ActionParamsClass_UpdateSystemParameters s_params_UpdateSystemParameters = new ActionParamsClass_UpdateSystemParameters();
+        static readonly ActionParamsClass_CreateSetup s_params_CreateSetup = new ActionParamsClass_CreateSetup();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateSystemParameters UpdateSystemParametersParams { get { return s_params_UpdateSystemParameters; } }
+        public ActionParamsClass_CreateSetup CreateSetupParams { get { return s_params_CreateSetup; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateSystemParameters
+        public class ActionParamsClass_CreateSetup
+        {
+            public readonly string Name = "Name";
+            public readonly string Value = "Value";
+            public readonly string Description = "Description";
+        }
+        static readonly ActionParamsClass_EditSetup s_params_EditSetup = new ActionParamsClass_EditSetup();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_EditSetup EditSetupParams { get { return s_params_EditSetup; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_EditSetup
         {
             public readonly string id = "id";
             public readonly string oper = "oper";
             public readonly string r = "r";
         }
-        static readonly ActionParamsClass_UpdateSetupIspublic s_params_UpdateSetupIspublic = new ActionParamsClass_UpdateSetupIspublic();
+        static readonly ActionParamsClass_DeleteSetup s_params_DeleteSetup = new ActionParamsClass_DeleteSetup();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateSetupIspublic UpdateSetupIspublicParams { get { return s_params_UpdateSetupIspublic; } }
+        public ActionParamsClass_DeleteSetup DeleteSetupParams { get { return s_params_DeleteSetup; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateSetupIspublic
+        public class ActionParamsClass_DeleteSetup
         {
-            public readonly string Id = "Id";
-            public readonly string isPublic = "isPublic";
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -218,11 +217,9 @@ namespace Tax.Portal.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Rule = "Rule";
-                public readonly string Setup = "Setup";
+                public readonly string Index = "Index";
             }
-            public readonly string Rule = "~/Views/Admin/Rule.cshtml";
-            public readonly string Setup = "~/Views/Admin/Setup.cshtml";
+            public readonly string Index = "~/Views/Admin/Index.cshtml";
         }
     }
 
@@ -231,22 +228,12 @@ namespace Tax.Portal.Controllers
     {
         public T4MVC_AdminController() : base(Dummy.Instance) { }
 
-        partial void LogOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
-        public override System.Web.Mvc.ActionResult Log()
+        public override System.Web.Mvc.ActionResult Index()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Log);
-            LogOverride(callInfo);
-            return callInfo;
-        }
-
-        partial void RuleOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid? KontaktUserId);
-
-        public override System.Web.Mvc.ActionResult Rule(System.Guid? KontaktUserId)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Rule);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "KontaktUserId", KontaktUserId);
-            RuleOverride(callInfo, KontaktUserId);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
@@ -260,47 +247,38 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void UpdateUsersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string oper, Tax.Data.Models.ApplicationUser u);
+        partial void CreateUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UserName, string Password, string Name, string Email);
 
-        public override System.Web.Mvc.ActionResult UpdateUsers(string id, string oper, Tax.Data.Models.ApplicationUser u)
+        public override System.Web.Mvc.ActionResult CreateUser(string UserName, string Password, string Name, string Email)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateUsers);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateUser);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UserName", UserName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Password", Password);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Name", Name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Email", Email);
+            CreateUserOverride(callInfo, UserName, Password, Name, Email);
+            return callInfo;
+        }
+
+        partial void EditUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string oper, Tax.Data.Models.ApplicationUser u);
+
+        public override System.Web.Mvc.ActionResult EditUser(string id, string oper, Tax.Data.Models.ApplicationUser u)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditUser);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "oper", oper);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "u", u);
-            UpdateUsersOverride(callInfo, id, oper, u);
+            EditUserOverride(callInfo, id, oper, u);
             return callInfo;
         }
 
-        partial void ListUserRolesOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, JQGrid.Helpers.GridSettings grid, string uid);
+        partial void DeleteUserOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
-        public override System.Web.Mvc.JsonResult ListUserRoles(JQGrid.Helpers.GridSettings grid, string uid)
+        public override System.Web.Mvc.ActionResult DeleteUser(string id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListUserRoles);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "grid", grid);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "uid", uid);
-            ListUserRolesOverride(callInfo, grid, uid);
-            return callInfo;
-        }
-
-        partial void UpdateRolesIsIncludeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string UserId, string RoleId, bool isInclude);
-
-        public override System.Web.Mvc.ActionResult UpdateRolesIsInclude(string UserId, string RoleId, bool isInclude)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateRolesIsInclude);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "UserId", UserId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "RoleId", RoleId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isInclude", isInclude);
-            UpdateRolesIsIncludeOverride(callInfo, UserId, RoleId, isInclude);
-            return callInfo;
-        }
-
-        partial void SetupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        public override System.Web.Mvc.ActionResult Setup()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Setup);
-            SetupOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteUser);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteUserOverride(callInfo, id);
             return callInfo;
         }
 
@@ -314,26 +292,37 @@ namespace Tax.Portal.Controllers
             return callInfo;
         }
 
-        partial void UpdateSystemParametersOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string oper, Tax.Data.Models.SystemParameter r);
+        partial void CreateSetupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string Name, string Value, string Description);
 
-        public override System.Web.Mvc.ActionResult UpdateSystemParameters(string id, string oper, Tax.Data.Models.SystemParameter r)
+        public override System.Web.Mvc.ActionResult CreateSetup(string Name, string Value, string Description)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateSystemParameters);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "oper", oper);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "r", r);
-            UpdateSystemParametersOverride(callInfo, id, oper, r);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateSetup);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Name", Name);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Value", Value);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Description", Description);
+            CreateSetupOverride(callInfo, Name, Value, Description);
             return callInfo;
         }
 
-        partial void UpdateSetupIspublicOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid Id, bool isPublic);
+        partial void EditSetupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id, string oper, Tax.Data.Models.SystemParameter r);
 
-        public override System.Web.Mvc.ActionResult UpdateSetupIspublic(System.Guid Id, bool isPublic)
+        public override System.Web.Mvc.ActionResult EditSetup(string id, string oper, Tax.Data.Models.SystemParameter r)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UpdateSetupIspublic);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "Id", Id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isPublic", isPublic);
-            UpdateSetupIspublicOverride(callInfo, Id, isPublic);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.EditSetup);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "oper", oper);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "r", r);
+            EditSetupOverride(callInfo, id, oper, r);
+            return callInfo;
+        }
+
+        partial void DeleteSetupOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid id);
+
+        public override System.Web.Mvc.ActionResult DeleteSetup(System.Guid id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteSetup);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteSetupOverride(callInfo, id);
             return callInfo;
         }
 

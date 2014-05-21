@@ -171,7 +171,8 @@
     }
 
     function fileFormat(cellvalue, options, rowObject) {
-        return '<img src="@Url.Action("DownloadImage", "New")?id=' + rowObject[getColumnIndexByName('news', 'Thumbnail')]
+        //alert(rowObject[getColumnIndexByName('news', 'Thumbnail')]);
+        return '<img src="@Url.Action("DownloadImage", "New")?id=' + cellvalue
                 + '" class="img-responsive img-thumbnail" alt="'
                 + '" id="' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
                 + '"/>';

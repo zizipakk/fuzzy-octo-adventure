@@ -97,8 +97,8 @@ namespace Tax.Portal.Controllers
                                 Title1 = a.z.y.Title1,
                                 Title2 = a.z.y.Title2,
                                 Tags = null == b ? "" : b.Tags,
-                                //PublishingDate = a.z.x.PublishingDate,
-                                // = null == a.z.x.Thumbnail ? Guid.Empty : a.z.x.Thumbnail.stream_id
+                                PublishingDate = a.z.x.PublishingDate,
+                                Thumbnail = null == a.z.x.Thumbnail ? Guid.Empty : a.z.x.Thumbnail.stream_id
                             }
                         )
                         .AsQueryable().GridPage(grid, out result);

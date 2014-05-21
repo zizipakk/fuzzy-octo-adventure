@@ -31,7 +31,9 @@ public static class MVC
     public static Tax.Portal.Controllers.EventController Event = new Tax.Portal.Controllers.T4MVC_EventController();
     public static Tax.Portal.Controllers.ExtraController Extra = new Tax.Portal.Controllers.T4MVC_ExtraController();
     public static Tax.Portal.Controllers.HomeController Home = new Tax.Portal.Controllers.T4MVC_HomeController();
+    public static Tax.Portal.Controllers.MessageController Message = new Tax.Portal.Controllers.T4MVC_MessageController();
     public static Tax.Portal.Controllers.NewController New = new Tax.Portal.Controllers.T4MVC_NewController();
+    public static Tax.Portal.Controllers.TagController Tag = new Tax.Portal.Controllers.T4MVC_TagController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

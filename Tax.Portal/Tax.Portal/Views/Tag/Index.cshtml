@@ -67,18 +67,20 @@
                 <h4 class="modal-title">Add tag</h4>
             </div>
             <div class="modal-body" style="height:200px">
-                @Html.ValidationSummary()
+                <div id="customvalidation" class="validation-summary-errors" data-valmsg-summary="true" style="display:none">
+                    <div id="message"></div>
+                </div>
                 <div class="col-sm-12 col-xs-12">
                     @Html.Label("New tag on english")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("NewtagNameEn", "", new { @class = "form-control", placeholder = "Type here a name of new tag on english" })
+                    @Html.TextBox("NewtagNameEn", "", new { @class = "form-control", @placeholder = "Type here a name of new tag on english" })
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:10px">
                     @Html.Label("New tag on hungarian")
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.TextBox("NewtagNameHu", "", new { @class = "form-control", placeholder = "Type here a name of new tag on hungarian" })
+                    @Html.TextBox("NewtagNameHu", "", new { @class = "form-control", @placeholder = "Type here a name of new tag on hungarian" })
                 </div>
             </div>
             <div class="modal-footer">
@@ -316,7 +318,7 @@
 
     $('#createbutton').click(function () {
         $.ajax({
-            url: '@Url.Action("Create", "Tag")?nameEn=' + $("#NewtagNameEn").val() + '&nameHu=' + $("#NewtagNameHu").val(),
+            url: '@Url.Action("Create", "Tag")?NameEn=' + $("#NewtagNameEn").val() + '&NameHu=' + $("#NewtagNameHu").val(),
             type: 'POST',
             beforeSend: function (jqXHR, textStatus) {
                 jQuery('#tags').block({ message: '<h3>Wait…</h3>' });
@@ -324,27 +326,13 @@
             complete: function (jqXHR, textStatus) {
                 var str = JSON.parse(jqXHR.responseText);
                 if (!str.success) {
-//<li style="display:none"></li>
-                    $('.validation-summary-valid').attr('class', 'validation-summary-errors');
-                    //$(".validation-summary-error > ul").appendChild(str.response);
-                    //$(".validation-summary-error ul").append('<li style="display:normal">teszt</li>');
-                    //$("#ValidationSummary ul").append('<li style="display:normal">teszt</li>');
-                    $(".validation-summary-error").closest("li").attr('style', 'display:normal');
-                    $(".validation-summary-error").closest("li").innerHTML(str.response);
-
-                    //val(str.response);
-                    //if (str.error) {
-                    //    $('#errortext').text(str.response);
-                    //    $('#errormodal').modal({ show: true });
-                    //}
-                    //else {
-                    //    $('#warningtext').text(str.response);
-                    //    $('#warningmodal').modal({ show: true });
-                    //}
+                    $('#message').text(str.response)
+                    $('#customvalidation').show().css({ visibility: "visible" });
                 }
                 else
                 {
-                    $('#createbutton').modal({ show: false });
+                    $("#customvalidation").hide().css({ visibility: "hidden" });
+                    $('#createmodal').modal('hide');
                 }
                 jQuery('#tags').unblock();
                 $("#tags").trigger("reloadGrid", [{ current: true }]);
@@ -354,6 +342,12 @@
                 $('#errormodal').modal({ show: true });
             }
         });
+    });
+
+    $("#createmodal").on("hide.bs.modal", function () {
+        $("#customvalidation").hide().css({ visibility: "hidden" });
+        $('#NewtagNameEn').val('');
+        $('#NewtagNameHu').val('');
     });
 
     </script>

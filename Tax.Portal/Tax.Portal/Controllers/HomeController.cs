@@ -25,7 +25,7 @@ namespace Tax.Portal.Controllers
                 log.Info("begin");
 
                 log.Info("end");
-                return View();//Home/Index
+                return RedirectToAction(MVC.New.Index());
             }
         }
 
