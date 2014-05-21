@@ -116,8 +116,8 @@ namespace Tax.Portal.Controllers
                                 ,r.Title1
                                 ,r.Title2
                                 ,r.Tags
-                                ,""//r.PublishingDate.ToString()
-                                ,""//r.Thumbnail.ToString()
+                                ,r.PublishingDate.ToString()
+                                ,r.Thumbnail.ToString()
                                }
                            }).ToArray();
 
