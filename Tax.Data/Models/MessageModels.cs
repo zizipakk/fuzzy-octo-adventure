@@ -23,12 +23,10 @@ namespace Tax.Data.Models
 
         [Key]
         public Guid Id { get; set; }
-//        [Display(Name = "PublishingDate")]
         public DateTime? PublishingDate { get; set; }
+        public string ServiceResponse { get; set; }
 
-//        [Display(Name = "Status")]
         public virtual NewsStatusesGlobal NewsStatus { get; set; }
-
         public virtual ICollection<MessagesLocal> MessagesLocal { get; set; }
     }
 

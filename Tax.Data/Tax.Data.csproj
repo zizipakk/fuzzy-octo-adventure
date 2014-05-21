@@ -106,9 +106,9 @@
     <Compile Include="Migrations\201405131527107_split roles from submenus.Designer.cs">
       <DependentUpon>201405131527107_split roles from submenus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405132239063_map test.cs" />
-    <Compile Include="Migrations\201405132239063_map test.Designer.cs">
-      <DependentUpon>201405132239063_map test.cs</DependentUpon>
+    <Compile Include="Migrations\201405201330317_Google Apple response text to Messages.cs" />
+    <Compile Include="Migrations\201405201330317_Google Apple response text to Messages.Designer.cs">
+      <DependentUpon>201405201330317_Google Apple response text to Messages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -181,8 +181,8 @@
     <EmbeddedResource Include="Migrations\201405131527107_split roles from submenus.resx">
       <DependentUpon>201405131527107_split roles from submenus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405132239063_map test.resx">
-      <DependentUpon>201405132239063_map test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405201330317_Google Apple response text to Messages.resx">
+      <DependentUpon>201405201330317_Google Apple response text to Messages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

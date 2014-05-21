@@ -208,6 +208,8 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\ExtrasController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -254,7 +256,6 @@
     <Compile Include="Models\Log4netModels.cs" />
     <Compile Include="Models\EventViewModels.cs" />
     <Compile Include="Models\ContactViewModels.cs" />
-    <Compile Include="Models\TagViewModels.cs" />
     <Compile Include="Models\NewViewModels.cs" />
     <Compile Include="NewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -832,6 +833,9 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Views\Message\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -848,8 +852,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Admin\Rule.cshtml" />
-    <Content Include="Views\Admin\Setup.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_LocalisationPartial.cshtml" />
     <Content Include="Views\New\_DetailPartial.cshtml" />
     <Content Include="Views\New\Edit.cshtml" />
@@ -869,6 +872,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />
     <Folder Include="App_Data\Mails\" />
+    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

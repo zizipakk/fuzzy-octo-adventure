@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Tax.Portal.Helpers;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace Tax.Portal.Controllers
@@ -19,28 +20,14 @@ namespace Tax.Portal.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-#region Log
-
-        [Authorize(Roles = "SysAdmin")]
-        public virtual ActionResult Log()
-        {
-            log.Info("begin");
-            log.Info("end");
-            return View();
-        }
-
-#endregion Log
-
-
-#region Rule
+#region User
         
         [Authorize(Roles = "SysAdmin")]
-        public virtual ActionResult Rule(Guid? KontaktUserId)
+        public virtual ActionResult Index()
         {
-            using (log4net.ThreadContext.Stacks["NDC"].Push("AccountController()"))
+            using (log4net.ThreadContext.Stacks["NDC"].Push("Index/Admin"))
             {
                 log.Info("begin");
-                ViewBag.KontaktUserId = KontaktUserId;
                 log.Info("end");
                 return View();
             }
@@ -55,42 +42,17 @@ namespace Tax.Portal.Controllers
         {
             JQGrid.Helpers.JsonResult result;
 
-            var rs0 = (from u in db.Users
-                       select new
+            var rs = (db.Users
+                       .Select(u => new
                             {
                                 Id = u.Id,
                                 UserName = u.UserName,
+                                Password = "******",
+                                Name = u.Name,
                                 Email = u.Email,
                                 isLocked = u.isLocked,
                             }
-                        ).AsEnumerable();
-
-            //foreach (var i in rs0.ToList()) { Debug.WriteLine(i); }
-
-            var rs00 = db.Users
-                        .Join(db.IdentityUserRole, x => x.Id, y => y.UserId, (x, y) => new { x, y.Role.Name })
-                        .ToList()
-                        .GroupBy(x => x.x.Id)
-                        .Select(x => new { 
-                            Id = x.FirstOrDefault().x.Id,
-                            RoleNames = (x.Select(y => y.Name)).Aggregate((a, b) => (a == "" ? "" : a + ", ") + b)
-                        })
-                        .AsEnumerable();
-
-            //foreach (var i in rs00.ToList()) { Debug.WriteLine(i); }
-
-            var rs000 = rs0.SelectMany(x => rs00.Where(y => y.Id == x.Id), 
-                            (x, y) => new {
-                                Id = x.Id,
-                                UserName = x.UserName,
-                                Email = x.Email,
-                                isLocked = x.isLocked,
-                                RoleNames = y.RoleNames
-                            });
-                                
-            //foreach (var i in rs000) { Debug.WriteLine(i); }
-
-            var rs = rs000.AsQueryable().GridPage(grid, out result);
+                        ).AsQueryable().GridPage(grid, out result);
 
             result.rows = (from r in rs
                            select new JsonRow
@@ -101,17 +63,77 @@ namespace Tax.Portal.Controllers
                                 string.Empty
                                 ,r.Id.ToString()
                                 ,r.UserName
+                                ,r.Password
+                                ,r.Name
                                 ,r.Email.ToString()
                                 ,r.isLocked.ToString()
-                                ,r.RoleNames
                                }
                            }).ToArray();
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public virtual ActionResult UpdateUsers(string id, string oper, ApplicationUser u)
+        [HttpPost]
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult CreateUser(ApplicationUser u, string Password)
         {
+            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Admin/CreateUser"))
+            {
+                log.Info("begin");
+                //kézi validálás
+                if ("" == u.UserName || "" == u.Name || "" == u.Email)
+                {
+                    return Json(new { success = false, error = false, response = "[UsrName] and [Name] and [Email] is required" });
+                }
+                int minlenght = 3;
+                if (u.UserName.Length < minlenght || u.Name.Length < minlenght)
+                {
+                    return Json(new { success = false, error = true, response = string.Format("The UserName and Name must be at least {0} characters long.", minlenght) });
+                }
+                //barátunk a usermanager
+                var user = new ApplicationUser()
+                {
+                    UserName = u.UserName,
+                    Name = u.Name,
+                    Email = u.Email,
+                    isLocked = false
+                };
+
+                //user.Roles readonly, ezért indirekt írása az ApplicationUserRole táblának
+                IdentityRole role = db.Roles.SingleOrDefault(x => x.Name == "User"); //Egy ilyen kell, különben balhé
+                if (null != role)
+                {
+                    user.Roles.Add(new IdentityUserRole() { Role = role });
+                }
+
+                AccountController ctr = new AccountController();
+                var result = ctr.UserManager.CreateAsync(user, Password);//ez menti a modeleket
+                log.Info("User létrehozva");
+                if (!result.Result.Succeeded)
+                {
+                    log.Info("end with error");
+                    return Json(new { success = false, error = true, response = result.Result.Errors });
+                }
+
+                log.Info("end with ok");
+                return Json(new { success = true, error = false, response = "" });
+            }
+        }
+
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult EditUser(string id, string oper, ApplicationUser u)
+        {
+            //kézi validálás
+            if ("" == u.UserName || "" == u.Name || "" == u.Email)
+            {
+                return Json(new { success = false, error = false, response = "[UsrName] and [Name] and [Email] is required" });
+            }
+            int minlenght = 3;
+            if (u.UserName.Length < minlenght || u.Name.Length < minlenght)
+            {
+                return Json(new { success = false, error = true, response = string.Format("The UserName and Name must be at least {0} characters long.", minlenght) });
+            }
+
             string response = "";
             switch (oper)
             {
@@ -120,9 +142,11 @@ namespace Tax.Portal.Controllers
                         
                     if (null != res)
                     {
-                        if (res.isLocked != u.isLocked) { res.isLocked = u.isLocked; }
+                        if (res.UserName != u.UserName) { res.UserName = u.UserName; }
                         if (res.Name != u.Name) { res.Name = u.Name; }
                         if (res.Email != u.Email) { res.Email = u.Email; }
+                        if (res.isLocked != u.isLocked) { res.isLocked = u.isLocked; }
+//Todo: itt felvesszük meg elveszszük az SysAdmin szerepet
                     }
                     break;
                 default:
@@ -139,97 +163,16 @@ namespace Tax.Portal.Controllers
             }
         }
 
-        /// <summary>
-        /// A karbantartó grid adatforrása
-        /// </summary>
-        /// <param name="grid">Grid szűrés és lapozás paraméterek</param>
-        /// <returns>Grid adatforrás</returns>
-        public virtual System.Web.Mvc.JsonResult ListUserRoles(GridSettings grid, string uid)
-        {
-            JQGrid.Helpers.JsonResult result;
-
-            var rs0 = from r in db.Roles
-                      from ur in db.IdentityUserRole.Where(x => x.Role == r && x.UserId == uid).DefaultIfEmpty()
-                      where null != uid && "" != uid
-                      select new
-                      {
-                          RoleId = r.Id,
-                          isInclude = null == ur ? false : true,
-                          RoleName = r.Name,
-                      };
-
-            //foreach (var item in rs0) { Debug.WriteLine(item); }
-
-            var rs = rs0.AsQueryable().GridPage(grid, out result);
-
-            result.rows = (from r in rs
-                           select new JsonRow
-                           {
-                               id = r.RoleId.ToString(),
-                               cell = new string[] 
-                               {
-                                    r.RoleId.ToString()
-                                    ,r.isInclude.ToString()
-                                    ,r.RoleName                                
-                                    ,string.Empty
-                                    //,r.ExtensionID
-                               }
-                           }).ToArray();
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-        }
-
-        public virtual ActionResult UpdateRolesIsInclude(string UserId, string RoleId, bool isInclude)
-        {
-            string limitwarning = "";
-            if ("null" != UserId)//RoleId mindig van és az isInclude click-en vagyok
-            {                
-                var res0 = db.Users.Find(UserId);
-                if (isInclude)
-                {
-                    var res = db.IdentityUserRole.Create();
-                    res.UserId = UserId;
-                    res.RoleId = RoleId;
-                    db.Entry(res).State = EntityState.Added;
-                }
-                else
-                {
-                    var red = db.IdentityUserRole.Single(x => x.UserId == UserId && x.RoleId == RoleId);
-                    db.Entry(red).State = EntityState.Deleted;
-                }
-
-                db.SaveChanges();
-            }
-
-            if ("" != limitwarning)
-            {
-                return Json(new { success = false, error = false, response = limitwarning });
-            }
-            else
-            {
-                return Json(new { success = true });
-            }
-        }
-
-
-#endregion Rule
+#endregion User
 
 #region Setup
 
-        [Authorize(Roles = "SysAdmin")]
-        public virtual ActionResult Setup()
-        {
-            log.Info("begin");
-            log.Info("end");
-            return View();
-        }
-
-
         /// <summary>
         /// A karbantartó grid adatforrása
         /// </summary>
         /// <param name="grid">Grid szűrés és lapozás paraméterek</param>
         /// <returns>Grid adatforrás</returns>
+        [Authorize(Roles = "SysAdmin")]
         public virtual System.Web.Mvc.JsonResult ListSystemParameters(GridSettings grid)
         {
             JQGrid.Helpers.JsonResult result;
@@ -264,8 +207,52 @@ namespace Tax.Portal.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public virtual ActionResult UpdateSystemParameters(string id, string oper, SystemParameter r)
+        [HttpPost]
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult CreateSetup(SystemParameter r)
         {
+            using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Admin/CreateUser"))
+            {
+                log.Info("begin");
+                //kézi validálás
+                if ("" == r.Name || "" == r.Value)
+                {
+                    return Json(new { success = false, error = false, response = "[Name] and [Value] are required" });
+                }
+                int minlenght = 3;
+                if (r.Name.Length < minlenght)
+                {
+                    return Json(new { success = false, error = true, response = string.Format("The Name must be at least {0} characters long.", minlenght) });
+                }
+                //barátunk a usermanager
+                var sys = db.SystemParameter.Create();
+                sys.Name = r.Name;
+                sys.Value = r.Value;
+                sys.Public = true;
+                db.Entry(sys).State = EntityState.Added;
+                db.SaveChanges();
+
+                log.Info("end with ok");
+                return Json(new { success = true, error = false, response = "" });
+            }
+        }
+
+
+        [Authorize(Roles = "SysAdmin")]
+        public virtual ActionResult EditSetup(string id, string oper, SystemParameter r)
+        {
+            //kézi validálás
+            if ("" == u.UserName || "" == u.Name || "" == u.Email)
+            {
+                return Json(new { success = false, error = false, response = "[UsrName] and [Name] and [Email] is required" });
+            }
+            int minlenght = 3;
+            if (u.UserName.Length < minlenght || u.Name.Length < minlenght)
+            {
+                return Json(new { success = false, error = true, response = string.Format("The UserName and Name must be at least {0} characters long.", minlenght) });
+            }
+
+            string response = "";            
             r.Id = "_empty" != id ? Guid.Parse(id) : Guid.NewGuid();
 
             SystemParameter res;
@@ -274,46 +261,26 @@ namespace Tax.Portal.Controllers
             {
                 case "edit":
                     res = db.SystemParameter.Find(r.Id);
-                    if (res.Id != r.Id) { res.Id = r.Id; }
                     if (res.Name != r.Name) { res.Name = r.Name; }
                     if (res.Value != r.Value) { res.Value = r.Value; }
                     if (res.Description != r.Description) { res.Description = r.Description; }
                     if (res.Public != r.Public) { res.Public = r.Public; }
                     db.Entry(res).State = EntityState.Modified;
                     break;
-                case "del":
-                    res = db.SystemParameter.Find(r.Id);
-                    db.Entry(res).State = EntityState.Deleted;
-                    break;
-                case "add":
-                    res = db.SystemParameter.Create();
-                    res.Id = r.Id;
-                    res.Name = r.Name;
-                    res.Value = r.Value;
-                    res.Description = r.Description;
-                    res.Public = r.Public;
-                    db.Entry(res).State = EntityState.Added;
-                    break;
                 default:
                     break;
             }
             db.SaveChanges();
-            return null;
+            if (response == "")
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, error = false, response = response });
+            }
         }
 
-        public virtual ActionResult UpdateSetupIspublic(Guid Id, bool isPublic)
-        {
-            if (null != Id)
-            {
-                var a = db.SystemParameter.Find(Id);
-                if (a.Public != isPublic)
-                {
-                    a.Public = isPublic;
-                    db.SaveChanges();
-                }
-            }
-            return null;
-        }
 
 #endregion Setup
 

@@ -157,48 +157,38 @@ namespace Tax.Portal.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Register(RegisterViewModel model)
+        public virtual async Task<ActionResult> Register(ApplicationUser model, string Password)
         {
             using (log4net.ThreadContext.Stacks["NDC"].Push("Register(Post)"))
             {
                 log.Info("begin");
                 log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
 
-                log.Info("step 1 sinosz user ellenőrizve");
-                if (ModelState.IsValid)
+                var user = new ApplicationUser()
                 {
-                    //mindenképpen kell a telefonkönyv miatt
-                    var user = new ApplicationUser()
-                    {
-                        UserName = model.UserName,
-                        Email = model.Email,
-                        isLocked = true
-                    };
+                    UserName = model.UserName,
+                    Name = model.Name,
+                    Email = model.Email,
+                    isLocked = false
+                };
 
-                    //user.Roles readonly, ezért indirekt írása az ApplicationUserRole táblának
-                    IdentityRole role = db.Roles.SingleOrDefault(x => x.Name == "User"); //Egy ilyen kell, különben balhé
-                    if (null != role)
-                    {
-                        user.Roles.Add(new IdentityUserRole() { Role = role });
-                    }
-
-                    var result = await UserManager.CreateAsync(user, model.Password);//ez menti a modeleket
-                    log.Info("step 2 user létrehozva");
-                    if (result.Succeeded)
-                    {
-                        log.Info("end with ok");
-                        return RedirectToAction(MVC.Home.Index());
-                    }
-                    else
-                    {
-                        AddErrors(result);
-                    }
+                //user.Roles readonly, ezért indirekt írása az ApplicationUserRole táblának
+                IdentityRole role = db.Roles.SingleOrDefault(x => x.Name == "User"); //Egy ilyen kell, különben balhé
+                if (null != role)
+                {
+                    user.Roles.Add(new IdentityUserRole() { Role = role });
                 }
 
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(model)));
-                log.Info("end with validation error");
-                model.Refresh(ModelState);
-                return View(model);
+                var result = await UserManager.CreateAsync(user, Password);//ez menti a modeleket
+                log.Info("User létrehozva");
+                if (!result.Succeeded)
+                {
+                    log.Info("end with error");
+                    return Json(new { success = false, error = true, response = result.Errors });
+                }
+                
+                log.Info("end with ok");
+                return Json(new { success = true, error = false, response = ""});
             }
         }
 
