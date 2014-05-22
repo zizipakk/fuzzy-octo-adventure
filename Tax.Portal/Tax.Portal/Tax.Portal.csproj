@@ -841,6 +841,9 @@
     <Content Include="Views\Message\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Tag\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -877,7 +880,6 @@
   <ItemGroup>
     <Folder Include="App_Data\Logs\" />
     <Folder Include="App_Data\Mails\" />
-    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
