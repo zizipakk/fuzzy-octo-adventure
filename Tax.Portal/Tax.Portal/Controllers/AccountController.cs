@@ -117,10 +117,11 @@ namespace Tax.Portal.Controllers
                     var user = await UserManager.FindAsync(model.UserName, model.Password);
                     if (user != null)
                     {
-                        if (user.isLocked)
-                        {
-                            return RedirectToAction(MVC.Account.Login());
-                        }
+                        //már másra való
+                        //if (user.isLocked)
+                        //{
+                        //    return RedirectToAction(MVC.Account.Login());
+                        //}
 
                         await SignInAsync(user, model.RememberMe);
                         return RedirectToLocal(returnUrl);   

@@ -32594,3 +32594,822 @@ Parameter name: parameters
    at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 2014-05-22 00:52:47,001 [9] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:05:37,333 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-22 01:05:37,617 [6] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-22 01:05:37,742 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 01:05:37,744 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 01:05:53,591 [7] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:05:53,593 [7] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:06:17,353 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:06:17,358 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:06:17,424 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:07:33,693 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:07:33,948 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:07:36,773 [11] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:07:36,832 [11] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:07:38,056 [11] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:07:38,058 [11] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:07:38,063 [11] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:07:38,704 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:07:38,917 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:08:07,254 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:08:07,335 [8] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:08:08,566 [8] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:08:08,568 [8] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:08:08,572 [8] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:08:10,593 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:08:10,699 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:08:11,681 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:08:11,683 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:08:11,685 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:08:13,315 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:08:13,564 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:08:42,218 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:08:42,220 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:08:50,053 [14] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:08:50,054 [14] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:08:50,061 [14] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:09:23,123 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:09:23,199 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:09:24,941 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:09:25,082 [15] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:09:26,498 [15] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:09:26,500 [15] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:09:26,515 [15] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:09:26,627 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:09:26,651 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:09:28,340 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:09:28,342 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:09:28,346 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:10:25,750 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:10:25,752 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:10:48,593 [8] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 01:10:48,594 [8] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.ArgumentException: The parameters dictionary contains a null entry for parameter 'id' of non-nullable type 'System.Guid' for method 'System.Threading.Tasks.Task`1[System.Web.Mvc.FileResult] DownloadImage(System.Guid)' in 'Tax.Portal.Controllers.NewController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Parameter name: parameters
+   at System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.<>c__DisplayClass8.<BeginExecute>b__2(ParameterInfo parameterInfo)
+   at System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.BeginExecute(ControllerContext controllerContext, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass34.<BeginInvokeAsynchronousActionMethod>b__32(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAsynchronousActionMethod(ControllerContext controllerContext, AsyncActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod_callback(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_BeginInvokeActionMethod.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.BeginInvokeActionMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.AsyncControllerActionInvokerProxy.BeginInvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass30.<BeginInvokeActionMethodWithFilters>b__2e(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 01:10:48,598 [8] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 01:16:13,076 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-22 01:16:13,338 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-22 01:16:13,443 [5] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 01:16:13,445 [5] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 01:16:16,864 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:16:16,867 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:17:35,871 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:17:35,874 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:18:01,435 [6] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:18:01,437 [6] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:18:57,967 [15] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 01:18:57,969 [15] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 01:19:11,753 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] begin
+2014-05-22 01:19:12,099 [6] INFO  Tax.Portal.Controllers.NewController [GET: New/FlashNew] end
+2014-05-22 01:19:14,315 [5] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] begin
+2014-05-22 01:19:14,885 [5] INFO  Tax.Portal.Controllers.NewController [GET: New/Edit] end
+2014-05-22 03:04:32,853 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 03:04:32,887 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-22 03:04:32,897 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/f4f168b4c7c64179b587d6365511200c/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 03:04:33,168 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 03:04:33,415 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-22 03:04:39,810 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 03:04:39,812 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 03:05:40,003 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:05:40,012 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:05:40,013 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:05:40,014 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:05:40,015 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:05:40,023 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:05:40,120 [5] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post)] begin
+2014-05-22 03:05:40,122 [5] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post) AuthenticationManager.get] begin
+2014-05-22 03:05:40,124 [5] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post) AuthenticationManager.get] end
+2014-05-22 03:05:40,128 [5] INFO  Tax.Portal.Controllers.AccountController [LogOff(Post)] end
+2014-05-22 03:05:40,223 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:05:40,224 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:05:40,227 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:05:40,419 [6] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 03:05:40,422 [6] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 03:05:40,567 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:05:40,569 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:05:40,570 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:05:40,571 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:05:40,580 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:05:40,581 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:05:40,591 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:05:40,595 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: /New
+2014-05-22 03:05:41,011 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:05:41,013 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:05:44,421 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:05:44,422 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:05:44,423 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:05:51,593 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:05:51,600 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:05:51,604 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:05:51,609 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:05:51,611 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:05:51,612 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:05:51,674 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:05:51,704 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: /New
+2014-05-22 03:05:52,669 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:05:52,671 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:05:52,674 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:05:52,925 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:05:52,927 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:05:53,018 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:05:53,020 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:05:53,021 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:05:53,022 [10] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:05:53,028 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:05:53,091 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-05-22 03:05:53,473 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:05:53,474 [10] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:05:53,573 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:05:53,575 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:05:53,576 [10] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:06:10,230 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:06:10,231 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:06:10,233 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:06:10,234 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:06:10,289 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:06:10,290 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:06:10,302 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:06:10,303 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-05-22 03:06:10,456 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:06:10,460 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:06:10,461 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:06:10,559 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:06:10,561 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:06:10,562 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:06:10,563 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:06:10,565 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:06:10,566 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:06:10,570 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:06:10,572 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-05-22 03:06:10,573 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:06:10,574 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:06:10,649 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:06:10,650 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:06:10,652 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:08:07,783 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:08:07,786 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:08:07,788 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:08:07,812 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:08:07,820 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:08:07,821 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:08:07,835 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:08:07,836 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-05-22 03:08:07,958 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:08:07,959 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:08:07,987 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:08:08,064 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:08:08,065 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:08:08,073 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:08:08,088 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:08:08,089 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:08:08,093 [11] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:08:08,097 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:08:08,099 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-05-22 03:08:08,100 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:08:08,101 [11] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:08:08,189 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:08:08,191 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:08:08,194 [11] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:09:33,579 [14] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 03:09:33,588 [14] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/f4f168b4c7c64179b587d6365511200c/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 03:09:33,625 [14] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 03:11:03,964 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:11:03,966 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:11:03,968 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:11:03,978 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:11:03,981 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:11:03,987 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:11:04,002 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:11:04,003 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-05-22 03:11:28,614 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:11:28,640 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:11:28,705 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:11:28,840 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:11:28,842 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:11:28,843 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:11:28,844 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:11:28,846 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:11:28,847 [15] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:11:28,851 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:11:28,853 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-05-22 03:11:28,854 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:11:28,856 [15] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:11:29,010 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:11:29,050 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:11:29,052 [15] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:21:31,790 [6] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 03:21:32,009 [6] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.HttpException (0x80004005): The controller for path '/f4f168b4c7c64179b587d6365511200c/arterySignalR/ping' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at Castle.Proxies.Invocations.IControllerFactory_CreateController.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IControllerFactoryProxy.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 03:21:32,241 [6] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 03:21:32,701 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] begin
+2014-05-22 03:21:33,284 [5] INFO  Tax.Data.Models.ApplicationDbContext [ApplicationDbContext (static)] end
+2014-05-22 03:21:33,585 [5] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 03:21:33,586 [5] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 03:21:35,767 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:21:35,781 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:21:35,783 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:21:35,784 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:21:35,785 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:21:35,789 [6] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:21:36,232 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:21:36,233 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: /New
+2014-05-22 03:21:37,084 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:21:37,086 [6] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:21:41,369 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:21:41,371 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:21:41,377 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:21:41,378 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:21:41,380 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:21:41,400 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:21:41,800 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:21:41,804 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-05-22 03:21:58,387 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:21:58,403 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:21:58,412 [6] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:22:03,661 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-05-22 03:22:03,666 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-05-22 03:22:07,382 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-05-22 03:22:07,384 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-05-22 03:22:07,476 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:22:07,478 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:22:07,481 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:22:07,897 [8] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 03:22:07,899 [8] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 03:22:15,163 [8] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 03:22:15,165 [8] INFO  Tax.Portal.Controllers.NewController [(null)] end
+2014-05-22 03:22:39,451 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:22:39,453 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:22:39,455 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:22:39,456 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:22:39,509 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:22:39,510 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:22:39,788 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:22:39,790 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:22:39,791 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:22:39,841 [5] INFO  Tax.Portal.MvcApplication [Application_Error] begin
+2014-05-22 03:22:39,843 [5] ERROR Tax.Portal.MvcApplication [Application_Error] Application_Error
+System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Helpers.AntiForgery.Validate()
+   at System.Web.Mvc.ValidateAntiForgeryTokenAttribute.OnAuthorization(AuthorizationContext filterContext)
+   at Castle.Proxies.Invocations.IAuthorizationFilter_OnAuthorization.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()
+   at Glimpse.Core.Extensibility.ExecutionTimer.Time(Action action)
+   at Glimpse.Core.Extensions.AlternateMethodContextExtensions.TryProceedWithTimer(IAlternateMethodContext context, TimerResult& timerResult)
+   at Glimpse.Core.Extensibility.AlternateMethod.NewImplementation(IAlternateMethodContext context)
+   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IAuthorizationFilterProxy_4.OnAuthorization(AuthorizationContext filterContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass1e.<BeginInvokeAction>b__16(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TResult](AsyncCallback callback, Object state, BeginInvokeDelegate beginDelegate, EndInvokeDelegate`1 endDelegate, Object tag, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__3(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncResultWrapper.Begin[TState](AsyncCallback callback, Object callbackState, BeginInvokeDelegate`1 beginDelegate, EndInvokeVoidDelegate`1 endDelegate, TState invokeState, Object tag, Int32 timeout, SynchronizationContext callbackSyncContext)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-05-22 03:22:39,899 [5] INFO  Tax.Portal.MvcApplication [Application_Error] end
+2014-05-22 03:23:19,200 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:23:19,210 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:23:19,234 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:23:19,236 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:23:19,237 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:23:19,238 [8] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:23:19,244 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] begin
+2014-05-22 03:23:19,246 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] returnUrl: 
+2014-05-22 03:23:19,519 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] model: {"UserName":null,"Password":null,"RememberMe":false,"IsValid":true,"ErrorKeys":[]}
+2014-05-22 03:23:19,521 [8] INFO  Tax.Portal.Controllers.AccountController [Login(Get)] end
+2014-05-22 03:23:19,669 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:23:19,671 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:23:19,672 [8] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:23:30,410 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] begin
+2014-05-22 03:23:30,412 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(userManager)] end
+2014-05-22 03:23:30,479 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] begin
+2014-05-22 03:23:30,481 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController(db)] end
+2014-05-22 03:23:30,513 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] begin
+2014-05-22 03:23:30,515 [5] INFO  Tax.Portal.Controllers.AccountController [AccountController()] end
+2014-05-22 03:23:30,527 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] begin
+2014-05-22 03:23:30,572 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post)] model: {"UserName":"admin","Password":"Admin123","RememberMe":false,"IsValid":false,"ErrorKeys":null}, returnUrl: 
+2014-05-22 03:23:43,391 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-05-22 03:23:43,406 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-05-22 03:23:43,518 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] begin
+2014-05-22 03:23:43,520 [5] INFO  Tax.Portal.Controllers.AccountController [Login(Post) AuthenticationManager.get] end
+2014-05-22 03:24:01,654 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] begin
+2014-05-22 03:24:01,655 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] disposing: True
+2014-05-22 03:24:01,657 [5] INFO  Tax.Portal.Controllers.AccountController [Dispose] end
+2014-05-22 03:24:01,789 [5] INFO  Tax.Portal.Controllers.HomeController [Index] begin
+2014-05-22 03:24:01,790 [5] INFO  Tax.Portal.Controllers.HomeController [Index] end
+2014-05-22 03:24:02,040 [5] INFO  Tax.Portal.Controllers.NewController [(null)] begin
+2014-05-22 03:24:02,081 [5] INFO  Tax.Portal.Controllers.NewController [(null)] end

@@ -31,36 +31,36 @@ namespace Tax.Portal.Models
 
     public class ManageUserViewModel : BootstrapViewModel
     {
-        [Required(ErrorMessage = "Ezt az adatot kötelező megadni")]
+        [Required(ErrorMessage = "[{0}] is required")]
         [DataType(DataType.Password)]
-        [Display(Name = "Jelenlegi jelszó")]
+        [Display(Name = "Old password")]
         public string OldPassword { get; set; }
 
-        [Required(ErrorMessage = "Ezt az adatot kötelező megadni")]
-        [StringLength(100, ErrorMessage = "A {0} legalább {2} karakter hosszú legyen.", MinimumLength = 6)]
+        [Required(ErrorMessage = "[{0}] is required")]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Új jelszó")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Ezt az adatot kötelező megadni")]
+        [Required(ErrorMessage = "[{0}] is required")]
         [DataType(DataType.Password)]
-        [Display(Name = "Új jelszó megerősítés")]
-        [System.Web.Mvc.Compare("NewPassword", ErrorMessage = "Az [Új jelszó] és az [Új jelszó megerősítése] tartalma nem egyforma")]
+        [Display(Name = "New password again")]
+        [System.Web.Mvc.Compare("NewPassword", ErrorMessage = "[New password] and [New password again] are different")]
         public string ConfirmPassword { get; set; }
     }
 
     public class LoginViewModel : BootstrapViewModel
     {
-        [Required(ErrorMessage = "Ezt az adatot kötelező megadni")]
-        [Display(Name = "Bejelentkezési név")]
+        [Required(ErrorMessage = "[{0}] is required")]
+        [Display(Name = "Login name")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Ezt az adatot kötelező megadni")]
+        [Required(ErrorMessage = "[{0}] is required")]
         [DataType(DataType.Password)]
-        [Display(Name = "Jelszó")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Emlékezz rám")]
+        [Display(Name = "Remember me!")]
         public bool RememberMe { get; set; }
     }
 
