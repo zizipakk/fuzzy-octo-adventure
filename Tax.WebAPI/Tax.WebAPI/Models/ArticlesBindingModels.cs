@@ -12,7 +12,8 @@ namespace Tax.WebAPI.Models
         public string Title2 { get; set; }
         public string Subtitle { get; set; }
         public string Body { get; set; }
-        public IEnumerable<TagsBindingModel> Tags { get; set; }
+        //public IEnumerable<TagsBindingModel> Tags { get; set; }
+        public IEnumerable<string> Tags { get; set; }
         public string Date { get; set; }
     }
 

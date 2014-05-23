@@ -2,98 +2,150 @@
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
 @using Tax.MvcGlobalisationSupport;
+@using Tax.Portal.Helpers;
+@{
+    var rootUrl = HtmlHelpers.AppRootUrl();
+    var actUrl = Request.Url.PathAndQuery;
+    var delockUrl = actUrl;
+    if (Request.ApplicationPath != "/")
+    {
+        delockUrl = delockUrl.Replace(Request.ApplicationPath, "");//vd lecsap
+    }
+    delockUrl = delockUrl.Replace("/hu", "").Replace("/en", "");//loki lecsap
+}
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Tax & Leagal 4Me</title>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/themes/base/css")
-    @Scripts.Render("~/Scripts/modernizr")
-    <style type="text/css">
-        body { padding-top: 45px}
-    </style>
-    @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
-</head>
-<body>
-    <div class="navbar navbar navbar-fixed-top">                
-        <div class="container">            
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" style="margin-top: 5px">
-                @Html.Partial("_LoginPartial")
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
-                    @if (Request.IsAuthenticated)
-                    {
-                        using (var db = new Tax.Data.Models.ApplicationDbContext())
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Tax & Leagal 4Me</title>
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/Scripts/modernizr")
+        <style type="text/css">
+            body { 
+                padding-top: 50px
+            }
+            /*.nav .navbar-nav .navbar-right> .active {
+                color: #8a0e0b;
+                background: #d65c14;
+            }*/
+        </style>
+        @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
+        @Html.Hidden("actUrl", actUrl)
+    </head>
+    <body>
+        <div class="navbar navbar navbar-fixed-top">                
+            <div class="container">            
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse" style="margin-top: 5px">
+                    @Html.Partial("_LoginPartial")
+                    <ul class="nav navbar-nav navbar-right" id="menuGroup" style="margin-right: 10px">
+                        @if (Request.IsAuthenticated)
                         {
-                            string usrId = User.Identity.GetUserId();
-                            bool isAdmin = Roles.IsUserInRole("SysAdmin");
-                            foreach (var menu in db.Menu.OrderBy(x => x.Position).ToList())
+                            using (var db = new Tax.Data.Models.ApplicationDbContext())
                             {
-                                foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
+                                string usrId = User.Identity.GetUserId();
+                                bool isAdmin = Roles.IsUserInRole("SysAdmin");
+                                foreach (var menu in db.Menu.OrderBy(x => x.Position).ToList())
                                 {
-                                    if (@menuitem.Name != "Admin" || isAdmin)
+                                    foreach (var menuitem in menu.SubMenu.OrderBy(x => x.Position).ToList())
                                     {
-                                        <li>
-                                            <a class="@(!menu.isActive?"disabled":"")" href="@Url.Action(menuitem.Action, menuitem.Controller)">
-                                                @menuitem.Name
-                                            </a>
-                                        </li>
+                                        if (@menuitem.Name != "Admin" || isAdmin)
+                                        {
+                                            <li>
+                                                <a class="@("active"
+                                                                //!menu.isActive ? 
+                                                                //"disabled" :
+                                                                //delockUrl.Contains(string.Format("{0}/{1}",menuitem.Controller,menuitem.Action)) ? 
+                                                                //    "active" : 
+                                                                //    "" 
+                                                            )" id="@menuitem.Id" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                    @menuitem.Name
+                                                </a>
+                                            </li>
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                </ul>
-            </div>            
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-xs-12">
-                    <input id="Publish" type="button" class="btn btn-default" value="Publish" style="visibility:hidden" />
-                    <input id="CallBack" type="button" class="btn btn-default" value="CallBack" style="visibility:hidden" />
-                    <input id="Back" type="button" class="btn btn-default" value="Back" style="visibility:hidden" onclick="" />
-                    <input id="Save" type="button" class="btn btn-default" value="Save" style="visibility:hidden" onclick="$('#main').submit()" />
-                </div>
-                <div class="col-sm-2 col-xs-12 pull-right text-right" >
-                    <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)" onclick="location.href='/hu'" />
-                    <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)" onclick="location.href='/en'" />
+                    </ul>
+                </div>            
+            </div>
+            <div class="container" style="padding-top:5px">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-6">
+                        <a class="active">
+                        <input id="Publish" type="button" class="btn btn-default" value="Publish" style="display:none" />
+                        <input id="CallBack" type="button" class="btn btn-default" value="CallBack" style="display:none" />
+                        <input id="Back" type="button" class="btn btn-default" value="Back" style="display:none" onclick="" />
+                        <input id="Save" type="button" class="btn btn-default" value="Save" style="display:none" onclick="$('#main').submit()" />
+                    </div>
+                    <div class="col-xs-6 pull-right text-right" id="locGroup">
+                        <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
+                            onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
+                        <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
+                            onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content" style="min-height: 668px; background-color: lightgray">
-        @RenderBody()
-        <footer>
-            <div class="input-group-addon row" style="background-color: none;">
-                <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
-                    <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
+        <div class="container body-content" style="min-height: 668px; background-color: lightgray">
+            @RenderBody()
+            <footer>
+                <div class="input-group-addon row" style="background-color: none;">
+                    <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
+                        <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
+                    </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
 
-    @* Áttértünk a 2.0-s jquery-re, viszont ezzel *@
-    @* megmarad az ie 6-7-8 kompatibilitás *@
-    @* http://stackoverflow.com/a/18782433/208922 *@
-    @Scripts.Render("~/Scripts/jquery")
-        <!--[if lte IE 8]>
-        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <![endif]-->
-    @Scripts.Render("~/Scripts/bootstrap")
-    @RenderSection("scripts", required: false)
+        @* Áttértünk a 2.0-s jquery-re, viszont ezzel *@
+        @* megmarad az ie 6-7-8 kompatibilitás *@
+        @* http://stackoverflow.com/a/18782433/208922 *@
+        @Scripts.Render("~/Scripts/jquery")
+            <!--[if lte IE 8]>
+            <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+            <![endif]-->
+        @Scripts.Render("~/Scripts/bootstrap")
+        @*<script type="text/javascript">
+            //$('#menuGroup > a').removeClass('active'); ez tudja a böngésző magától
+            //go to the latest menu, if it exists:
+            var lastMnu = localStorage.getItem('lastMenu');
+            if (lastMnu) {
+                $('#' + lastMenu).addClass('active');
+            }
+            //store last menu
+            $('#menuGroup > li > a').click(function (e) {
+                alert($(e.target).attr('id'));
+                //$(this).addClass('active');
+                localStorage.setItem('lastMenu', $(e.target).attr('id'));
+            });
+            //$('#locGroup > .btn').removeClass('active'); ez tudja a böngésző magától
+            var lastLng = localStorage.getItem('lastLang');
+            if (lastLng) {
+                $('#' + lastLng).addClass('active');
+            }
+            //store last language
+            $('#locGroup > .btn').click(function (e) {
+                alert($(e.target).attr('id'));
+                //$(this).addClass('active');
+                localStorage.setItem('lastLang', $(e.target).attr('id'));
+            });
+        </script>*@
+        @RenderSection("scripts", required: false)
 
-</body>
+    </body>
 </html>

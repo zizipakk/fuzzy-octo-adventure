@@ -135,7 +135,7 @@
         //közös a view, ezért magic
         if ($('#Mode').val() == "create")
         {
-            $('#main').attr('action', '/New/Create');
+            $('#main').attr('action', $('#actUrl').val());
         }
         //visszalépési irány
         $('#Back').attr('onclick', 'document.location.href = "@Url.Action(MVC.New.Index())"');

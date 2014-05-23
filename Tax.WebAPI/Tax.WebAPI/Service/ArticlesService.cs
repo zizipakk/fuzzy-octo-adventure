@@ -106,11 +106,12 @@ namespace Tax.WebAPI.Service
                                     Title2 = s.y.Title2,
                                     Subtitle = s.y.Subtitle,
                                     Body = s.y.Body_text,
-                                    Tags = s.x.TagsGlobal
-                                                .SelectMany(v => context.TagsLocal.Where(z =>
-                                                                                            z.TagsGlobal.Id == v.Id
-                                                                                            && z.Language.ShortName == lang)
-                                                    , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                    //Tags = s.x.TagsGlobal
+                                    //            .SelectMany(v => context.TagsLocal.Where(z =>
+                                    //                                                        z.TagsGlobal.Id == v.Id
+                                    //                                                        && z.Language.ShortName == lang)
+                                    //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                    Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
                                     Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate)
                                 }
                                 )

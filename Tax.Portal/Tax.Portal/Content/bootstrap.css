@@ -7168,14 +7168,10 @@ td.visible-print {
     border-bottom-color: transparent;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-    font-weight: bold;
+/*.nav-content> {
     color: #555;
-    cursor: default;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-}
+    background-color: #555;
+}*/
 
 /* end of tab */
 
