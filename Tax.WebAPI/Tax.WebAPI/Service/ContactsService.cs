@@ -43,7 +43,7 @@ namespace Tax.WebAPI.Service
                         .Select(s => new ContactsBindingModel
                             {
                                 Id = s.x.Id.ToString(),
-                                FisrtName = s.x.First_name,
+                                FirstName = s.x.First_name,
                                 LastName = s.x.Last_name,
                                 Department = s.y.Department,
                                 Position = s.y.Position,
@@ -53,16 +53,17 @@ namespace Tax.WebAPI.Service
                                     new PhonenumbersBindingModel() { Label = "Phone", Number = s.x.Phone }, 
                                     new PhonenumbersBindingModel() { Label = "Mobile", Number = s.x.Mobile } },
                                 Email = s.x.Email,
-                                Tags = s.x.TagsGlobal
-                                            .SelectMany(v => context.TagsLocal.Where(z =>
-                                                                                        z.TagsGlobal.Id == v.Id
-                                                                                        && z.Language.ShortName == lang)
-                                                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                //Tags = s.x.TagsGlobal
+                                //            .SelectMany(v => context.TagsLocal.Where(z =>
+                                //                                                        z.TagsGlobal.Id == v.Id
+                                //                                                        && z.Language.ShortName == lang)
+                                //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
                                 linkedinURL = s.x.Linkedin
                             }
                         )
                         .OrderByDescending(o => o.LastName)
-                        .ThenBy(t => t.FisrtName);
+                        .ThenBy(t => t.FirstName);
 
             return res; 
         }

@@ -6,7 +6,7 @@ namespace Tax.WebAPI.Models
     public class ContactsBindingModel
     {
         public string Id { get; set; }
-        public string FisrtName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Department { get; set; }
         public string Position { get; set; }
@@ -14,7 +14,8 @@ namespace Tax.WebAPI.Models
         public string ImageURL { get; set; }
         public IEnumerable<PhonenumbersBindingModel> PhoneNumbers { get; set; }
         public string Email { get; set; }
-        public IEnumerable<TagsBindingModel> Tags { get; set; }
+//        public IEnumerable<TagsBindingModel> Tags { get; set; }
+        public IEnumerable<string> Tags { get; set; }
         public string linkedinURL { get; set; }
     }
 
