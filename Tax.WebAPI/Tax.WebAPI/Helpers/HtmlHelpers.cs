@@ -18,7 +18,12 @@ namespace Tax.WebAPI.Helpers
             {
                 scheme = request.Url.Scheme;
             }
-            return string.Format("{0}://{1}{2}", scheme, request.Url.Authority, url);
+            //return string.Format("{0}://{1}{2}", scheme, request.Url.Authority, url);
+            return string.Format("{0}://{1}{2}{3}", scheme, //http v. https
+                                                request.Url.Authority, //domain v ip:port
+                                                request.ApplicationPath, //virtual directory
+                                                url //query
+                                );
         }
     }
 }
