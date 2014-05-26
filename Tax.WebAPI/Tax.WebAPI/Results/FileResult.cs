@@ -17,7 +17,8 @@ namespace Tax.WebAPI.Results
         string fileName;
         string mimeType;
 
-        public FileResult(byte[] content, string fileName, string mimeType = "application/octet-stream")
+        //public FileResult(byte[] content, string fileName, string mimeType = "application/octet-stream")
+        public FileResult(byte[] content, string fileName, string mimeType)
         {
             this.fileContent = content;
             this.fileName = fileName;

@@ -33,11 +33,18 @@ namespace Tax.WebAPI.Controllers
 
                 var image = imagesService.GetImage(id);
 
-                if (image == null)
+                if (null == image)
                 {
                     return NotFound();
                 }
-                return new FileResult(image.file_stream, image.name, "image/" + image.file_type);
+                if (null == image.file_type)
+                {
+                    return new FileResult(image.file_stream, image.name, "application/octet-stream");
+                }
+                else
+                {
+                    return new FileResult(image.file_stream, image.name, "image/" + image.file_type);
+                }
             }
             catch (Exception ex)
             {

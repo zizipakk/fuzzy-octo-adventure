@@ -37,14 +37,17 @@ namespace Tax.WebAPI.Service
 
         public string DeleteDevice(string token)
         {
-            var res = context.Device.SingleOrDefault(x => x.Token == token);
-            if (null == res)
+            var res = context.Device.Where(x => x.Token == token);
+            if (null == res || res.Count() == 0)
             {
                 return string.Format("Not found token: {0}", token);
             }
             else
             {
-                context.Entry(res).State = EntityState.Deleted;
+                foreach (var item in res.ToList())
+                {
+                    context.Entry(item).State = EntityState.Deleted;
+                }
                 context.SaveChanges();
             }
 
