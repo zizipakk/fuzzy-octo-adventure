@@ -19,19 +19,20 @@ namespace Tax.Data.Models
         {
             Id = Guid.NewGuid();
             MessagesLocal = new HashSet<MessagesLocal>();
+            MessagesLocalDeviceType = new HashSet<MessagesLocalDeviceType>();
         }
 
         [Key]
         public Guid Id { get; set; }
         public DateTime? PublishingDate { get; set; }
-        public string ServiceResponse { get; set; }
-
+        
         public virtual NewsStatusesGlobal NewsStatus { get; set; }
         public virtual ICollection<MessagesLocal> MessagesLocal { get; set; }
+        public virtual ICollection<MessagesLocalDeviceType> MessagesLocalDeviceType { get; set; }
     }
 
     /// <summary>
-    /// MessAGES localized
+    /// Messages localized
     /// </summary>
     public class MessagesLocal
     {
@@ -44,8 +45,26 @@ namespace Tax.Data.Models
         [ForeignKey("LanguageId")]
         public virtual Language Language { get; set; }
 
-        //        [Display(Name = "Messages")]
-        //[Required(ErrorMessage = "A(z) [{0}] mezőt kötelező kitölteni")]
         public string Message { get; set; }
     }
+
+    /// <summary>
+    /// Messages - DeviceType
+    /// </summary>
+    public class MessagesLocalDeviceType
+    {
+        public MessagesLocalDeviceType()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        [Key]
+        public Guid Id { get; set; }
+        public string ServiceResponse { get; set; }
+        public bool isOK { get; set; }
+
+        public virtual MessagesGlobal MessagesGlobal { get; set; }
+        public virtual DeviceType DeviceType { get; set; }
+    }
+
 }

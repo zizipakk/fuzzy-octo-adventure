@@ -36,12 +36,15 @@ namespace Tax.Data.Models
         public DeviceType()
         {
             Id = Guid.NewGuid();
+            MessagesLocalDeviceType = new HashSet<MessagesLocalDeviceType>();
         }
 
         [Key]
         public Guid Id { get; set; }
         [StringLength(100)]
         public string Name { get; set; }
+
+        public virtual ICollection<MessagesLocalDeviceType> MessagesLocalDeviceType { get; set; }
     }
 
 }

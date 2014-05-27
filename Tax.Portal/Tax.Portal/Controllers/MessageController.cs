@@ -61,16 +61,23 @@ namespace Tax.Portal.Controllers
                                     , (x, y) => new { x, y })
                                 .SelectMany(z => z.x.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
                                     , (z, v) => new { z, v })
-
+                                .SelectMany(a => a.z.x.x.MessagesLocalDeviceType.Where(v => v.DeviceType.Name == "Ios").DefaultIfEmpty()
+                                    , (a, b) => new { a, b })
+                                .SelectMany(a => a.a.z.x.x.MessagesLocalDeviceType.Where(v => v.DeviceType.Name == "Android").DefaultIfEmpty()
+                                    , (a, b) => new { a, b })
                         .ToList()
                         .Select(s => new 
                         {
-                            Id = s.z.x.x.Id,
-                            Status = s.v.Name,
-                            MessageEn = s.z.x.y.Message,
-                            MessageHu = s.z.y.Message,
-                            PublishingDate = s.z.x.x.PublishingDate,
-                            Response = s.z.x.x.ServiceResponse
+                            Id = s.a.a.z.x.x.Id,
+                            Status = s.a.a.v.Name,
+                            MessageEn = s.a.a.z.x.y.Message,
+                            MessageHu = s.a.a.z.y.Message,
+                            PublishingDate = s.a.a.z.x.x.PublishingDate,
+                            //Response = s.z.x.x.ServiceResponse
+                            OkIos = s.a.b.isOK,
+                            ServiceResponseIos = s.a.b.ServiceResponse,
+                            OkAndriod = s.b.isOK,
+                            ServiceResponseAndroid = s.b.ServiceResponse
                         })
                         .AsQueryable().GridPage(grid, out result);
 
@@ -86,7 +93,11 @@ namespace Tax.Portal.Controllers
                                 ,r.MessageEn
                                 ,r.MessageHu
                                 ,r.PublishingDate.ToString()
-                                ,r.Response
+                                //,r.Response
+                                ,r.OkIos.ToString()
+                                ,r.ServiceResponseIos
+                                ,r.OkAndriod.ToString()
+                                ,r.ServiceResponseAndroid
                                }
                            }).ToArray();
 
@@ -125,7 +136,7 @@ namespace Tax.Portal.Controllers
                 MessagesGlobal resg = db.MessagesGlobal.Create();
                 resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == "Editing");
                 resg.PublishingDate = null;
-                resg.ServiceResponse = null;
+                //resg.ServiceResponse = null;
                 db.Entry(resg).State = EntityState.Added;
 
                 //string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
@@ -157,8 +168,9 @@ namespace Tax.Portal.Controllers
         {
             using (log4net.ThreadContext.Stacks["NDC"].Push("POST: Message/Edit"))
             {
-                Guid gid = Guid.Parse(id);
                 log.Info("begin");
+                Guid gid = Guid.Parse(id);
+                
                 MessagesGlobal resg;
 
                 switch (oper)
@@ -220,13 +232,17 @@ namespace Tax.Portal.Controllers
         string oldSubscriptionId, string newSubscriptionId, INotification notification)
         {
             //Nem használjuk: mobil klines fel(le)telepítéskor be(ki)reg a szervizbe és delete(régi token)-put(új token) a webapin
+            warningtext += DateTime.Now.ToString() + " warning: " + notification
+                            + " oldSubscriptionId: " + oldSubscriptionId
+                            + " newSubscriptionId: " + newSubscriptionId
+                            + " | ";
         }
 
         //this even raised when a notification is successfully sent
         static void NotificationSent(object sender, INotification notification)
         {
             //successtext for json
-            successtext += " Ok: " + notification;
+            successtext += DateTime.Now.ToString() + " Ok: " + notification + " | ";
         }
 
         //this is raised when a notification is failed due to some reason
@@ -234,7 +250,7 @@ namespace Tax.Portal.Controllers
         INotification notification, Exception notificationFailureException)
         {
             //errortext for json
-            errortext += " Error: " + notification + " Case: " + notificationFailureException;
+            errortext += DateTime.Now.ToString() + " Error: " + notification + " Case: " + notificationFailureException + " | ";
         }
 
         //this is fired when there is exception is raised by the channel
@@ -242,14 +258,14 @@ namespace Tax.Portal.Controllers
             (object sender, IPushChannel channel, Exception exception)
         {
             //network errortext for json
-            errortext += " Error: " + channel + " Case: " + exception;
+            errortext += DateTime.Now.ToString() + " Error: " + channel + " Case: " + exception + " | "; ;
         }
 
         //this is fired when there is exception is raised by the service
         static void ServiceException(object sender, Exception exception)
         {
             //service errortext for json
-            errortext += " Error: " + sender + " Case: " + exception;
+            errortext += DateTime.Now.ToString() + " Error: " + sender + " Case: " + exception + " | ";
         }
 
         //this is raised when the particular device subscription is expired
@@ -258,21 +274,21 @@ namespace Tax.Portal.Controllers
             DateTime timestamp, INotification notification)
         {
             //lejárt token errortext for json
-            warningtext = " Warning: " + notification + " Token: " + expiredDeviceSubscriptionId;
+            warningtext = DateTime.Now.ToString() + " Warning: " + notification + " Token: " + expiredDeviceSubscriptionId + " | ";
         }
 
         //this is raised when the channel is destroyed
         static void ChannelDestroyed(object sender)
         {
             //network crash errortext for json
-            successtext += " Ok channel destroyed: " + sender;
+            errortext += DateTime.Now.ToString() + " Error - channel destroyed: " + sender + " | ";
         }
 
         //this is raised when the channel is created
         static void ChannelCreated(object sender, IPushChannel pushChannel)
         {
             //network init successtext for json
-            successtext += " Ok initialized: " + pushChannel;
+            successtext += DateTime.Now.ToString() + " Ok initialized: " + pushChannel + " | ";
         }
         
         /// <summary>
@@ -284,122 +300,167 @@ namespace Tax.Portal.Controllers
         [Authorize(Roles = "SysAdmin, User")]
         public virtual ActionResult UpdateMessageStatus(Guid? id, string to)
         {
-            var sta = db.NewsStatusesGlobal.Where(x => x.NameGlobal == to).FirstOrDefault();
-            if (null != id && null != sta)
+            using (log4net.ThreadContext.Stacks["NDC"].Push("Message/UpdateMessageStatus"))
             {
-                var m = db.MessagesGlobal.Find(id);
-                if (null != m)
+                log.Info("begin");
+                var sta = db.NewsStatusesGlobal.Where(x => x.NameGlobal == to).FirstOrDefault();
+                if (null != id && null != sta)
                 {
-                    m.NewsStatus = sta;
-                    if (to == "Published")
-                    { 
-                        //create the puchbroker object
-                        var push = new PushBroker();
-                        //Wire up the events for all the services that the broker registers
-                        push.OnNotificationSent += NotificationSent;
-                        push.OnChannelException += ChannelException;
-                        push.OnServiceException += ServiceException;
-                        push.OnNotificationFailed += NotificationFailed;
-                        push.OnDeviceSubscriptionExpired += DeviceSubscriptionExpired;
-                        push.OnDeviceSubscriptionChanged += DeviceSubscriptionChanged;
-                        push.OnChannelCreated += ChannelCreated;
-                        push.OnChannelDestroyed += ChannelDestroyed;
-
-                        List<Device> rows = new List<Device>(db.Device.ToList());
-                        foreach (Device row in rows)
-                        { 
-                            try
-                            {
-                                var lm = m.MessagesLocal.FirstOrDefault(x => x.LanguageId == row.Language.Id);
-                                string lmt = null == lm ? "" : lm.Message;
-
-                                if (row.DeviceType.Name == "Ios")
-                                {
-                                //-------------------------
-                                // APPLE NOTIFICATIONS
-                                //-------------------------
-                                //Configure and start Apple APNS
-                                // IMPORTANT: Make sure you use the right Push certificate.  Apple allows you to
-                                //generate one for connecting to Sandbox, and one for connecting to Production.  You must
-                                // use the right one, to match the provisioning profile you build your
-                                //   app with!
-
-                                    //IMPORTANT: If you are using a Development provisioning Profile, you must use
-                                    // the Sandbox push notification server 
-                                    //  (so you would leave the first arg in the ctor of ApplePushChannelSettings as
-                                    // 'false')
-                                    //  If you are using an AdHoc or AppStore provisioning profile, you must use the 
-                                    //Production push notification server
-                                    //  (so you would change the first arg in the ctor of ApplePushChannelSettings to 
-                                    //'true')
-                                    var prod = db.SystemParameter.FirstOrDefault(x => x.Name == "IOS Production");
-                                    bool isProd = false;
-                                    string certPath = "~/Resources/taxandlegal-push-dev.pem";
-                                    if (null != prod && prod.Value == "true")
-                                    {
-                                        isProd = true;
-                                        certPath = "~/Resources/taxandlegal-push-prod.pem";
-                                    }
-                                    var appleCert = System.IO.File.ReadAllBytes(Server.MapPath(certPath));                                    
-                                    push.RegisterAppleService(new ApplePushChannelSettings(isProd, appleCert, ""));//nincs pw
-                                    //Extension method
-                                    //Fluent construction of an iOS notification
-                                    //IMPORTANT: For iOS you MUST MUST MUST use your own DeviceToken here that gets
-                                    // generated within your iOS app itself when the Application Delegate
-                                    //  for registered for remote notifications is called, 
-                                    // and the device token is passed back to you
-                                    push.QueueNotification(new AppleNotification()
-                                                                .ForDeviceToken(row.Token)//the recipient device id
-                                                                .WithAlert(lmt)//the message
-                                                                .WithBadge(1)
-                                                                //.WithSound("")
-                                    );
-                                }
-                                if(row.DeviceType.Name == "Android")
-                                {
-                                    //---------------------------
-                                    // ANDROID GCM NOTIFICATIONS
-                                    //---------------------------
-                                    //Configure and start Android GCM
-                                    //IMPORTANT: The API KEY comes from your Google APIs Console App, 
-                                    //under the API Access section, 
-                                    //  by choosing 'Create new Server key...'
-                                    //  You must ensure the 'Google Cloud Messaging for Android' service is 
-                                    //enabled in your APIs Console
-                                    push.RegisterGcmService(new
-                                        GcmPushChannelSettings("AIzaSyBlPPV4mQKZveyqjoMlhJVTrbbMDS1frC4"));
-                                    //Fluent construction of an Android GCM Notification
-                                    //IMPORTANT: For Android you MUST use your own RegistrationId 
-                                    //here that gets generated within your Android app itself!
-                                    push.QueueNotification(new GcmNotification()
-                                        .ForDeviceRegistrationId(row.Token)
-                                        .WithJson("{\"alert\":\"" + lmt + "\",\"badge\":7" 
-                                                    //+ ",\"sound\":\"sound.caf\""
-                                                    + "}")
-                                    );
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                throw ex;
-                            }
-                        }
-                        push.StopAllServices(waitForQueuesToFinish: true);
-
-                        if (null != errortext)//hiba volt
+                    var m = db.MessagesGlobal.Find(id);
+                    if (null != m)
+                    {
+                        var l = m.MessagesLocal;
+                        if (l.Count != 0 && to == "Published")
                         {
-                            return Json(new { success = false, error = true, response = errortext });
-                        }
+                            //napló szervizenként, ha még nincs
+                            foreach (var dt in db.DeviceType.Where(x => !m.MessagesLocalDeviceType.Select(y => y.DeviceType).Contains(x)).ToList())
+                            {
+                                var mgdt = db.MessagesLocalDeviceType.Create();
+                                mgdt.MessagesGlobal = m;
+                                mgdt.DeviceType = dt;
+                                mgdt.isOK = false;
+                                mgdt.ServiceResponse = null;
+                                db.Entry(mgdt).State = EntityState.Added;
+                                db.SaveChanges();
+                            }
 
-                        m.ServiceResponse = string.Format("{0}{1}", warningtext + " /// ", successtext);
-                        m.PublishingDate = DateTime.Now.Date; 
+                            //create the puchbroker object
+                            var push = new PushBroker();
+                            //Wire up the events for all the services that the broker registers
+                            push.OnNotificationSent += NotificationSent;
+                            push.OnChannelException += ChannelException;
+                            push.OnServiceException += ServiceException;
+                            push.OnNotificationFailed += NotificationFailed;
+                            push.OnDeviceSubscriptionExpired += DeviceSubscriptionExpired;
+                            push.OnDeviceSubscriptionChanged += DeviceSubscriptionChanged;
+                            push.OnChannelCreated += ChannelCreated;
+                            push.OnChannelDestroyed += ChannelDestroyed;
+
+                            var md = m.MessagesLocalDeviceType.Where(x => x.MessagesGlobal == m);
+                            var mdIOS = md.FirstOrDefault(x => x.DeviceType.Name == "Ios");
+                            if (!mdIOS.isOK) //még nem ment ki ré üzenet sikeresen
+                            {
+                                foreach (Device row in db.Device.Where(x => x.DeviceType.Name == "Ios").ToList())
+                                {
+                                    var lm = l.FirstOrDefault(x => x.LanguageId == row.Language.Id);
+                                    if (null != lm) //ha nincs lokalizált szöveg, itt sem vagyunk
+                                    {
+                                        //-------------------------
+                                        // APPLE NOTIFICATIONS
+                                        //-------------------------
+                                        //Configure and start Apple APNS
+                                        // IMPORTANT: Make sure you use the right Push certificate.  Apple allows you to
+                                        //generate one for connecting to Sandbox, and one for connecting to Production.  You must
+                                        // use the right one, to match the provisioning profile you build your
+                                        //   app with!
+
+                                        //IMPORTANT: If you are using a Development provisioning Profile, you must use
+                                        // the Sandbox push notification server 
+                                        //  (so you would leave the first arg in the ctor of ApplePushChannelSettings as
+                                        // 'false')
+                                        //  If you are using an AdHoc or AppStore provisioning profile, you must use the 
+                                        //Production push notification server
+                                        //  (so you would change the first arg in the ctor of ApplePushChannelSettings to 
+                                        //'true')
+                                        var prod = db.SystemParameter.FirstOrDefault(x => x.Name == "IOS Production");
+                                        bool isProd = false;
+                                        string certPath = "~/Resources/taxandlegal-push-dev.pem";
+                                        if (null != prod && prod.Value == "true")
+                                        {
+                                            isProd = true;
+                                            certPath = "~/Resources/taxandlegal-push-prod.pem";
+                                        }
+                                        var appleCert = System.IO.File.ReadAllBytes(Server.MapPath(certPath));
+                                        push.RegisterAppleService(new ApplePushChannelSettings(isProd, appleCert, ""));//nincs pw
+                                        //Extension method
+                                        //Fluent construction of an iOS notification
+                                        //IMPORTANT: For iOS you MUST MUST MUST use your own DeviceToken here that gets
+                                        // generated within your iOS app itself when the Application Delegate
+                                        //  for registered for remote notifications is called, 
+                                        // and the device token is passed back to you
+                                        push.QueueNotification(new AppleNotification()
+                                                                    .ForDeviceToken(row.Token)//the recipient device id
+                                                                    .WithAlert(lm.Message)//the message
+                                                                    .WithBadge(1)
+                                            //.WithSound("")
+                                                                    );
+                                    }
+                                }
+                                push.StopAllServices(waitForQueuesToFinish: true);
+                                //validálunk
+                                if (errortext == null)
+                                {
+                                    mdIOS.isOK = true;  
+                                }
+                                mdIOS.ServiceResponse =
+                                    string.Format("{0}{1}{2}", null == errortext ? "" : errortext + " /// ", null == warningtext ? "" : warningtext + " /// ", successtext);
+                                errortext = null;
+                                warningtext = null;
+                                successtext = null;
+                            }
+
+                            var mdANDROID = md.FirstOrDefault(x => x.DeviceType.Name == "Android");
+                            if (!mdANDROID.isOK) //még nem ment ki ré üzenet sikeresen
+                            {
+                                foreach (Device row in db.Device.Where(x => x.DeviceType.Name == "Android").ToList())
+                                {
+                                    var lm = l.FirstOrDefault(x => x.LanguageId == row.Language.Id);
+                                    if (null != lm) //ha nincs lokalizált szöveg, itt sem vagyunk
+                                    {
+                                        //---------------------------
+                                        // ANDROID GCM NOTIFICATIONS
+                                        //---------------------------
+                                        //Configure and start Android GCM
+                                        //IMPORTANT: The API KEY comes from your Google APIs Console App, 
+                                        //under the API Access section, 
+                                        //  by choosing 'Create new Server key...'
+                                        //  You must ensure the 'Google Cloud Messaging for Android' service is 
+                                        //enabled in your APIs Console
+                                        push.RegisterGcmService(new
+                                            GcmPushChannelSettings("AIzaSyBlPPV4mQKZveyqjoMlhJVTrbbMDS1frC4"));
+                                        //Fluent construction of an Android GCM Notification
+                                        //IMPORTANT: For Android you MUST use your own RegistrationId 
+                                        //here that gets generated within your Android app itself!
+                                        push.QueueNotification(new GcmNotification()
+                                            .ForDeviceRegistrationId(row.Token)
+                                            .WithJson("{\"alert\":\"" + lm.Message + "\",\"badge\":7"
+                                            //+ ",\"sound\":\"sound.caf\""
+                                                        + "}")
+                                                            );
+                                    }
+                                }
+                                push.StopAllServices(waitForQueuesToFinish: true);
+                                //validálunk
+                                if (errortext == null)
+                                {
+                                    mdANDROID.isOK = true;
+                                }
+                                mdANDROID.ServiceResponse =
+                                    string.Format("{0}{1}{2}", null == errortext ? "" : errortext + " /// ", null == warningtext ? "" : warningtext + " /// ", successtext);
+                                errortext = null;
+                                warningtext = null;
+                                successtext = null;
+                            }
+
+                            if (!mdIOS.isOK || !mdANDROID.isOK)//hiba volt
+                            {
+                                return Json(new { success = false, error = true, response = errortext });
+                            }
+
+                            //m.ServiceResponse = string.Format("{0}{1}", warningtext + " /// ", successtext);
+                            m.PublishingDate = DateTime.Now.Date;
+                            m.NewsStatus = sta;
+                        }
+                        db.SaveChanges();
+                        log.Info("end: OK");
+                        return Json(new { success = true, error = false, response = "OK" });
                     }
-                    db.SaveChanges();
-                    return Json(new { success = false, error = false, response = m.ServiceResponse });
+                    log.Info("end: Not found message");
+                    return Json(new { success = false, error = false, response = "Not found" });
                 }
-                return Json(new { success = false, error = false, response = "Not found" });
+                log.Info("end: bad parameters");
+                return Json(new { success = false, error = true, response = "Bad request" });
             }
-            return Json(new { success = false, error = true, response = "Bad request" });
         }
 
         #endregion statusbuttons

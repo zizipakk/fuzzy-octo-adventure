@@ -233,8 +233,8 @@
                 },
                 editable: false
             },
-            { name: 'MessageEn', index: 'NameEn', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, edittype: "textarea" },
-            { name: 'MessageHu', index: 'NameHu', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, edittype: "textarea" },
+            { name: 'MessageEn', index: 'NameEn', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true }, edittype: "textarea" },
+            { name: 'MessageHu', index: 'NameHu', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true }, edittype: "textarea" },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
@@ -247,6 +247,7 @@
                 //searchrules: { custom: true, custom_func: datetimecheck },
                 editable: false
             },
+            itt
             { name: 'Response', index: 'Response', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: false, edittype: "textarea" }
         ],
         rowNum: 20,
