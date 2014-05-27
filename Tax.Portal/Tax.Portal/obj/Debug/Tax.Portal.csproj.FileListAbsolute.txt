@@ -67,3 +67,8 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\Microsoft.Owin.Security.O
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\obj\Debug\Tax.Portal.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\PushSharp.Android.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\PushSharp.Apple.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\PushSharp.Core.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\PushSharp.Windows.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Portal\Tax.Portal\bin\PushSharp.WindowsPhone.dll

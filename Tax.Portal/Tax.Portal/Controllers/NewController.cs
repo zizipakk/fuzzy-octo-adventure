@@ -540,7 +540,7 @@ namespace Tax.Portal.Controllers
                 //ideiglenes megoldás directory kezelés helyett
                 info = string.Format("{0}_{1}", id.ToString(), info);
 
-                var sf = new File() { stream_id = id, name = info, file_stream = myBinary };
+                var sf = new File() { stream_id = id, name = info, file_type = hpf.ContentType, file_stream = myBinary };
                 db.File.Add(sf);
                 db.SaveChanges();
 
@@ -574,14 +574,16 @@ namespace Tax.Portal.Controllers
                     return Json("Upload error!");
                 }
 
-                ////a megadott kiterjesztést nézem
-                //if (file.ContentType.ToLower() != "image/jpg"
-                //    &&
-                //    file.ContentType.ToLower() != "image/jpeg")
-                //{
-                //    Response.StatusCode = 500;//(int)HttpStatusCode.InternalServerError;
-                //    return Json("A megadott fájl típust nem lehet feltölteni! (Elfogadott típusok: jpg, jpeg)!");
-                //}
+                //a megadott kiterjesztést nézem
+                if (file.ContentType.ToLower() != "image/jpg"
+                    &&
+                    file.ContentType.ToLower() != "image/jpeg"
+                    &&
+                    file.ContentType.ToLower() != "image/png")
+                {
+                    Response.StatusCode = 500;//(int)HttpStatusCode.InternalServerError;
+                    return Json("Image types only: jpg, jpeg, png");
+                }
 
                 //megpróbjálom konvertálni képpé
                 System.Drawing.Image image = null;

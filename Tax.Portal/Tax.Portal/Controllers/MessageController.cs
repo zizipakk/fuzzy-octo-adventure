@@ -18,6 +18,7 @@ using PushSharp;
 using PushSharp.Android;
 using PushSharp.Apple;
 using PushSharp.Core;
+using System.IO;
 
 
 namespace Tax.Portal.Controllers
@@ -225,7 +226,7 @@ namespace Tax.Portal.Controllers
         static void NotificationSent(object sender, INotification notification)
         {
             //successtext for json
-            successtext += "Ok: " + notification;
+            successtext += " Ok: " + notification;
         }
 
         //this is raised when a notification is failed due to some reason
@@ -233,7 +234,7 @@ namespace Tax.Portal.Controllers
         INotification notification, Exception notificationFailureException)
         {
             //errortext for json
-            errortext += "Error: " + notification + " Case: " + notificationFailureException;
+            errortext += " Error: " + notification + " Case: " + notificationFailureException;
         }
 
         //this is fired when there is exception is raised by the channel
@@ -241,14 +242,14 @@ namespace Tax.Portal.Controllers
             (object sender, IPushChannel channel, Exception exception)
         {
             //network errortext for json
-            errortext += "Error: " + channel + " Case: " + exception;
+            errortext += " Error: " + channel + " Case: " + exception;
         }
 
         //this is fired when there is exception is raised by the service
         static void ServiceException(object sender, Exception exception)
         {
             //service errortext for json
-            errortext += "Error: " + sender + " Case: " + exception;
+            errortext += " Error: " + sender + " Case: " + exception;
         }
 
         //this is raised when the particular device subscription is expired
@@ -257,21 +258,21 @@ namespace Tax.Portal.Controllers
             DateTime timestamp, INotification notification)
         {
             //lejárt token errortext for json
-            warningtext = "Warning: " + notification + " Token: " + expiredDeviceSubscriptionId;
+            warningtext = " Warning: " + notification + " Token: " + expiredDeviceSubscriptionId;
         }
 
         //this is raised when the channel is destroyed
         static void ChannelDestroyed(object sender)
         {
             //network crash errortext for json
-            successtext += "Ok channel destroyed: " + sender;
+            successtext += " Ok channel destroyed: " + sender;
         }
 
         //this is raised when the channel is created
         static void ChannelCreated(object sender, IPushChannel pushChannel)
         {
             //network init successtext for json
-            successtext += "Ok initialized: " + pushChannel;
+            successtext += " Ok initialized: " + pushChannel;
         }
         
         /// <summary>
@@ -323,7 +324,6 @@ namespace Tax.Portal.Controllers
                                 // use the right one, to match the provisioning profile you build your
                                 //   app with!
 
-                                    var appleCert = File.ReadAllBytes(Server.MapPath("Resources/key.p12"));
                                     //IMPORTANT: If you are using a Development provisioning Profile, you must use
                                     // the Sandbox push notification server 
                                     //  (so you would leave the first arg in the ctor of ApplePushChannelSettings as
@@ -332,7 +332,16 @@ namespace Tax.Portal.Controllers
                                     //Production push notification server
                                     //  (so you would change the first arg in the ctor of ApplePushChannelSettings to 
                                     //'true')
-                                    push.RegisterAppleService(new ApplePushChannelSettings(true, appleCert, "password"));
+                                    var prod = db.SystemParameter.FirstOrDefault(x => x.Name == "IOS Production");
+                                    bool isProd = false;
+                                    string certPath = "~/Resources/taxandlegal-push-dev.pem";
+                                    if (null != prod && prod.Value == "true")
+                                    {
+                                        isProd = true;
+                                        certPath = "~/Resources/taxandlegal-push-prod.pem";
+                                    }
+                                    var appleCert = System.IO.File.ReadAllBytes(Server.MapPath(certPath));                                    
+                                    push.RegisterAppleService(new ApplePushChannelSettings(isProd, appleCert, ""));//nincs pw
                                     //Extension method
                                     //Fluent construction of an iOS notification
                                     //IMPORTANT: For iOS you MUST MUST MUST use your own DeviceToken here that gets
@@ -357,8 +366,8 @@ namespace Tax.Portal.Controllers
                                     //  by choosing 'Create new Server key...'
                                     //  You must ensure the 'Google Cloud Messaging for Android' service is 
                                     //enabled in your APIs Console
-                                    push.RegisterGcmService(new 
-                                        GcmPushChannelSettings("YOUR Google API's Console API Access  API KEY for Server Apps HERE"));
+                                    push.RegisterGcmService(new
+                                        GcmPushChannelSettings("AIzaSyBlPPV4mQKZveyqjoMlhJVTrbbMDS1frC4"));
                                     //Fluent construction of an Android GCM Notification
                                     //IMPORTANT: For Android you MUST use your own RegistrationId 
                                     //here that gets generated within your Android app itself!
@@ -377,11 +386,16 @@ namespace Tax.Portal.Controllers
                         }
                         push.StopAllServices(waitForQueuesToFinish: true);
 
-                        m.ServiceResponse = "Sum: OK";
+                        if (null != errortext)//hiba volt
+                        {
+                            return Json(new { success = false, error = true, response = errortext });
+                        }
+
+                        m.ServiceResponse = string.Format("{0}{1}", warningtext + " /// ", successtext);
                         m.PublishingDate = DateTime.Now.Date; 
                     }
                     db.SaveChanges();
-                    return Json(new { success = true });
+                    return Json(new { success = false, error = false, response = m.ServiceResponse });
                 }
                 return Json(new { success = false, error = false, response = "Not found" });
             }

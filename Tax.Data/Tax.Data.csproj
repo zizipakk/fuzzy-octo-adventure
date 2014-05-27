@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201405201330317_Google Apple response text to Messages.Designer.cs">
       <DependentUpon>201405201330317_Google Apple response text to Messages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405271217020_ios production to setup.cs" />
+    <Compile Include="Migrations\201405271217020_ios production to setup.Designer.cs">
+      <DependentUpon>201405271217020_ios production to setup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DeviceModels.cs" />
@@ -183,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405201330317_Google Apple response text to Messages.resx">
       <DependentUpon>201405201330317_Google Apple response text to Messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405271217020_ios production to setup.resx">
+      <DependentUpon>201405271217020_ios production to setup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -24,4 +24,4 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.GoogleAppleresponsetexttoMessages.resources
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csprojResolveAssemblyReference.cache
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.iosproductiontosetup.resources
