@@ -172,7 +172,7 @@
 
     function fileFormat(cellvalue, options, rowObject) {
         //alert(rowObject[getColumnIndexByName('news', 'Thumbnail')]);
-        return '<div style="max-height: 100px"><img src="@Url.Action("DownloadImage", "New")?id=' + cellvalue
+        return '<div style="max-height: 80px"><img src="@Url.Action("DownloadImage", "New")?id=' + cellvalue
                 + '" class="img-responsive" alt="'
                 + '" id="' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
                 + '"/></div>';
@@ -233,7 +233,7 @@
                 search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
             },
             {
-                name: 'Thumbnail', index: 'Thumbnail', width: 150, align: "center", hidden: false,
+                name: 'Thumbnail', index: 'Thumbnail', width: 80, align: "center", hidden: false,
                 sortable: false, search: false, editable: false, formatter: fileFormat
             }
         ],

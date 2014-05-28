@@ -234,15 +234,14 @@ namespace Tax.Portal.Controllers
             //Nem használjuk: mobil klines fel(le)telepítéskor be(ki)reg a szervizbe és delete(régi token)-put(új token) a webapin
             warningtext += DateTime.Now.ToString() + " warning: " + notification
                             + " oldSubscriptionId: " + oldSubscriptionId
-                            + " newSubscriptionId: " + newSubscriptionId
-                            + " | ";
+                            + " newSubscriptionId: " + newSubscriptionId;
         }
 
         //this even raised when a notification is successfully sent
         static void NotificationSent(object sender, INotification notification)
         {
             //successtext for json
-            successtext += DateTime.Now.ToString() + " Ok: " + notification + " | ";
+            successtext += DateTime.Now.ToString() + " Ok: " + notification;
         }
 
         //this is raised when a notification is failed due to some reason
@@ -250,7 +249,7 @@ namespace Tax.Portal.Controllers
         INotification notification, Exception notificationFailureException)
         {
             //errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + notification + " Cause: " + notificationFailureException + " | ";
+            errortext += DateTime.Now.ToString() + " Error: " + notification + " Cause: " + notificationFailureException;
         }
 
         //this is fired when there is exception is raised by the channel
@@ -258,14 +257,14 @@ namespace Tax.Portal.Controllers
             (object sender, IPushChannel channel, Exception exception)
         {
             //network errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + channel + " Cause: " + exception + " | "; ;
+            errortext += DateTime.Now.ToString() + " Error: " + channel + " Cause: " + exception;
         }
 
         //this is fired when there is exception is raised by the service
         static void ServiceException(object sender, Exception exception)
         {
             //service errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + sender + " Cause: " + exception + " | ";
+            errortext += DateTime.Now.ToString() + " Error: " + sender + " Cause: " + exception;
         }
 
         //this is raised when the particular device subscription is expired
@@ -274,21 +273,21 @@ namespace Tax.Portal.Controllers
             DateTime timestamp, INotification notification)
         {
             //lejárt token errortext for json
-            warningtext = DateTime.Now.ToString() + " Warning: " + notification + " Token: " + expiredDeviceSubscriptionId + " | ";
+            warningtext = DateTime.Now.ToString() + " Warning: " + notification + " Token: " + expiredDeviceSubscriptionId;
         }
 
         //this is raised when the channel is destroyed
         static void ChannelDestroyed(object sender)
         {
             //network crash errortext for json
-            errortext += DateTime.Now.ToString() + " Error - channel destroyed: " + sender + " | ";
+            errortext += DateTime.Now.ToString() + " Error - channel destroyed: " + sender;
         }
 
         //this is raised when the channel is created
         static void ChannelCreated(object sender, IPushChannel pushChannel)
         {
             //network init successtext for json
-            successtext += DateTime.Now.ToString() + " Ok initialized: " + pushChannel + " | ";
+            successtext += DateTime.Now.ToString() + " Ok initialized: " + pushChannel;
         }
         
         /// <summary>
@@ -322,8 +321,8 @@ namespace Tax.Portal.Controllers
                                 mgdt.isOK = false;
                                 mgdt.ServiceResponse = null;
                                 db.Entry(mgdt).State = EntityState.Added;
-                                db.SaveChanges();
                             }
+                            db.SaveChanges();
 
                             //create the puchbroker object
                             var push = new PushBroker();
@@ -339,9 +338,10 @@ namespace Tax.Portal.Controllers
 
                             var md = m.MessagesLocalDeviceType.Where(x => x.MessagesGlobal == m);
                             var mdIOS = md.FirstOrDefault(x => x.DeviceType.Name == "Ios");
-                            if (!mdIOS.isOK) //még nem ment ki ré üzenet sikeresen
+                            var devIOS = db.Device.Where(x => x.DeviceType.Name == "Ios").ToList();
+                            if (!mdIOS.isOK && devIOS.Count() > 0) //még nem ment ki ré üzenet sikeresen, és egyáltalán vannak eszközök
                             {
-                                foreach (Device row in db.Device.Where(x => x.DeviceType.Name == "Ios").ToList())
+                                foreach (Device row in devIOS)
                                 {
                                     var lm = l.FirstOrDefault(x => x.LanguageId == row.Language.Id);
                                     if (null != lm) //ha nincs lokalizált szöveg, itt sem vagyunk
@@ -393,18 +393,25 @@ namespace Tax.Portal.Controllers
                                 {
                                     mdIOS.isOK = true;  
                                 }
-                                mdIOS.ServiceResponse +=
+                                mdIOS.ServiceResponse =
                                     string.Format("{0}{1}{2}{3}", null == errortext ? "" : errortext,
-                                                                    null == warningtext ? "" : " /// " + warningtext,
-                                                                    null == successtext ? "" : " /// " + successtext,
-                                                                    null == mdIOS.ServiceResponse ? "" : " ||| " + mdIOS.ServiceResponse); //régieket a végére
+                                                                    null == warningtext ? "" : (null == errortext ? "" : " / ") + warningtext,
+                                                                    null == successtext ? "" : (null == warningtext ? "" : " / ") + successtext,
+                                                                    null == mdIOS.ServiceResponse ? "" : (null == successtext ? "" : " | ") + mdIOS.ServiceResponse); //régieket a végére
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;
                             }
+                            if (devIOS.Count() == 0)
+                            {
+                                mdIOS.ServiceResponse = string.Format("{0}{1}", 
+                                                            DateTime.Now.ToString() + " No IOS device",
+                                                            null == mdIOS.ServiceResponse ? "" :  " | " + mdIOS.ServiceResponse); //régieket a végére
+                            }
 
                             var mdANDROID = md.FirstOrDefault(x => x.DeviceType.Name == "Android");
-                            if (!mdANDROID.isOK) //még nem ment ki ré üzenet sikeresen
+                            var devANDROID = db.Device.Where(x => x.DeviceType.Name == "Android").ToList();
+                            if (!mdANDROID.isOK && devANDROID.Count() > 0) //még nem ment ki ré üzenet sikeresen, és egyáltalán vannak eszközök
                             {
                                 foreach (Device row in db.Device.Where(x => x.DeviceType.Name == "Android").ToList())
                                 {
@@ -441,12 +448,18 @@ namespace Tax.Portal.Controllers
                                 }
                                 mdANDROID.ServiceResponse =
                                     string.Format("{0}{1}{2}{3}", null == errortext ? "" : errortext,
-                                                                    null == warningtext ? "" : " /// " + warningtext,
-                                                                    null == successtext ? "" : " /// " + successtext,
-                                                                    null == mdANDROID.ServiceResponse ? "" : " ||| " + mdANDROID.ServiceResponse); //régieket a végére
+                                                                    null == warningtext ? "" : (null == errortext ? "" : " / ") + warningtext,
+                                                                    null == successtext ? "" : (null == warningtext ? "" : " / ") + successtext,
+                                                                    null == mdANDROID.ServiceResponse ? "" : (null == successtext ? "" : " | ") + mdANDROID.ServiceResponse); //régieket a végére
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;
+                            }
+                            if (devIOS.Count() == 0)
+                            {
+                                mdANDROID.ServiceResponse = string.Format("{0}{1}",
+                                                            DateTime.Now.ToString() + " No ANDRIOD device",
+                                                            null == mdANDROID.ServiceResponse ? "" : " | " + mdANDROID.ServiceResponse); //régieket a végére
                             }
 
                             //mindenképpen mentem az üzenet naplót
