@@ -74,10 +74,10 @@ namespace Tax.Portal.Controllers
                             MessageHu = s.a.a.z.y.Message,
                             PublishingDate = s.a.a.z.x.x.PublishingDate,
                             //Response = s.z.x.x.ServiceResponse
-                            OkIos = s.a.b.isOK,
-                            ServiceResponseIos = s.a.b.ServiceResponse,
-                            OkAndriod = s.b.isOK,
-                            ServiceResponseAndroid = s.b.ServiceResponse
+                            OkIos = null == s.a.b ? false : s.a.b.isOK,
+                            ServiceResponseIos = null == s.a.b ? "" : s.a.b.ServiceResponse,
+                            OkAndriod = null == s.b ? false : s.b.isOK,
+                            ServiceResponseAndroid = null == s.b ? "" : s.b.ServiceResponse
                         })
                         .AsQueryable().GridPage(grid, out result);
 
@@ -250,7 +250,7 @@ namespace Tax.Portal.Controllers
         INotification notification, Exception notificationFailureException)
         {
             //errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + notification + " Case: " + notificationFailureException + " | ";
+            errortext += DateTime.Now.ToString() + " Error: " + notification + " Cause: " + notificationFailureException + " | ";
         }
 
         //this is fired when there is exception is raised by the channel
@@ -258,14 +258,14 @@ namespace Tax.Portal.Controllers
             (object sender, IPushChannel channel, Exception exception)
         {
             //network errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + channel + " Case: " + exception + " | "; ;
+            errortext += DateTime.Now.ToString() + " Error: " + channel + " Cause: " + exception + " | "; ;
         }
 
         //this is fired when there is exception is raised by the service
         static void ServiceException(object sender, Exception exception)
         {
             //service errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + sender + " Case: " + exception + " | ";
+            errortext += DateTime.Now.ToString() + " Error: " + sender + " Cause: " + exception + " | ";
         }
 
         //this is raised when the particular device subscription is expired
@@ -313,7 +313,8 @@ namespace Tax.Portal.Controllers
                         if (l.Count != 0 && to == "Published")
                         {
                             //napló szervizenként, ha még nincs
-                            foreach (var dt in db.DeviceType.Where(x => !m.MessagesLocalDeviceType.Select(y => y.DeviceType).Contains(x)).ToList())
+                            var getmd = m.MessagesLocalDeviceType.Select(y => y.DeviceType.Id).ToList();
+                            foreach (var dt in db.DeviceType.Where(x => !getmd.Contains(x.Id)))
                             {
                                 var mgdt = db.MessagesLocalDeviceType.Create();
                                 mgdt.MessagesGlobal = m;
@@ -392,8 +393,11 @@ namespace Tax.Portal.Controllers
                                 {
                                     mdIOS.isOK = true;  
                                 }
-                                mdIOS.ServiceResponse =
-                                    string.Format("{0}{1}{2}", null == errortext ? "" : errortext + " /// ", null == warningtext ? "" : warningtext + " /// ", successtext);
+                                mdIOS.ServiceResponse +=
+                                    string.Format("{0}{1}{2}{3}", null == mdIOS.ServiceResponse ? "" : " ||| ",
+                                                                    null == errortext ? "" : errortext + " /// ", 
+                                                                    null == warningtext ? "" : warningtext + " /// ", 
+                                                                    successtext);
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;
@@ -435,18 +439,25 @@ namespace Tax.Portal.Controllers
                                 {
                                     mdANDROID.isOK = true;
                                 }
-                                mdANDROID.ServiceResponse =
-                                    string.Format("{0}{1}{2}", null == errortext ? "" : errortext + " /// ", null == warningtext ? "" : warningtext + " /// ", successtext);
+                                mdANDROID.ServiceResponse +=
+                                    string.Format("{0}{1}{2}{3}", null == mdANDROID.ServiceResponse ? "" : " ||| ",
+                                                                    null == errortext ? "" : errortext + " /// ",
+                                                                    null == warningtext ? "" : warningtext + " /// ",
+                                                                    successtext);
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;
                             }
 
-                            if (!mdIOS.isOK || !mdANDROID.isOK)//hiba volt
+                            //mindenképpen mentem az üzenet naplót
+                            db.SaveChanges();
+
+                            if (!mdIOS.isOK || !mdANDROID.isOK)//hiba volt, kiszállok
                             {
-                                return Json(new { success = false, error = true, response = errortext });
+                                return Json(new { success = false, error = true, response = "The cause of the error in service response!" });
                             }
 
+                            //az üzenetet csak itt módosítom és majd mentem
                             //m.ServiceResponse = string.Format("{0}{1}", warningtext + " /// ", successtext);
                             m.PublishingDate = DateTime.Now.Date;
                             m.NewsStatus = sta;

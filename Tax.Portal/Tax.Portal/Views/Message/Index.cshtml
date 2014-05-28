@@ -190,6 +190,7 @@
             $('#errortext').text(jqXHR.responseText);
             $('#errormodal').modal({ show: true });
         },
+        ajaxSelectOptions: { type: "GET" }, //ezzel megy a lenyíló az advanced search-ben
         colNames: [
             'Action'
             , 'id'
@@ -197,7 +198,10 @@
             , 'MessageENG'
             , 'MessageHUN'
             , 'Published'
-            , 'Response'
+            , 'Ok-IOS'
+            , 'Response-IOS'
+            , 'Ok-Andriod'
+            , 'Response-Android'
         ],
         colModel: [
             {
@@ -233,8 +237,8 @@
                 },
                 editable: false
             },
-            { name: 'MessageEn', index: 'NameEn', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true }, edittype: "textarea" },
-            { name: 'MessageHu', index: 'NameHu', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: true, editrules: { required: true }, edittype: "textarea" },
+            { name: 'MessageEn', index: 'NameEn', width: 200, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: true, editrules: { required: true, edithidden: true }, edittype: "textarea" },
+            { name: 'MessageHu', index: 'NameHu', width: 200, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: true, editrules: { required: true, edithidden: true }, edittype: "textarea" },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
@@ -247,14 +251,26 @@
                 //searchrules: { custom: true, custom_func: datetimecheck },
                 editable: false
             },
-            itt
-            { name: 'Response', index: 'Response', width: 300, align: "left", hidden: false, sortable: true, search: true, editable: false, edittype: "textarea" }
+            {
+                name: 'OkIos', index: 'OkIos', width: 55, align: "center", editable: false,
+//                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            { name: 'ServiceResponseIos', index: 'ServiceResponseIos', width: 190, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: false, edittype: "textarea" },
+            {
+                name: 'OkAndroid', index: 'OkAndroid', width: 55, align: "center", editable: false,
+                //                edittype: 'checkbox', editoptions: { value: "True:False" },
+                searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
+                formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
+            },
+            { name: 'ServiceResponseAndroid', index: 'ServiceResponseAndroid', width: 190, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: false, edittype: "textarea" }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],
         toppager: true,
         pager: '#msgpager',
-        sortname: 'MessageEn',
+        sortname: 'Status,MessageEn',
         viewrecords: true,
         sortorder: "asc",
         caption: 'Messages',

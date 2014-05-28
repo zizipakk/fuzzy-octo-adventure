@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201405272109167_MessageGlobal - DeviceType.Designer.cs">
       <DependentUpon>201405272109167_MessageGlobal - DeviceType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405280747573_isOk field.cs" />
+    <Compile Include="Migrations\201405280747573_isOk field.Designer.cs">
+      <DependentUpon>201405280747573_isOk field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DeviceModels.cs" />
@@ -197,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405272109167_MessageGlobal - DeviceType.resx">
       <DependentUpon>201405272109167_MessageGlobal - DeviceType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405280747573_isOk field.resx">
+      <DependentUpon>201405280747573_isOk field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
