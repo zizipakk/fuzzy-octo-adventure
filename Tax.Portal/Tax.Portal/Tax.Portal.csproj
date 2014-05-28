@@ -754,6 +754,10 @@
     <Content Include="Scripts\datepicker\less\datepicker.less" />
     <Content Include="Resources\taxandlegal-push-prod.pem" />
     <Content Include="Resources\taxandlegal-push-dev.pem" />
+    <Content Include="Resources\taxandlegalpushdevprivate.p12" />
+    <Content Include="Resources\taxandlegalpushdevpublic.p12" />
+    <Content Include="Resources\taxandlegalpushprodprivate.p12" />
+    <Content Include="Resources\taxandlegalpushprodpublic.p12" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

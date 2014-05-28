@@ -170,6 +170,7 @@
     jQuery("#contacts").jqGrid({
         url: '@Url.Action("ListContacts", "Contact")',
         datatype: "json",
+        ajaxSelectOptions: { type: "GET" }, //ezzel megy a lenyíló az advanced search-ben
         loadError: function (jqXHR, textStatus, errorThrown) {
             $('#errortext').text(jqXHR.responseText);
             $('#errormodal').modal({ show: true });
@@ -199,14 +200,39 @@
                 },
                 editable: false
             },
-            { name: 'First_name', index: 'First_name', width: 90, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Last_name', index: 'Last_name', width: 100, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Department', index: 'Department', width: 200, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Position', index: 'Position', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            {
+                name: 'First_name', index: 'First_name', width: 90, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Last_name', index: 'Last_name', width: 100, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Department', index: 'Department', width: 200, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Position', index: 'Position', width: 150, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
             { name: 'Phone', index: 'Phone', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
             { name: 'Mobile', index: 'Mobile', width: 80, align: "left", hidden: false, sortable: true, search: true, editable: false },
             { name: 'E-mail', index: 'E-mail', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Tags', index: 'Tags', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false }
+            {
+                name: 'Tags', index: 'Tags', width: 190, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],

@@ -365,11 +365,11 @@ namespace Tax.Portal.Controllers
                                         //'true')
                                         var prod = db.SystemParameter.FirstOrDefault(x => x.Name == "IOS Production");
                                         bool isProd = false;
-                                        string certPath = "~/Resources/taxandlegal-push-dev.pem";
+                                        string certPath = "~/Resources/taxandlegalpushdevpublic.p12";
                                         if (null != prod && prod.Value == "true")
                                         {
                                             isProd = true;
-                                            certPath = "~/Resources/taxandlegal-push-prod.pem";
+                                            certPath = "~/Resources/taxandlegalpushprodpublic.p12";
                                         }
                                         var appleCert = System.IO.File.ReadAllBytes(Server.MapPath(certPath));
                                         push.RegisterAppleService(new ApplePushChannelSettings(isProd, appleCert, ""));//nincs pw
@@ -394,10 +394,10 @@ namespace Tax.Portal.Controllers
                                     mdIOS.isOK = true;  
                                 }
                                 mdIOS.ServiceResponse +=
-                                    string.Format("{0}{1}{2}{3}", null == mdIOS.ServiceResponse ? "" : " ||| ",
-                                                                    null == errortext ? "" : errortext + " /// ", 
-                                                                    null == warningtext ? "" : warningtext + " /// ", 
-                                                                    successtext);
+                                    string.Format("{0}{1}{2}{3}", null == errortext ? "" : errortext,
+                                                                    null == warningtext ? "" : " /// " + warningtext,
+                                                                    null == successtext ? "" : " /// " + successtext,
+                                                                    null == mdIOS.ServiceResponse ? "" : " ||| " + mdIOS.ServiceResponse); //régieket a végére
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;
@@ -439,11 +439,11 @@ namespace Tax.Portal.Controllers
                                 {
                                     mdANDROID.isOK = true;
                                 }
-                                mdANDROID.ServiceResponse +=
-                                    string.Format("{0}{1}{2}{3}", null == mdANDROID.ServiceResponse ? "" : " ||| ",
-                                                                    null == errortext ? "" : errortext + " /// ",
-                                                                    null == warningtext ? "" : warningtext + " /// ",
-                                                                    successtext);
+                                mdANDROID.ServiceResponse =
+                                    string.Format("{0}{1}{2}{3}", null == errortext ? "" : errortext,
+                                                                    null == warningtext ? "" : " /// " + warningtext,
+                                                                    null == successtext ? "" : " /// " + successtext,
+                                                                    null == mdANDROID.ServiceResponse ? "" : " ||| " + mdANDROID.ServiceResponse); //régieket a végére
                                 errortext = null;
                                 warningtext = null;
                                 successtext = null;

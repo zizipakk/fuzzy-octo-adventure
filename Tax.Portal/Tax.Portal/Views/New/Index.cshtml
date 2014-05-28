@@ -172,15 +172,16 @@
 
     function fileFormat(cellvalue, options, rowObject) {
         //alert(rowObject[getColumnIndexByName('news', 'Thumbnail')]);
-        return '<img src="@Url.Action("DownloadImage", "New")?id=' + cellvalue
-                + '" class="img-responsive img-thumbnail" alt="'
+        return '<div style="max-height: 100px"><img src="@Url.Action("DownloadImage", "New")?id=' + cellvalue
+                + '" class="img-responsive" alt="'
                 + '" id="' + rowObject[getColumnIndexByName('news', 'Thumbnail') - 1]
-                + '"/>';
+                + '"/></div>';
     }
 
     jQuery("#news").jqGrid({
         url: '@Url.Action("ListNews", "New")',
         datatype: "json",
+        ajaxSelectOptions: { type: "GET" }, //ezzel megy a lenyíló az advanced search-ben
         loadError: function (jqXHR, textStatus, errorThrown) {
             $('#errortext').text(jqXHR.responseText);
             $('#errormodal').modal({ show: true });
@@ -207,16 +208,34 @@
                 },
                 editable: false
             },
-            { name: 'Title1', index: 'Title1', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Title2', index: 'Title2', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Tags', index: 'Tags', width: 150, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            {
+                name: 'Title1', index: 'Title1', width: 150, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Title2', index: 'Title2', width: 150, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Tags', index: 'Tags', width: 150, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
                 search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
             },
-            { name: 'Thumbnail', index: 'Thumbnail', width: 150, align: "center", hidden: false, sortable: false, search: false, editable: false, formatter: fileFormat }
+            {
+                name: 'Thumbnail', index: 'Thumbnail', width: 150, align: "center", hidden: false,
+                sortable: false, search: false, editable: false, formatter: fileFormat
+            }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],

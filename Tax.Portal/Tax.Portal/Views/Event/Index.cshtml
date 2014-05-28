@@ -173,6 +173,7 @@
     jQuery("#events").jqGrid({
         url: '@Url.Action("ListEvents", "Event")',
         datatype: "json",
+        ajaxSelectOptions: { type: "GET" }, //ezzel megy a lenyíló az advanced search-ben
         loadError: function (jqXHR, textStatus, errorThrown) {
             $('#errortext').text(jqXHR.responseText);
             $('#errormodal').modal({ show: true });
@@ -198,8 +199,18 @@
                 },
                 editable: false
             },
-            { name: 'Title1', index: 'Title1', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
-            { name: 'Title2', index: 'Title2', width: 190, align: "left", hidden: false, sortable: true, search: true, editable: false },
+            {
+                name: 'Title1', index: 'Title1', width: 190, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
+            {
+                name: 'Title2', index: 'Title2', width: 190, align: "left", hidden: false,
+                sortable: true, search: true, editable: false,
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+            },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,

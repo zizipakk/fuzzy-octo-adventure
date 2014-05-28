@@ -237,8 +237,19 @@
                 },
                 editable: false
             },
-            { name: 'MessageEn', index: 'NameEn', width: 200, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: true, editrules: { required: true, edithidden: true }, edittype: "textarea" },
-            { name: 'MessageHu', index: 'NameHu', width: 200, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: true, editrules: { required: true, edithidden: true }, edittype: "textarea" },
+            {
+                name: 'MessageEn', index: 'NameEn', width: 200, align: "left", hidden: false,
+                sortable: true, sorttype: "string",
+                search: true,
+                editable: true, editrules: { required: true, edithidden: true }, //edittype: "textarea",
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' }//sortörés
+            },
+            {
+                name: 'MessageHu', index: 'NameHu', width: 200, align: "left", hidden: false,
+                sortable: true, sorttype: "string",
+                editable: true, editrules: { required: true, edithidden: true }, //edittype: "textarea",
+                cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' }
+            },
             {
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
@@ -257,14 +268,26 @@
                 searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
                 formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
             },
-            { name: 'ServiceResponseIos', index: 'ServiceResponseIos', width: 190, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: false, edittype: "textarea" },
+            {
+                name: 'ServiceResponseIos', index: 'ServiceResponseIos', width: 190, align: "left", hidden: false,
+                sortable: true, sorttype: "string",
+                search: true,
+                editable: false,
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; } //max. sormagasság
+            },
             {
                 name: 'OkAndroid', index: 'OkAndroid', width: 55, align: "center", editable: false,
                 //                edittype: 'checkbox', editoptions: { value: "True:False" },
                 searchoptions: { sopt: ['eq'], value: '"":All;True:True;False:False' }, stype: 'select',
                 formatter: "checkbox", formatoptions: { disabled: true }, sortable: true
             },
-            { name: 'ServiceResponseAndroid', index: 'ServiceResponseAndroid', width: 190, align: "left", hidden: false, sortable: true, sorttype: "string", search: true, editable: false, edittype: "textarea" }
+            {
+                name: 'ServiceResponseAndroid', index: 'ServiceResponseAndroid', width: 190, align: "left", hidden: false,
+                sortable: true, sorttype: "string",
+                search: true,
+                editable: false,
+                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; } //max. sormagasság
+            }
         ],
         rowNum: 20,
         rowList: [20, 40, 60],
