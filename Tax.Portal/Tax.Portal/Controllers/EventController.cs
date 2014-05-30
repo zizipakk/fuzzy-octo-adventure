@@ -188,7 +188,7 @@ namespace Tax.Portal.Controllers
                 EventViewModel evm = new EventViewModel()
                 {
                     Id = eg.Id,
-                    PublishingDate = eg.PublishingDate,
+                    //nem módosítható PublishingDate = eg.PublishingDate,
                     Date = eg.Date,
                     NewsStatusName = eg.NewsStatus.NameGlobal
                 };

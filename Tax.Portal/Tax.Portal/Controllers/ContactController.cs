@@ -237,7 +237,7 @@ namespace Tax.Portal.Controllers
                 ContactViewModel cvm = new ContactViewModel()
                 {
                     Id = cg.Id,
-                    PublishingDate = cg.PublishingDate,
+                    //nem módosítható PublishingDate = cg.PublishingDate,
                     PhotoId = null == cg.Photo ? null : (Guid?)cg.Photo.stream_id,
                     NewsStatusName = cg.NewsStatus.NameGlobal,
                     First_name = cg.First_name,

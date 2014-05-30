@@ -216,7 +216,7 @@ namespace Tax.Portal.Controllers
                 ExtraViewModel evm = new ExtraViewModel()
                 {
                     Id = eg.Id,
-                    PublishingDate = eg.PublishingDate,
+                    //nem szerkeszthető: PublishingDate = eg.PublishingDate,
                     CategoryId = null == eg.CategoriesGlobal ? null : (Guid?)eg.CategoriesGlobal.Id,
                     NewsStatusName = eg.NewsStatus.NameGlobal,
                     Order = eg.Order
@@ -277,7 +277,6 @@ namespace Tax.Portal.Controllers
                     //if (null == resg.NewsStatus ?
                     //    null != model.NewsStatusName :
                     //    resg.NewsStatus.NameGlobal != model.NewsStatusName) { resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == model.NewsStatusName); }
-                    if (resg.PublishingDate != model.PublishingDate) { resg.PublishingDate = model.PublishingDate; }
                     if (resg.Order != model.Order) { resg.Order = model.Order; }
 
                     var resl = db.ExtrasLocal.FirstOrDefault(x => x.ExtrasGlobalId == model.Id && x.LanguageId == lguid);

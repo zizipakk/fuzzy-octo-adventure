@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Globalization;
+using System.ComponentModel;
 //using LinqKit;
 //using Tax.Data.Models;
 
@@ -216,7 +217,7 @@ namespace JQGrid.Helpers
 
             //change param value type
             //necessary to getting bool from string
-
+            ConstantExpression filter = null;
 
             if (memberAccess.Type.IsEnum)
             { //Ha enum, akkor enumként parse-oljuk
@@ -235,6 +236,13 @@ namespace JQGrid.Helpers
                 value = DateTime.Parse(value.ToString());    
             }
 
+            //Datetime?
+            //if (memberAccess.Type.GenericTypeArguments.FirstOrDefault().FullName.Equals("System.DateTime", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    value = string.IsNullOrWhiteSpace(value.ToString()) ? (DateTime?)null : (DateTime?)DateTime.Parse(value.ToString());
+            //    filter = Expression.Constant(value);
+            //}
+
             //Timespan
             if (memberAccess.Type.FullName.Equals("System.TimeSpan", StringComparison.OrdinalIgnoreCase))
             {
@@ -247,8 +255,16 @@ namespace JQGrid.Helpers
                 value = float.Parse(value.ToString(), CultureInfo.InvariantCulture); 
             }
 
-            //és a konverziónál direkt kell megadnom a float típust
-            ConstantExpression filter = Expression.Constant( Convert.ChangeType(value, memberAccess.Type) );            
+            if (IsNullableType(memberAccess.Type))//nullable
+            {
+                TypeConverter conv = TypeDescriptor.GetConverter(memberAccess.Type);
+                var conValue = (DateTime?)conv.ConvertFrom(value.ToString());
+                filter = Expression.Constant(conValue);
+            }
+            else
+            {
+                filter = Expression.Constant(Convert.ChangeType(value, memberAccess.Type));                 
+            }
 
             //switch operation
             Expression condition = null;
@@ -258,12 +274,14 @@ namespace JQGrid.Helpers
             {
                 //equal ==
                 case WhereOperation.Equal:
-                    condition = Expression.Equal(memberAccess, filter);
+                    //condition = Expression.Equal(memberAccess, filter);
+                    condition = LinqEqual(memberAccess, filter);
                     lambda = Expression.Lambda(condition, parameter);
                     break;
                 //not equal !=
                 case WhereOperation.NotEqual:
-                    condition = Expression.NotEqual(memberAccess, filter);
+                    //condition = Expression.NotEqual(memberAccess, filter);
+                    condition = LinqNotEqual(memberAccess, filter);
                     lambda = Expression.Lambda(condition, parameter);
                     break;
                 //string.Contains()
@@ -276,7 +294,8 @@ namespace JQGrid.Helpers
                 case WhereOperation.LessThan:
                     if (memberAccess.Type != typeof(string))
                     {
-                        condition = Expression.LessThan(memberAccess, filter);
+                        //condition = Expression.LessThan(memberAccess, filter);
+                        condition = LinqLessThan(memberAccess, filter);
                     }
                     else
                     {
@@ -292,7 +311,8 @@ namespace JQGrid.Helpers
                 case WhereOperation.LessThanOrEqual:
                     if (memberAccess.Type != typeof(string))
                     {
-                        condition = Expression.LessThanOrEqual(memberAccess, filter);
+                        //condition = Expression.LessThanOrEqual(memberAccess, filter);
+                        condition = LinqLessThanOrEqual(memberAccess, filter);
                     }
                     else
                     {
@@ -308,7 +328,8 @@ namespace JQGrid.Helpers
                 case WhereOperation.GreaterThan:
                     if (memberAccess.Type != typeof(string))
                     {
-                        condition = Expression.GreaterThan(memberAccess, filter);
+                        //condition = Expression.GreaterThan(memberAccess, filter);
+                        condition = LinqGreaterThan(memberAccess, filter);
                     }
                     else
                     {
@@ -324,7 +345,8 @@ namespace JQGrid.Helpers
                 case WhereOperation.GreaterThanOrEqual:
                     if (memberAccess.Type != typeof(string))
                     {
-                        condition = Expression.GreaterThanOrEqual(memberAccess, filter);
+                        //condition = Expression.GreaterThanOrEqual(memberAccess, filter);
+                        condition = LinqGreaterThanOrEqual(memberAccess, filter);
                     }
                     else
                     {
@@ -419,7 +441,78 @@ namespace JQGrid.Helpers
             }
         }
 
+        //public static Nullable<T> ToNullable<T>(this string s) where T : struct
+        //{
+        //    Nullable<T> result = new Nullable<T>();
+        //    try
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(s))
+        //        {
+        //            TypeConverter conv = TypeDescriptor.GetConverter(typeof(T));
+        //            result = (T)conv.ConvertFrom(s);
+        //        }
+        //        else
+        //        {
+        //            result = null;
+        //        }
+        //    }
+        //    catch { }
+        //    return result;
+        //}
 
+        private static Expression LinqEqual(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.Equal(e1, e2);
+        }
+        private static Expression LinqNotEqual(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.NotEqual(e1, e2);
+        }
+        private static Expression LinqLessThan(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.LessThan(e1, e2);
+        }
+        private static Expression LinqLessThanOrEqual(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.LessThanOrEqual(e1, e2);
+        }
+        private static Expression LinqGreaterThan(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.GreaterThan(e1, e2);
+        }
+        private static Expression LinqGreaterThanOrEqual(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            return Expression.GreaterThanOrEqual(e1, e2);
+        }
+
+        private static bool IsNullableType(Type t)
+        {
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
     }
 
     //public static class QueryHelper
@@ -437,5 +530,6 @@ namespace JQGrid.Helpers
     //        return query.Include(includePath);
     //    }
     //}
+
 
 }

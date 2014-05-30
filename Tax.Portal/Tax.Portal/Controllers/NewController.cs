@@ -307,7 +307,7 @@ namespace Tax.Portal.Controllers
                 var ng = db.NewsGlobal.Find(id);
                 NewViewModel suvm = new NewViewModel(){
                     Id = ng.Id,
-                    PublishingDate = ng.PublishingDate,
+                    // nem módosítható PublishingDate = ng.PublishingDate,
                     Headline_pictureId = null == ng.Headline_picture ? null : (Guid?)ng.Headline_picture.stream_id,
                     ThumbnailId = null == ng.Thumbnail ? null : (Guid?)ng.Thumbnail.stream_id,
                     NewsStatusName = ng.NewsStatus.NameGlobal
