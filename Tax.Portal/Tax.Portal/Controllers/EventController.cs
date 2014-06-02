@@ -56,7 +56,7 @@ namespace Tax.Portal.Controllers
                             Id = s.z.x.Id,
                             Status = s.v.Name,
                             Title1 = s.z.y.Title1,
-                            Title2 = s.z.y.Title2,
+                            Title2 = null == s.z.y.Title2 ? "" : s.z.y.Title2,
                             PublishingDate = s.z.x.PublishingDate,
                             Date = s.z.x.Date
                         }).AsQueryable().GridPage(grid, out result);

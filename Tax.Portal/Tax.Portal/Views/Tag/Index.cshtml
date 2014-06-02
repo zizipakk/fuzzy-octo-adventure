@@ -150,29 +150,6 @@
         return retval;
     };
 
-    initDateSearch = function (elem) {
-        setTimeout(function () {
-            $(elem).datepicker({
-                autoSize: true,
-                //showOn: 'button', // it dosn't work in searching dialog
-                changeYear: true,
-                changeMonth: true,
-                showButtonPanel: true,
-                showWeek: true,
-                onSelect: function () {
-                    if (this.id.substr(0, 3) === "gs_") {
-                        setTimeout(function () {
-                            $("#tags")[0].triggerToolbar();
-                        }, 50);
-                    } else {
-                        // to refresh the filter
-                        $(this).trigger('change');
-                    }
-                }
-            });
-        }, 100);
-    };
-
     numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
 
     numberTemplate = {

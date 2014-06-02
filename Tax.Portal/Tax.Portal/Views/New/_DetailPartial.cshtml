@@ -5,10 +5,28 @@
         <img src="@Url.Action("DownloadImage", "New")?id=@Model.Headline_pictureId" class="img-responsive" alt="Headline" style="border: none;" />'                    
     </div>
     <div class="input-group col-sm-12 col-xs-12">
-        @MvcHtmlString.Create(Model.Title1)
+        @MvcHtmlString.Create(null == Model.PublishingDate ? Model.PublishingDate.ToString() : Model.PublishingDate.Value.ToShortDateString())
     </div>
+    @{var i = 0;
+        <table class="table" align="right">
+            <tr>
+                @foreach (var item in Model.TagToList)
+                {
+                    i += 1;
+                    if (i < Model.TagToList.Count())
+                    {
+                        <td class="pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(", " + item.Text)</td>
+                    }
+                    else
+                    {
+                        <td class="pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(item.Text)</td>
+                    }
+                }
+            </tr>
+        </table>
+    }
     <div class="input-group col-sm-12 col-xs-12">
-        @MvcHtmlString.Create(Model.PublishingDate.ToString())
+        @MvcHtmlString.Create(Model.Title1)
     </div>
     <div class="input-group col-sm-12 col-xs-12">
         @MvcHtmlString.Create(Model.Title2)
@@ -16,9 +34,9 @@
     <div class="input-group col-sm-12 col-xs-12">
         @MvcHtmlString.Create(Model.Subtitle)
     </div>
-    <div class="input-group col-sm-12 col-xs-12">
+    @*<div class="input-group col-sm-12 col-xs-12">
         <img src="@Url.Action("DownloadImage", "New")?id=@Model.ThumbnailId" class="img-responsive" alt="Thumbnail" style="border: none;" />'
-    </div>
+    </div>*@
     <div class="input-group col-sm-12 col-xs-12">
         @MvcHtmlString.Create(Model.Body_text)
     </div>

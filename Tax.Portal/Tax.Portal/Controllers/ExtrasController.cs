@@ -137,7 +137,7 @@ namespace Tax.Portal.Controllers
                 ExtraViewModel evm = new ExtraViewModel();
 
                 evm.Mode = "create";
-                evm.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                evm.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = null, Text = string.Empty } })
                                             .Union(db.CategoriesLocal
                                                     .Where(x => x.LanguageId == lguid)
                                                     .Select(x => new MyListItem { Value = x.CategoriesGlobalId, Text = x.Name }))
@@ -188,7 +188,7 @@ namespace Tax.Portal.Controllers
                     log.Info("end with validation error");
                     model.Refresh(ModelState);
                     //listák
-                    model.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                    model.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = null, Text = string.Empty } })
                                                 .Union(db.CategoriesLocal
                                                         .Where(x => x.LanguageId == lguid)
                                                         .Select(x => new MyListItem { Value = x.CategoriesGlobalId, Text = x.Name }))
@@ -217,7 +217,7 @@ namespace Tax.Portal.Controllers
                 {
                     Id = eg.Id,
                     //nem szerkeszthető: PublishingDate = eg.PublishingDate,
-                    CategoryId = null == eg.CategoriesGlobal ? null : (Guid?)eg.CategoriesGlobal.Id,
+                    CategoryId = eg.CategoriesGlobal.Id,
                     NewsStatusName = eg.NewsStatus.NameGlobal,
                     Order = eg.Order
                 };
@@ -241,7 +241,7 @@ namespace Tax.Portal.Controllers
                     evm.Body_text = el.Body_text;
                 }
 
-                evm.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = Guid.Empty, Text = string.Empty } })
+                evm.CategoryToList = (new List<MyListItem>() { new MyListItem { Value = null, Text = string.Empty } })
                                             .Union(db.CategoriesLocal
                                                     .Where(x => x.LanguageId == lguid)
                                                     .Select(x => new MyListItem { Value = x.CategoriesGlobalId, Text = x.Name }))

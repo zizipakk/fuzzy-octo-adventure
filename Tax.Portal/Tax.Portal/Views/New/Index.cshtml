@@ -121,6 +121,7 @@
     initDateSearch = function (elem) {
         setTimeout(function () {
             $(elem).datepicker({
+                modal: true,
                 autoSize: true,
                 //showOn: 'button', // it dosn't work in searching dialog
                 changeYear: true,
@@ -152,23 +153,20 @@
 
     var ids = [];
 
-    function datetimecheck(value, colname) {
-        if (value.length != 10)
-            return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
-        var dateParts = value.split(".");
-        var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-        if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
-            return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
-        var min = new Date("1753.01.01");
-        var max = new Date("9999.12.31");
-        if (dat < min || dat > max)
-            return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
-        return [true, ""];
-    }
-
-    function textareaFormat(cellvalue, options, rowObject) {
-        return '<textarea style="border-width:0px" disabled="disabled">' + cellvalue + '</textarea>';
-    }
+    //function datetimecheck(value, colName) {
+    //    alert(value);
+    //    if (value.length != 10)
+    //        return [false, "Date lenght error (mm/DD/YYYY)"];
+    //    var dateParts = value.split("/");
+    //    var dat = new Date(dateParts[2], dateParts[0] - 1, dateParts[1]);
+    //    if (dat.getDate() != parseInt(dateParts[1]) || dat.getMonth() != parseInt(dateParts[0] - 1) || dat.getFullYear() != dateParts[2])
+    //        return [false, "Date format error (mm/DD/YYYY)"];
+    //    var min = new Date("1753.01.01");
+    //    var max = new Date("9999.12.31");
+    //    if (dat < min || dat > max)
+    //        return [false, "Only 01/01/1753 - 12/31/9999"];
+    //    return [true, ""];
+    //}
 
     function fileFormat(cellvalue, options, rowObject) {
         //alert(rowObject[getColumnIndexByName('news', 'Thumbnail')]);
@@ -230,7 +228,8 @@
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
-                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }
+                //searchrules: { custom: true, custom_func: function (value, colName) { alert(value); return datetimecheck(value, colName); } }
             },
             {
                 name: 'Thumbnail', index: 'Thumbnail', width: 80, align: "center", hidden: false,
@@ -255,17 +254,32 @@
         autowidth: true,
         onSelectRow: function (rowid) {
             $("#rowid").val(rowid);
-            if ($(this).getCell(rowid, 'Status') == 'Published' || $(this).getCell(rowid, 'Status') == 'Kiadva')
-            { $("#CallBack").show().css({ visibility: "visible" }); }
-            else
-            { $("#CallBack").hide().css({ visibility: "hidden" }); }
-            if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt'
-                || $(this).getCell(rowid, 'Status') == 'Unpublished' || $(this).getCell(rowid, 'Status') == 'Visszavonva')
-            { $("#Publish").show().css({ visibility: "visible" }); }
-            else
-            { $("#Publish").hide().css({ visibility: "hidden" }); }
-            $("#edit").show().css({ visibility: "visible" });
-            $("#del").show().css({ visibility: "visible" });
+            switch ($(this).getCell(rowid, 'Status'))
+            {
+                case 'Published':
+                case 'Kiadva':
+                    $("#Publish").hide().css({ visibility: "hidden" });
+                    $("#CallBack").show().css({ visibility: "visible" });
+                    $("#edit").hide().css({ visibility: "hidden" });
+                    $("#del").hide().css({ visibility: "hidden" });
+                    break;
+                case 'Under editing':
+                case 'Szerkesztés alatt':
+                    $("#Publish").show().css({ visibility: "visible" });
+                    $("#CallBack").hide().css({ visibility: "hidden" });
+                    $("#edit").show().css({ visibility: "visible" });
+                    $("#del").show().css({ visibility: "visible" });
+                    break;
+                case 'Unpublished':
+                case 'Visszavonva':
+                    $("#Publish").show().css({ visibility: "visible" });
+                    $("#CallBack").hide().css({ visibility: "hidden" });
+                    $("#edit").show().css({ visibility: "visible" });
+                    $("#del").hide().css({ visibility: "hidden" });
+                    break;
+                default:
+                    break;
+            }
             $.ajax({
                 url: '@Url.Action("FlashNew", "New")?id=' + rowid,
                 type: 'GET',

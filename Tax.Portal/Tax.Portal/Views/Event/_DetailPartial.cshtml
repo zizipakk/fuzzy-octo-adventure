@@ -5,10 +5,10 @@
         @MvcHtmlString.Create(Model.Title1)
     </div>
     <div class="input-group col-sm-12 col-xs-12">
-        @MvcHtmlString.Create(Model.PublishingDate.ToString())
+        @MvcHtmlString.Create(null == Model.PublishingDate ? Model.PublishingDate.ToString() : Model.PublishingDate.Value.ToShortDateString())
     </div>
     <div class="input-group col-sm-12 col-xs-12">
-        @MvcHtmlString.Create(Model.Date.ToString())
+        @MvcHtmlString.Create(Model.Date.Value.ToShortDateString())
     </div>
     <div class="input-group col-sm-12 col-xs-12">
         @MvcHtmlString.Create(Model.Title2)

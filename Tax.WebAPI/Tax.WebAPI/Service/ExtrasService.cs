@@ -61,8 +61,8 @@ namespace Tax.WebAPI.Service
                             Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
                             Category = s.x.CategoriesGlobal.Id.ToString()
                         })
-                        .OrderBy(o => o.Order)
-                        .ThenByDescending(o => o.Date);
+                        .OrderBy(o => o.Date)
+                        .ThenByDescending(o => o.Order);
 
             if (null == resl)
             {

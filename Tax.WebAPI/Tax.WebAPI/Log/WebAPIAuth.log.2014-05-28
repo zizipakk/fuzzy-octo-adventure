@@ -1,0 +1,34 @@
+2014-05-28 14:38:19,473 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-05-28 14:39:07,292 [9] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: en
+2014-05-28 14:39:13,588 [9] ERROR Tax.WebAPI.Controllers.ExtrasController - All of Extras access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.ExtrasService.<GetExtras>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ExtrasService.cs:line 53
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ExtrasController.Extras(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ExtrasController.cs:line 34
+2014-05-28 14:40:11,551 [7] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: en
+2014-05-28 14:43:16,610 [7] ERROR Tax.WebAPI.Controllers.ExtrasController - All of Extras access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.ExtrasService.<GetExtras>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ExtrasService.cs:line 53
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ExtrasController.Extras(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ExtrasController.cs:line 34
+2014-05-28 14:43:36,809 [9] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: en
+2014-05-28 14:46:22,826 [9] ERROR Tax.WebAPI.Controllers.ExtrasController - All of Extras access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.ExtrasService.<GetExtras>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ExtrasService.cs:line 53
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.ExtrasController.Extras(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ExtrasController.cs:line 34

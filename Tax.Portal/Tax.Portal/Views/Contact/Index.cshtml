@@ -115,29 +115,6 @@
         return retval;
     };
 
-    initDateSearch = function (elem) {
-        setTimeout(function () {
-            $(elem).datepicker({
-                autoSize: true,
-                //showOn: 'button', // it dosn't work in searching dialog
-                changeYear: true,
-                changeMonth: true,
-                showButtonPanel: true,
-                showWeek: true,
-                onSelect: function () {
-                    if (this.id.substr(0, 3) === "gs_") {
-                        setTimeout(function () {
-                            $("#contacts")[0].triggerToolbar();
-                        }, 50);
-                    } else {
-                        // to refresh the filter
-                        $(this).trigger('change');
-                    }
-                }
-            });
-        }, 100);
-    };
-
     numberSearchOptions = ['eq', 'ne', 'lt', 'le', 'gt', 'ge'];// 'nu', 'nn', 'in', 'ni'],
 
     numberTemplate = {
@@ -148,24 +125,6 @@
     myDefaultSearch = 'cn';
 
     var ids = [];
-
-    function datetimecheck(value, colname) {
-        if (value.length != 10)
-            return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
-        var dateParts = value.split(".");
-        var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-        if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
-            return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
-        var min = new Date("1753.01.01");
-        var max = new Date("9999.12.31");
-        if (dat < min || dat > max)
-            return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
-        return [true, ""];
-    }
-
-    function textareaFormat(cellvalue, options, rowObject) {
-        return '<textarea style="border-width:0px" disabled="disabled">' + cellvalue + '</textarea>';
-    }
 
     jQuery("#contacts").jqGrid({
         url: '@Url.Action("ListContacts", "Contact")',

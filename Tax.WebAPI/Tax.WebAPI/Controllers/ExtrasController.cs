@@ -21,7 +21,7 @@ namespace Tax.WebAPI.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/Extras")]
-        [ResponseType(typeof(IEnumerable<ExtrasBindingModel>))]
+        [ResponseType(typeof(IEnumerable<ExtrasBindingModel>))]        
         public IHttpActionResult Extras(string lang)
         {
             try
@@ -38,7 +38,9 @@ namespace Tax.WebAPI.Controllers
                 }
                 log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(extras)));
                 log.Info("OK, end");
+
                 return Ok(extras);
+                //Response.AddHeader('Last-Modified', DateTime.Now.ToUniversalTime().ToString());
             }
             catch (Exception ex)
             {

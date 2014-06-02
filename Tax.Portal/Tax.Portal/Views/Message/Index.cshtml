@@ -151,6 +151,7 @@
     initDateSearch = function (elem) {
         setTimeout(function () {
             $(elem).datepicker({
+                modal: true,
                 autoSize: true,
                 //showOn: 'button', // it dosn't work in searching dialog
                 changeYear: true,
@@ -238,14 +239,14 @@
                 editable: false
             },
             {
-                name: 'MessageEn', index: 'NameEn', width: 200, align: "left", hidden: false,
+                name: 'MessageEn', index: 'MessageEn', width: 200, align: "left", hidden: false,
                 sortable: true, sorttype: "string",
                 search: true,
                 editable: true, editrules: { required: true, edithidden: true }, //edittype: "textarea",
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' }//sortörés
             },
             {
-                name: 'MessageHu', index: 'NameHu', width: 200, align: "left", hidden: false,
+                name: 'MessageHu', index: 'MessageHu', width: 200, align: "left", hidden: false,
                 sortable: true, sorttype: "string",
                 editable: true, editrules: { required: true, edithidden: true }, //edittype: "textarea",
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' }

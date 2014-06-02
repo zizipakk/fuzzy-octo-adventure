@@ -26,7 +26,7 @@ namespace Tax.Portal.Models
         public DateTime? PublishingDate { get; set; }
         [Display(Name = "Category")]
         [Required(ErrorMessage = "[{0}] is required")]
-        public Guid? CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         [Display(Name = "Status")]
         public string NewsStatusName { get; set; }
         [Display(Name = "Order")]

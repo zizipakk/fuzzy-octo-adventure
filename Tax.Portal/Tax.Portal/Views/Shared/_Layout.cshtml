@@ -28,10 +28,10 @@
             body { 
                 padding-top: 50px
             }
-            /*.nav .navbar-nav .navbar-right> .active {
-                color: #8a0e0b;
-                background: #d65c14;
-            }*/
+            .nav .active {
+                font-weight: bold;
+                background-color: lightgray ;
+            }
         </style>
         @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
         @Html.Hidden("actUrl", actUrl)
@@ -52,7 +52,7 @@
                 <div class="navbar-collapse collapse" style="margin-top: 5px">
                     @Html.Partial("_LoginPartial")
                     <ul class="nav navbar-nav navbar-right" id="menuGroup" style="margin-right: 10px">
-                        @if (Request.IsAuthenticated)
+                                                @if (Request.IsAuthenticated)
                         {
                             using (var db = new Tax.Data.Models.ApplicationDbContext())
                             {
@@ -64,14 +64,8 @@
                                     {
                                         if (@menuitem.Name != "Admin" || isAdmin)
                                         {
-                                            <li>
-                                                <a class="@("active"
-                                                                //!menu.isActive ? 
-                                                                //"disabled" :
-                                                                //delockUrl.Contains(string.Format("{0}/{1}",menuitem.Controller,menuitem.Action)) ? 
-                                                                //    "active" : 
-                                                                //    "" 
-                                                            )" id="@menuitem.Id" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                            <li class="@(delockUrl.Contains(string.Format("/{0}",menuitem.Controller)) ? "active" : "")">
+                                                <a class="@(!menu.isActive ? "disabled" : "")" id="@menuitem.Id" href="@Url.Action(menuitem.Action, menuitem.Controller)">
                                                     @menuitem.Name
                                                 </a>
                                             </li>
@@ -86,17 +80,30 @@
             <div class="container" style="padding-top:5px">
                 <div class="row">
                     <div class="col-sm-4 col-xs-6">
-                        <a class="active">
                         <input id="Publish" type="button" class="btn btn-default" value="Publish" style="display:none" />
                         <input id="CallBack" type="button" class="btn btn-default" value="CallBack" style="display:none" />
                         <input id="Back" type="button" class="btn btn-default" value="Back" style="display:none" onclick="" />
                         <input id="Save" type="button" class="btn btn-default" value="Save" style="display:none" onclick="$('#main').submit()" />
                     </div>
                     <div class="col-xs-6 pull-right text-right" id="locGroup">
-                        <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
-                            onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
-                        <input type="button" class="btn btn-default" value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
-                            onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
+                        @if (!actUrl.Contains("/en ") && !actUrl.Contains("/en/"))
+                        {
+                            <input type="button" class="btn btn-default active" 
+                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
+                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
+                            <input type="button" class="btn btn-default"
+                                   value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
+                                   onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
+                        }
+                        else
+                        {
+                            <input type="button" class="btn btn-default" 
+                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
+                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
+                            <input type="button" class="btn btn-default active"
+                                   value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
+                                   onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
+                        }
                     </div>
                 </div>
             </div>

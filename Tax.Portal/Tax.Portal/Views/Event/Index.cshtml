@@ -121,6 +121,7 @@
     initDateSearch = function (elem) {
         setTimeout(function () {
             $(elem).datepicker({
+                modal: true,
                 autoSize: true,
                 //showOn: 'button', // it dosn't work in searching dialog
                 changeYear: true,
@@ -151,24 +152,6 @@
     myDefaultSearch = 'cn';
 
     var ids = [];
-
-    function datetimecheck(value, colname) {
-        if (value.length != 10)
-            return [false, "Nem megfelelő a dátum hossza (YYYY.mm.DD)!"];
-        var dateParts = value.split(".");
-        var dat = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-        if (dat.getDate() != parseInt(dateParts[2]) || dat.getMonth() != parseInt(dateParts[1] - 1) || dat.getFullYear() != dateParts[0])
-            return [false, "Nem megfelelő dátum (YYYY.mm.DD)!"];
-        var min = new Date("1753.01.01");
-        var max = new Date("9999.12.31");
-        if (dat < min || dat > max)
-            return [false, "Csak 1753.01.01 és 9999.12.31 közti érték adható!"];
-        return [true, ""];
-    }
-
-    function textareaFormat(cellvalue, options, rowObject) {
-        return '<textarea style="border-width:0px" disabled="disabled">' + cellvalue + '</textarea>';
-    }
 
     jQuery("#events").jqGrid({
         url: '@Url.Action("ListEvents", "Event")',
@@ -215,13 +198,13 @@
                 name: 'PublishingDate', index: 'PublishingDate', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
-                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }//, searchrules: { custom: true, custom_func: datetimecheck }
             },
             {
                 name: 'Date', index: 'Date', width: 90, align: "center",
                 hidden: false,
                 formatter: 'date', formatoptions: { srcformat: $('#griddateformat').val(), newformat: $('#griddateformat').val() },
-                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }, searchrules: { custom: true, custom_func: datetimecheck }
+                search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }//, searchrules: { custom: true, custom_func: datetimecheck }
             }
         ],
         rowNum: 20,

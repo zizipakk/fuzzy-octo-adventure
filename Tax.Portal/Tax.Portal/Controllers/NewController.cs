@@ -51,18 +51,17 @@ namespace Tax.Portal.Controllers
                                 .SelectMany(x => x.NewsLocal.Where(y => y.LanguageId == lguid)
                                     , (x, y) => new { x, y })
                                 .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
-                                    , (z, v) => new { z, v })
+                                    , (z, v) => new { z, v })                        
+                        .Select(s => new 
+                        {
+                            Id = s.z.x.Id,
+                            Status = s.v.Name,
+                            Title1 = s.z.y.Title1,
+                            Title2 = s.z.y.Title2,
+                            PublishingDate = s.z.x.PublishingDate,
+                            Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
+                        })
                         .ToList();
-                        //.Select(s => new 
-                        //{
-                        //    Id = s.z.x.Id,
-                        //    Status = s.v.Name,
-                        //    Title1 = s.z.y.Title1,
-                        //    Title2 = s.z.y.Title2,
-                        //    PublishingDate = s.z.x.PublishingDate,
-                        //    Thumbnail = null == s.z.x.Thumbnail ? Guid.Empty : s.z.x.Thumbnail.stream_id
-                        //})
-                        //.AsEnumerable();
 
             var rs00 = db.NewsGlobal
                             .SelectMany(v => db.TagsLocal.Where(z => v.TagsGlobal.Contains(z.TagsGlobal) && z.LanguageId == lguid)
@@ -75,35 +74,24 @@ namespace Tax.Portal.Controllers
                                     Tags = (g.Select(ss => ss.Name)).Aggregate((a, b) => (a == "" ? "" : a + ", ") + b)
                                 }
                             )
-                            .AsEnumerable();
+                            .ToList();
 
             var rs = rs0
-                        //.SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
-                        //    {
-                        //        Id = a.Id,
-                        //        Status = a.Status,
-                        //        Title1 = a.Title1,
-                        //        Title2 = a.Title2,
-                        //        Tags = null == b ? "" : b.Tags,
-                        //        PublishingDate = a.PublishingDate,
-                        //        Thumbnail = a.Thumbnail
-                        //    }
-                        //)
-                        //.AsQueryable().GridPage(grid, out result);
-                        .SelectMany(a => rs00.Where(b => b.Id == a.z.x.Id).DefaultIfEmpty(), (a, b) => new
+                        .SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new {a, b})
+                        .Select(s => new
                             {
-                                Id = a.z.x.Id,
-                                Status = a.v.Name,
-                                Title1 = a.z.y.Title1,
-                                Title2 = a.z.y.Title2,
-                                Tags = null == b ? "" : b.Tags,
-                                PublishingDate = a.z.x.PublishingDate,
-                                Thumbnail = null == a.z.x.Thumbnail ? Guid.Empty : a.z.x.Thumbnail.stream_id
+                                Id = s.a.Id,
+                                Status = s.a.Status,
+                                Title1 = s.a.Title1,
+                                Title2 = null == s.a.Title2 ? "" : s.a.Title2,
+                                Tags = null == s.b ? "" : s.b.Tags,
+                                PublishingDate = s.a.PublishingDate,
+                                Thumbnail = s.a.Thumbnail
                             }
                         )
                         .AsQueryable().GridPage(grid, out result);
 
-            foreach (var i in rs.ToList()) { Debug.WriteLine(i); }
+            //foreach (var i in rs.ToList()) { Debug.WriteLine(i); }
 
             result.rows = (from r in rs
                            select new JsonRow
@@ -185,6 +173,13 @@ namespace Tax.Portal.Controllers
                 suvm.Title2 = nl.Title2;
                 suvm.Subtitle = nl.Subtitle;
                 suvm.Body_text = nl.Body_text;
+
+                var ngList = ng.TagsGlobal.Select(v => v.Id).ToList();
+                suvm.TagToList = db.TagsLocal
+                    .Where(z => ngList.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
+                    .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name })
+                    .OrderBy(x => x.Text)
+                    .ToList();
 
                 log.Info("end");
                 return PartialView("_DetailPartial", suvm);
