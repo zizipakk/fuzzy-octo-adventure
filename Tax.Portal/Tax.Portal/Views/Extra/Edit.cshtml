@@ -58,7 +58,7 @@
         <div class="col-sm-4 col-xs-12">
             <div class="form-group">
                 <div class="col-sm-12 col-xs-12">
-                    @Html.LabelFor(m => m.Title1, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.Title1, new { @class = "control-label" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.TextBoxFor(m => m.Title1, new { @class = "form-control", placeholder = "Type here title1" })
                     </div>
@@ -76,23 +76,26 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.LabelFor(m => m.CategoryId, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.CategoryId, new { @class = "control-label" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.CategoryToList, "Value", "Text", Model.CategoryId), new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="col-sm-12 col-xs-12">
-                    @Html.LabelFor(m => m.Order, new { @class = "control-label" })
+                    @Html.LabelFor(m => m.Order, new { @class = "control-label" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.TextBoxFor(m => m.Order, new { @class = "form-control", placeholder = "Type here order" })
                     </div>
+                </div>
+                <div class="col-sm-12 col-xs-12" style="padding-top:30px">
+                    <span><b style="font-size:15px; color:red"> * required field</b></span>
                 </div>
             </div>
         </div>
         <div class="col-sm-8 col-xs-12">
             <div class="form-group">
                 <div class="col-sm-12 col-xs-12">
-                    @Html.LabelFor(m => m.Body_text, new { @style = "padding-top:7px; margin-bottom:0px" })
+                    @Html.LabelFor(m => m.Body_text, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.TextAreaFor(m => m.Body_text, new { @id = "ckeditor_text", @style = "visibility:hidden" })
                     </div>

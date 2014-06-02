@@ -51,7 +51,6 @@ namespace Tax.Portal.Models
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Phone { get; set; }
         [Display(Name = "Mobile")]
-        [Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Mobile { get; set; }
         [Display(Name = "Email")]
@@ -68,6 +67,7 @@ namespace Tax.Portal.Models
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Position { get; set; }
         [Display(Name = "Profile")]
+        [Required(ErrorMessage = "[{0}] is required")]
         [AllowHtml]
         public string Profile { get; set; }
     }

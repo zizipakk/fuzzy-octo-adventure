@@ -165,7 +165,7 @@ namespace Tax.Portal.Controllers
                     resg.PublishingDate = null;
                     resg.CategoriesGlobal = db.CategoriesGlobal.Find(model.CategoryId);
                     resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == "Editing");
-                    resg.Order = model.Order;
+                    resg.Order = null == model.Order ? 0 : (int)model.Order;
                     db.Entry(resg).State = EntityState.Added;
 
                     ExtrasLocal resl = db.ExtrasLocal.Create();
@@ -277,7 +277,7 @@ namespace Tax.Portal.Controllers
                     //if (null == resg.NewsStatus ?
                     //    null != model.NewsStatusName :
                     //    resg.NewsStatus.NameGlobal != model.NewsStatusName) { resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == model.NewsStatusName); }
-                    if (resg.Order != model.Order) { resg.Order = model.Order; }
+                    if (resg.Order != model.Order) { resg.Order = null == model.Order ? 0 : (int)model.Order; }
 
                     var resl = db.ExtrasLocal.FirstOrDefault(x => x.ExtrasGlobalId == model.Id && x.LanguageId == lguid);
                     if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }

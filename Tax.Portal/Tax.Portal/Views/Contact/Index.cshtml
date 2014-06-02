@@ -211,17 +211,31 @@
         autowidth: true,
         onSelectRow: function (rowid) {
             $("#rowid").val(rowid);
-            if ($(this).getCell(rowid, 'Status') == 'Published' || $(this).getCell(rowid, 'Status') == 'Kiadva')
-            { $("#CallBack").show().css({ visibility: "visible" }); }
-            else
-            { $("#CallBack").hide().css({ visibility: "hidden" }); }
-            if ($(this).getCell(rowid, 'Status') == 'Under editing' || $(this).getCell(rowid, 'Status') == 'Szerkesztés alatt'
-                || $(this).getCell(rowid, 'Status') == 'Unpublished' || $(this).getCell(rowid, 'Status') == 'Visszavonva')
-            { $("#Publish").show().css({ visibility: "visible" }); }
-            else
-            { $("#Publish").hide().css({ visibility: "hidden" }); }
-            $("#edit").show().css({ visibility: "visible" });
-            $("#del").show().css({ visibility: "visible" });
+            switch ($(this).getCell(rowid, 'Status')) {
+                case 'Published':
+                case 'Kiadva':
+                    $("#Publish").hide().css({ visibility: "hidden" });
+                    $("#CallBack").show().css({ visibility: "visible" });
+                    $("#edit").hide().css({ visibility: "hidden" });
+                    $("#del").hide().css({ visibility: "hidden" });
+                    break;
+                case 'Under editing':
+                case 'Szerkesztés alatt':
+                    $("#Publish").show().css({ visibility: "visible" });
+                    $("#CallBack").hide().css({ visibility: "hidden" });
+                    $("#edit").show().css({ visibility: "visible" });
+                    $("#del").show().css({ visibility: "visible" });
+                    break;
+                case 'Unpublished':
+                case 'Visszavonva':
+                    $("#Publish").show().css({ visibility: "visible" });
+                    $("#CallBack").hide().css({ visibility: "hidden" });
+                    $("#edit").show().css({ visibility: "visible" });
+                    $("#del").hide().css({ visibility: "hidden" });
+                    break;
+                default:
+                    break;
+            }
         },
         loadComplete: function () {
             $("#Publish").hide().css({ visibility: "hidden" });

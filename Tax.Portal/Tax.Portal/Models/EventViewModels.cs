@@ -21,6 +21,7 @@ namespace Tax.Portal.Models
 
         public Guid Id { get; set; }
         [Display(Name = "Date")]
+        [Required(ErrorMessage = "[{0}] is required")]
         public DateTime? Date { get; set; }
         [Display(Name = "PublishingDate")]
         public DateTime? PublishingDate { get; set; }

@@ -31,22 +31,21 @@ namespace Tax.Portal.Models
         public string NewsStatusName { get; set; }
         [Display(Name = "Order")]
         [Required(ErrorMessage = "[{0}] is required")]
-        public int Order { get; set; }
+        public int? Order { get; set; }
 
         [Display(Name = "Title1")]
         [Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Title1 { get; set; }
         [Display(Name = "Title2")]
-        [Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Title2 { get; set; }
         [Display(Name = "Subtitle")]
-        [Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Subtitle { get; set; }
 
         [Display(Name = "Body_text")]
+        [Required(ErrorMessage = "[{0}] is required")]
         [AllowHtml]
         public string Body_text { get; set; }
     }
