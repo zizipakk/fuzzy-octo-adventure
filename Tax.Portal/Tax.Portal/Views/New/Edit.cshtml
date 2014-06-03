@@ -161,6 +161,13 @@
                 { name: 'styles', items: ['Format'] }
             ]
         });
+        CKEDITOR.config.format_tags = 'p;h1;h2';
+        //nem megy
+        //CKEDITOR.dataProcessor.htmlFilter.addRules({
+        //    elements: {
+        //        p: function (e) { e.attributes.style = 'font-size: 14px; font-family:"~/fonts/FrutigerNextPro-Light.otf";'; }
+        //    }
+        //});
 
         //gombok a headerben
         $("#CallBack").hide().css({ visibility: "hidden" });

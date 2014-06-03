@@ -37,13 +37,13 @@ namespace Tax.WebAPI.Controllers
                 {
                     return NotFound();
                 }
-                if (null == image.file_type)
+                if (null == image.content_type)
                 {
                     return new FileResult(image.file_stream, image.name, "application/octet-stream");
                 }
                 else
                 {
-                    return new FileResult(image.file_stream, image.name, "image/" + image.file_type);
+                    return new FileResult(image.file_stream, image.name, image.content_type);
                 }
             }
             catch (Exception ex)

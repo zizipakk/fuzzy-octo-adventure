@@ -25,34 +25,43 @@
         @Styles.Render("~/Content/themes/base/css")
         @Scripts.Render("~/Scripts/modernizr")
         <style type="text/css">
-            body { 
-                padding-top: 50px
+            body {
+                /*width: 1240px;*/
+                height: 768px;
+                padding-top: 50px;
+                font-family: "~/fonts/FrutigerNextPro-Light.otf";
+                font-size: 12px;
+                color: #313131;
             }
-            .nav .active {
-                font-weight: bold;
-                background-color: lightgray ;
+            footer {
+                font-family: "~/fonts/FrutigerNextPro-Light.otf";
+                font-size: 10px;
+                color: #313131;
+            }
+            .ui-jqgrid {
+                font-family: "~/fonts/FrutigerNextPro-Light.otf";
             }
         </style>
         @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
         @Html.Hidden("actUrl", actUrl)
     </head>
     <body>
-        <div class="navbar navbar navbar-fixed-top" style="background-color:white">                
-            <div class="container">            
+        <div class="navbar navbar navbar-fixed-top">
+            <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                        @*<img src="@Url.Content("~/Content/images/tax.png")" class="img-responsive" alt="" style="border: none;" />*@
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="padding:0px">
+                        <img src="@Url.Content("~/Content/images/logo.png")" class="img-responsive" alt="" style="height: 50px; border: none;" />
                     </a>
                 </div>
                 <div class="navbar-collapse collapse" style="margin-top: 5px">
                     @Html.Partial("_LoginPartial")
-                    <ul class="nav navbar-nav navbar-right" id="menuGroup" style="margin-right: 10px">
-                                                @if (Request.IsAuthenticated)
+                    <ul class="nav navbar-nav navbar-right" id="menuGroup" style="margin-right: 10px;">
+                        @if (Request.IsAuthenticated)
                         {
                             using (var db = new Tax.Data.Models.ApplicationDbContext())
                             {
@@ -65,7 +74,11 @@
                                         if (@menuitem.Name != "Admin" || isAdmin)
                                         {
                                             <li class="@(delockUrl.Contains(string.Format("/{0}",menuitem.Controller)) ? "active" : "")">
-                                                <a class="@(!menu.isActive ? "disabled" : "")" id="@menuitem.Id" href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                <a class="@(!menu.isActive ? "disabled" : "")"
+                                                   style="font-family: '~/fonts/FrutigerNextPro-Bold.otf';
+                                                            font-size: 18px; color: #00A1D1 !important;"
+                                                   id="@menuitem.Id"
+                                                   href="@Url.Action(menuitem.Action, menuitem.Controller)">
                                                     @menuitem.Name
                                                 </a>
                                             </li>
@@ -75,9 +88,9 @@
                             }
                         }
                     </ul>
-                </div>            
+                </div>
             </div>
-            <div class="container" style="padding-top:5px; padding-bottom:5px; background-color:lightgray">
+            <div class="container" style="padding-top:5px; padding-bottom:5px; background-color:#dcdcdc">
                 <div class="row">
                     <div class="col-sm-4 col-xs-6">
                         <input id="Publish" type="button" class="btn btn-default" value="Publish" style="display:none" />
@@ -88,18 +101,18 @@
                     <div class="col-xs-6 pull-right text-right" id="locGroup">
                         @if (!actUrl.Contains("/en ") && !actUrl.Contains("/en/"))
                         {
-                            <input type="button" class="btn btn-default active" 
-                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
-                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
+                            <input type="button" class="btn btn-default active"
+                                   value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
+                                   onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
                             <input type="button" class="btn btn-default"
                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
                         }
                         else
                         {
-                            <input type="button" class="btn btn-default" 
-                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
-                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
+                            <input type="button" class="btn btn-default"
+                                   value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
+                                   onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
                             <input type="button" class="btn btn-default active"
                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
@@ -108,51 +121,23 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content" style="min-height: 668px; background-color: lightgray">
+        <div class="container body-content" style="background-color:#dcdcdc">
             @RenderBody()
-            @*<footer>
-                <div class="input-group-addon row" style="background-color: none;">
-                    <div class="col-sm-5 col-xs-5" style="margin-top: 15px;">
-                        <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
-                    </div>
-                </div>
-            </footer>*@
+        </div>
+        <div class="container body-content" style="background-color: white">
+            <footer>
+                <p>Deloitte Hungary - BackEnd application for Tax & Legal 4Me Mobile applications</p>
+            </footer>
         </div>
 
         @* Áttértünk a 2.0-s jquery-re, viszont ezzel *@
         @* megmarad az ie 6-7-8 kompatibilitás *@
         @* http://stackoverflow.com/a/18782433/208922 *@
         @Scripts.Render("~/Scripts/jquery")
-            <!--[if lte IE 8]>
-            <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-            <![endif]-->
+        <!--[if lte IE 8]>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <![endif]-->
         @Scripts.Render("~/Scripts/bootstrap")
-        @*<script type="text/javascript">
-            //$('#menuGroup > a').removeClass('active'); ez tudja a böngésző magától
-            //go to the latest menu, if it exists:
-            var lastMnu = localStorage.getItem('lastMenu');
-            if (lastMnu) {
-                $('#' + lastMenu).addClass('active');
-            }
-            //store last menu
-            $('#menuGroup > li > a').click(function (e) {
-                alert($(e.target).attr('id'));
-                //$(this).addClass('active');
-                localStorage.setItem('lastMenu', $(e.target).attr('id'));
-            });
-            //$('#locGroup > .btn').removeClass('active'); ez tudja a böngésző magától
-            var lastLng = localStorage.getItem('lastLang');
-            if (lastLng) {
-                $('#' + lastLng).addClass('active');
-            }
-            //store last language
-            $('#locGroup > .btn').click(function (e) {
-                alert($(e.target).attr('id'));
-                //$(this).addClass('active');
-                localStorage.setItem('lastLang', $(e.target).attr('id'));
-            });
-        </script>*@
         @RenderSection("scripts", required: false)
-
-    </body>
+</body>
 </html>

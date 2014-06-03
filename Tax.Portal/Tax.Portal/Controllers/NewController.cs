@@ -535,8 +535,9 @@ namespace Tax.Portal.Controllers
                 //ideiglenes megoldás directory kezelés helyett
                 info = string.Format("{0}_{1}", id.ToString(), info);
 
-                var sf = new File() { stream_id = id, name = info, file_type = hpf.ContentType, file_stream = myBinary };
+                var sf = new File() { stream_id = id, name = info, content_type = hpf.ContentType, file_stream = myBinary };
                 db.File.Add(sf);
+
                 db.SaveChanges();
 
                 return Json("OK");
@@ -688,7 +689,7 @@ namespace Tax.Portal.Controllers
                 if (sf != null && sf.file_stream != null)
                 {
                     _File.Bytes = sf.file_stream;
-                    _File.Mime = sf.file_type;
+                    _File.Mime = sf.content_type;
                     //visszafelé kiveszem a névből a krix-kraxot
                     string sep = "_";
                     int first = sf.name.IndexOf(sep) + sep.Length;

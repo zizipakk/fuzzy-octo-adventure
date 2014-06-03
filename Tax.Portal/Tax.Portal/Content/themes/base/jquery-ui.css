@@ -1186,3 +1186,46 @@ body .ui-tooltip {
 	filter: Alpha(Opacity=30)/*{opacityFilterShadow}*/;
 	border-radius: 8px/*{cornerRadiusShadow}*/;
 }
+
+/*szépítkezés*/
+/*jqGrid builds some additional divs over the main grid table. The outer div has the class ui-jqgrid. So if you need to remove right and left border existing over the whole grid you can use the following CSS:*/
+/*.ui-jqgrid { border-right-width: 0px; border-left-width: 0px; }*/
+/*If you need to remove all grid's borders you can use*/
+.ui-jqgrid { border-width: 0px; }
+/*If you want additionally remove vertical border between the cells in the grid you can use*/
+.ui-jqgrid tr.ui-row-ltr td { border-right-color: transparent; border-left-color: transparent;}
+/*To remove horizontal border between the rows you can use*/
+.ui-jqgrid tr.ui-row-ltr td { border-bottom-color: #72C7E7; }
+/*To remove vertical borders between the column headers you can use*/
+th.ui-th-column { border-right-color: transparent !important }
+/*or alternatively (without the usage of !important)*/
+/*.ui-jqgrid-labels .ui-th-column { border-right-color: transparent }*/
+
+.ui-jqgrid td input, .ui-jqgrid td select .ui-jqgrid td textarea {
+    border-width: 0px;
+}
+tr.ui-search-toolbar input {
+    border-width: 0px;
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    border-width: 0px;
+}
+.ui-widget-content {
+    border-width: 0px;
+}
+.ui-jqgrid .ui-subgrid td.subgrid-cell {
+    border-width: 0px;
+}
+.ui-jqgrid tr.ui-search-toolbar th {
+    border-width: 0px !important;
+}
+.ui-widget-header {
+    background: #00A1dE;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #72C7E7;
+}
+.ui-jqgrid .ui-state-highlight {
+    background: #72C7E7;
+}
+

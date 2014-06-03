@@ -6,22 +6,29 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-    <ul class="nav navbar-nav navbar-right">       
+    <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle"
+               style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: #313131 !important;"
+               data-toggle="dropdown"
+               href="#">
                 <span><i class="fa fa-info fw"></i><strong>  @User.Identity.GetUserName() </strong></span>
             </a>
-            <ul class="dropdown-menu">               
-                <li><a title="Jelszómódosítás" href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i> Change Password </a></li>               
+            <ul class="dropdown-menu">
+                <li><a style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: #313131 !important;"
+                        href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i>Change Password</a></li>
             </ul>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw" ></i> Logout </a></li>
+        <li><a style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: #313131 !important;" 
+               href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a id="loginLink" href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i> Login </a></li>        
+        <li><a id="loginLink"
+                style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: #313131 !important;" 
+                href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i>Login</a></li>
     </ul>
 }

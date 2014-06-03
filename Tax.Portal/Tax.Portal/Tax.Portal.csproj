@@ -302,6 +302,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\ajaxloading.gif" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -382,6 +383,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="nuget.config" />
+    <Content Include="fonts\FrutigerNextPro-Bold.otf" />
+    <Content Include="fonts\FrutigerNextPro-BoldIta.otf" />
+    <Content Include="fonts\FrutigerNextPro-Light.otf" />
+    <Content Include="fonts\FrutigerNextPro-LightIta.otf" />
+    <Content Include="fonts\FrutigerNextPro-Medium.otf" />
+    <Content Include="fonts\FrutigerNextPro-MediumIta.otf" />
     <None Include="Properties\PublishProfiles\BUILD.pubxml" />
     <None Include="Properties\PublishProfiles\DEPLOY.pubxml" />
     <None Include="Properties\PublishProfiles\DEPLOYTOSERVER.pubxml" />

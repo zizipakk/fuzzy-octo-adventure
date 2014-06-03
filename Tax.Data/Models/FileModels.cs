@@ -23,6 +23,7 @@ namespace Tax.Data.Models
         public string name { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string file_type { get; set; }
+        public string content_type { get; set; }
     }
 
 }

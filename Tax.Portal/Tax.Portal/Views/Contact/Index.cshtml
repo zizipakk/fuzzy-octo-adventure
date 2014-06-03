@@ -1,32 +1,11 @@
 ﻿@using Tax.Data.Models;
 
-<style type="text/css">
-    .ui-jqgrid .ui-state-highlight {
-        background: #cccccc;
-    }
-    .container .grid {
-        /*border: 1px solid #ddd;*/
-        padding-left: 0px;
-        padding-top: 35px;
-        padding-right: 0px;
-        padding-bottom: 15px;
-        margin-left: 0px;
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-    }
-    .modal-dialog {
-        width: 400px; /* your width */
-        height: auto;
-    }
-</style>
-
 <div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color:orange">
+            <div class="modal-header" style="color: orange; font-family: '~/fonts/FrutigerNextPro-Bold.otf'">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">WARNING!</h4>
+                <h3 class="modal-title">WARNING!</h3>
             </div>
             <div class="modal-body" style="color:orange">
                 <p id="warningtext" style="text-align:center"></p>
@@ -43,9 +22,9 @@
 <div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color:red">
+            <div class="modal-header" style="color: red; font-family: '~/fonts/FrutigerNextPro-Bold.otf'">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">ERROR!</h4>
+                <h3 class="modal-title">ERROR!</h3>
             </div>
             <div class="modal-body" style="color:red">
                 <p id="errortext" style="text-align:center"></p>
@@ -62,9 +41,9 @@
 <div class="modal fade bs-modal-sm" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: #00A1dE; color: #313131; font-family '~/fonts/FrutigerNextPro-Bold.otf'; ">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">ATTENTION!</h4>
+                <h3 class="modal-title">ATTENTION!</h3>
             </div>
             <div class="modal-body">
                 <p id="deletetext" style="text-align:center">Do you really want to delete this?</p>
@@ -74,7 +53,7 @@
                     <input type="button" class="btn btn-default" data-dismiss="modal" value=" CANCEL " />
                 </div>
                 <div class="text-center pull-right">
-                    <input id="deletebutton" type="button" class="btn btn-warning" data-dismiss="modal" value=" DELETE " />
+                    <input id="deletebutton" type="button" class="btn btn-default" data-dismiss="modal" value=" DELETE " />
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -230,7 +209,7 @@
                 case 'Visszavonva':
                     $("#Publish").show().css({ visibility: "visible" });
                     $("#CallBack").hide().css({ visibility: "hidden" });
-                    $("#edit").show().css({ visibility: "visible" });
+                    $("#edit").hide().css({ visibility: "hidden" });
                     $("#del").hide().css({ visibility: "hidden" });
                     break;
                 default:

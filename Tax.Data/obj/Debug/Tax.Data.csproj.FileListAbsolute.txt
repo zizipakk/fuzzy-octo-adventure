@@ -27,3 +27,5 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.GoogleAppler
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.iosproductiontosetup.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.MessageGlobalDeviceType.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.isOkfield.resources
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csprojResolveAssemblyReference.cache
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.contenttypeforfile.resources

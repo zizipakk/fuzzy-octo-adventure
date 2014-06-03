@@ -7197,11 +7197,14 @@ input[type="checkbox"].input-validation-error {
 /*menü*/
 .navbar-fixed-top {
     height: 85px;
+    background-color: white;  
 }
 
 .navbar-collapse.in {
     margin-top: auto !important; 
     background-color: white !important;
+    font-size: 18px !important; 
+    color: #00A1D1 !important;
 }
 
 .nav>li>a:hover, .nav>li>a:focus {
@@ -7211,8 +7214,33 @@ input[type="checkbox"].input-validation-error {
 }
 
 .nav>li>a {
-    color: #000000;
+    /*color: #00A1D1;*/
     position: relative;
     display: block;
     padding: 10px 15px;
 }
+
+.nav .active {
+    color: #00A1D1;
+    font-weight: bold;
+    background-color: #dcdcdc;
+}
+
+/*Grid container*/
+.container .grid {
+    /*border: 1px solid #ddd;*/
+    padding-left: 0px;
+    padding-top: 35px;
+    padding-right: 0px;
+    padding-bottom: 15px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.modal-dialog {
+    width: 400px; /* your width */
+    height: auto;
+}
+
