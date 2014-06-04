@@ -571,14 +571,17 @@ namespace Tax.Portal.Controllers
                 }
 
                 //a megadott kiterjesztést nézem
-                if (file.ContentType.ToLower() != "image/jpg"
+                if (
+                    file.ContentType.ToLower() != "image/jpg"
                     &&
                     file.ContentType.ToLower() != "image/jpeg"
-                    &&
-                    file.ContentType.ToLower() != "image/png")
+                    //&&
+                    //file.ContentType.ToLower() != "image/png"
+                    )
                 {
                     Response.StatusCode = 500;//(int)HttpStatusCode.InternalServerError;
-                    return Json("Image types only: jpg, jpeg, png");
+                    //return Json("Image types only: jpg, jpeg, png");
+                    return Json("Image types only: jpg, jpeg");
                 }
 
                 //megpróbjálom konvertálni képpé
