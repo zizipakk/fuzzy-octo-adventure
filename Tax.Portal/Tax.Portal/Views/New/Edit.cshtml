@@ -11,9 +11,9 @@
 <div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color:orange">
+            <div class="modal-header" style="color: orange; font-family: '~/fonts/FrutigerNextPro-Bold.otf'">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">WARNING</h4>
+                <h3 class="modal-title">WARNING</h3>
             </div>
             <div class="modal-body" style="color:orange">
                 <p id="warningtext" style="text-align:center"></p>
@@ -30,9 +30,9 @@
 <div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color:red">
+            <div class="modal-header" style="color: red; font-family: '~/fonts/FrutigerNextPro-Bold.otf'">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">ERROR</h4>
+                <h3 class="modal-title">ERROR</h3>
             </div>
             <div class="modal-body" style="color:red">
                 <p id="errortext" style="text-align:center"></p>
@@ -162,6 +162,7 @@
             ]
         });
         CKEDITOR.config.format_tags = 'p;h1;h2';
+        CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
         //nem megy
         //CKEDITOR.dataProcessor.htmlFilter.addRules({
         //    elements: {

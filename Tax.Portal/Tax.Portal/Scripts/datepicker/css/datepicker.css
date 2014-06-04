@@ -69,8 +69,8 @@
 }
 .datepicker td.active,
 .datepicker td.active:hover {
-  color: #ffffff;
-  background-color: #006dcc;
+  color: #313131;
+  background-color: #00A1D1;
   background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
   background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);

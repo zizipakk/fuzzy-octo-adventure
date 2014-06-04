@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
@@ -17,7 +18,8 @@ namespace Tax.WebAPI
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            string date = DateTime.Now.ToUniversalTime().ToString();
+            //string date = DateTime.Now.ToUniversalTime().ToString();
+            string date = DateTime.UtcNow.ToUniversalTime().ToString("R");
             actionExecutedContext.Response.Content.Headers.TryAddWithoutValidation("Last-Modified", date);
         }
 

@@ -1,0 +1,3 @@
+2014-06-03 21:23:46,247 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-06-03 21:25:44,685 [6] INFO  Tax.WebAPI.Controllers.ImagesController - Get picture by id: 156D4C90-5C80-4312-BFB3-0605DB284FB1
+2014-06-03 21:26:16,733 [6] INFO  Tax.WebAPI.Controllers.ImagesController - Get picture by id: 156D4C90-5C80-4312-BFB3-0605DB284FB1
