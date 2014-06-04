@@ -1,8 +1,10 @@
 ﻿@model Tax.Portal.Models.NewViewModel
 
 <div class="form-group" style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: black;">
-    <div class="input-group col-sm-12 col-xs-12">
-        <img src="@Url.Action("DownloadImage", "New")?id=@Model.Headline_pictureId" class="img-responsive" alt="Headline" style="border: none;" />'
+    <div class="lead">
+        <img src="@Url.Action("DownloadImage", "New")?id=@Model.Headline_pictureId" 
+             class="img-responsive col-lg-12" alt="Headline" 
+             style="max-width: 300px; height: auto; border: none;" />'
     </div>
     <div class="input-group col-sm-12 col-xs-12">
         @MvcHtmlString.Create(null == Model.PublishingDate ? Model.PublishingDate.ToString() : Model.PublishingDate.Value.ToShortDateString())

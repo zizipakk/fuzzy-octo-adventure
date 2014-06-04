@@ -12,8 +12,8 @@
         <div class="well">
             <h3 class="text-center" style="padding-top:20px; padding-bottom:20px">@ViewBag.Title</h3>
             <div class="form-group">
-                @Html.LabelFor(m => m.UserName, new { @class = "col-sm-5 col-xs-12 control-label" })
-                <div class="col-sm-7 col-xs-12">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-sm-offset-1 col-sm-3 col-xs-12 control-label" })
+                <div class="col-sm-6 col-xs-12">
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Login name" })
                         @Html.ValidationMessageFor(m => m.UserName)
@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-sm-5 col-xs-12 control-label" })
-                <div class="col-sm-7 col-xs-12">
+                @Html.LabelFor(m => m.Password, new { @class = "col-sm-offset-1 col-sm-3 col-xs-12 control-label" })
+                <div class="col-sm-6 col-xs-12">
                     <div class="input-group col-sm-12 col-xs-12">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
                         @Html.ValidationMessageFor(m => m.Password)
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-7 col-xs-12">
+                <div class="col-sm-offset-4 col-sm-8 col-xs-12">
                     <div class="checkbox col-sm-12 col-xs-12 pull-right">
                         @Html.CheckBoxFor(m => m.RememberMe)
                         @Html.LabelFor(m => m.RememberMe)!
@@ -47,5 +47,10 @@
 }
 </section>
 @section Scripts {
-    @Scripts.Render("~/Scripts/jqueryval")
+    @*@Scripts.Render("~/Scripts/jqueryval")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")*@
+<script type="text/javascript">
+    $("#locGroup").css({ display: "none" });
+</script>
 }

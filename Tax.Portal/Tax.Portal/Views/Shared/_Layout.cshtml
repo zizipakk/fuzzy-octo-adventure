@@ -20,7 +20,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/ico" />
+        <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" type="image/x-icon" />
         <title>@ViewBag.Title - Tax & Leagal 4Me</title>
         @Styles.Render("~/Content/css")
         @Styles.Render("~/Content/themes/base/css")
@@ -76,10 +76,11 @@
                                         {
                                             <li class="@(delockUrl.Contains(string.Format("/{0}",menuitem.Controller)) ? "active" : "")">
                                                 <a class="@(!menu.isActive ? "disabled" : "")"
-                                                   style="font-family: '~/fonts/FrutigerNextPro-Bold.otf';
-                                                            font-size: 18px; color: #00A1D1 !important;"
-                                                   id="@menuitem.Id"
-                                                   href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                    style="font-family: '~/fonts/FrutigerNextPro-Bold.otf';
+                                                            font-size: 18px;
+                                                            color: #00A1D1 !important; "
+                                                    id="@menuitem.Id"
+                                                    href="@Url.Action(menuitem.Action, menuitem.Controller)">
                                                     @menuitem.Name
                                                 </a>
                                             </li>
@@ -91,7 +92,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="container" style="padding-top:5px; padding-bottom:5px; background-color:#dcdcdc">
+            <div class="container" style="height: 40px; padding-top:5px; padding-bottom:5px; background-color:#dcdcdc">
                 <div class="row">
                     <div class="col-sm-4 col-xs-6">
                         <input id="Publish" type="button" class="btn btn-default" value="Publish" style="display:none" />
@@ -115,14 +116,14 @@
                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameHungarian)"
                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/hu", delockUrl)'" />
                             <input type="button" class="btn btn-default active"
-                                   value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
-                                   onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
+                                    value="@CultureManager.CultureShortname(CultureManager.CultureNameEnglish)"
+                                    onclick="location.href = '@string.Format("{0}{1}{2}", rootUrl, "/en", delockUrl)'" />
                         }
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container body-content" style="background-color:#dcdcdc">
+        <div class="container body-content" style="background-color: #dcdcdc; height: 688px;">
             @RenderBody()
         </div>
         <div class="container body-content" style="background-color: white">
