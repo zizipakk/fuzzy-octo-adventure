@@ -112,7 +112,7 @@
 
         //repül a ckeditor
         CKEDITOR.replace('ckeditor_text', {
-            height: 400,
+            height: 550,
             language: 'en',
             toolbar: [
                 { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
@@ -128,7 +128,11 @@
         CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
 
         //datepicker
-        $('#DatePicker').datepicker({ autoclose: true, todayHighlight: true });
+        $('#DatePicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            weekStart: 1
+        });
 
         //gombok a headerben
         $("#CallBack").hide().css({ visibility: "hidden" });

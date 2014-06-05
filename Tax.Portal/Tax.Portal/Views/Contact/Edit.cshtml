@@ -118,7 +118,7 @@
     <div class="col-sm-8 col-xs-12" style="padding-left:0px;padding-right:0px">
         <div class="form-group">
             <div class="col-sm-6 col-xs-12">
-                @Html.LabelFor(m => m.TagsIn, new { @class = "control-label" })<span style="font-size:15px; color:red"> *</span>
+                @Html.LabelFor(m => m.TagsIn, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; color:red"> *</span>
                 <div class="input-group col-sm-12 col-xs-12">
                     <div class="col-sm-10 col-xs-12" style="padding:0px">
                         @Html.DropDownList("OuterTagsOut", new SelectList(Model.TagFromList, "Value", "Text"), new { @class = "form-control" })
@@ -127,7 +127,7 @@
                 </div>
                 <div class="input-group col-sm-12 col-xs-12">
                     <div class="col-sm-10 col-xs-12" style="padding:0px">
-                        @Html.ListBox("OuterTagsIn", new SelectList(Model.TagToList, "Value", "Text"), new { @class = "form-control", @style = "height:135px" })
+                        @Html.ListBox("OuterTagsIn", new SelectList(Model.TagToList, "Value", "Text"), new { @class = "form-control", @style = "height:120px" })
                     </div>
                     <a id="remove" class="btn btn-default col-sm-2 col-xs-12"><i class="fa fa-minus fa-fw"></i></a>
                 </div>
@@ -137,7 +137,7 @@
                 @Html.LabelFor(m => m.PhotoId, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                 <div class="input-group col-sm-12 col-xs-12">
                     <form action="@Url.Action("Upload", "New")" class="dropzone square" id="photo-dropzone" 
-                          style="min-height:155px; padding: 0px 0px 0px 0px; background-color: white"></form>
+                          style="height:150px; padding: 0px 0px 0px 0px; background-color: white"></form>
                 </div>
             </div>
             <div class="col-sm-12 col-xs-12">
@@ -150,6 +150,19 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="previewTemplate" class="dz-preview dz-processing dz-image-preview dz-error col-lg-12" style="margin:0px">
+    <div class="dz-details" style="height: 120px; width: auto; margin-bottom:0px; padding:0px">
+        <div class="dz-filename"><span data-dz-name></span></div>
+        @*<div class="dz-size" data-dz-size></div>*@
+        <img data-dz-thumbnail
+             class="img-responsive col-sm-12 col-xs-12" alt="Headline"
+             style="border: none;
+                height: 120px;
+                padding:0px" />
+    </div>
+    <div class="dz-progress" style="top:auto; margin-top:-5px"><span class="dz-upload" data-dz-uploadprogress></span></div>
 </div>
 
 @section Scripts {
@@ -171,7 +184,7 @@
 
     //repül a ckeditor
     CKEDITOR.replace('ckeditor_text', {
-        height: 400,
+        height: 370,
         language: 'en',
         toolbar: [
             { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
@@ -225,27 +238,6 @@
 
     <link rel="stylesheet" href="~/Scripts/dropzone/css/basic.css">
     <script src="~/Scripts/dropzone/dropzone.js"></script>
-    <style type="text/css">
-        .dz-message {
-            text-align: center;
-            padding-top: 35px;
-        }
-        .dz-max-files-reached {
-            background-color: red;
-        }
-        /*.dropzone .dz-preview, .dropzone-previews .dz-preview {
-            width: 320px;
-            min-height: 125px;
-        }
-        .dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details {
-            width: inherit;
-            height: inherit;
-        }
-        .dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img {
-            width: inherit;
-            height: 130px;
-        }*/
-    </style>
 
     <script>
         function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
@@ -253,8 +245,13 @@
         //var afiles = [];
         //var aids = [];
 
+        //új template a kép megjelenítéshez
+        previewTemplate = $.trim($('<div/>').append($('#previewTemplate')).html());
+        $('#previewTemplate').remove();
+
         Dropzone.options.photoDropzone = {
             paramName: "file",
+            previewTemplate: previewTemplate,
             addRemoveLinks: true,
             maxFiles: 1,
             accept: function (file, done) {

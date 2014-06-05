@@ -68,8 +68,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 100px;
+  /*width: auto;
+  height: 100%;*/
 }
 .dropzone .dz-preview .dz-details .dz-size,
 .dropzone-previews .dz-preview .dz-details .dz-size {
@@ -152,4 +152,13 @@
 .dropzone .dz-preview:hover.dz-error .dz-error-message,
 .dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
   display: block;
+}
+
+/*custom*/
+.dz-message {
+    text-align: center;
+    padding-top: 35px;
+}
+.dz-max-files-reached {
+    background-color: red;
 }

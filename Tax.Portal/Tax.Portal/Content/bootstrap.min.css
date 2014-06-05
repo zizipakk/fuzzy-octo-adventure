@@ -122,3 +122,10 @@ input[type="checkbox"].input-validation-error {
     width: 400px; /* your width */
     height: auto;
 }
+
+/*IE img-responsive*/
+@media \0screen {
+    img {
+        width: auto;
+    }
+}
