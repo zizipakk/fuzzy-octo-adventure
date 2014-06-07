@@ -180,15 +180,15 @@
             { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
             {
                 name: 'NameEn', index: 'NameEn', width: 300, align: "left", hidden: false,
-                sortable: true, search: true, editable: true,// edittype: "textarea"
+                sortable: true, search: true, editable: true,// edittype: "textarea",
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
-                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+                //formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
             },
             {
                 name: 'NameHu', index: 'NameHu', width: 300, align: "left", hidden: false,
-                sortable: true, search: true, editable: true,// edittype: "textarea"
+                sortable: true, search: true, editable: true,// edittype: "textarea",
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
-                formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+                //formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
             }
         ],
         rowNum: 20,

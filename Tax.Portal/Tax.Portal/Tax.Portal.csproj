@@ -302,6 +302,7 @@
     <Content Include="Content\images\ajaxloading.gif" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo2.png" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />

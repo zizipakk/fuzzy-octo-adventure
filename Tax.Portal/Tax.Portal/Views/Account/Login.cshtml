@@ -7,7 +7,9 @@
 @using (Html.BeginForm(MVC.Account.ActionNames.Login, MVC.Account.Name, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <div class="col-sm-12 col-xs-12" style="padding-top:35px">
+        @Html.ValidationSummary()
+    </div>
     <div class="col-sm-offset-3 col-sm-6 col-xs-12">
         <div class="well">
             <h3 class="text-center" style="padding-top:20px; padding-bottom:20px">@ViewBag.Title</h3>

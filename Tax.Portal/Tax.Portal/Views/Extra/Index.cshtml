@@ -158,7 +158,7 @@
             , 'Published'
             , 'Category'
             , 'Order1'
-            , 'Order2'
+            , 'Order'
         ],
         colModel: [
             { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
@@ -174,13 +174,13 @@
                 editable: false
             },
             {
-                name: 'Title1', index: 'Title1', width: 165, align: "left", hidden: false,
+                name: 'Title1', index: 'Title1', width: 205, align: "left", hidden: false,
                 sortable: true, search: true, editable: false,
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
                 formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
             },
             {
-                name: 'Title2', index: 'Title2', width: 165, align: "left", hidden: false,
+                name: 'Title2', index: 'Title2', width: 205, align: "left", hidden: false,
                 sortable: true, search: true, editable: false,
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
                 formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
@@ -198,12 +198,12 @@
                 search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'], dataInit: initDateSearch }//, searchrules: { custom: true, custom_func: datetimecheck }
             },
             {
-                name: 'Category', index: 'Category', width: 170, align: "left", hidden: false,
+                name: 'Category', index: 'Category', width: 140, align: "left", hidden: false,
                 sortable: true, search: true, editable: false,
                 cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
                 formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
             },
-            { name: 'Order1', index: 'Order1', width: 50, template: numberTemplate, hidden: false, sortable: true, search: true, editable: false },
+            { name: 'Order1', index: 'Order1', width: 50, template: numberTemplate, hidden: true, sortable: true, search: true, editable: false },
             { name: 'Order2', index: 'Order2', width: 50, template: numberTemplate, hidden: false, sortable: true, search: true, editable: false }
         ],
         rowNum: 20,

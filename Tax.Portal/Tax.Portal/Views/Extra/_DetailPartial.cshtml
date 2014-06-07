@@ -5,7 +5,7 @@
         @MvcHtmlString.Create(Model.Title1)
     </div>
     <div class="input-group col-sm-12 col-xs-12">
-        @MvcHtmlString.Create(Model.PublishingDate.ToString().Substring(0, 10))
+        @MvcHtmlString.Create(null == Model.PublishingDate ? Model.PublishingDate.ToString() : Model.PublishingDate.Value.ToShortDateString())
     </div>
     <div class="input-group col-sm-12 col-xs-12" style="font-size: 14px; color: #81BC00;">
         @MvcHtmlString.Create(Model.Title2)
