@@ -3,30 +3,12 @@
 <div class="form-group" style="font-family: '~/fonts/FrutigerNextPro-Light.otf'; font-size: 12px; color: black;">
     <div class="col-sm-12 col-xs-12" style="padding:0px; margin:0px">
         <img src="@Url.Action("DownloadImage", "New")?id=@Model.Headline_pictureId"
-             class="img-responsive col-lg-12" alt="Headline"
+             class="img-responsive col-sm-12" alt="Headline"
              style="border: none; padding: 0px; margin: 0px" />
     </div>
-    <div class="input-group col-sm-12 col-xs-12">
+    <div class="article_date col-sm-12 col-xs-12">
         @MvcHtmlString.Create(null == Model.PublishingDate ? Model.PublishingDate.ToString() : Model.PublishingDate.Value.ToShortDateString())
     </div>
-    @{var i = 0;
-    <table class="table" align="right">
-        <tr>
-            @foreach (var item in Model.TagToList)
-            {
-                i += 1;
-                if (i < Model.TagToList.Count())
-                {
-                    <td class="pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(", " + item.Text)</td>
-                }
-                else
-                {
-                    <td class="pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(item.Text)</td>
-                }
-            }
-        </tr>
-    </table>
-    }
     <div class="input-group col-sm-12 col-xs-12" style="font-size: 16px; color: #002776;">
         @MvcHtmlString.Create(Model.Title1)
     </div>
@@ -42,13 +24,22 @@
     <div class="input-group col-sm-12 col-xs-12 text-left" style="font-size: 12px; color: black;">
         @MvcHtmlString.Create(Model.Body_text)
     </div>
+    @{var i = 0;
+    <table class="table table-responsive" align="right">
+        <tr>
+            @foreach (var item in Model.TagToList)
+            {
+                i += 1;
+                if (i < Model.TagToList.Count())
+                {
+                    <td class="highlight pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(", " + item.Text)</td>
+                }
+                else
+                {
+                    <td class="highlight pull-right  text-right" style="padding: 0px">@MvcHtmlString.Create(item.Text)</td>
+                }
+            }
+        </tr>
+    </table>
+    }
 </div>
-
-
-
-@section Scripts {
-    @Scripts.Render("~/Scripts/jquery")
-    @Scripts.Render("~/Scripts/bootstrap")
-    <script type="text/javascript">
-    </script>
-}
