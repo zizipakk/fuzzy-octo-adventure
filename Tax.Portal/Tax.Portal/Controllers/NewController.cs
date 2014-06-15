@@ -506,7 +506,7 @@ namespace Tax.Portal.Controllers
                 {
                     n.NewsStatus = sta;
                     if (to == "Published")
-                    { n.PublishingDate = DateTime.Now.Date; }
+                    { n.PublishingDate = DateTime.Now; }
                     else
                     { n.PublishingDate = null; }
                     db.SaveChanges();

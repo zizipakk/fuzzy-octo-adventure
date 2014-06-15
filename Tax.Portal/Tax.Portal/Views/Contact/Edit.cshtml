@@ -144,7 +144,8 @@
                 @Html.LabelFor(m => m.Profile, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                 <div class="input-group col-sm-12 col-xs-12">
                     <form id="ckeditor_form">
-                        @Html.TextArea("ckeditor_text", new { @style = "visibility:hidden" })
+                        @*@Html.TextArea("ckeditor_text", new { @style = "visibility:hidden" })*@
+                        @Html.TextArea("ckeditor_text", new { @class = "form-control", style = "min-height: 430px", placeholder = "Type here profile" })
                     </form>
                 </div>
             </div>
@@ -182,22 +183,22 @@
     //kitöltöm a kirekedt objektumokat
     $('#ckeditor_text').val($('#Profile').val());
 
-    //repül a ckeditor
-    CKEDITOR.replace('ckeditor_text', {
-        height: 370,
-        language: 'en',
-        toolbar: [
-            { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
-            { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
-            { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-            { name: 'links', items: ['Link', 'Unlink'] },
-            { name: 'insert', items: ['Image', 'Table'] },
-            //{ name: 'styles', items: ['Styles', 'Format'] }
-            { name: 'styles', items: ['Format'] }
-        ]
-    });
-    CKEDITOR.config.format_tags = 'p;h1;h2';
-    CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
+    ////repül a ckeditor
+    //CKEDITOR.replace('ckeditor_text', {
+    //    height: 370,
+    //    language: 'en',
+    //    toolbar: [
+    //        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+    //        { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
+    //        { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+    //        { name: 'links', items: ['Link', 'Unlink'] },
+    //        { name: 'insert', items: ['Image', 'Table'] },
+    //        //{ name: 'styles', items: ['Styles', 'Format'] }
+    //        { name: 'styles', items: ['Format'] }
+    //    ]
+    //});
+    //CKEDITOR.config.format_tags = 'p;h1;h2';
+    //CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
 
     //gombok a headerben
     $("#CallBack").hide().css({ visibility: "hidden" });

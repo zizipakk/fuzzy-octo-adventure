@@ -68,7 +68,7 @@ namespace Tax.Portal.Models
         public string Position { get; set; }
         [Display(Name = "Profile")]
         [Required(ErrorMessage = "[{0}] is required")]
-        [AllowHtml]
+        //[AllowHtml]
         public string Profile { get; set; }
     }
 }

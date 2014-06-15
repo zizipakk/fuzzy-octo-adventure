@@ -20,12 +20,11 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.engagetagcon
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.devices.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.indexestodevices.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.splitrolesfromsubmenus.resources
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource.Cache
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.GoogleAppleresponsetexttoMessages.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.iosproductiontosetup.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.MessageGlobalDeviceType.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.isOkfield.resources
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.contenttypeforfile.resources
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource.Cache
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb

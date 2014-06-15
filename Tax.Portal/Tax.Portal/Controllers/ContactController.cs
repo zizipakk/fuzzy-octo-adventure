@@ -432,12 +432,13 @@ namespace Tax.Portal.Controllers
                 {
                     cg.NewsStatus = sta;
                     if (to == "Published")
-                    { cg.PublishingDate = DateTime.Now.Date; }
+                    { cg.PublishingDate = DateTime.Now; }
                     else
                     { cg.PublishingDate = null; }
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
+
                 return Json(new { success = false, error = false, response = "Not found" });
             }
             return Json(new { success = false, error = true, response = "Bad request" });
