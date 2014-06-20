@@ -473,14 +473,14 @@
                     name: 'Name', index: 'Name', width: 200, align: "left",
                     editable: true, sortable: true,
                     cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
-                    formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+                    //formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
                 },
                 { name: 'Value', index: 'Value', width: 100, align: "right", editable: true, sortable: true },
                 {
                     name: 'Description', index: 'Description', width: 400, align: "left",
                     editable: true, sortable: true,//edittype: 'textarea', 
                     cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
-                    formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+                    //formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
                 },
                 {
                     name: 'Public', index: 'Public', width: 50, align: "center",

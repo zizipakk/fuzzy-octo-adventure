@@ -20,7 +20,10 @@ namespace Tax.WebAPI
         {
             //string date = DateTime.Now.ToUniversalTime().ToString();
             string date = DateTime.UtcNow.ToUniversalTime().ToString("R");
-            actionExecutedContext.Response.Content.Headers.TryAddWithoutValidation("Last-Modified", date);
+            if (null != actionExecutedContext.Response && null != actionExecutedContext.Response.Content)
+            {
+                actionExecutedContext.Response.Content.Headers.TryAddWithoutValidation("Last-Modified", date);
+            }
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)

@@ -86,6 +86,7 @@ namespace Tax.WebAPI.Service
                                 .SelectMany(x => x.NewsLocal.Where(y =>
                                                                     y.NewsGlobalId == x.Id
                                                                     && y.Language.ShortName == lang), (x, y) => new { x, y })
+                                .ToList()//bonyi searchlistnél behal az ef
                                 .Where(s =>
                                         searchList.Count() == 0
                                         ||
@@ -96,7 +97,7 @@ namespace Tax.WebAPI.Service
                                             || searchList.Any(ss => s.y.Body_text.Contains(ss))
                                         )
                                 )
-                                .ToList()
+                                //.ToList()
                                 .Select(s => new ArticlesBindingModel
                                 {
                                     Id = s.x.Id.ToString(),
