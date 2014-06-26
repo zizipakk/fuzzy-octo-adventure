@@ -158,13 +158,15 @@
         <div class="dz-filename"><span data-dz-name></span></div>
         @*<div class="dz-size" data-dz-size></div>*@
         <img data-dz-thumbnail
-             class="img-responsive col-sm-12 col-xs-12" alt="Headline"
+             class="img-responsive col-sm-12 col-xs-12" alt="Photo"
              style="border: none;
                 height: 120px;
                 padding:0px" />
     </div>
     <div class="dz-progress" style="top:auto; margin-top:-5px"><span class="dz-upload" data-dz-uploadprogress></span></div>
 </div>
+
+<iframe name="photoup" id="photoup" height="0" width="0" frameborder="0" hidden="hidden"></iframe>
 
 @section Scripts {
     @Scripts.Render("~/Scripts/jquery")
@@ -189,6 +191,7 @@
     //    language: 'en',
     //    toolbar: [
     //        { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+    //        { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
     //        { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
     //        { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
     //        { name: 'links', items: ['Link', 'Unlink'] },
@@ -325,6 +328,69 @@
                 });
             }
         };
+
+        //ie9 miatt, de ready után készíti el a dz-fallback-et, ezért csak submitben lehet gépészkedni, nincs response, csak exception státuszkódos oldallal        
+        $("#photo-dropzone").submit(function (e) {//csak havan mit felküldeni
+            if ($("#photo-dropzone input[type=file]").val() == "") {
+                return false;
+            }
+        });
+
+        var hlId = null;
+        $("#photo-dropzone").change(function () {//a rendes böngészőknél nem talál ilyen elemeket
+            $("#photo-dropzone input[type=submit]").attr("type", "button");
+            $("#photo-dropzone input[type=button]").attr("onclick", "headlineclick()");
+        });
+
+        var headlineclick = function () {
+            if ($('#PhotoId').val() != "") {
+                $.ajax({
+                    url: '@Url.Action("DeleteImage", "New")?id=' + $('#PhotoId').val(),
+                    type: 'POST',
+                    success: function (data) {
+                        $('#photo-dropzone input[type=button]').attr('value', 'Upload!');
+                        $('#PhotoId').val("");
+                        hlId = null;
+                        $('#photo-dropzone p').text("...Removed!");
+                    },
+                    onerror: function (jqXHR, textStatus, errorThrown) {
+                        $('#errortext').text(jqXHR.responseText);
+                        $('#errormodal').modal({ show: true });
+                    }
+                });
+            }
+            if (hlId == null) {
+                $('#photo-dropzone').attr('target', 'photoup');
+                $('#photo-dropzone').attr('method', 'post');
+                $('#photo-dropzone').attr('enctype', 'multipart/form-data');
+                $('#photo-dropzone').attr('encoding', 'multipart/form-data');
+                hlId = b(0);
+                $('#photo-dropzone').attr('action', '@Url.Action("Upload", "New")?id=' + hlId + '&picttype=photo');
+                $('#photo-dropzone').submit();
+                $("#photoup").load(function () {
+                    $.ajax({
+                        url: '@Url.Action("FallbackControll", "New")?id=' + hlId,
+                        type: 'POST',
+                        complete: function (jqXHR, textStatus) {
+                            var str = JSON.parse(jqXHR.responseText);
+                            if (!str.success) {
+                                hlId = null;
+                                $('#errortext').text(str.response);
+                                $('#errormodal').modal({ show: true });
+                            }
+                            else {
+                                $('#photo-dropzone p').text("...Uploaded!");
+                                $('#PhotoId').val(hlId);
+                                $('#photo-dropzone input[type=button]').attr('value', 'Remove!');
+                            }
+                        }
+                    });
+                });
+            }
+
+            return false;
+        };
+
 
     </script>
 }

@@ -25,6 +25,7 @@
         @MvcHtmlString.Create(Model.Body_text)
     </div>
     @{var i = 0;
+    @*most már balre
     <table class="table table-responsive" align="right">
         <tr>
             @foreach (var item in Model.TagToList)
@@ -40,6 +41,22 @@
                 }
             }
         </tr>
-    </table>
+    </table>*@
+        <table class="table table-responsive" align="left">
+            <tr>
+                @foreach (var item in Model.TagToList)
+                {
+                    i += 1;
+                    if (i < Model.TagToList.Count())
+                    {
+                        <td class="highlight pull-left  text-left" style="padding: 0px">@MvcHtmlString.Create(item.Text + ", ")</td>
+                    }
+                    else
+                    {
+                        <td class="highlight pull-left  text-left" style="padding: 0px">@MvcHtmlString.Create(item.Text)</td>
+                    }
+                }
+            </tr>
+        </table>
     }
 </div>

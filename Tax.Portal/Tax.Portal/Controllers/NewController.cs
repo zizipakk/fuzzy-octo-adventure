@@ -521,6 +521,20 @@ namespace Tax.Portal.Controllers
 
         #region filestream
 
+        [Authorize(Roles = "SysAdmin, User")]
+        public System.Web.Mvc.JsonResult FallbackControll(Guid id)
+        {
+            var file = db.File.FirstOrDefault(x => x.stream_id == id);
+            if (null == file)
+            {
+                return Json(new { success = false, response = "Upload error!" });
+            }
+            else
+            {
+                return Json(new { success = true });
+            }
+        }
+
         private Task<System.Web.Mvc.JsonResult> UploadTask(Guid id, HttpPostedFileBase hpf)
         {
             return Task.Run(() =>
@@ -545,7 +559,8 @@ namespace Tax.Portal.Controllers
         }
 
         [Authorize(Roles = "SysAdmin, User")]
-        public async Task<System.Web.Mvc.JsonResult> Upload(HttpPostedFileBase file, Guid id, string picttype)
+        //public async Task<System.Web.Mvc.JsonResult> Upload(HttpPostedFileBase file, Guid id, string picttype)
+        public async Task<ActionResult> Upload(HttpPostedFileBase file, Guid id, string picttype)
         {
             try
             {
@@ -602,24 +617,24 @@ namespace Tax.Portal.Controllers
                     switch (picttype)
                     {
                         case "headline":
-                            if (image.Width > 640
-                                || image.Height > 320)
+                            if (image.Width != 640
+                                || image.Height != 320)
                             {
                                 Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
                                 return Json("Invalid picture size! (max. 640x320 pixels expected)!");
                             }
                             break;
                         case "thumbnail":
-                            if (image.Width > 160
-                                || image.Height > 160)
+                            if (image.Width != 160
+                                || image.Height != 160)
                             {
                                 Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
                                 return Json("Invalid picture size! (max. 160x160 pixels expected)!");
                             }
                             break;
                         case "photo":
-                            if (image.Width > 120
-                                || image.Height > 120)
+                            if (image.Width != 120
+                                || image.Height != 120)
                             {
                                 Response.StatusCode = 500;// (int)HttpStatusCode.InternalServerError;
                                 return Json("Invalid picture size! (max. 120x120 pixels expected)!");
@@ -640,7 +655,15 @@ namespace Tax.Portal.Controllers
                 var uploadTask = UploadTask(id, file);
                 await Task.WhenAll(uploadTask);
                 var retval = await uploadTask;
-                return retval;
+
+                if (Request.IsAjaxRequest())
+                {
+                    return retval;
+                }
+                else
+                {
+                    return null;
+                }                
             }
             catch (Exception e)
             {

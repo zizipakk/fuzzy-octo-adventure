@@ -13,7 +13,6 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\bin\Debug\log4net.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\bin\Debug\Newtonsoft.Json.xml
-C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csprojResolveAssemblyReference.cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.initial.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.nameglobaltostatus.resources
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.createindexonshortnameinlanguage.resources
@@ -29,3 +28,4 @@ C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.contenttypef
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource.Cache
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csprojResolveAssemblyReference.cache

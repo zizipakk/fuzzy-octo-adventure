@@ -160,12 +160,13 @@ namespace Tax.Portal.Controllers
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
-                if (db.ExtrasGlobal.Any(x => x.CategoriesGlobal.Id == model.CategoryId  //azonos kategória
-                                && x.NewsStatus.NameGlobal != "Unpublished" //nem visszavont státuszban
-                                && x.Order == model.Order)) //egyezik a sorszám
-                {
-                    ModelState.AddModelError("Order", String.Format("In this category the Order: {0} is in use", model.Order));
-                }
+                //mégsem kell
+                //if (db.ExtrasGlobal.Any(x => x.CategoriesGlobal.Id == model.CategoryId  //azonos kategória
+                //                && x.NewsStatus.NameGlobal != "Unpublished" //nem visszavont státuszban
+                //                && x.Order == model.Order)) //egyezik a sorszám
+                //{
+                //    ModelState.AddModelError("Order", String.Format("In this category the Order: {0} is in use", model.Order));
+                //}
 
                 if (ModelState.IsValid)
                 {                    
@@ -275,12 +276,13 @@ namespace Tax.Portal.Controllers
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
-                if (db.ExtrasGlobal.Any(x => x.CategoriesGlobal.Id == resg.CategoriesGlobal.Id //azonos kategória
-                                                && x.NewsStatus.NameGlobal != "Unpublished" //nem visszavont státuszban
-                                                && x.Order == model.Order)) //egyezik a sorszám
-                {
-                    ModelState.AddModelError("Order", String.Format("In this category the Order: {0} is in use", model.Order));
-                }
+                //mégsem kell
+                //if (db.ExtrasGlobal.Any(x => x.CategoriesGlobal.Id == resg.CategoriesGlobal.Id //azonos kategória
+                //                                && x.NewsStatus.NameGlobal != "Unpublished" //nem visszavont státuszban
+                //                                && x.Order == model.Order)) //egyezik a sorszám
+                //{
+                //    ModelState.AddModelError("Order", String.Format("In this category the Order: {0} is in use", model.Order));
+                //}
 
                 if (ModelState.IsValid)
                 {                    

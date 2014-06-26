@@ -399,14 +399,7 @@
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\calendar\calendar.js" />
     <Content Include="Scripts\maskedinput.js" />
-    <Content Include="Scripts\schedule\app.js" />
-    <Content Include="Scripts\schedule\CalendarConfigService.js" />
-    <Content Include="Scripts\schedule\EventModalController.js" />
-    <Content Include="Scripts\schedule\GenerateModalController.js" />
-    <Content Include="Scripts\schedule\InterpreterCalendarController.js" />
-    <Content Include="Scripts\schedule\DispatcherCalendarController.js" />
     <Content Include="Scripts\calendar\fullcalendar.js" />
-    <Content Include="Scripts\schedule\KontakScheduleService.js" />
     <Content Include="Scripts\calendar\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -861,7 +854,6 @@
     <Content Include="Scripts\rx.time.min.js" />
     <Content Include="Scripts\rx.virtualtime.js" />
     <Content Include="Scripts\rx.virtualtime.min.js" />
-    <Content Include="Scripts\schedule\PrivateEventModalController.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt">

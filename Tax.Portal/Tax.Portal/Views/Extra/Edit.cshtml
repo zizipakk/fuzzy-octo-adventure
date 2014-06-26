@@ -126,6 +126,7 @@
             language: 'en',
             toolbar: [
                 { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
                 { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
                 { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
                 { name: 'links', items: ['Link', 'Unlink'] },
@@ -135,6 +136,8 @@
             ]
         });
         CKEDITOR.config.format_tags = 'p;h1;h2';
+        CKEDITOR.config.format_h1 = { element: 'h1', attributes: { 'class': 'contentTitle1', 'style': 'font-weight:normal; font-size: 14px; color: rgb(129,188,0)' } };
+        CKEDITOR.config.format_h2 = { element: 'h2', attributes: { 'class': 'contentTitle2', 'style': 'font-weight:normal; font-size: 14px; color: rgb(161,222,0)' } };
         CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
 
         //gombok a headerben

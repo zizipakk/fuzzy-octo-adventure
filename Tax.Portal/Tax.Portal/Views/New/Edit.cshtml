@@ -105,15 +105,16 @@
             <div class="col-sm-4 col-xs-12">
                 @Html.LabelFor(m => m.Headline_pictureId, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                 <div class="input-group col-sm-12 col-xs-12">
-                    <form action="@Url.Action("Upload", "New")" class="dropzone square" id="headline-dropzone" 
-                          style="height:150px; padding: 0px 0px 0px 0px; background-color: white"></form>
+                    <form action="@Url.Action("Upload", "New")" class="dropzone square" id="headline-dropzone"
+                          style="height:150px; padding: 0px 0px 0px 0px; background-color: white"></form>                   
                 </div>
             </div>
             <div class="col-sm-3 col-xs-12">
                 @Html.LabelFor(m => m.ThumbnailId, new { @style = "padding-top:7px; margin-bottom:0px" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
                 <div class="input-group col-sm-12 col-xs-12">
                     <form action="@Url.Action("Upload", "New")" class="dropzone square" id="thumbnail-dropzone"
-                          style="height:150px; padding: 0px 0px 0px 0px; background-color: white"></form>
+                          style="height:150px; padding: 0px 0px 0px 0px; background-color: white">
+                    </form>
                 </div>
             </div>
             <div class="col-sm-12 col-xs-12">
@@ -141,6 +142,9 @@
     <div class="dz-progress" style="top:auto; margin-top:-5px"><span class="dz-upload" data-dz-uploadprogress></span></div>
 </div>
 
+<iframe name="headlineup" id="headlineup" height="0" width="0" frameborder="0" hidden="hidden"></iframe>
+<iframe name="thumbnailup" id="thumbnailup" height="0" width="0" frameborder="0" hidden="hidden"></iframe>
+
 @section Scripts {
     @Scripts.Render("~/Scripts/jquery")
     @Scripts.Render("~/Scripts/bootstrap")
@@ -166,6 +170,7 @@
             language: 'en',
             toolbar: [
                 { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', 'Templates'] },
+                { name: 'clipboard', groups: ['clipboard', 'undo'], items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
                 { name: 'basicstyles', groups: ['basicstyles'], items: ['Bold', 'Italic', 'Underline'] },
                 { name: 'paragraph', groups: ['list', 'align'], items: ['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
                 { name: 'links', items: ['Link', 'Unlink'] },
@@ -175,6 +180,8 @@
             ]
         });
         CKEDITOR.config.format_tags = 'p;h1;h2';
+        CKEDITOR.config.format_h1 = { element: 'h1', attributes: { 'class': 'contentTitle1', 'style': 'font-weight:normal; font-size: 14px; color: rgb(129,188,0)' } };
+        CKEDITOR.config.format_h2 = { element: 'h2', attributes: { 'class': 'contentTitle2', 'style': 'font-weight:normal; font-size: 14px; color: rgb(161,222,0)' } };
         CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
         //nem megy
         //CKEDITOR.dataProcessor.htmlFilter.addRules({
@@ -221,139 +228,139 @@
     <script src="~/Scripts/dropzone/dropzone.js"></script>
 
     <script>
-        function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
-        //most csak egyet kezelőnk
-        //var afiles = [];
-        //var aids = [];
+    function b(a) { return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b) };
+    //most csak egyet kezelőnk
+    //var afiles = [];
+    //var aids = [];
 
-        //új template a kép megjelenítéshez
-        previewTemplate = $.trim($('<div/>').append($('#previewTemplate')).html());
-        $('#previewTemplate').remove();
+    //új template a kép megjelenítéshez
+    previewTemplate = $.trim($('<div/>').append($('#previewTemplate')).html());
+    $('#previewTemplate').remove();
 
-        Dropzone.options.headlineDropzone = {
-            paramName: "file",
-            previewTemplate: previewTemplate,
-            addRemoveLinks: true,
-            maxFiles: 1,
-            accept: function (file, done) {
-                console.log("uploaded");
-                done();
-            },
-            init: function () {
-                var id = null;
-                //töltöm, ha van mi                
-                if ($('#Headline_pictureId').val() != "")//már képem
-                {
-                    var mockFile = {};
-                    this.options.addedfile.call(this, mockFile);
-                    this.options.thumbnail.call(this, mockFile, '@Url.Action("DownloadImage", "New")?id=' + $("#Headline_pictureId").val());
-                    this.options.maxFiles = 0;
-                    $('.dz-filename').hide().css({ visibility: "hidden" });
-                    $('.dz-size').hide().css({ visibility: "hidden" });
-                }
-                this.on("removedfile", function (file) {
-                    //var position = $.inArray(file.name, afiles);
-                    //if (~position) {
-                    //    var id = aids[position];
-                    //    afiles.splice(position, 1);
-                    //    aids.splice(position, 1);
-                    //    $("#storedfileid" + id).remove();
-                    //    $.ajax({
-                    //        url: '@Url.Action("DeleteImage", "New")',
-                    //        type: 'POST',
-                    //        data: { id: id }
-                    //    });
-                    //}
-                    if (
-                        $('#Headline_pictureId').val() != ""
-                        && (new String(file.name) == "undefined"//régi kép
-                            || id != null) //vagy most töltöttem fel hiab nélkül
-                        )
-                    {
-                        $('#Headline_pictureId').val("");
-                        this.options.maxFiles = 1;
-                    }
-                    if (id != null)//felküldtem, de meggondoltam magam
-                    {
-                        $("#headlinepictureid" + id).remove();
-                        $.ajax({
-                            url: '@Url.Action("DeleteImage", "New")',
-                            type: 'POST',
-                            data: { id: id }
-                        });
-                    }
-                });
-                this.on("sending", function (file, xhr, formData) {
-                    id = b(0);
-                    //afiles.push(file.name);
-                    //aids.push(id)
-                    formData.append("id", id); // Will send the id along with the file as POST data.
-                    formData.append("picttype", "headline"); // Will send the id along with the file as POST data.
-                    $("#headlineupload").append($("<input name=\"headlinepictureid\" type=\"hidden\" value=\"" + id + "\"/>"));
-                });
-                this.on("error", function (file, message) {
-                    //$('.dz-error-message').val(message);
-                    $("#headlinepictureid" + id).remove();
-                    id = null;
-                    $('#errortext').text(message);
-                    $('#errormodal').modal({ show: true });
-                });              
-                this.on("success", function (file, responseText) {
-                    $('#Headline_pictureId').val(id);
-                    file.name = "undefined";
-                    file.previewTemplate.appendChild(document.createTextNode(responseText));
-                });
+    Dropzone.options.headlineDropzone = {
+        paramName: "file",
+        previewTemplate: previewTemplate,
+        addRemoveLinks: true,
+        maxFiles: 1,
+        accept: function (file, done) {
+            console.log("uploaded");
+            done();
+        },
+        init: function () {
+            var id = null;
+            //töltöm, ha van mi
+            if ($('#Headline_pictureId').val() != "")//már képem
+            {
+                var mockFile = {};
+                this.options.addedfile.call(this, mockFile);
+                this.options.thumbnail.call(this, mockFile, '@Url.Action("DownloadImage", "New")?id=' + $("#Headline_pictureId").val());
+                this.options.maxFiles = 0;
+                $('.dz-filename').hide().css({ visibility: "hidden" });
+                $('.dz-size').hide().css({ visibility: "hidden" });
             }
-        };
-
-        Dropzone.options.thumbnailDropzone = {
-            paramName: "file",
-            previewTemplate: previewTemplate,
-            addRemoveLinks: true,
-            maxFiles: 1,
-            accept: function (file, done) {
-                console.log("uploaded");
-                done();
-            },
-            init: function () {
-                var id = null;
-                //töltöm, ha van mi 
-                if ($('#ThumbnailId').val() != "")//már képem
-                {
-                    var mockFile = {};
-                    this.options.addedfile.call(this, mockFile);
-                    this.options.thumbnail.call(this, mockFile, '@Url.Action("DownloadImage", "New")?id=' + $("#ThumbnailId").val());
-                    this.options.maxFiles = 0;
-                    $('.dz-filename').hide().css({ visibility: "hidden" });
-                    $('.dz-size').hide().css({ visibility: "hidden" });
-                }
-                this.on("removedfile", function (file) {
-                    //var position = $.inArray(file.name, afiles);
-                    //if (~position) {
-                    //    var id = aids[position];
-                    //    afiles.splice(position, 1);
-                    //    aids.splice(position, 1);
-                    //    $("#storedfileid" + id).remove();
-                    //    $.ajax({
-                    //        url: '@Url.Action("DeleteImage", "New")',
-                    //        type: 'POST',
-                    //        data: { id: id }
-                    //    });
-                    //}
-                    if (
-                        $('#ThumbnailId').val() != ""
-                        && (new String(file.name) == "undefined"//régi kép
+            this.on("removedfile", function (file) {
+                //var position = $.inArray(file.name, afiles);
+                //if (~position) {
+                //    var id = aids[position];
+                //    afiles.splice(position, 1);
+                //    aids.splice(position, 1);
+                //    $("#storedfileid" + id).remove();
+                //    $.ajax({
+                //        url: '@Url.Action("DeleteImage", "New")',
+                //        type: 'POST',
+                //        data: { id: id }
+                //    });
+                //}
+                if (
+                    $('#Headline_pictureId').val() != ""
+                    && (new String(file.name) == "undefined"//régi kép
                         || id != null) //vagy most töltöttem fel hiab nélkül
                     )
-                    {
-                        $('#ThumbnailId').val("");
-                        this.options.maxFiles = 1;
-                    }
-                    if (id != null)//felküldtem, de meggondoltam magam
-                    {
-                        $("#thumbnailpictureid" + id).remove();
-                        $.ajax({
-                            url: '@Url.Action("DeleteImage", "New")',
+                {
+                    $('#Headline_pictureId').val("");
+                    this.options.maxFiles = 1;
+                }
+                if (id != null)//felküldtem, de meggondoltam magam
+                {
+                    $("#headlinepictureid" + id).remove();
+                    $.ajax({
+                        url: '@Url.Action("DeleteImage", "New")',
+                        type: 'POST',
+                        data: { id: id }
+                    });
+                }
+            });
+            this.on("sending", function (file, xhr, formData) {
+                id = b(0);
+                //afiles.push(file.name);
+                //aids.push(id)
+                formData.append("id", id); // Will send the id along with the file as POST data.
+                formData.append("picttype", "headline"); // Will send the id along with the file as POST data.
+                $("#headlineupload").append($("<input name=\"headlinepictureid\" type=\"hidden\" value=\"" + id + "\"/>"));
+            });
+            this.on("error", function (file, message) {
+                //$('.dz-error-message').val(message);
+                $("#headlinepictureid" + id).remove();
+                id = null;
+                $('#errortext').text(message);
+                $('#errormodal').modal({ show: true });
+            });
+            this.on("success", function (file, responseText) {
+                $('#Headline_pictureId').val(id);
+                file.name = "undefined";
+                file.previewTemplate.appendChild(document.createTextNode(responseText));
+            });
+        }
+    };
+
+    Dropzone.options.thumbnailDropzone = {
+        paramName: "file",
+        previewTemplate: previewTemplate,
+        addRemoveLinks: true,
+        maxFiles: 1,
+        accept: function (file, done) {
+            console.log("uploaded");
+            done();
+        },
+        init: function () {
+            var id = null;
+            //töltöm, ha van mi
+            if ($('#ThumbnailId').val() != "")//már képem
+            {
+                var mockFile = {};
+                this.options.addedfile.call(this, mockFile);
+                this.options.thumbnail.call(this, mockFile, '@Url.Action("DownloadImage", "New")?id=' + $("#ThumbnailId").val());
+                this.options.maxFiles = 0;
+                $('.dz-filename').hide().css({ visibility: "hidden" });
+                $('.dz-size').hide().css({ visibility: "hidden" });
+            }
+            this.on("removedfile", function (file) {
+                //var position = $.inArray(file.name, afiles);
+                //if (~position) {
+                //    var id = aids[position];
+                //    afiles.splice(position, 1);
+                //    aids.splice(position, 1);
+                //    $("#storedfileid" + id).remove();
+                //    $.ajax({
+                //        url: '@Url.Action("DeleteImage", "New")',
+                //        type: 'POST',
+                //        data: { id: id }
+                //    });
+                //}
+                if (
+                    $('#ThumbnailId').val() != ""
+                    && (new String(file.name) == "undefined"//régi kép
+                    || id != null) //vagy most töltöttem fel hiba nélkül
+                )
+                {
+                    $('#ThumbnailId').val("");
+                    this.options.maxFiles = 1;
+                }
+                if (id != null)//felküldtem, de meggondoltam magam
+                {
+                    $("#thumbnailpictureid" + id).remove();
+                    $.ajax({
+                        url: '@Url.Action("DeleteImage", "New")',
                             type: 'POST',
                             data: { id: id }
                         });
@@ -376,9 +383,135 @@
                 });
                 this.on("success", function (file, responseText) {
                     $('#ThumbnailId').val(id);
+                    file.name = "undefined";
                     file.previewTemplate.appendChild(document.createTextNode(responseText));
                 });
             }
+        };
+        
+        //ie9 miatt, de ready után készíti el a dz-fallback-et, ezért csak submitben lehet gépészkedni, nincs response, csak exception státuszkódos oldallal        
+        $("#headline-dropzone").submit(function (e) {//csak havan mit felküldeni
+            if ($("#headline-dropzone input[type=file]").val() == "")
+            {
+                return false;
+            }
+        });
+
+        var hlId = null;
+        $("#headline-dropzone").change(function () {//a rendes böngészőknél nem talál ilyen elemeket
+            $("#headline-dropzone input[type=submit]").attr("type", "button");
+            $("#headline-dropzone input[type=button]").attr("onclick", "headlineclick()");
+        });
+
+        var headlineclick = function () {            
+            if ($('#Headline_pictureId').val() != "") {
+                $.ajax({
+                    url: '@Url.Action("DeleteImage", "New")?id=' + $('#Headline_pictureId').val(),
+                    type: 'POST',
+                    success: function (data) {
+                        $('#headline-dropzone input[type=button]').attr('value', 'Upload!');
+                        $('#Headline_pictureId').val("");
+                        hlId = null;
+                        $('#headline-dropzone p').text("...Removed!");
+                    },
+                    onerror: function (jqXHR, textStatus, errorThrown) {
+                        $('#errortext').text(jqXHR.responseText);
+                        $('#errormodal').modal({ show: true });
+                    }
+                });
+            }
+            if (hlId == null) {
+                $('#headline-dropzone').attr('target', 'headlineup');
+                $('#headline-dropzone').attr('method', 'post');
+                $('#headline-dropzone').attr('enctype', 'multipart/form-data');
+                $('#headline-dropzone').attr('encoding', 'multipart/form-data');
+                hlId = b(0);
+                $('#headline-dropzone').attr('action', '@Url.Action("Upload", "New")?id=' + hlId + '&picttype=headline');
+                $('#headline-dropzone').submit();
+                $("#headlineup").load(function () {
+                    $.ajax({
+                        url: '@Url.Action("FallbackControll", "New")?id=' + hlId,
+                        type: 'POST',
+                        complete: function (jqXHR, textStatus) {
+                            var str = JSON.parse(jqXHR.responseText);
+                            if (!str.success) {
+                                hlId = null;
+                                $('#errortext').text(str.response);
+                                $('#errormodal').modal({ show: true });
+                            }
+                            else {
+                                $('#headline-dropzone p').text("...Uploaded!");
+                                $('#Headline_pictureId').val(hlId);
+                                $('#headline-dropzone input[type=button]').attr('value', 'Remove!');
+                            }
+                        }
+                    });
+                });
+            }
+
+            return false;
+        };
+
+        var tnId = null;
+        $("#thumbnail-dropzone").submit(function (e) {//csak havan mit felküldeni
+            if ($("#thumbnail-dropzone input[type=file]").val() == "") {
+                return false;
+            }
+        });
+
+        var tnId = null;
+        $("#thumbnail-dropzone").change(function () {//a rendes böngészőknél nem talál ilyen elemeket
+            $("#thumbnail-dropzone input[type=submit]").attr("type", "button");
+            $("#thumbnail-dropzone input[type=button]").attr("onclick", "thumbnailclick()");
+        });
+
+        var thumbnailclick = function () {
+            if ($('#ThumbnailId').val() != "") {
+                $.ajax({
+                    url: '@Url.Action("DeleteImage", "New")?id=' + $('#ThumbnailId').val(),
+                    type: 'POST',
+                    success: function (data) {
+                        $('#thumbnail-dropzone input[type=button]').attr('value', 'Upload!');
+                        $('#ThumbnailId').val("");
+                        tnId = null;
+                        $('#thumbnail-dropzone p').text("...Removed!");
+                    },
+                    onerror: function (jqXHR, textStatus, errorThrown) {
+                        $('#errortext').text(jqXHR.responseText);
+                        $('#errormodal').modal({ show: true });
+                    }
+                });
+            }
+            if (tnId == null) {
+                $('#thumbnail-dropzone').attr('target', 'thumbnailup');
+                $('#thumbnail-dropzone').attr('method', 'post');
+                $('#thumbnail-dropzone').attr('enctype', 'multipart/form-data');
+                $('#thumbnail-dropzone').attr('encoding', 'multipart/form-data');
+                tnId = b(0);
+                $('#thumbnail-dropzone').attr('action', '@Url.Action("Upload", "New")?id=' + tnId + '&picttype=thumbnail');
+                $('#thumbnail-dropzone').submit();
+                $("#thumbnailup").load(function () {
+                    $.ajax({
+                        url: '@Url.Action("FallbackControll", "New")?id=' + tnId,
+                        type: 'POST',
+                        complete: function (jqXHR, textStatus) {
+                            var str = JSON.parse(jqXHR.responseText);
+                            if (!str.success) {
+                                tnId = null;
+                                $('#errortext').text(str.response);
+                                $('#errormodal').modal({ show: true });
+                            }
+                            else {
+                                $('#thumbnail-dropzone p').text("...Uploaded!");
+                                $('#ThumbnailId').val(tnId);
+                                $('#thumbnail-dropzone input[type=button]').attr('value', 'Remove!');
+                            }
+                        }
+                    });                    
+                });
+            }
+
+            return false;
         };
 
     </script>
