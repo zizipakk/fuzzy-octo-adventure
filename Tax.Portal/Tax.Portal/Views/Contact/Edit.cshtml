@@ -205,6 +205,23 @@
     //CKEDITOR.config.format_h1 = { element: 'h1', attributes: { 'class': 'contentTitle1', 'style': 'font-weight:normal; font-size: 14px; color: rgb(129,188,0)' } };
     //CKEDITOR.config.format_h2 = { element: 'h2', attributes: { 'class': 'contentTitle2', 'style': 'font-weight:normal; font-size: 14px; color: rgb(161,222,0)' } };
     //CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
+    //CKEDITOR.on('dialogDefinition', function (ev) {
+    //    var dialogName = ev.data.name;
+    //    var dialogDefinition = ev.data.definition;
+    //    if (dialogName === 'table') {
+    //        var infoTab = dialogDefinition.getContents('info');
+    //        var width = infoTab.get('txtWidth');
+    //        width['default'] = "100%";
+    //        var headers = infoTab.get('selHeaders');
+    //        headers['default'] = "row";
+    //        var border = infoTab.get('txtBorder');
+    //        border['default'] = "0";
+    //        var cellspacing = infoTab.get('txtCellSpace');
+    //        cellspacing['default'] = "0";
+    //        var cellpadding = infoTab.get('txtCellPad');
+    //        cellpadding['default'] = "0";
+    //    }
+    //});
 
     //gombok a headerben
     $("#CallBack").hide().css({ visibility: "hidden" });

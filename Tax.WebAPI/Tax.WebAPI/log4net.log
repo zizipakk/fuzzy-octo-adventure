@@ -11449,3 +11449,4 @@ log4net: Assembly [Tax.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=nu
 log4net: repository [log4net-default-repository] already exists, using repository type [log4net.Repository.Hierarchy.Hierarchy]
 log4net: Moving [C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Log\WebAPIAuth.log] -> [C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Log\WebAPIAuth.log.2014-06-27]
 log4net: Opening file for writing [C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Log\WebAPIAuth.log] append [False]
+log4net: Shutdown called on Hierarchy [log4net-default-repository]

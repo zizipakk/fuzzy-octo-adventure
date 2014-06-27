@@ -190,6 +190,23 @@
         //        p: function (e) { e.attributes.style = 'font-size: 14px; font-family:"~/fonts/FrutigerNextPro-Light.otf";'; }
         //    }
         //});
+        CKEDITOR.on('dialogDefinition', function (ev) {
+            var dialogName = ev.data.name;
+            var dialogDefinition = ev.data.definition;
+            if (dialogName === 'table') {
+                var infoTab = dialogDefinition.getContents('info');
+                var width = infoTab.get('txtWidth');
+                width['default'] = "100%";
+                var headers = infoTab.get('selHeaders');
+                headers['default'] = "row";
+                var border = infoTab.get('txtBorder');
+                border['default'] = "0";
+                var cellspacing = infoTab.get('txtCellSpace');
+                cellspacing['default'] = "0";
+                var cellpadding = infoTab.get('txtCellPad');
+                cellpadding['default'] = "0";
+            }
+        });
 
         //gombok a headerben
         $("#CallBack").hide().css({ visibility: "hidden" });
