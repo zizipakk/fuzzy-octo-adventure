@@ -2,10 +2,12 @@ C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.dll.config
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.WebAPI.pdb
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Antlr3.Runtime.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Elmah.dll
-C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Elmah.Mvc.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Common.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Server.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Server.EntityTagStore.Memcached.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\EntityFramework.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\EntityFramework.SqlServer.dll
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Enyim.Caching.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\log4net.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.AspNet.Identity.Core.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -40,6 +42,11 @@ C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\System.Web.WebPages.Razor
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.Data.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\WebGrease.dll
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Tax.Data.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Common.xml
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Server.xml
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\CacheCow.Server.EntityTagStore.Memcached.xml
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Enyim.Caching.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Enyim.Caching.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\log4net.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.xml
 C:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\bin\Microsoft.Owin.Cors.xml

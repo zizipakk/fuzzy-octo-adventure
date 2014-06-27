@@ -10,6 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using log4net;
 using log4net.Config;
+using CacheCow.Server;
 
 namespace Tax.WebAPI
 {
@@ -28,7 +29,8 @@ namespace Tax.WebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            GlobalConfiguration.Configuration.Filters.Add(new AddLastModifiedHeader());
+            //GlobalConfiguration.Configuration.Filters.Add(new AddLastModifiedHeader());
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new CachingHandler());
         }
     }
 }

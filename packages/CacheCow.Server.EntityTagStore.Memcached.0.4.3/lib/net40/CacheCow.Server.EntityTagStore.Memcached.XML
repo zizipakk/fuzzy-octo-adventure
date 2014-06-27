@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CacheCow.Server.EntityTagStore.Memcached</name>
+    </assembly>
+    <members>
+        <member name="M:CacheCow.Server.EntityTagStore.Memcached.MemcachedEntityTagStore.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sectionName">Configuration section name</param>
+        </member>
+        <member name="T:CacheCow.Server.EntityTagStore.Memcached.LengthedPrefixedString">
+            <summary>
+            Byte representation of a string
+            
+            Structure:
+            8 byte => constant header
+            4 byte => length (n) based on UTF representation
+            n bytes of actual string
+            2 bytes null (0x0x) terminator
+            
+            </summary>
+        </member>
+    </members>
+</doc>

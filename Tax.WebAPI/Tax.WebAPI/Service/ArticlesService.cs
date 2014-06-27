@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Tax.WebAPI.Helpers;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace Tax.WebAPI.Service
 {
@@ -91,10 +92,13 @@ namespace Tax.WebAPI.Service
                                         searchList.Count() == 0
                                         ||
                                         (
-                                            searchList.Any(ss => s.y.Title1.Contains(ss))
-                                            || searchList.Any(ss => s.y.Title2.Contains(ss))
-                                            || searchList.Any(ss => s.y.Subtitle.Contains(ss))
-                                            || searchList.Any(ss => s.y.Body_text.Contains(ss))
+                                            (null != s.y.Title1 && searchList.Any(ss => s.y.Title1.Contains(ss)))
+                                            || 
+                                            (null != s.y.Title2 && searchList.Any(ss => s.y.Title2.Contains(ss)))
+                                            || 
+                                            (null != s.y.Subtitle && searchList.Any(ss => s.y.Subtitle.Contains(ss)))
+                                            || 
+                                            (null != s.y.Body_text && searchList.Any(ss => s.y.Body_text.Contains(ss)))
                                         )
                                 )
                                 //.ToList()
@@ -119,6 +123,8 @@ namespace Tax.WebAPI.Service
                                 .OrderByDescending(o => o.Date)
                                 .AsQueryable()
                                 .Skip((pageNum - 1) * pagesizeNum).Take(pagesizeNum);
+
+                    //foreach (var item in res) { Debug.WriteLine(item); }
 
                     return res;
 

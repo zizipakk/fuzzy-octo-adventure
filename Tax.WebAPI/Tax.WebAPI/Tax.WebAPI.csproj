@@ -39,11 +39,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Elmah">
-      <HintPath>..\..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    <Reference Include="CacheCow.Common, Version=0.4.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CacheCow.Common.0.4.12\lib\net40\CacheCow.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Elmah.Mvc">
-      <HintPath>..\..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    <Reference Include="CacheCow.Server, Version=0.4.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\CacheCow.Server.0.4.12\lib\net40\CacheCow.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="CacheCow.Server.EntityTagStore.Memcached">
+      <HintPath>..\..\packages\CacheCow.Server.EntityTagStore.Memcached.0.4.3\lib\net40\CacheCow.Server.EntityTagStore.Memcached.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\..\packages\EnyimMemcached.2.12\lib\net35\Enyim.Caching.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -65,10 +73,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.1.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Cors">
-      <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.1.0\lib\net45\System.Web.Cors.dll</HintPath>
+    <Reference Include="System.Web.Cors, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.1.2\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -77,10 +86,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.1.0\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.Cors">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.1.0\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    <Reference Include="System.Web.Http.Cors, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.1.2\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -205,6 +215,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Caching\CachingFactory.cs" />
+    <Compile Include="Caching\CachingStores.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ExtrasController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
@@ -310,7 +322,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
