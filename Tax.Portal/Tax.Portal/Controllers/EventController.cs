@@ -196,15 +196,21 @@ namespace Tax.Portal.Controllers
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
                 var el = db.EventsLocal.FirstOrDefault(x => x.EventsGlobalId == id && x.LanguageId == lguid);
-                if (null == el)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
-                {
-                    var newel = db.EventsLocal.Create();
-                    newel.EventsGlobalId = id;
-                    newel.LanguageId = lguid;
-                    db.Entry(newel).State = EntityState.Added;
-                    db.SaveChanges();
-                }
-                else
+                //if (null == el)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                //{
+                //    var newel = db.EventsLocal.Create();
+                //    newel.EventsGlobalId = id;
+                //    newel.LanguageId = lguid;
+                //    db.Entry(newel).State = EntityState.Added;
+                //    db.SaveChanges();
+                //}
+                //else
+                //{
+                //    evm.Title1 = el.Title1;
+                //    evm.Title2 = el.Title2;
+                //    evm.Body_text = el.Body_text;
+                //}
+                if (null != el)// ha már van ilyen lokalizáció
                 {
                     evm.Title1 = el.Title1;
                     evm.Title2 = el.Title2;
@@ -239,9 +245,25 @@ namespace Tax.Portal.Controllers
                     //    resg.NewsStatus.NameGlobal != model.NewsStatusName) { resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == model.NewsStatusName); }
 
                     var resl = db.EventsLocal.FirstOrDefault(x => x.EventsGlobalId == model.Id && x.LanguageId == lguid);
-                    if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
-                    if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
-                    if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    //if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
+                    //if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
+                    //if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    if (null == resl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                    {
+                        resl = db.EventsLocal.Create();
+                        resl.EventsGlobalId = model.Id;
+                        resl.LanguageId = lguid;
+                        resl.Title1 = model.Title1;
+                        resl.Title2 = model.Title2;
+                        resl.Body_text = model.Body_text;
+                        db.Entry(resl).State = EntityState.Added;
+                    }
+                    else
+                    {
+                        if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
+                        if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
+                        if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    }
                     
                     db.SaveChanges();
                     log.Info("end with ok");

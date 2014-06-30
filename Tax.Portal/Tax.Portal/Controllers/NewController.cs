@@ -311,20 +311,27 @@ namespace Tax.Portal.Controllers
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
                 var nl = db.NewsLocal.FirstOrDefault(x => x.NewsGlobalId == id && x.LanguageId == lguid);
-                if (null == nl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
-                {
-                    var newnl = db.NewsLocal.Create();
-                    newnl.NewsGlobalId = id;
-                    newnl.LanguageId = lguid;
-                    db.Entry(newnl).State = EntityState.Added;
-                    db.SaveChanges();
-                    //úgyis null
-                    //suvm.Title1 = newnl.Title1;
-                    //suvm.Title2 = newnl.Title2;
-                    //suvm.Subtitle = newnl.Subtitle;
-                    //suvm.Body_text = newnl.Body_text;
-                }
-                else
+                //if (null == nl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                //{
+                //    var newnl = db.NewsLocal.Create();
+                //    newnl.NewsGlobalId = id;
+                //    newnl.LanguageId = lguid;
+                //    db.Entry(newnl).State = EntityState.Added;
+                //    db.SaveChanges();
+                //    //úgyis null
+                //    //suvm.Title1 = newnl.Title1;
+                //    //suvm.Title2 = newnl.Title2;
+                //    //suvm.Subtitle = newnl.Subtitle;
+                //    //suvm.Body_text = newnl.Body_text;
+                //}
+                //else
+                //{
+                //    suvm.Title1 = nl.Title1;
+                //    suvm.Title2 = nl.Title2;
+                //    suvm.Subtitle = nl.Subtitle;
+                //    suvm.Body_text = nl.Body_text;
+                //}
+                if (null != nl)// ha van már ilyen lokalizáció, akkor töltöm ki a mezőket
                 {
                     suvm.Title1 = nl.Title1;
                     suvm.Title2 = nl.Title2;
@@ -377,7 +384,7 @@ namespace Tax.Portal.Controllers
                 { model.TagsIn = new Guid[] { }; }
 
                 if (ModelState.IsValid)
-                {                    
+                {
                     //if (resg.PublishingDate != model.PublishingDate) { resg.PublishingDate = model.PublishingDate; }
                     if (null == resg.Headline_picture ?
                         null != model.Headline_pictureId :
@@ -406,10 +413,28 @@ namespace Tax.Portal.Controllers
                     //    resg.NewsStatus.NameGlobal != model.NewsStatusName) { resg.NewsStatus = db.NewsStatusesGlobal.FirstOrDefault(x => x.NameGlobal == model.NewsStatusName); }
 
                     var resl = db.NewsLocal.FirstOrDefault(x => x.NewsGlobalId == model.Id && x.LanguageId == lguid);
-                    if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
-                    if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
-                    if (resl.Subtitle != model.Subtitle) { resl.Subtitle = model.Subtitle; }
-                    if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    //if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
+                    //if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
+                    //if (resl.Subtitle != model.Subtitle) { resl.Subtitle = model.Subtitle; }
+                    //if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    if (null == resl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                    {
+                        resl = db.NewsLocal.Create();
+                        resl.NewsGlobalId = model.Id;
+                        resl.LanguageId = lguid;
+                        resl.Title1 = model.Title1;
+                        resl.Title2 = model.Title2;
+                        resl.Subtitle = model.Subtitle;
+                        resl.Body_text = model.Body_text;
+                        db.Entry(resl).State = EntityState.Added;
+                    }
+                    else
+                    {
+                        if (resl.Title1 != model.Title1) { resl.Title1 = model.Title1; }
+                        if (resl.Title2 != model.Title2) { resl.Title2 = model.Title2; }
+                        if (resl.Subtitle != model.Subtitle) { resl.Subtitle = model.Subtitle; }
+                        if (resl.Body_text != model.Body_text) { resl.Body_text = model.Body_text; }
+                    }
                     
                     //nem szerepel a db contextben a many-to-many, ezért be kell tölteni
                     db.Entry(resg).Collection(t => t.TagsGlobal).Load();

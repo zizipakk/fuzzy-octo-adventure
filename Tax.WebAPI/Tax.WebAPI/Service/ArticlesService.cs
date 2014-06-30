@@ -36,99 +36,119 @@ namespace Tax.WebAPI.Service
             }
             else
             {
-                string pagesize = null;
                 if (null == page)
                 {
                     page = 1;
                 }
+                string pagesize = null;
+                int pagesizeNum;
+                int skipNum;
                 if (page == 1)
                 {
                     pagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "FirstPageSize" && x.Public).Value;
-                }
-                else
-                {
-                    pagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "NextPageSize" && x.Public).Value;
-                }
-
-                if (null == pagesize)
-                {
-                    return null;
-                }
-                else
-                {
-
-                    //List<string> tagsList = new List<string>(tags);
-                    int pageNum = (int)page;
-                    int pagesizeNum;
-                    if (!int.TryParse(pagesize, out pagesizeNum))
+                    if (null == pagesize)
                     {
                         return null;
                     }
-
-
-                    string baseurl = HtmlHelpers.AppBaseUrl("/api/Image?id=");
-                    var searchList = SearchHelpers.GetSaerchList(query, lang);
-
-                    List<Guid> tagsGL = new List<Guid>();
-                    foreach (string t in tags.ToList())
+                    else
                     {
-                        tagsGL.Add(Guid.Parse(t));
+                        if (!int.TryParse(pagesize, out pagesizeNum))
+                        {
+                            return null;
+                        }    
                     }
-                    Guid[] tagsGA = tagsGL.ToArray();
-
-                    var res = context.NewsGlobal
-                                .Where(x => x.NewsStatus.NameGlobal == "Published"
-                                        && (
-                                            tags.Count() == 0
-                                            || x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
-                                            )
-                                )
-                                //.Include(x => x.TagsGlobal)
-                                .SelectMany(x => x.NewsLocal.Where(y =>
-                                                                    y.NewsGlobalId == x.Id
-                                                                    && y.Language.ShortName == lang), (x, y) => new { x, y })
-                                .ToList()//bonyi searchlistnél behal az ef
-                                .Where(s =>
-                                        searchList.Count() == 0
-                                        ||
-                                        (
-                                            (null != s.y.Title1 && searchList.Any(ss => s.y.Title1.Contains(ss)))
-                                            || 
-                                            (null != s.y.Title2 && searchList.Any(ss => s.y.Title2.Contains(ss)))
-                                            || 
-                                            (null != s.y.Subtitle && searchList.Any(ss => s.y.Subtitle.Contains(ss)))
-                                            || 
-                                            (null != s.y.Body_text && searchList.Any(ss => s.y.Body_text.Contains(ss)))
-                                        )
-                                )
-                                //.ToList()
-                                .Select(s => new ArticlesBindingModel
-                                {
-                                    Id = s.x.Id.ToString(),
-                                    ImageURL = string.Format("{0}{1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
-                                    ThumbnailURL = string.Format("{0}{1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
-                                    Title1 = s.y.Title1,
-                                    Title2 = s.y.Title2,
-                                    Subtitle = s.y.Subtitle,
-                                    Body = s.y.Body_text,
-                                    //Tags = s.x.TagsGlobal
-                                    //            .SelectMany(v => context.TagsLocal.Where(z =>
-                                    //                                                        z.TagsGlobal.Id == v.Id
-                                    //                                                        && z.Language.ShortName == lang)
-                                    //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
-                                    Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
-                                    Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate)
-                                }
-                                )
-                                .OrderByDescending(o => o.Date)
-                                .AsQueryable()
-                                .Skip((pageNum - 1) * pagesizeNum).Take(pagesizeNum);
-
-                    //foreach (var item in res) { Debug.WriteLine(item); }
-
-                    return res;
-
+                    skipNum = 0;
                 }
+                else
+                {
+                    string firstpagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "FirstPageSize" && x.Public).Value;
+                    if (null == firstpagesize)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        if (!int.TryParse(firstpagesize, out skipNum))
+                        {
+                            return null;
+                        }                         
+                    }
+                    pagesize = context.SystemParameter.FirstOrDefault(x => x.Name == "NextPageSize" && x.Public).Value;
+                    if (null == pagesize)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        if (!int.TryParse(pagesize, out pagesizeNum))
+                        {
+                            return null;
+                        }
+                    }
+                    skipNum = skipNum + (((int)page - 2) * pagesizeNum);
+                }
+
+                string baseurl = HtmlHelpers.AppBaseUrl("/api/Image?id=");
+                var searchList = SearchHelpers.GetSaerchList(query, lang);
+
+                List<Guid> tagsGL = new List<Guid>();
+                foreach (string t in tags.ToList())
+                {
+                    tagsGL.Add(Guid.Parse(t));
+                }
+                Guid[] tagsGA = tagsGL.ToArray();
+
+                var res = context.NewsGlobal
+                            .Where(x => x.NewsStatus.NameGlobal == "Published"
+                                    && (
+                                        tags.Count() == 0
+                                        || x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
+                                        )
+                            )
+                            //.Include(x => x.TagsGlobal)
+                            .SelectMany(x => x.NewsLocal.Where(y =>
+                                                                y.NewsGlobalId == x.Id
+                                                                && y.Language.ShortName == lang), (x, y) => new { x, y })
+                            .ToList()//bonyi searchlistnél behal az ef
+                            .Where(s =>
+                                    searchList.Count() == 0
+                                    ||
+                                    (
+                                        (null != s.y.Title1 && searchList.Any(ss => s.y.Title1.Contains(ss)))
+                                        || 
+                                        (null != s.y.Title2 && searchList.Any(ss => s.y.Title2.Contains(ss)))
+                                        || 
+                                        (null != s.y.Subtitle && searchList.Any(ss => s.y.Subtitle.Contains(ss)))
+                                        || 
+                                        (null != s.y.Body_text && searchList.Any(ss => s.y.Body_text.Contains(ss)))
+                                    )
+                            )
+                            //.ToList()
+                            .Select(s => new ArticlesBindingModel
+                            {
+                                Id = s.x.Id.ToString(),
+                                ImageURL = string.Format("{0}{1}", baseurl, null == s.x.Headline_picture ? "" : s.x.Headline_picture.stream_id.ToString()),
+                                ThumbnailURL = string.Format("{0}{1}", baseurl, null == s.x.Thumbnail ? "" : s.x.Thumbnail.stream_id.ToString()),
+                                Title1 = s.y.Title1,
+                                Title2 = s.y.Title2,
+                                Subtitle = s.y.Subtitle,
+                                Body = s.y.Body_text,
+                                //Tags = s.x.TagsGlobal
+                                //            .SelectMany(v => context.TagsLocal.Where(z =>
+                                //                                                        z.TagsGlobal.Id == v.Id
+                                //                                                        && z.Language.ShortName == lang)
+                                //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
+                                Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
+                                Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate)
+                            }
+                            )
+                            .OrderByDescending(o => o.Date)
+                            .AsQueryable()
+                            .Skip(skipNum).Take(pagesizeNum);
+
+                //foreach (var item in res) { Debug.WriteLine(item); }
+
+                return res;
             }
         }
     

@@ -251,15 +251,21 @@ namespace Tax.Portal.Controllers
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
                 Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
                 var cl = db.ContactsLocal.FirstOrDefault(x => x.ContactsGlobalId == id && x.LanguageId == lguid);
-                if (null == cl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
-                {
-                    var newcl = db.ContactsLocal.Create();
-                    newcl.ContactsGlobalId = id;
-                    newcl.LanguageId = lguid;
-                    db.Entry(newcl).State = EntityState.Added;
-                    db.SaveChanges();
-                }
-                else
+                //if (null == cl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                //{
+                //    var newcl = db.ContactsLocal.Create();
+                //    newcl.ContactsGlobalId = id;
+                //    newcl.LanguageId = lguid;
+                //    db.Entry(newcl).State = EntityState.Added;
+                //    db.SaveChanges();
+                //}
+                //else
+                //{
+                //    cvm.Department = cl.Department;
+                //    cvm.Position = cl.Position;
+                //    cvm.Profile = cl.Profile;
+                //}
+                if (null != cl)// ha már van ilyen lokalizáció
                 {
                     cvm.Department = cl.Department;
                     cvm.Position = cl.Position;
@@ -334,10 +340,26 @@ namespace Tax.Portal.Controllers
                     if (resg.Email != model.Email) { resg.Email = model.Email; }
 
                     var resl = db.ContactsLocal.FirstOrDefault(x => x.ContactsGlobalId == model.Id && x.LanguageId == lguid);
-                    if (resl.Department != model.Department) { resl.Department = model.Department; }
-                    if (resl.Position != model.Position) { resl.Position = model.Position; }
-                    if (resl.Profile != model.Profile) { resl.Profile = model.Profile; }
-                    
+                    //if (resl.Department != model.Department) { resl.Department = model.Department; }
+                    //if (resl.Position != model.Position) { resl.Position = model.Position; }
+                    //if (resl.Profile != model.Profile) { resl.Profile = model.Profile; }
+                    if (null == resl)// ha még nincs ilyen lokalizáció, akkor csinálni kell neki
+                    {
+                        resl = db.ContactsLocal.Create();
+                        resl.ContactsGlobalId = model.Id;
+                        resl.LanguageId = lguid;
+                        resl.Department = model.Department;
+                        resl.Position = model.Position;
+                        resl.Profile = model.Profile;
+                        db.Entry(resl).State = EntityState.Added;
+                    }
+                    else
+                    {
+                        if (resl.Department != model.Department) { resl.Department = model.Department; }
+                        if (resl.Position != model.Position) { resl.Position = model.Position; }
+                        if (resl.Profile != model.Profile) { resl.Profile = model.Profile; }
+                    }
+
                     //nem szerepel a db contextben a many-to-many, ezért be kell tölteni
                     db.Entry(resg).Collection(t => t.TagsGlobal).Load();
 
