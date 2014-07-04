@@ -21,7 +21,10 @@ namespace Tax.WebAPI.Service
 
         public string PutDevice(string token, string type, string lang)
         {
-            var res = context.Device.Create();
+            var res = context.Device.FirstOrDefault(x => x.Token == token);
+            if (null != res)
+                return string.Format("Already uploaded token: {0}", token);
+            res = context.Device.Create();
             res.Token = token;
             res.DeviceType = context.DeviceType.SingleOrDefault(x => x.Name == type);
             if (null == res.DeviceType)
