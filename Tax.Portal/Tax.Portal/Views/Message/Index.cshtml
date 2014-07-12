@@ -276,9 +276,9 @@
         rowList: [20, 40, 60],
         toppager: true,
         pager: '#msgpager',
-        sortname: 'Status,MessageEn',
+        sortname: 'PublishingDate,Status',
         viewrecords: true,
-        sortorder: "asc",
+        sortorder: "desc",
         caption: 'Messages',
         rownumbers: false,
         gridview: true,
@@ -387,7 +387,9 @@
 
     $('#createbutton').click(function () {
         $.ajax({
-            url: '@Url.Action("Create", "Message")?messageEn=' + $("#NewmessageEn").val() + '&messageHu=' + $("#NewmessageHu").val(),
+            @*IE unicodes trash url: '@Url.Action("Create", "Message")?messageEn=' + $("#NewmessageEn").val() + '&messageHu=' + $("#NewmessageHu").val(),*@
+            url: '@Url.Action("Create", "Message")',
+            data: {messageEn: $("#NewmessageEn").val(), messageHu: $("#NewmessageHu").val()},
             type: 'POST',
             beforeSend: function (jqXHR, textStatus) { jQuery('#msg').block({ message: '<h3>Wait…</h3>' }); },
             complete: function (jqXHR, textStatus) {

@@ -54,11 +54,11 @@ namespace Tax.WebAPI.Service
                         {
                             Id = s.x.Id.ToString(),
                             Title1 = s.y.Title1,
-                            Title2 = s.y.Title2,
-                            Subtitle = s.y.Subtitle,
+                            Title2 = s.y.Title2 ?? "",
+                            Subtitle = s.y.Subtitle ?? "",
                             Body = s.y.Body_text,
                             Order = s.x.Order,
-                            Date = TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
+                            Date = null == s.x.PublishingDate ? "" : TimestampHelpers.GetTimestamp((DateTime)s.x.PublishingDate),
                             Category = s.x.CategoriesGlobal.Id.ToString()
                         })
                         .OrderBy(o => o.Date)

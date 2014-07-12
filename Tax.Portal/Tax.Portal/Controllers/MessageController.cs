@@ -241,7 +241,11 @@ namespace Tax.Portal.Controllers
         static void NotificationSent(object sender, INotification notification)
         {
             //successtext for json
-            successtext += DateTime.Now.ToString() + " Ok: " + notification;
+            //valamiért kétszer sül el, minden ok
+            if (null == successtext || !successtext.Contains(notification.ToString()))
+            {
+                successtext += DateTime.Now.ToString() + " Ok: " + notification.ToString();
+            }
         }
 
         //this is raised when a notification is failed due to some reason
@@ -249,7 +253,8 @@ namespace Tax.Portal.Controllers
         INotification notification, Exception notificationFailureException)
         {
             //errortext for json
-            errortext += DateTime.Now.ToString() + " Error: " + notification + " Cause: " + notificationFailureException;
+            //errortext += DateTime.Now.ToString() + " Error: " + notification + " Cause: " + notificationFailureException;
+            warningtext += DateTime.Now.ToString() + " Warning: " + notification + " Cause: " + notificationFailureException;
         }
 
         //this is fired when there is exception is raised by the channel

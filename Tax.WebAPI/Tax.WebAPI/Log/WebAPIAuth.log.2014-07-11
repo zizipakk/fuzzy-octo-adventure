@@ -1,0 +1,149 @@
+2014-07-11 23:22:05,989 [207] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:22:27,376 [207] ERROR Tax.WebAPI.Controllers.EventsController - Aii of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 36
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:25:00,855 [219] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:25:01,139 [219] ERROR Tax.WebAPI.Controllers.EventsController - Aii of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 36
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:25:26,333 [214] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:25:57,934 [214] ERROR Tax.WebAPI.Controllers.EventsController - Aii of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 36
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:26:50,437 [214] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:28:18,056 [214] ERROR Tax.WebAPI.Controllers.EventsController - Aii of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 36
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:36:11,211 [230] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-07-11 23:36:13,966 [236] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:37:05,099 [236] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Service.EventsService.GetEvents(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 47
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 32
+2014-07-11 23:37:46,993 [212] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:37:49,369 [212] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Service.EventsService.GetEvents(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 47
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 32
+2014-07-11 23:39:46,640 [228] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:40:53,205 [228] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Service.EventsService.GetEvents(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 47
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 32
+2014-07-11 23:49:37,904 [234] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:50:28,670 [234] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Service.EventsService.GetEvents(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 47
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 32
+2014-07-11 23:52:13,070 [250] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-07-11 23:52:15,922 [225] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:53:19,567 [225] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:55:47,808 [238] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:56:21,596 [238] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:56:57,829 [256] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-07-11 23:57:43,660 [233] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:57:50,198 [233] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:59:20,366 [249] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: hu
+2014-07-11 23:59:20,711 [249] INFO  Tax.WebAPI.Controllers.ExtrasController - model: [{"Id":"cec0b423-5574-42ed-84db-98984a24053c","Title1":"Cím1-15","Title2":"Cím2-15","Subtitle":"Alcím-15","Body":"15. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":1,"Date":"1398624977","Category":"891cca24-5d92-4f31-bd03-0b8685bb11b9"},{"Id":"f0971e7c-c8f8-4ea2-a439-a7824f959084","Title1":"Cím1-16","Title2":"Cím2-16","Subtitle":"Alcím-16","Body":"16. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":2,"Date":"1398628577","Category":"891cca24-5d92-4f31-bd03-0b8685bb11b9"},{"Id":"fe756d17-02c3-4eb6-8ba9-f67853734b69","Title1":"Cím1-77","Title2":"Cím2-77","Subtitle":"Alcím-77","Body":"77. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":3,"Date":"1398632177","Category":"891cca24-5d92-4f31-bd03-0b8685bb11b9"},{"Id":"9fbad829-4ff5-434f-9baa-d38d9a036dd2","Title1":"Cím1-19","Title2":"Cím2-19","Subtitle":"Alcím-19","Body":"<p>19. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\r\n","Order":19,"Date":"1398635777","Category":"7a853d80-501a-4099-9c6b-7786ef844e6c"},{"Id":"8dac2d39-6300-4e60-a4d9-f2cb08aea8de","Title1":"Cím1-20","Title2":"Cím2-20","Subtitle":"Alcím-20","Body":"20. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":4,"Date":"1398635777","Category":"891cca24-5d92-4f31-bd03-0b8685bb11b9"},{"Id":"da3c71f8-075d-4213-9fc5-224638677905","Title1":"Cím1-5","Title2":"Cím2-5","Subtitle":"Alcím-5","Body":"5. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":5,"Date":"1398639377","Category":"ab350601-e6f6-4640-8c14-2ca63c650b0e"},{"Id":"a5836e25-e77c-4b6a-b023-18a7c23a9368","Title1":"Cím1-3","Title2":"Cím2-3","Subtitle":"Alcím-3","Body":"3. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":6,"Date":"1398642977","Category":"ab350601-e6f6-4640-8c14-2ca63c650b0e"},{"Id":"f459af33-8eb2-4fe9-add8-4c6f65abd328","Title1":"Cím1-6","Title2":"Cím2-6","Subtitle":"Alcím-6","Body":"6. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":7,"Date":"1398646577","Category":"ab350601-e6f6-4640-8c14-2ca63c650b0e"},{"Id":"e66562d7-059f-4b86-8419-217c4a6b266f","Title1":"Cím1-4","Title2":"Cím2-4","Subtitle":"Alcím-4","Body":"4. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":8,"Date":"1398650177","Category":"ab350601-e6f6-4640-8c14-2ca63c650b0e"},{"Id":"c9eba32f-f11b-4905-a714-7d7e9254897c","Title1":"Cím1-13","Title2":"Cím2-13","Subtitle":"Alcím-13","Body":"13. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":9,"Date":"1398653777","Category":"33d6deba-6738-4d30-a8c3-33761d98f62e"},{"Id":"0c456e7a-7c13-45c8-a20c-079927f1cbb1","Title1":"Cím1-1","Title2":"Cím2-1","Subtitle":"Alcím-1","Body":"1. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":10,"Date":"1398657377","Category":"33d6deba-6738-4d30-a8c3-33761d98f62e"},{"Id":"e033bab4-f2f0-4483-8c78-fcf52d123e57","Title1":"Cím1-78","Title2":"Cím2-78","Subtitle":"Alcím-78","Body":"78. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":11,"Date":"1398660977","Category":"33d6deba-6738-4d30-a8c3-33761d98f62e"},{"Id":"e31bf18d-3164-4aca-b5aa-6c1275163449","Title1":"Cím1-10","Title2":"Cím2-10","Subtitle":"Alcím-10","Body":"10. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":12,"Date":"1398664577","Category":"33d6deba-6738-4d30-a8c3-33761d98f62e"},{"Id":"c4eeac24-3bf1-4d9b-9d48-5cd5d6c6d3e5","Title1":"Cím1-8","Title2":"Cím2-8","Subtitle":"Alcím-8","Body":"8. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":13,"Date":"1398668177","Category":"7ada043e-0b23-4c65-918f-5874b0486418"},{"Id":"c61f0251-732f-4a74-98eb-6f002bbd1947","Title1":"Cím1-12","Title2":"Cím2-12","Subtitle":"Alcím-12","Body":"12. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":14,"Date":"1398671777","Category":"7ada043e-0b23-4c65-918f-5874b0486418"},{"Id":"b54636f9-f0a9-46ff-9ede-091f34f7cb43","Title1":"Cím1-2","Title2":"Cím2-2","Subtitle":"Alcím-2","Body":"2. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":15,"Date":"1398675377","Category":"7ada043e-0b23-4c65-918f-5874b0486418"},{"Id":"94989ecc-3ee7-430e-8433-6e5b6ec0b45b","Title1":"Cím1-11","Title2":"Cím2-11","Subtitle":"Alcím-11","Body":"11. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":16,"Date":"1398678977","Category":"7ada043e-0b23-4c65-918f-5874b0486418"},{"Id":"88fb6c3e-cb1d-4503-bd0f-63df4be637c5","Title1":"Cím1-9","Title2":"Cím2-9","Subtitle":"Alcím-9","Body":"9. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":17,"Date":"1398682577","Category":"7a853d80-501a-4099-9c6b-7786ef844e6c"},{"Id":"cde9dec9-bfe6-428f-a379-b5e5e62b8af5","Title1":"Cím1-18","Title2":"Cím2-18","Subtitle":"Alcím-18","Body":"18. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":18,"Date":"1398686177","Category":"7a853d80-501a-4099-9c6b-7786ef844e6c"},{"Id":"68e90495-1321-4517-bca2-abc9ff88b128","Title1":"Cím1-17","Title2":"Cím2-17","Subtitle":"Alcím-17","Body":"17. MAGYAR: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Order":20,"Date":"1398693377","Category":"adf99fad-2da2-469f-a146-b71d02ee8651"},{"Id":"2c0ec625-de72-4589-8288-c576b4d1bac7","Title1":"aaa","Title2":"aaa","Subtitle":"aaa","Body":"<p>aaa</p>\r\n","Order":1,"Date":"1402838006","Category":"7a853d80-501a-4099-9c6b-7786ef844e6c"},{"Id":"e05c7462-2456-40fa-b78a-044c14ef23c3","Title1":"bbb","Title2":"bbb","Subtitle":"bbb","Body":"<p>bbb</p>\r\n","Order":2,"Date":"1402838123","Category":"7a853d80-501a-4099-9c6b-7786ef844e6c"}]
+2014-07-11 23:59:20,711 [249] INFO  Tax.WebAPI.Controllers.ExtrasController - OK, end
+2014-07-11 23:59:44,252 [249] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-07-11 23:59:44,358 [249] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at Tax.WebAPI.Service.EventsService.<GetEvents>b__1(<>f__AnonymousType3`2 s) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\EventsService.cs:line 37
+   at System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.<GetEnumerator>d__0.MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\OCTO\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 34
+2014-07-11 23:59:58,724 [233] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: en
+2014-07-11 23:59:58,750 [233] INFO  Tax.WebAPI.Controllers.EventsController - model: [{"Id":"91893032-d5a1-4c6d-b95c-4f44d2895b41","Title1":"Title1-10","Title2":"","Body":"10. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1400889600"},{"Id":"3ccbd8bd-8866-47ed-a011-2e939b74275f","Title1":"Title1-7","Title2":"","Body":"7. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1400324191"},{"Id":"8f628287-891d-4630-a893-6c687d2bb19d","Title1":"Title1-15","Title2":"","Body":"15. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1400151391"},{"Id":"4b9f4628-4cd2-43fb-b335-6aecca0dd1b2","Title1":"Title1-14","Title2":"","Body":"14. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399978591"},{"Id":"9b0a0b05-e03c-4046-9538-778b5e9eefc7","Title1":"Title1-17","Title2":"","Body":"17. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399719391"},{"Id":"5e7d9796-74f1-4c24-8c11-0a04a0b1298d","Title1":"Title1-2","Title2":"","Body":"2. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399632991"},{"Id":"05b006e1-bcfc-4597-b182-5dd3cf26ec36","Title1":"Title1-12","Title2":"","Body":"12. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399546591"},{"Id":"fa0adfc3-e767-44b2-89e3-7401ff8d4693","Title1":"Title1-16","Title2":"","Body":"16. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399460191"},{"Id":"23c29cc4-40fd-4dc7-bcff-078fd9a1177e","Title1":"Title1-1","Title2":"","Body":"1. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399373791"},{"Id":"990f3ac2-fd57-4eee-b0de-2d03c7f50aa5","Title1":"Title1-6","Title2":"","Body":"6. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399287391"},{"Id":"997ee605-6403-4236-a836-7e35a688682e","Title1":"Title1-18","Title2":"","Body":"18. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399200991"},{"Id":"c167445d-1d75-43b8-befe-8f3409ecd249","Title1":"Title1-20","Title2":"","Body":"20. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399114591"},{"Id":"96164cbe-36b8-43fe-96b2-80947b1885e6","Title1":"Title1-19","Title2":"","Body":"19. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1399028191"},{"Id":"c1818a95-3ec9-4c6a-a998-65c891fa9a19","Title1":"Title1-13","Title2":"","Body":"13. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1398941791"},{"Id":"7d1b2856-61fb-4e7d-a3d9-3577f92c4332","Title1":"Title1-9","Title2":"","Body":"9. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1398855391"},{"Id":"999034b5-6f14-4a2d-9dfc-f405bc8e01b6","Title1":"Title1-78","Title2":"","Body":"78. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1398768991"},{"Id":"2aacefba-2ebf-4789-a7d0-167f9d865d40","Title1":"Title1-4","Title2":"","Body":"4. ENGLISH: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Date":"1398682591"}]
+2014-07-11 23:59:58,750 [233] INFO  Tax.WebAPI.Controllers.EventsController - OK, end

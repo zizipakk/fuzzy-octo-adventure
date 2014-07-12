@@ -1,0 +1,35 @@
+2014-07-04 23:21:27,869 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-07-04 23:26:28,257 [20] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: 7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:26:32,984 [20] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: 7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:25,951 [12] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:26,321 [12] INFO  Tax.WebAPI.Controllers.DevicesController - OK, end
+2014-07-04 23:27:28,307 [12] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:28,312 [12] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:29,571 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:29,576 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:30,474 [12] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:30,480 [12] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:31,261 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:31,267 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:32,004 [17] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:32,010 [17] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:32,549 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:32,554 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:33,025 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:33,030 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:33,311 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:33,318 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:33,561 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:33,566 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:34,098 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:34,103 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:34,635 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:34,640 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:35,207 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:35,215 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:35,433 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:35,439 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:35,671 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:35,676 [13] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end
+2014-07-04 23:27:36,172 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Put device by token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, type: ios, language hu
+2014-07-04 23:27:36,177 [16] INFO  Tax.WebAPI.Controllers.DevicesController - Parameter issue: Already uploaded token: HU7fa3eae8e26818c4cf1ace74db69ff519e0b5c1cf13be769c820bd4038f3defa, end

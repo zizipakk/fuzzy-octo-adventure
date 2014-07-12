@@ -285,7 +285,7 @@
                     name: 'Name', index: 'Name', width: 250, align: "left",
                     editable: true, sortable: true,
                     cellattr: function (rowId, tv, rawObject, cm, rdata) { return 'style="white-space: normal;"' },
-                    formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
+                    //formatter: function (v) { return '<div style="max-height: 100px">' + v + '</div>'; }
                 },
                 { name: 'Email', index: 'Email', width: 200, align: "left", editable: true, sortable: true },
                 {
@@ -387,10 +387,17 @@
 
         $('#createbuttonuser').click(function () {
             $.ajax({
-                url: '@Url.Action("CreateUser", "Admin")?UserName=' + $('#NewUserName').val()
+                @*IE unicode trash url: '@Url.Action("CreateUser", "Admin")?UserName=' + $('#NewUserName').val()
                         + '&Password=' + $('#NewPassword').val()
                         + '&Name=' + $('#NewName').val()
-                        + '&Email=' + $('#NewEmail').val(),
+                        + '&Email=' + $('#NewEmail').val(),*@
+                url: '@Url.Action("CreateUser", "Admin")',
+                data: {
+                    UserName: $('#NewUserName').val(),
+                    Password: $('#NewPassword').val(),
+                    Name: $('#NewName').val(),
+                    Email: $('#NewEmail').val()
+                },
                 type: 'POST',
                 beforeSend: function (jqXHR, textStatus) {
                     jQuery('#users').block({ message: '<h3>Wait…</h3>' });
@@ -581,9 +588,15 @@
 
         $('#createbuttonsetup').click(function () {
             $.ajax({
-                url: '@Url.Action("CreateSetup", "Admin")?Name=' + $('#Name').val()
+                @*url: '@Url.Action("CreateSetup", "Admin")?Name=' + $('#Name').val()
                         + '&Value=' + $('#Value').val()
-                        + '&Description=' + $('#Description').val(),
+                        + '&Description=' + $('#Description').val(),*@
+                url: '@Url.Action("CreateSetup", "Admin")',
+                data: {
+                    Name: $('#Name').val(),
+                    Value: $('#Value').val(),
+                    Description: $('#Description').val()
+                },
                 type: 'POST',
                 beforeSend: function (jqXHR, textStatus) { jQuery('#setups').block({ message: '<h3>Wait…</h3>' }); },
                 complete: function (jqXHR, textStatus) {

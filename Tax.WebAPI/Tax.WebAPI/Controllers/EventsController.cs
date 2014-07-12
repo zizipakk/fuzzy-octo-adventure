@@ -42,7 +42,7 @@ namespace Tax.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                log.Error("Aii of Events access by language error: ", ex);
+                log.Error("All of Events access by language error: ", ex);
                 throw;
             }
         }

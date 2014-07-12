@@ -51,7 +51,7 @@ namespace Tax.WebAPI.Service
                                 ImageURL = string.Format("{0}{1}", baseurl, null == s.x.Photo ? "" : s.x.Photo.stream_id.ToString()),
                                 PhoneNumbers = new List<PhonenumbersBindingModel>() { 
                                     new PhonenumbersBindingModel() { Label = "Phone", Number = s.x.Phone }, 
-                                    new PhonenumbersBindingModel() { Label = "Mobile", Number = s.x.Mobile } },
+                                    new PhonenumbersBindingModel() { Label = "Mobile", Number = s.x.Mobile ?? "" } },
                                 Email = s.x.Email,
                                 //Tags = s.x.TagsGlobal
                                 //            .SelectMany(v => context.TagsLocal.Where(z =>
