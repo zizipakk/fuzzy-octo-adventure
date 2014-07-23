@@ -6,7 +6,8 @@ namespace Tax.WebAPI.Helpers
     {
         public static string GetTimestamp(DateTime DateTimeFormat)
         {
-            return ((DateTimeFormat.Ticks - new DateTime(1970, 1, 1).Ticks) / 10000000).ToString();
+            DateTime utc = TimeZoneInfo.ConvertTimeToUtc(DateTimeFormat, TimeZoneInfo.Local);
+            return ((utc.Ticks - new DateTime(1970, 1, 1).Ticks) / 10000000).ToString();
         }
     }
 }
