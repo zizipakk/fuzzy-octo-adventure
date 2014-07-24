@@ -25,22 +25,26 @@
         @Styles.Render("~/Content/css")
         @Styles.Render("~/Content/themes/base/css")
         @Scripts.Render("~/Scripts/modernizr")
-        <style type="text/css">
+        <style type="text/css">            
             body {
                 /*width: 1240px;*/
                 height: 768px;
                 padding-top: 50px;
-                font-family: "~/fonts/FrutigerNextPro-Light.otf";
+                /*font-family: "~/fonts/FrutigerNextPro-Light.otf";*/
+                font-family: "FrutigerNextPro-Light" !important;
                 font-size: 12px;
                 color: #313131;
             }
             footer {
-                font-family: "~/fonts/FrutigerNextPro-Light.otf";
+                font-family: "FrutigerNextPro-Light" !important;
                 font-size: 10px;
                 color: #313131;
             }
             .ui-jqgrid {
-                font-family: "~/fonts/FrutigerNextPro-Light.otf";
+                font-family: "FrutigerNextPro-Light" !important;
+            }
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                font-family: "FrutigerNextPro-Light" !important;
             }
         </style>
         @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
@@ -76,7 +80,7 @@
                                         {
                                             <li class="@(delockUrl.Contains(string.Format("/{0}",menuitem.Controller)) ? "active" : "")">
                                                 <a class="@(!menu.isActive ? "disabled" : "")"
-                                                    style="font-family: '~/fonts/FrutigerNextPro-Bold.otf';
+                                                    style="font-family: 'FrutigerNextPro-Bold';
                                                             font-size: 18px;
                                                             color: #00A1D1 !important; "
                                                     id="@menuitem.Id"
