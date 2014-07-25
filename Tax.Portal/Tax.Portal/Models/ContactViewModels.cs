@@ -43,7 +43,7 @@ namespace Tax.Portal.Models
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Last_name { get; set; }
         [Display(Name = "Linkedin")]
-        [Required(ErrorMessage = "[{0}] is required")]
+        //[Required(ErrorMessage = "[{0}] is required")]
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         public string Linkedin { get; set; }
         [Display(Name = "Phone")]

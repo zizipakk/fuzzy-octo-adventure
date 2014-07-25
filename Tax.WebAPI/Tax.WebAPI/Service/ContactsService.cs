@@ -59,7 +59,7 @@ namespace Tax.WebAPI.Service
                                 //                                                        && z.Language.ShortName == lang)
                                 //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                                 Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
-                                linkedinURL = s.x.Linkedin
+                                linkedinURL = s.x.Linkedin ?? ""
                             }
                         )
                         .OrderByDescending(o => o.LastName)
