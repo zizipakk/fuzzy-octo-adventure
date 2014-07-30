@@ -7300,29 +7300,28 @@ table td:last-child {
     padding-right: 3px;
 }
 
-@font-face {
-    font-family: FrutigerNextPro-Light;
-    src: url('../fonts/FrutigerNextPro-Light.eot'); /* IE9 Compat Modes */
-    src: url('../fonts/FrutigerNextPro-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/FrutigerNextPro-Light.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/FrutigerNextPro-Light.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/FrutigerNextPro-Light.svg#glyphicons-halflingsregular') format('svg'); /* Legacy iOS */
-}
+/*@font-face {*/
+    /*font-family: FrutigerNextPro-Light;*/
+    /*src: url('../fonts/FrutigerNextPro-Light.eot');*/ /* IE9 Compat Modes */
+    /*src: url('../fonts/FrutigerNextPro-Light.eot?#iefix') format('embedded-opentype'),*/ /* IE6-IE8 */
+         /*url('../fonts/FrutigerNextPro-Light.woff') format('woff'),*/ /* Modern Browsers */
+         /*url('../fonts/FrutigerNextPro-Light.ttf') format('truetype'),*/ /* Safari, Android, iOS */
+         /*url('../fonts/FrutigerNextPro-Light.svg#glyphicons-halflingsregular') format('svg');*/ /* Legacy iOS */
+/*}*/
 
-@font-face {
+/*@font-face {
     font-family: FrutigerNextPro-Medium;
-    src: url('../fonts/FrutigerNextPro-Medium.eot'); /* IE9 Compat Modes */
-    src: url('../fonts/FrutigerNextPro-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/FrutigerNextPro-Medium.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/FrutigerNextPro-Medium.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/FrutigerNextPro-Medium.svg#glyphicons-halflingsregular') format('svg'); /* Legacy iOS */
+    src: url('../fonts/FrutigerNextPro-Medium.eot');
+    src: url('../fonts/FrutigerNextPro-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FrutigerNextPro-Medium.woff') format('woff'),
+         url('../fonts/FrutigerNextPro-Medium.ttf') format('truetype'),
+         url('../fonts/FrutigerNextPro-Medium.svg#glyphicons-halflingsregular') format('svg');
 }
 
 @font-face {
     font-family: FrutigerNextPro-Bold;
-    src: url('../fonts/FrutigerNextPro-Bold.eot'); /* IE9 Compat Modes */
-    src: url('../fonts/FrutigerNextPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/FrutigerNextPro-Bold.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/FrutigerNextPro-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/FrutigerNextPro-Bold.svg#glyphicons-halflingsregular') format('svg'); /* Legacy iOS */
-}
+    src: url('../fonts/FrutigerNextPro-Bold.eot');
+    src: url('../fonts/FrutigerNextPro-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FrutigerNextPro-Bold.woff') format('woff'),
+         url('../fonts/FrutigerNextPro-Bold.ttf') format('truetype'),
+         url('../fonts/FrutigerNextPro-Bold.svg#glyphicons-halflingsregular') format('svg');}*/

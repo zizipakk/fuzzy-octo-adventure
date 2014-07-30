@@ -9,17 +9,21 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle"
-               style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"
+               @*style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"*@
+               style="font-family: Arial; font-size: 12px; color: #313131 !important;"
                data-toggle="dropdown"
                href="#">
                 <span><i class="fa fa-info fw"></i><strong>  @User.Identity.GetUserName() </strong></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"
-                        href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i>Change Password</a></li>
+                <li><a @*style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"*@
+                       style="font-family: Arial; font-size: 12px; color: #313131 !important;"
+                       href="@Url.Action(MVC.Account.Manage())"><i class="fa fa-ambulance fw"></i>Change Password</a></li>
             </ul>
         </li>
-        <li><a style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;" 
+        <li><a 
+               @*style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"*@
+               style="font-family: Arial; font-size: 12px; color: #313131 !important;"
                href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
     </ul>
     }
@@ -28,7 +32,8 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li><a id="loginLink"
-                style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;" 
-                href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i>Login</a></li>
+               @*style="font-family: 'FrutigerNextPro-Light'; font-size: 12px; color: #313131 !important;"*@
+               style="font-family: Arial; font-size: 12px; color: #313131 !important;"
+               href="@Url.Action(MVC.Account.Login())"><i class="fa fa-sign-in fa-fw"></i>Login</a></li>
     </ul>
 }

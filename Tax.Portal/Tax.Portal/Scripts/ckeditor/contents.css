@@ -33,8 +33,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 body
 {
 	/* Font */
-	/*font-family: sans-serif, Arial, Verdana, "Trebuchet MS";*/
-    font-family: 'FrutigerNextPro-Light' !important;
+	font-family: Arial;
+    /*font-family: 'FrutigerNextPro-Light' !important;*/
 	font-size: 14px;
 
 	/* Text color */
@@ -56,8 +56,8 @@ body
 blockquote
 {
 	font-style: italic;
-	/*font-family: Georgia, Times, "Times New Roman", serif;*/
-    font-family: 'FrutigerNextPro-Light' !important;
+	font-family: Arial;
+    /*font-family: 'FrutigerNextPro-Light' !important;*/
 	padding: 2px 0;
 	border-style: solid;
 	border-color: #ccc;

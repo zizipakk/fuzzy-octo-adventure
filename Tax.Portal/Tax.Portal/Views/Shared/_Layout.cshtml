@@ -31,20 +31,24 @@
                 height: 768px;
                 padding-top: 50px;
                 /*font-family: "~/fonts/FrutigerNextPro-Light.otf";*/
-                font-family: "FrutigerNextPro-Light" !important;
+                /*font-family: "FrutigerNextPro-Light" !important;*/
+                font-family: Arial;
                 font-size: 12px;
                 color: #313131;
             }
             footer {
-                font-family: "FrutigerNextPro-Light" !important;
+                /*font-family: "FrutigerNextPro-Light" !important;*/
+                font-family: Arial;
                 font-size: 10px;
                 color: #313131;
             }
             .ui-jqgrid {
-                font-family: "FrutigerNextPro-Light" !important;
+                /*font-family: "FrutigerNextPro-Light" !important;*/
+                font-family: Arial;
             }
             h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-                font-family: "FrutigerNextPro-Light" !important;
+                /*font-family: "FrutigerNextPro-Light" !important;*/
+                font-family: Arial;
             }
         </style>
         @Html.Hidden("griddateformat", CultureManager.CultureDateFormGrid())
@@ -80,11 +84,12 @@
                                         {
                                             <li class="@(delockUrl.Contains(string.Format("/{0}",menuitem.Controller)) ? "active" : "")">
                                                 <a class="@(!menu.isActive ? "disabled" : "")"
-                                                    style="font-family: 'FrutigerNextPro-Bold';
+                                                   @*style="font-family: 'FrutigerNextPro-Bold';*@
+                                                   style="font-family: Arial;
                                                             font-size: 18px;
                                                             color: #00A1D1 !important; "
-                                                    id="@menuitem.Id"
-                                                    href="@Url.Action(menuitem.Action, menuitem.Controller)">
+                                                   id="@menuitem.Id"
+                                                   href="@Url.Action(menuitem.Action, menuitem.Controller)">
                                                     @menuitem.Name
                                                 </a>
                                             </li>

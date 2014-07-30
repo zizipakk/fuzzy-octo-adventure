@@ -11,7 +11,8 @@
 <div class="modal fade bs-modal-sm" id="warningmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color: orange; font-family: 'FrutigerNextPro-Bold'">
+            @*<div class="modal-header" style="color: orange; font-family: 'FrutigerNextPro-Bold'">*@
+            <div class="modal-header" style="color: orange; font-family: Arial">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 class="modal-title">WARNING</h3>
             </div>
@@ -30,7 +31,8 @@
 <div class="modal fade bs-modal-sm" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header" style="color: red; font-family: 'FrutigerNextPro-Bold'">
+            @*<div class="modal-header" style="color: red; font-family: 'FrutigerNextPro-Bold'">*@
+            <div class="modal-header" style="color: red; font-family: Arial">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 class="modal-title">ERROR</h3>
             </div>
@@ -183,7 +185,7 @@
         CKEDITOR.config.format_tags = 'p;h1;h2';
         CKEDITOR.config.format_h1 = { element: 'h1', attributes: { 'class': 'contentTitle1', 'style': 'font-weight:normal; font-size: 14px; color: rgb(129,188,0)' } };
         CKEDITOR.config.format_h2 = { element: 'h2', attributes: { 'class': 'contentTitle2', 'style': 'font-weight:normal; font-size: 14px; color: rgb(0,161,222)' } };
-        CKEDITOR.config.font_names = 'FrutigerNextPro-Light;' + CKEDITOR.config.font_names;
+        //CKEDITOR.config.font_names = 'FrutigerNextPro-Light;' + CKEDITOR.config.font_names;
         CKEDITOR.instances['ckeditor_text'].config.uiColor = '#00A1D1';
         CKEDITOR.on('dialogDefinition', function (ev) {
             var dialogName = ev.data.name;
