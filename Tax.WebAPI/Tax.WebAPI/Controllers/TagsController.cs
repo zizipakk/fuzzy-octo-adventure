@@ -31,14 +31,23 @@ namespace Tax.WebAPI.Controllers
                 var tagsService = new TagsService(context);
                 var tags = tagsService.GetTags(lang);
 
-                if (tags == null || tags.Count() == 0)
+                if (tags == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(tags)));
-                log.Info("OK, end");
-                return Ok(tags);
+                else if (tags.Count() == 0)
+                {
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(tags)));
+                    log.Info("OK, end");
+                    return Ok(tags);
+                }
             }
             catch (Exception ex)
             {

@@ -31,16 +31,23 @@ namespace Tax.WebAPI.Controllers
                 var extrasService = new ExtrasService(context);
                 var extras = extrasService.GetExtras(lang);
 
-                if (extras == null || extras.Count() == 0)
+                if (extras == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(extras)));
-                log.Info("OK, end");
-
-                return Ok(extras);
-                //Response.AddHeader('Last-Modified', DateTime.Now.ToUniversalTime().ToString());
+                else if (extras.Count() == 0)
+                {
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(extras)));
+                    log.Info("OK, end");
+                    return Ok(extras);
+                }
             }
             catch (Exception ex)
             {

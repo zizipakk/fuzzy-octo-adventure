@@ -31,14 +31,28 @@ namespace Tax.WebAPI.Controllers
                 var eventsService = new EventsService(context);
                 var events = eventsService.GetEvents(lang);
 
-                if (events == null || events.Count() == 0)
+                //if (events == null || events.Count() == 0)
+                //{
+                //    log.Info("Not found, end");
+                //    return NotFound();
+                //}
+                if (events == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(events)));
-                log.Info("OK, end");
-                return Ok(events);
+                else if (events.Count() == 0)
+                { 
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(events)));
+                    log.Info("OK, end");
+                    return Ok(events);
+                }
             }
             catch (Exception ex)
             {

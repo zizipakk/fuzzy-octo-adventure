@@ -35,14 +35,23 @@ namespace Tax.WebAPI.Controllers
                 //var contacts = contactsService.GetContacts(tags, lang);
                 var contacts = contactsService.GetContacts(lang);
 
-                if (contacts == null || contacts.Count() == 0)
+                if (contacts == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(contacts)));
-                log.Info("OK, end");
-                return Ok(contacts);
+                else if (contacts.Count() == 0)
+                {
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(contacts)));
+                    log.Info("OK, end");
+                    return Ok(contacts);
+                }
             }
             catch (Exception ex)
             {

@@ -36,14 +36,23 @@ namespace Tax.WebAPI.Controllers
                 var articlesService = new ArticlesService(context);
                 var articles = articlesService.GetArticles(query, tags, lang, page);
 
-                if (articles == null || articles.Count() == 0)
+                if (articles == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(articles)));
-                log.Info("OK, end");
-                return Ok(articles);
+                else if (articles.Count() == 0)
+                {
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(articles)));
+                    log.Info("OK, end");
+                    return Ok(articles);
+                }
             }
             catch (Exception ex)
             {
