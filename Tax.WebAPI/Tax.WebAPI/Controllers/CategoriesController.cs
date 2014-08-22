@@ -31,14 +31,23 @@ namespace Tax.WebAPI.Controllers
                 var categoriesService = new CategoriesService(context);
                 var categories = categoriesService.GetCategories(lang);
 
-                if (categories == null || categories.Count() == 0)
+                if (categories == null)
                 {
                     log.Info("Not found, end");
                     return NotFound();
                 }
-                log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(categories)));
-                log.Info("OK, end");
-                return Ok(categories);
+                else if (categories.Count() == 0)
+                {
+                    log.Info("Empty result");
+                    var empty = new Dictionary<string, string>();
+                    return Ok(empty);
+                }
+                else
+                {
+                    log.Info(string.Format("model: {0}", JsonConvert.SerializeObject(categories)));
+                    log.Info("OK, end");
+                    return Ok(categories);
+                }
             }
             catch (Exception ex)
             {

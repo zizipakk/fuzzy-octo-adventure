@@ -1,0 +1,13 @@
+2014-08-21 23:49:51,637 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-21 23:51:29,487 [11] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-08-21 23:51:35,334 [11] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-21 23:57:03,428 [30] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-21 23:57:07,578 [24] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-08-21 23:57:13,345 [24] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-21 23:57:13,509 [24] ERROR Tax.WebAPI.Controllers.EventsController - All of Events access by language error: 
+System.FormatException: Input string was not in a correct format.
+   at System.Text.StringBuilder.AppendFormat(IFormatProvider provider, String format, Object[] args)
+   at System.String.Format(IFormatProvider provider, String format, Object[] args)
+   at System.String.Format(String format, Object[] args)
+   at Tax.WebAPI.Controllers.EventsController.Events(String lang) in c:\git\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\EventsController.cs:line 47
+2014-08-21 23:59:53,083 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
