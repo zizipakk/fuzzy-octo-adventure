@@ -33,7 +33,7 @@ namespace Tax.WebAPI.Service
 
             var res = context.ContactsGlobal
                         .Where(x => x.NewsStatus.NameGlobal == "Published"
-                                //&& x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
+                //&& x.TagsGlobal.Select(y => y.Id).Intersect(tagsGA).Any()
                         )
                         .Include(x => x.TagsGlobal)
                         .SelectMany(x => x.ContactsLocal.Where(y =>
@@ -59,11 +59,13 @@ namespace Tax.WebAPI.Service
                                 //                                                        && z.Language.ShortName == lang)
                                 //                , (v, z) => new TagsBindingModel { Id = v.Id.ToString(), Name = z.Name }),
                                 Tags = s.x.TagsGlobal.Select(v => v.Id.ToString()).ToArray(),
-                                linkedinURL = s.x.Linkedin ?? ""
+                                linkedinURL = s.x.Linkedin ?? "",
+                                Order = s.x.Order
                             }
                         )
-                        .OrderByDescending(o => o.LastName)
-                        .ThenBy(t => t.FirstName);
+                //.OrderByDescending(o => o.LastName)
+                //.ThenBy(t => t.FirstName);
+                        .OrderBy(o => o.Order);
 
             return res; 
         }

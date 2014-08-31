@@ -31,6 +31,7 @@ namespace Tax.Data.Models
         public string Phone { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
+        public int Order { get; set; }
 
         public virtual File Photo { get; set; }
         public virtual ICollection<TagsGlobal> TagsGlobal { get; set; }

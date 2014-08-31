@@ -17,6 +17,7 @@ namespace Tax.WebAPI.Models
 //        public IEnumerable<TagsBindingModel> Tags { get; set; }
         public IEnumerable<string> Tags { get; set; }
         public string linkedinURL { get; set; }
+        public int Order { get; set; }
     }
 
     public class PhonenumbersBindingModel

@@ -12,6 +12,13 @@ using System.Web.Mvc;
 
 namespace Tax.Portal.Models
 {
+    [NotMapped]
+    public class MyOrderList
+    {
+        public int Value { get; set; }
+        public string Text { get; set; }
+    }
+
     public class ContactViewModel : BootstrapViewModel
     {
         public ContactViewModel()
@@ -70,5 +77,12 @@ namespace Tax.Portal.Models
         [Required(ErrorMessage = "[{0}] is required")]
         //[AllowHtml]
         public string Profile { get; set; }
+
+        [Display(Name = "Order")]
+        [Required(ErrorMessage = "[{0}] is required")]
+        public int Order { get; set; }
+        [NotMapped]
+        public List<MyOrderList> OrderList { get; set; }
+
     }
 }

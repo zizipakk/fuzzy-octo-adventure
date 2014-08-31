@@ -1,0 +1,40 @@
+2014-08-22 00:00:03,824 [7] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-08-22 00:00:09,234 [7] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:02:04,000 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-22 00:02:15,225 [9] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: en
+2014-08-22 00:02:19,937 [9] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:06:38,124 [20] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-22 00:06:46,869 [7] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: en
+2014-08-22 00:06:51,486 [7] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:16:27,432 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-22 00:16:29,495 [28] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: en
+2014-08-22 00:16:35,422 [28] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:22:06,053 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-22 00:22:15,468 [7] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: en
+2014-08-22 00:22:20,370 [7] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:22:30,843 [6] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-08-22 00:22:30,862 [6] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:31:54,486 [1] INFO  Tax.WebAPI.WebApiApplication - WebapiAUTH started...
+2014-08-22 00:32:14,570 [26] INFO  Tax.WebAPI.Controllers.EventsController - Get all of Events on language: hu
+2014-08-22 00:32:19,294 [26] INFO  Tax.WebAPI.Controllers.EventsController - Empty result
+2014-08-22 00:32:58,277 [30] INFO  Tax.WebAPI.Controllers.ContactsController - Get all of Contacts in order of PublishedDate by language: hu
+2014-08-22 00:32:58,439 [30] INFO  Tax.WebAPI.Controllers.ContactsController - Empty result
+2014-08-22 00:33:04,646 [26] INFO  Tax.WebAPI.Controllers.ContactsController - Get all of Contacts in order of PublishedDate by language: en
+2014-08-22 00:33:04,656 [26] INFO  Tax.WebAPI.Controllers.ContactsController - Empty result
+2014-08-22 00:33:45,241 [23] INFO  Tax.WebAPI.Controllers.CategoriesController - Get all of Categories on language: en
+2014-08-22 00:33:45,327 [23] INFO  Tax.WebAPI.Controllers.CategoriesController - Empty result
+2014-08-22 00:33:51,902 [23] INFO  Tax.WebAPI.Controllers.CategoriesController - Get all of Categories on language: hu
+2014-08-22 00:33:51,916 [23] INFO  Tax.WebAPI.Controllers.CategoriesController - Empty result
+2014-08-22 00:34:17,682 [23] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: hu
+2014-08-22 00:34:17,802 [23] INFO  Tax.WebAPI.Controllers.ExtrasController - Empty result
+2014-08-22 00:34:23,671 [25] INFO  Tax.WebAPI.Controllers.ExtrasController - Get all of Extras on language: en
+2014-08-22 00:34:23,678 [25] INFO  Tax.WebAPI.Controllers.ExtrasController - Empty result
+2014-08-22 00:34:41,714 [23] INFO  Tax.WebAPI.Controllers.TagsController - Get all of Tags on language: en
+2014-08-22 00:34:41,791 [23] INFO  Tax.WebAPI.Controllers.TagsController - Empty result
+2014-08-22 00:34:49,542 [23] INFO  Tax.WebAPI.Controllers.TagsController - Get all of Tags on language: hu
+2014-08-22 00:34:49,545 [23] INFO  Tax.WebAPI.Controllers.TagsController - Empty result
+2014-08-22 00:35:50,197 [27] INFO  Tax.WebAPI.Controllers.ArticlesController - Get a page of Articles in order of PublishedDate by tags: [null], on language: hu, by query , in pagenumber: 1
+2014-08-22 00:35:50,475 [27] ERROR Tax.WebAPI.Controllers.ArticlesController - A page of Articles access by query + tags + language + page error: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at Tax.WebAPI.Service.ArticlesService.GetArticles(String query, String[] tags, String lang, Nullable`1 page) in c:\git\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Service\ArticlesService.cs:line 48
+   at Tax.WebAPI.Controllers.ArticlesController.Articles(String query, String[] tags, String lang, Nullable`1 page) in c:\git\fuzzy-octo-adventure\Tax.WebAPI\Tax.WebAPI\Controllers\ArticlesController.cs:line 37

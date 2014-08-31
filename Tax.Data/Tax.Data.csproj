@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201406031912378_content-type for file.Designer.cs">
       <DependentUpon>201406031912378_content-type for file.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408302152056_contacts order.cs" />
+    <Compile Include="Migrations\201408302152056_contacts order.Designer.cs">
+      <DependentUpon>201408302152056_contacts order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DeviceModels.cs" />
@@ -211,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406031912378_content-type for file.resx">
       <DependentUpon>201406031912378_content-type for file.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408302152056_contacts order.resx">
+      <DependentUpon>201408302152056_contacts order.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

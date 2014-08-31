@@ -118,6 +118,7 @@
         },
         colNames: [
             'id'
+            , 'Order'
             , 'Status'
             , 'First name'
             , 'Last name'
@@ -130,6 +131,7 @@
         ],
         colModel: [
             { name: 'Id', index: 'Id', hidden: true }, //nem látszik, nem kereshető, nem vihető fel
+            { name: 'Order', index: 'Order', width: 50, template: numberTemplate, hidden: false, sortable: true, search: true, editable: false },
             {
                 name: 'Status', index: 'Status', width: 80, align: "left", hidden: false, sortable: true,
                 search: true, stype: 'select',
@@ -179,7 +181,8 @@
         rowList: [20, 40, 60],
         toppager: true,
         pager: '#contactspager',
-        sortname: 'Status,First_name',
+        //sortname: 'Status,First_name',
+        sortname: 'Status,Order',
         viewrecords: true,
         sortorder: "asc",
         caption: 'Contacts',

@@ -108,6 +108,12 @@
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Type here email" })
                     </div>
                 </div>
+                <div class="col-sm-12 col-xs-12">
+                    @Html.LabelFor(m => m.Order, new { @class = "control-label" })<span style="font-size:15px; font-weight:bold; color:red"> *</span>
+                    <div class="input-group col-sm-12 col-xs-12">
+                        @Html.DropDownListFor(m => m.Order, new SelectList(Model.OrderList, "Value", "Text", Model.Order), new { @class = "form-control" })
+                    </div>
+                </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top:30px">                    
                     <span><b style="font-size:15px; color:red"> * required field</b></span>                    
                 </div>

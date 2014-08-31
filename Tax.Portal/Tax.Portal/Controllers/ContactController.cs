@@ -48,14 +48,15 @@ namespace Tax.Portal.Controllers
             Guid lguid = LocalisationHelpers.GetLanguageId(lid, db);
 
             var rs0 = db.ContactsGlobal
-                                .SelectMany(x => x.ContactsLocal.Where(y => y.LanguageId == lguid)
-                                    , (x, y) => new { x, y })
-                                .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
-                                    , (z, v) => new { z, v })
+                        .SelectMany(x => x.ContactsLocal.Where(y => y.LanguageId == lguid)
+                            , (x, y) => new { x, y })
+                        .SelectMany(z => z.x.NewsStatus.NewsStatusesLocal.Where(v => v.LanguageId == lguid)
+                            , (z, v) => new { z, v })
                         .ToList()
                         .Select(s => new 
                         {
                             Id = s.z.x.Id,
+                            Order = s.z.x.Order,
                             Status = s.v.Name,
                             First_name = s.z.x.First_name,
                             Last_name = s.z.x.Last_name,
@@ -84,6 +85,7 @@ namespace Tax.Portal.Controllers
                         .SelectMany(a => rs00.Where(b => b.Id == a.Id).DefaultIfEmpty(), (a, b) => new
                             {
                                 Id = a.Id,
+                                Order = a.Order,
                                 Status = a.Status,
                                 First_name = a.First_name,
                                 Last_name = a.Last_name,
@@ -104,6 +106,7 @@ namespace Tax.Portal.Controllers
                                cell = new string[] 
                                { 
                                 r.Id.ToString()
+                                ,r.Order.ToString()
                                 ,r.Status
                                 ,r.First_name
                                 ,r.Last_name
@@ -145,6 +148,26 @@ namespace Tax.Portal.Controllers
                 cvm.TagsIn = new Guid[] { };
                 cvm.TagToList = new List<MyListItem>();
 
+                int lastnum = db.ContactsGlobal
+                                    .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing")
+                                    .Max(x => x.Order);
+                List<int> mol = new List<int>();
+                for(int i = 1; i <= lastnum; i++)
+                {
+                    mol.Add(i);
+                }
+                cvm.OrderList = (new List<MyOrderList>() { new MyOrderList { Value = lastnum + 1, Text = (lastnum + 1).ToString() + " - " } })
+                                    .Union(
+                                        mol
+                                        .SelectMany(x => db.ContactsGlobal.ToList()
+                                            .Where(y => y.Order == x
+                                                && (y.NewsStatus.NameGlobal == "Published" || y.NewsStatus.NameGlobal == "Editing")
+                                            ).DefaultIfEmpty(), (x, y) => new { x, y })
+                                        .Select(s => new MyOrderList { Value = s.x, Text = s.x.ToString() + " - " + (null == s.y ? string.Empty : s.y.First_name) })
+                                        .OrderBy(o => o.Value)
+                                    )
+                                    .ToList();
+
                 log.Info("end");
                 return View("Edit", cvm);
             }
@@ -174,6 +197,18 @@ namespace Tax.Portal.Controllers
                     resg.Phone = model.Phone;
                     resg.Mobile = model.Mobile;
                     resg.Email = model.Email;
+                    //ha már fogalalt a választott order, mögöttünk lévő pajtás csúszik hátra
+                    var cg = db.ContactsGlobal
+                                .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing");
+                    if (cg.Any(x => x.Order == model.Order))
+                    {
+                        foreach (ContactsGlobal item in cg.Where(x => x.Order >= model.Order).ToList())
+                        {
+                            item.Order = item.Order + 1;
+                            db.Entry(item).State = EntityState.Modified;
+                        }                        
+                    }
+                    resg.Order = model.Order;
 
                     foreach (var tg in db.TagsGlobal.Where(x => model.TagsIn.Contains(x.Id)).ToList())
                     {
@@ -216,6 +251,26 @@ namespace Tax.Portal.Controllers
                                         .OrderBy(x => x.Text)
                                         .ToList();
 
+                    int lastnum = db.ContactsGlobal
+                    .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing")
+                    .Max(x => x.Order);
+                    List<int> mol = new List<int>();
+                    for (int i = 1; i <= lastnum; i++)
+                    {
+                        mol.Add(i);
+                    }
+                    model.OrderList = (new List<MyOrderList>() { new MyOrderList { Value = lastnum + 1, Text = (lastnum + 1).ToString() + " - " } })
+                                        .Union(
+                                            mol
+                                            .SelectMany(x => db.ContactsGlobal.ToList()
+                                                .Where(y => y.Order == x
+                                                    && (y.NewsStatus.NameGlobal == "Published" || y.NewsStatus.NameGlobal == "Editing")
+                                                ).DefaultIfEmpty(), (x, y) => new { x, y })
+                                            .Select(s => new MyOrderList { Value = s.x, Text = s.x.ToString() + " - " + (null == s.y ? string.Empty : s.y.First_name) })
+                                            .OrderBy(o => o.Value)
+                                        )
+                                        .ToList();
+
                     return View("Edit", model);
                 }
             }
@@ -245,7 +300,8 @@ namespace Tax.Portal.Controllers
                     Linkedin = cg.Linkedin,
                     Phone = cg.Phone,
                     Mobile = cg.Mobile,
-                    Email = cg.Email
+                    Email = cg.Email,
+                    Order = cg.Order
                 };
 
                 string lid = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
@@ -293,6 +349,23 @@ namespace Tax.Portal.Controllers
                                     .OrderBy(x => x.Text)
                                     .ToList();
 
+                int lastnum = db.ContactsGlobal
+                    .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing")
+                    .Max(x => x.Order);
+                List<int> mol = new List<int>();
+                for (int i = 1; i <= lastnum + 1; i++)
+                {
+                    mol.Add(i);
+                }
+                cvm.OrderList = mol
+                                    .SelectMany(x => db.ContactsGlobal.ToList()
+                                        .Where(y => y.Order == x
+                                            && (y.NewsStatus.NameGlobal == "Published" || y.NewsStatus.NameGlobal == "Editing")
+                                        ).DefaultIfEmpty(), (x, y) => new { x, y })
+                                    .Select(s => new MyOrderList { Value = s.x, Text = s.x.ToString() + " - " + (null == s.y ? string.Empty : s.y.First_name) })
+                                    .OrderBy(o => o.Value)
+                                    .ToList();
+
                 log.Info("end");
                 return View(cvm);
             }
@@ -338,6 +411,21 @@ namespace Tax.Portal.Controllers
                     if (resg.Phone != model.Phone) { resg.Phone = model.Phone; }
                     if (resg.Mobile != model.Mobile) { resg.Mobile = model.Mobile; }
                     if (resg.Email != model.Email) { resg.Email = model.Email; }
+                    if (resg.Order != model.Order) 
+                    {
+                        //ha már fogalalt a választott order, mögöttünk lévő pajtás csúszik hátra
+                        var cg = db.ContactsGlobal
+                                    .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing");
+                        if (cg.Any(x => x.Order == model.Order))
+                        {
+                            foreach (ContactsGlobal item in cg.Where(x => x.Order >= model.Order).ToList())
+                            {
+                                item.Order = item.Order + 1;
+                                db.Entry(item).State = EntityState.Modified;
+                            }
+                        }
+                        resg.Order = model.Order;
+                    }
 
                     var resl = db.ContactsLocal.FirstOrDefault(x => x.ContactsGlobalId == model.Id && x.LanguageId == lguid);
                     //if (resl.Department != model.Department) { resl.Department = model.Department; }
@@ -400,6 +488,23 @@ namespace Tax.Portal.Controllers
                                         .Where(z => model.TagsIn.Contains(z.TagsGlobalId) && z.LanguageId == lguid)
                                         .Select(x => new MyListItem { Value = x.TagsGlobalId, Text = x.Name })
                                         .OrderBy(x => x.Text)
+                                        .ToList();
+
+                    int lastnum = db.ContactsGlobal
+                        .Where(x => x.NewsStatus.NameGlobal == "Published" || x.NewsStatus.NameGlobal == "Editing")
+                        .Max(x => x.Order);
+                    List<int> mol = new List<int>();
+                    for (int i = 1; i <= lastnum + 1; i++)
+                    {
+                        mol.Add(i);
+                    }
+                    model.OrderList = mol
+                                        .SelectMany(x => db.ContactsGlobal.ToList()
+                                            .Where(y => y.Order == x
+                                                && (y.NewsStatus.NameGlobal == "Published" || y.NewsStatus.NameGlobal == "Editing")
+                                            ).DefaultIfEmpty(), (x, y) => new { x, y })
+                                        .Select(s => new MyOrderList { Value = s.x, Text = s.x.ToString() + " - " + (null == s.y ? string.Empty : s.y.First_name) })
+                                        .OrderBy(o => o.Value)
                                         .ToList();
 
                     return View(model);

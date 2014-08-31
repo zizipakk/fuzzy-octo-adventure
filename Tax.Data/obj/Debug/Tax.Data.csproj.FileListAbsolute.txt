@@ -59,3 +59,4 @@ C:\git\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.contenttypefo
 C:\git\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.csproj.GenerateResource.Cache
 C:\git\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.dll
 C:\git\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.pdb
+C:\OCTO\fuzzy-octo-adventure\Tax.Data\obj\Debug\Tax.Data.Migrations.contactsorder.resources
